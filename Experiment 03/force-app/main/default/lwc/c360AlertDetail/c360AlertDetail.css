@@ -1,0 +1,83 @@
+:host { display: block; }
+.alert-detail { max-width: 85rem; margin: 0 auto; }
+.crumb {
+    margin-bottom: 0.75rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #0176d3;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.page-heading h1 { margin: 0; color: #032d60; font-size: 1.5rem; }
+.page-heading p { margin: 0.25rem 0 0; color: #706e6b; font-size: 0.8125rem; }
+.actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+    gap: 1rem;
+}
+.panel {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.section-panel { margin-top: 1rem; }
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #dddbda;
+    color: #032d60;
+}
+.panel-header h2 { flex: 1; margin: 0; font-size: 0.9375rem; }
+.panel-header span { color: #706e6b; font-size: 0.75rem; }
+.panel-body { padding: 1rem; }
+.chart {
+    display: flex;
+    align-items: end;
+    gap: 0.6rem;
+    height: 9rem;
+    padding: 1rem;
+}
+.bar { flex: 1; background: #0176d3; border-radius: 0.15rem 0.15rem 0 0; }
+.bar.negative { background: #ba0517; }
+.bar.positive { background: #2e844a; }
+.driver {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 9rem auto;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.75rem;
+}
+.driver i { height: 0.5rem; overflow: hidden; border-radius: 1rem; background: #e5e5e5; }
+.driver em { display: block; height: 100%; background: #ba0517; }
+.form-grid { display: grid; gap: 0.75rem; }
+.button {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid #b0adab;
+    border-radius: 0.25rem;
+    background: #fff;
+    color: #0176d3;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+.button.primary { background: #0176d3; border-color: #0176d3; color: #fff; }
+ul { margin: 0.5rem 0 0; padding-left: 1.1rem; color: #444; font-size: 0.8125rem; }
+@media (max-width: 850px) { .two-column { grid-template-columns: 1fr; } }

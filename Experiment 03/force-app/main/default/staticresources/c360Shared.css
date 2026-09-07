@@ -1,0 +1,15 @@
+/* C360 shared design tokens — SLDS 2 aligned (Experiment 03) */
+:root {
+    --c360-brand: #cc0066;
+    --c360-brand-dark: #032d60;
+    --c360-action: #0176d3;
+    --c360-surface: #ffffff;
+    --c360-surface-alt: #f3f3f3;
+    --c360-border: #dddbda;
+    --c360-text-muted: #706e6b;
+    --c360-success: #2e844a;
+    --c360-warning: #a35b00;
+    --c360-error: #ba0517;
+    --c360-radius: 0.25rem;
+    --c360-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+}

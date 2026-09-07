@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>c360Account</members>
+        <members>c360AlertCentre</members>
+        <members>c360AlertDetail</members>
+        <members>c360Dashboard</members>
+        <members>c360ExportModal</members>
+        <members>c360KpiTile</members>
+        <members>c360MockData</members>
+        <members>c360SignalList</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <version>62.0</version>
+</Package>
