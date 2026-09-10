@@ -1,0 +1,228 @@
+.c360-account-detail .acct-hl {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.c360-account-detail .crumb {
+  border: 0;
+  background: none;
+  color: var(--sf-blue);
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+}
+.c360-account-detail .acct-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.c360-account-detail .acct-title > div { flex: 1; min-width: 200px; }
+.c360-account-detail .acct-title h1 { margin: 0; color: var(--navy); font-size: 24px; }
+.c360-account-detail .acct-title p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+.c360-account-detail .acct-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--wp);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+.c360-account-detail .acct-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--bd);
+}
+.c360-account-detail .acct-facts span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.c360-account-detail .acct-facts b { display: block; margin-top: 4px; font-size: 15px; }
+.c360-account-detail .acct-actions { display: flex; gap: 12px; align-items: center; margin-top: 16px; flex-wrap: wrap; }
+.c360-account-detail .hint { font-size: 12px; color: var(--muted); }
+.c360-account-detail .subtabs { display: flex; gap: 4px; border-bottom: 1px solid var(--bd); margin: 16px 0; }
+.c360-account-detail .subtab {
+  padding: 10px 16px;
+  border: 0;
+  background: transparent;
+  color: var(--ink2);
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+.c360-account-detail .subtab.active { color: var(--wp); border-bottom-color: var(--wp); font-weight: 700; }
+.c360-account-detail .callout {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+.c360-account-detail .callout.warn { background: #fef6e6; border: 1px solid #f5ddb0; }
+.c360-account-detail .callout.info { background: #eaf5fe; border: 1px solid #bfe3fb; }
+.c360-account-detail .co-t { color: var(--ink2); }
+.c360-account-detail .mtile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.c360-account-detail .mtile .mt-d { font-size: 12px; font-weight: 700; margin-top: 4px; }
+.c360-account-detail .vol-chart { display: flex; align-items: end; gap: 8px; height: 140px; padding: 16px; }
+.c360-account-detail .vol-chart i { flex: 1; height: 78%; background: var(--sf-blue); }
+.c360-account-detail .vol-chart i:nth-child(2) { height: 88%; }
+.c360-account-detail .vol-chart i:nth-child(3) { height: 76%; }
+.c360-account-detail .vol-chart i:nth-child(4) { height: 70%; }
+.c360-account-detail .vol-chart i:nth-child(5) { height: 64%; }
+.c360-account-detail .vol-chart i:nth-child(6) { height: 58%; }
+.c360-account-detail .vol-chart .dip { background: var(--amber); }
+.c360-account-detail .vol-chart .short { height: 42%; }
+.c360-account-detail .pw-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+}
+.c360-account-detail .fbar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.c360-account-detail .fld label { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+.c360-account-detail .fld select, .c360-account-detail .fake {
+  min-width: 140px;
+  padding: 6px 10px;
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  font-size: 13px;
+  background: #fff;
+}
+.c360-account-detail .metrics3 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.c360-account-detail .metric {
+  padding: 16px;
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  text-align: center;
+  background: #fff;
+}
+.c360-account-detail .metric.neg { border-color: #f3c9c4; background: #fffafa; }
+.c360-account-detail .metric .m-v { font-size: 24px; font-weight: 800; color: var(--navy); }
+.c360-account-detail .metric.neg .m-v { color: var(--red); }
+.c360-account-detail .metric .m-l { font-size: 11px; color: var(--muted); margin-top: 6px; }
+.c360-account-detail .tag-pos, .c360-account-detail .tag-neg {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.c360-account-detail .tag-pos { background: var(--green-l); color: var(--green); }
+.c360-account-detail .tag-neg { background: var(--red-l); color: var(--red); }
+.c360-account-detail tr.driver-row-selected {
+  background: #eaf5fe;
+}
+.c360-account-detail tr.driver-row-selected .driver-link {
+  color: var(--brand-dark, #0a2540);
+}
+.c360-account-detail .driver-link {
+  border: 0;
+  background: none;
+  color: var(--sf-blue);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+.c360-account-detail .opp-box strong { display: block; color: var(--wp); font-size: 20px; margin: 8px 0; }
+.c360-account-detail .note {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #eafaef;
+  border: 1px solid #bfe8d3;
+  border-radius: var(--radius);
+  font-size: 12px;
+  color: var(--ink2);
+}
+.c360-account-detail .slider-fld input[type="range"] { width: 100%; accent-color: var(--wp); }
+.c360-account-detail .slider-val { font-weight: 700; color: var(--navy); }
+.c360-account-detail .calc .row-c {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+}
+.c360-account-detail .calc .row-c.tot { border-top: 2px solid var(--bd); font-weight: 700; }
+.c360-account-detail .c-v.up { color: var(--green); }
+.c360-account-detail .c-v.down { color: var(--red); }
+.c360-account-detail .c-v.wp-val { color: var(--wp); font-size: 18px; font-weight: 700; }
+.c360-account-detail .netbox {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--navy), #014486);
+  color: #fff;
+  text-align: center;
+}
+.c360-account-detail .netbox .n-l { font-size: 11px; opacity: 0.85; text-transform: uppercase; }
+.c360-account-detail .netbox .n-v { font-size: 28px; font-weight: 800; }
+.c360-account-detail .krow { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
+.c360-account-detail .decline-chart-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 0.4fr);
+  gap: 20px;
+  padding: 16px;
+}
+.c360-account-detail .decline-barchart { display: flex; gap: 12px; align-items: flex-end; min-height: 240px; }
+.c360-account-detail .dbc-axis-y {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 224px;
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+}
+.c360-account-detail .dbc-stack {
+  width: 120px;
+  height: 224px;
+  display: flex;
+  flex-direction: column-reverse;
+  border: 1px solid var(--bd);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.c360-account-detail .dbc-seg {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 4px;
+  text-align: center;
+}
+.c360-account-detail .dbc-cost { font-size: 10px; opacity: 0.9; }
+.c360-account-detail .decline-chart-kpis { border-left: 1px solid var(--bd); padding-left: 20px; display: flex; flex-direction: column; justify-content: center; }
+.c360-account-detail .dbc-legend { display: flex; flex-wrap: wrap; gap: 12px 20px; padding: 0 16px 16px; font-size: 12px; color: var(--ink2); }
+.c360-account-detail .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+.c360-account-detail .placeholder-panel {
+  padding: 20px;
+  border: 1px dashed var(--bd);
+  border-radius: var(--radius);
+  background: #fafafa;
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
+}
+@media (max-width: 900px) {
+  .c360-account-detail .acct-facts, .c360-account-detail .mtile-grid, .c360-account-detail .metrics3 { grid-template-columns: repeat(2, 1fr); }
+  .c360-account-detail .decline-chart-row { grid-template-columns: 1fr; }
+  .c360-account-detail .decline-chart-kpis { border-left: 0; border-top: 1px solid var(--bd); padding: 16px 0 0; }
+}

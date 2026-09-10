@@ -1,0 +1,94 @@
+<!-- Fragment source: fragment.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Alert Centre (preview)</title>
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/shell.css">
+  <link rel="stylesheet" href="../../shared/module-base.css">
+  <link rel="stylesheet" href="fragment.css">
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9296</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">92a2fb6d-cf18-4873-bc39-3020bb8518fc</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9296, MHJM6Z4EFDKT-2068475776-9296</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+  <div class="protobar">HTML prototype — double-click preview, no Salesforce required · <a href="../../assembly/overview-page.html">Overview assembly</a></div>
+  <header class="gh">
+    <div class="logo">Global Payments <span>Customer 360</span></div>
+    <div class="search"><span>&#128269;</span><input type="search" placeholder="Search accounts..."></div>
+    <div class="gh-r"><span>&#128276;</span><span class="avatar">SJ</span></div>
+  </header>
+  <nav class="appnav" aria-label="Customer 360 navigation">
+    <span class="appname"><span class="cube"></span>Customer 360</span>
+    <button class="tab">Overview</button>
+    <button class="tab active">Alert Centre</button>
+  </nav>
+  <div class="wrap">
+    <div class="module-slot">
+      <section class="c360-module c360-alert-centre" data-module="alert-centre">
+        <div class="alert-heading">
+          <div>
+            <h1>Alert Centre</h1>
+            <p>Churn alerts for pilot RM group | IF score &lt; -25% AND RM in pilot → Alert + Task + Email</p>
+          </div>
+          <span class="pilot-badge">PILOT</span>
+        </div>
+        <div class="filters" id="alert-filters"></div>
+        <div class="grid g-2">
+          <article class="card">
+            <div class="card-h">
+              <span class="ico" style="background:var(--amber);">&#9888;</span>
+              <h2>Active alerts</h2>
+              <span class="sub" id="alert-count">4 shown</span>
+            </div>
+            <div class="table-scroll">
+              <table class="tbl">
+                <thead>
+                  <tr>
+                    <th>Account</th>
+                    <th>Score</th>
+                    <th>Threshold</th>
+                    <th>Alert date</th>
+                    <th>Suppression</th>
+                    <th>RM task</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="alerts-tbody"></tbody>
+              </table>
+            </div>
+            <p class="footnote">1-month suppression per merchant after Defer. Status workflow: New → In Review → Action Scheduled → Suppressed.</p>
+          </article>
+          <article class="card">
+            <div class="card-h">
+              <span class="ico" style="background:var(--wp);">&#43;</span>
+              <h2>Cross-selling intelligence</h2>
+            </div>
+            <div class="card-b intel">
+              <p><strong>Pipeline value:</strong> GBP 4.8m across pilot accounts</p>
+              <p><strong>Average confidence:</strong> 71%</p>
+              <ul>
+                <li>Smart Routing — Acme Corporation (78%)</li>
+                <li>Tokenisation — InTech Solutions (65%)</li>
+                <li>FX Optimisation Engine — Summit Ventures (62%)</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="../../shared/mock-data.js"></script>
+  <script src="../../shared/shell.js"></script>
+  <script src="fragment.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!-- Fragment source: fragment.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Churn Table (preview)</title>
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/shell.css">
+  <link rel="stylesheet" href="../../shared/module-base.css">
+  <link rel="stylesheet" href="fragment.css">
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9301</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">2b2605ed-429e-49a5-84f7-a2d99d01dea0</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9301, MHJM6Z4EFDKT-2068475776-9301</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+  <div class="protobar">HTML prototype — double-click preview, no Salesforce required · <a href="../../assembly/overview-page.html">Overview assembly</a></div>
+  <header class="gh">
+    <div class="logo">Global Payments <span>Customer 360</span></div>
+    <div class="search"><span>&#128269;</span><input type="search" placeholder="Search accounts..."></div>
+    <div class="gh-r"><span>&#128276;</span><span class="avatar">SJ</span></div>
+  </header>
+  <nav class="appnav" aria-label="Customer 360 navigation">
+    <span class="appname"><span class="cube"></span>Customer 360</span>
+    <button class="tab">Overview</button>
+    <button class="tab active">Churn</button>
+  </nav>
+  <div class="wrap">
+    <div class="greet">
+      <h1>Churn</h1>
+      <div class="date">Module preview · Predicted volume compression and retraction, 3–6 months ahead</div>
+    </div>
+    <div class="module-slot">
+      <section class="c360-module c360-churn-table card" data-module="churn-table">
+        <div class="card-h">
+          <span class="ico" style="background:var(--amber);">&#8681;</span>
+          <h2>Accounts by churn risk</h2>
+        </div>
+        <div class="table-scroll">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Account</th>
+                <th>Predicted risk</th>
+                <th>Txn count vs last year</th>
+                <th>Top driver</th>
+                <th>Recommended pathway</th>
+              </tr>
+            </thead>
+            <tbody id="churn-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="../../shared/mock-data.js"></script>
+  <script src="../../shared/shell.js"></script>
+  <script src="fragment.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+:root {
+  --sf-blue: #0176d3;
+  --sf-blue-d: #014486;
+  --sf-blue-l: #eaf5fe;
+  --wp: #cc0066;
+  --wp-d: #99004c;
+  --bg: #f3f3f3;
+  --card: #ffffff;
+  --bd: #e5e5e5;
+  --bd2: #c9c9c9;
+  --ink: #181818;
+  --ink2: #444444;
+  --muted: #706e6b;
+  --green: #2e844a;
+  --green-l: #eafaef;
+  --amber: #dd7a01;
+  --amber-l: #fef6e6;
+  --red: #ba0517;
+  --red-l: #fdecea;
+  --navy: #032d60;
+  --font: "Salesforce Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --shadow: 0 2px 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.1);
+  --radius: 0.35rem;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+button { font-family: inherit; cursor: pointer; }
+a { color: var(--sf-blue); text-decoration: none; }

@@ -1,0 +1,9 @@
+.c360-portfolio-health .health-row {
+  gap: 10px;
+}
+.c360-portfolio-health .health-row .mtile {
+  flex: 1;
+}
+.c360-portfolio-health .mt-v.good { color: var(--green); }
+.c360-portfolio-health .mt-v.watch { color: var(--amber); }
+.c360-portfolio-health .mt-v.risk { color: var(--red); }

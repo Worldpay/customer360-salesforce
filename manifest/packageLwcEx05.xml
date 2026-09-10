@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>c360AccountEx05</members>
+        <members>c360AccountDetailEx05</members>
+        <members>c360AccountsTableEx05</members>
+        <members>c360AlertCentreEx05</members>
+        <members>c360AlertDetailEx05</members>
+        <members>c360ChurnTableEx05</members>
+        <members>c360CrossSellTableEx05</members>
+        <members>c360DashboardEx05</members>
+        <members>c360KpiStripEx05</members>
+        <members>c360KpiTileEx05</members>
+        <members>c360MaterialBannerEx05</members>
+        <members>c360MockDataEx05</members>
+        <members>c360MySignalsEx05</members>
+        <members>c360NeedsActionEx05</members>
+        <members>c360PortfolioHealthEx05</members>
+        <members>c360SignalListEx05</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <version>62.0</version>
+</Package>

@@ -1,0 +1,68 @@
+<template>
+    <div class="account-spotlight">
+        <template lwc:if={isLoading}>
+            <div class="state"><lightning-spinner alternative-text="Loading account data" size="medium"></lightning-spinner></div>
+        </template>
+        <template lwc:elseif={hasError}>
+            <div class="state error">Unable to load account spotlight data.</div>
+        </template>
+        <template lwc:elseif={hasData}>
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <span class="avatar">{accountInitials}</span>
+                    <h2>{account.name}</h2>
+                    <p>{account.industry} | RM: Sarah Jenkins</p>
+                </div>
+                <div class="tabs">
+                    <template for:each={allTabs} for:item="tab">
+                        <button key={tab.key} class={tab.class} data-tab={tab.key} onclick={handleTabClick} type="button">
+                            <lightning-icon icon-name={tab.icon} size="x-small"></lightning-icon>
+                            <span>{tab.label}</span>
+                        </button>
+                    </template>
+                </div>
+            </aside>
+            <section class="content">
+                <div class="content-header">
+                    <h3>{selectedTabLabel}</h3>
+                    <button class="button accent" onclick={handleExport}>Export PowerPoint</button>
+                </div>
+                <template lwc:if={showOverview}>
+                    <div class="metrics">
+                        <div><span>Volume (LTM)</span><b>{account.volume}</b></div>
+                        <div><span>Health</span><b>{account.health}</b></div>
+                        <div><span>Churn risk</span><b>{account.risk}</b></div>
+                        <div><span>Health index</span><b>{account.healthIndex}</b></div>
+                    </div>
+                    <p class="copy">Account overview uses the leadSpotlight loading / prefetchedData pattern. Wire to org Apex after Phase 0c retrieve.</p>
+                </template>
+                <template lwc:if={showChurn}>
+                    <p class="copy">Churn score gauge and driver explainability — extend from Spotlight template SVG gauge.</p>
+                </template>
+                <template lwc:if={showCrosssell}>
+                    <p class="copy">Priority product: {account.crossSell}</p>
+                </template>
+                <template lwc:if={showPathways}>
+                    <template for:each={accountPathways} for:item="pathway">
+                        <div key={pathway.id} class="pathway-row">
+                            <div><b>{pathway.name}</b><p>{pathway.stage} | {pathway.owner}</p></div>
+                            <span>{pathway.status}</span>
+                        </div>
+                    </template>
+                </template>
+                <template lwc:if={showContacts}>
+                    <p class="copy">Stakeholder map placeholder (R07 not in wireframes).</p>
+                </template>
+            </section>
+        </template>
+    </div>
+</template>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-8744</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">319110c8-14a8-4901-833d-1f5dc47dd62d</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-8744, MHJM6Z4EFDKT-2068475776-8744</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

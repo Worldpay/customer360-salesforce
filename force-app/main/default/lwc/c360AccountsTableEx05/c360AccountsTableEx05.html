@@ -1,0 +1,53 @@
+<template>
+    <article class="c360-module panel section-panel">
+        <div class="panel-header">
+            <lightning-icon icon-name="standard:account" size="x-small"></lightning-icon>
+            <h2>{title}</h2>
+            <span>{subtitle}</span>
+        </div>
+        <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Health index</th>
+                        <th class="change-col">Change</th>
+                        <th>Industry</th>
+                        <th>Revenue (monthly)</th>
+                        <th>Health</th>
+                        <th>Churn risk</th>
+                        <th>Last activity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={rows} for:item="account">
+                        <tr key={account.id}>
+                            <td>
+                                <button class="account-link" data-account={account.name}
+                                    onclick={handleOpenAccount}>{account.name}</button>
+                            </td>
+                            <td>{account.healthIndex}</td>
+                            <td class="change-cell"><span class={account.healthClass}>{account.healthDelta}</span></td>
+                            <td>{account.industry}</td>
+                            <td>{account.volume}</td>
+                            <td><span class={account.healthPillClass}>{account.health}</span></td>
+                            <td><span class={account.riskPillClass}>{account.risk}</span></td>
+                            <td>Today</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </article>
+</template>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+
+<head>
+    <!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9348</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">dbe4edb7-5f47-4b91-9569-fca960b8c92a</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9348, MHJM6Z4EFDKT-2068475776-9348</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

@@ -1,0 +1,19 @@
+.c360-material-banner .material-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, var(--sf-blue-l), #fff);
+  border: 1px solid #bfe3fb;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--sf-blue-d);
+  font-weight: 600;
+  box-shadow: var(--shadow);
+}
+.c360-material-banner .material-banner::before {
+  content: "↗";
+  font-size: 16px;
+  font-weight: 700;
+}

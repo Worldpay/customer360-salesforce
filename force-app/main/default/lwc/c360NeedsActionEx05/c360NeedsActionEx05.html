@@ -1,0 +1,32 @@
+<template>
+    <article class="c360-module panel">
+        <div class="panel-header urgent">
+            <lightning-icon icon-name="utility:warning" size="x-small"></lightning-icon>
+            <h2>{title}</h2>
+            <span>{subtitle}</span>
+        </div>
+        <div class="action-list">
+            <template for:each={displayItems} for:item="item">
+                <div key={item.id} class="action">
+                    <div class="row-tag"><span class={item.severityClass}>{item.severityLabel}</span></div>
+                    <div class="row-body">
+                        <strong>{item.heading}</strong>
+                        <p>{item.body}</p>
+                    </div>
+                    <div class="row-actions">
+                        <button class={item.buttonClass} data-account={item.accountName} data-source={item.sourceView} onclick={handleReview}>{item.buttonLabel}</button>
+                    </div>
+                </div>
+            </template>
+            </div>
+            </article>
+            </template>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9395</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">edecd496-e371-43d6-b268-cb26f69b0848</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9395, MHJM6Z4EFDKT-2068475776-9395</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

@@ -1,0 +1,81 @@
+<template>
+    <section class="alert-centre">
+        <section class="page-heading">
+            <div>
+                <h1>Alert Centre</h1>
+                <p>Churn alerts for pilot RM group | RM notification on material score movement</p>
+            </div>
+            <span class="pilot-badge">PILOT</span>
+        </section>
+
+        <div class="filters">
+            <template for:each={statusOptions} for:item="option">
+                <button key={option.value} class={option.className} data-status={option.value} onclick={handleFilter}>{option.value}</button>
+            </template>
+        </div>
+
+        <div class="two-column">
+            <article class="panel">
+                <div class="panel-header">
+                    <lightning-icon icon-name="utility:warning" size="x-small"></lightning-icon>
+                    <h2>Active alerts</h2>
+                    <span>{filteredAlertCount} shown</span>
+                </div>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Account</th>
+                                <th>Score</th>
+                                <th>Alert date</th>
+                                <th>Suppression</th>
+                                <th>RM notification</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={filteredAlerts} for:item="alert">
+                                <tr key={alert.id}>
+                                    <td>{alert.account}</td>
+                                    <td>{alert.score}%</td>
+                                    <td>{alert.alertDate}</td>
+                                    <td>{alert.suppression}</td>
+                                    <td>{alert.rmNotification}</td>
+                                    <td>{alert.status}</td>
+                                    <td><button class="button" data-id={alert.id} onclick={handleOpenAlert}>Open</button></td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="footnote">1-month suppression per merchant after Defer. Status workflow: New → In Review → Action Scheduled → Suppressed.</p>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <lightning-icon icon-name="utility:add" size="x-small"></lightning-icon>
+                    <h2>Cross-selling intelligence</h2>
+                </div>
+                <div class="panel-body intel">
+                    <p><strong>Pipeline value:</strong> {intelPipelineLabel}</p>
+                    <p><strong>Average confidence:</strong> {intelAverageConfidence}</p>
+                    <ul>
+                        <template for:each={intelRows} for:item="row">
+                            <li key={row.key}>{row.label}</li>
+                        </template>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </section>
+</template>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9357</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">f9e3f98a-a6e2-4b5e-9940-1a166f136a20</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9357, MHJM6Z4EFDKT-2068475776-9357</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

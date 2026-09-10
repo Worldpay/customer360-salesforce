@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Account Detail (preview)</title>
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/shell.css">
+  <link rel="stylesheet" href="../../shared/module-base.css">
+  <link rel="stylesheet" href="fragment.css">
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9286</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">e113f6aa-93cb-4f4b-a115-5da56e6173da</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9286, MHJM6Z4EFDKT-2068475776-9286</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+  <div class="protobar">
+    C360 Prototype v5 — account detail module ·
+    <a href="../../assembly/overview-page.html">Overview assembly</a> ·
+    <a href="?account=Pets%20at%20Home&amp;source=crosssell">Pets (cross-sell)</a> ·
+    <a href="?account=Willow%20Travel&amp;source=churn">Willow (churn)</a>
+  </div>
+  <header class="gh">
+    <div class="logo">Global Payments <span>Customer 360</span></div>
+    <div class="search"><span>&#128269;</span><input type="search" placeholder="Search accounts..."></div>
+    <div class="gh-r"><span>&#128276;</span><span class="avatar">SJ</span></div>
+  </header>
+  <nav class="appnav" aria-label="Customer 360 navigation">
+    <span class="appname"><span class="cube"></span>Customer 360</span>
+    <button class="tab">Overview</button>
+    <button class="tab active">Account</button>
+  </nav>
+  <div class="wrap">
+    <div class="module-slot">
+      <section class="c360-module c360-account-detail" data-module="account-detail">
+        <div class="acct-hl">
+          <button type="button" class="crumb" id="acct-back">Overview</button>
+          <div class="acct-title">
+            <span class="acct-icon" id="acct-init">PH</span>
+            <div>
+              <h1 id="acct-name">Pets at Home</h1>
+              <p id="acct-meta"></p>
+            </div>
+            <span class="pill watch" id="acct-health-pill">Health: Watch</span>
+          </div>
+          <div class="acct-facts" id="acct-facts"></div>
+          <div class="acct-actions">
+            <button type="button" class="btn wp" id="acct-export">Export PowerPoint</button>
+            <span class="hint">Entry tab set via <code>?source=churn|crosssell|accounts</code> query param.</span>
+          </div>
+        </div>
+        <div class="subtabs" id="acct-subtabs">
+          <button type="button" class="subtab active" data-sub="ov">Overview</button>
+          <button type="button" class="subtab" data-sub="ch">Churn risk</button>
+          <button type="button" class="subtab" data-sub="cx">Cross-sell</button>
+          <button type="button" class="subtab" data-sub="pw">Pathways</button>
+        </div>
+        <div class="subview" data-subview="ov" id="acct-sub-ov">
+          <div class="callout warn"><span>&#9888;</span><div class="co-t"><b>Intraday alert:</b> volume down 24% today vs 30-day average.</div></div>
+          <div class="mtile-grid" id="acct-overview-tiles"></div>
+          <div class="grid g-2">
+            <div class="card">
+              <div class="card-h"><h2>Processing volume — last 8 months</h2><span class="sub">GBP m / month</span></div>
+              <div class="vol-chart"><i></i><i></i><i></i><i></i><i></i><i class="dip"></i><i class="dip short"></i></div>
+            </div>
+            <div class="card">
+              <div class="card-h"><h2>Open actions</h2></div>
+              <div class="card-b" id="acct-pathways-ov"></div>
+            </div>
+          </div>
+        </div>
+        <div class="subview hide" data-subview="ch" id="acct-sub-ch">
+          <div class="callout info"><span>&#8595;</span><div class="co-t"><b>Churn deep-dive.</b> Output schema v3 · illustrative data.</div></div>
+          <div class="fbar">
+            <div class="fld"><label>Account Name</label><select id="ch-filter-name"></select></div>
+            <div class="fld"><label>Account ID</label><select id="ch-filter-id"></select></div>
+            <div class="fld"><label>Merchant ID</label><div class="fake">(All)</div></div>
+          </div>
+          <div class="metrics3" id="acct-churn-metrics"></div>
+          <div class="grid g-2">
+            <div class="card">
+              <div class="card-h"><h2>Account-level drivers</h2><span class="sub">top predictors</span></div>
+              <div class="table-scroll">
+                <table class="tbl"><thead><tr><th>Driver</th><th>Driver name</th><th>Value</th></tr></thead><tbody id="acct-churn-drivers"></tbody></table>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-h"><h2>Recommended next step</h2></div>
+              <div class="card-b">
+                <div class="opp-box"><strong>Pricing &amp; performance review</strong><p>Engage proactively on predicted compression.</p><button type="button" class="btn wp" data-initiate="Pricing and performance review">Initiate pathway</button></div>
+                <div class="note">Churn = volume <b>compression / retraction</b>, not account closure.</div>
+              </div>
+            </div>
+          </div>
+          <div class="card hide" id="ch-driver-drill-panel" style="margin-top:16px;">
+            <div class="card-h"><h2 id="ch-drill-title">Driver detail</h2><button type="button" class="btn sm" id="ch-drill-close">Close</button></div>
+            <div class="card-b">
+              <div class="fbar">
+                <div class="fld"><label>Account Name</label><select id="ch-drill-filter-name"></select></div>
+                <div class="fld"><label>Account ID</label><select id="ch-drill-filter-id"></select></div>
+              </div>
+              <div class="table-scroll">
+                <table class="tbl"><thead><tr><th>Human Customer Id</th><th>Auth rate average (past 6 months)</th></tr></thead><tbody id="ch-drill-tbody"></tbody></table>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="margin-top:16px;">
+            <div class="card-h"><h2>Merchant (MID-level) detail</h2><span class="sub">top drivers per MID</span></div>
+            <div class="table-scroll">
+              <table class="tbl"><thead><tr><th>Merchant ID</th><th>Merchant name</th><th>Top negative driver</th><th>Value</th><th>Top positive driver</th><th>Value</th></tr></thead><tbody id="acct-churn-mids"></tbody></table>
+            </div>
+          </div>
+        </div>
+        <div class="subview hide" data-subview="cx" id="acct-sub-cx">
+          <div class="callout info"><span>&#43;</span><div class="co-t"><b>Revenue Boost cross-sell deep-dive.</b> Output schema v3</div></div>
+          <div class="fbar">
+            <div class="fld"><label>Merchant ID</label><div class="fake">1</div></div>
+            <div class="fld slider-fld"><label>Price per transaction <span class="slider-val" id="cx-price-val">0.05</span></label><input type="range" id="cx-price-slider" min="0.01" max="1" step="0.01" value="0.05"></div>
+            <div class="fld slider-fld"><label>A/B testing split <span class="slider-val" id="cx-ab-val">99%</span></label><input type="range" id="cx-ab-slider" min="1" max="99" step="1" value="99"></div>
+          </div>
+          <div class="grid g-2">
+            <div class="card"><div class="card-h"><h2>Net benefit to merchant</h2><span class="sub">Revenue Boost</span></div><div class="card-b" id="acct-cx-roi"></div></div>
+            <div class="card"><div class="card-h"><h2>Merchant decline KPIs</h2><span class="sub" id="acct-peer-segment">vs peer group</span></div><div class="card-b" id="acct-cx-kpis"></div></div>
+          </div>
+          <div class="card" style="margin-top:16px;">
+            <div class="card-h"><h2>Count &amp; value of declines</h2><span class="sub">stacked by decline reason</span></div>
+            <div class="decline-chart-row">
+              <div id="acct-cx-decline-chart"></div>
+              <div class="decline-chart-kpis" id="acct-cx-decline-metrics"></div>
+            </div>
+            <div class="dbc-legend" id="acct-cx-decline-legend"></div>
+          </div>
+          <div class="card" style="margin-top:16px;">
+            <div class="card-h"><h2>Performance by slice</h2><span class="sub">credential × channel × scheme</span></div>
+            <div class="table-scroll">
+              <table class="tbl"><thead><tr><th>Credential</th><th>Channel</th><th>Scheme</th><th>Market</th><th>In-scope vol</th><th>In-scope txn</th><th>Approval rate</th><th>Rec. split (m)</th><th>Peer approval</th><th>Rec. split (p)</th></tr></thead><tbody id="acct-cx-slices"></tbody></table>
+            </div>
+          </div>
+          <div class="grid g-2" style="margin-top:16px;">
+            <div class="card"><div class="card-h"><h2>Why this merchant &amp; other products</h2></div><div class="card-b" id="acct-cx-drivers"></div></div>
+            <div class="card"><div class="card-h"><h2>Post-sale RB performance</h2><span class="sub">Phase 2</span></div><div class="card-b placeholder-panel">Post-sale RB metrics — pending Phase 1 modelling feasibility.</div></div>
+          </div>
+        </div>
+        <div class="subview hide" data-subview="pw" id="acct-sub-pw">
+          <div class="card">
+            <div class="card-h"><h2>Commercial pathways — this account</h2><button type="button" class="btn p sm" data-initiate="New pathway">+ Initiate pathway</button></div>
+            <div class="table-scroll">
+              <table class="tbl"><thead><tr><th>Pathway</th><th>Stage</th><th>Owning function</th><th>Target date</th><th>Status</th></tr></thead><tbody id="acct-pathways-pw"></tbody></table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script>window.C360_OVERVIEW_URL = '../../assembly/overview-page.html';</script>
+  <script src="../../shared/mock-data.js"></script>
+  <script src="../../shared/account-detail-data.js"></script>
+  <script src="../../shared/shell.js"></script>
+  <script src="fragment.js"></script>
+</body>
+</html>

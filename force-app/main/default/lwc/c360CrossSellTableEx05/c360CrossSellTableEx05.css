@@ -1,0 +1,64 @@
+:host {
+    display: block;
+    --c360-brand-dark: #032d60;
+    --c360-surface: #ffffff;
+    --c360-border: #dddbda;
+    --c360-border-light: #f0f0f0;
+    --c360-text-secondary: #444444;
+    --c360-text-muted: #706e6b;
+    --c360-action: #0176d3;
+    --c360-warning: #a35b00;
+    --c360-error: #ba0517;
+    --c360-radius: 0.25rem;
+    --c360-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.panel {
+    overflow: hidden;
+    background: var(--c360-surface);
+    border: 1px solid var(--c360-border);
+    border-radius: var(--c360-radius);
+    box-shadow: var(--c360-shadow-sm);
+}
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--c360-border);
+    color: var(--c360-brand-dark);
+}
+.panel-header h2 { flex: 1; margin: 0; font-size: 0.9375rem; }
+.panel-header span { color: var(--c360-text-muted); font-size: 0.75rem; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+th {
+    padding: 0.6rem 0.75rem;
+    background: #fafafa;
+    border-bottom: 1px solid var(--c360-border);
+    color: var(--c360-text-muted);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    text-align: left;
+    text-transform: uppercase;
+}
+td { padding: 0.7rem 0.75rem; border-bottom: 1px solid var(--c360-border-light); color: var(--c360-text-secondary); }
+tr:hover td { background: #f7fbff; }
+.account-link, .button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--c360-action);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: inherit;
+}
+.button {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid #b0adab;
+    border-radius: var(--c360-radius);
+    background: #fff;
+    font-size: 0.75rem;
+}
+.watch { display: inline-block; padding: 0.15rem 0.5rem; border-radius: var(--c360-radius); background: #fef6e6; color: var(--c360-warning); font-size: 0.6875rem; font-weight: 700; }
+.risk { display: inline-block; padding: 0.15rem 0.5rem; border-radius: var(--c360-radius); background: #fdecea; color: var(--c360-error); font-size: 0.6875rem; font-weight: 700; }

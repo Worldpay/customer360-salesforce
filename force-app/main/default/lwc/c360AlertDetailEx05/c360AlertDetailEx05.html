@@ -1,0 +1,84 @@
+<template>
+    <section class="alert-detail">
+        <button class="crumb" onclick={handleBack}>Alert Centre</button>
+        <section class="page-heading">
+            <div>
+                <h1>Alert detail — {detail.account}</h1>
+                <p>Score {detail.score}% | ARR {detail.arr} | {detail.merchantCount} merchants</p>
+            </div>
+            <div class="actions">
+                <button class="button" data-action="resolve" onclick={handleAction}>Mark resolved</button>
+                <button class="button" data-action="defer" onclick={handleAction}>Defer signal</button>
+                <button class="button" data-action="dismiss" onclick={handleAction}>Dismiss</button>
+                <button class="button primary" data-action="escalate" onclick={handleAction}>Escalate to manager</button>
+            </div>
+        </section>
+
+        <div class="two-column">
+            <article class="panel">
+                <div class="panel-header"><h2>6-month score trajectory</h2></div>
+                <div class="chart">
+                    <template for:each={trajectoryBars} for:item="bar">
+                        <i key={bar.key} class={bar.className} style={bar.style}></i>
+                    </template>
+                </div>
+            </article>
+            <article class="panel">
+                <div class="panel-header"><h2>Top drivers</h2></div>
+                <div class="panel-body">
+                    <template for:each={drivers} for:item="driver">
+                        <div key={driver.label} class="driver">
+                            <span>{driver.label}</span>
+                            <div class="bar-track"><i style={driver.widthStyle}></i></div>
+                            <strong>{driver.impact}</strong>
+                        </div>
+                    </template>
+                </div>
+            </article>
+        </div>
+
+        <article class="panel section-panel">
+            <div class="panel-header"><h2>Cross-sell intelligence</h2></div>
+            <div class="panel-body">
+                <p><strong>Pipeline:</strong> {detail.crossSellIntel.pipeline}</p>
+                <p><strong>Confidence:</strong> {detail.crossSellIntel.confidence}%</p>
+                <ul>
+                    <template for:each={detail.crossSellIntel.products} for:item="product">
+                        <li key={product}>{product}</li>
+                    </template>
+                </ul>
+            </div>
+        </article>
+
+        <article class="panel section-panel">
+            <div class="panel-header"><h2>Record outcome</h2></div>
+            <div class="panel-body form-grid">
+                <label>Interaction date<input type="date"></label>
+                <label>Interaction type
+                    <select>
+                        <template for:each={interactionOptions} for:item="opt">
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        </template>
+                    </select>
+                </label>
+                <label>Outcome
+                    <select>
+                        <template for:each={outcomeOptions} for:item="opt">
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        </template>
+                    </select>
+                </label>
+                <label>Follow-up actions<textarea rows="3" placeholder="Notes for manager visibility"></textarea></label>
+            </div>
+        </article>
+    </section>
+</template>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9360</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">50588c5a-08f0-4a55-87bd-fc60e1a4b711</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9360, MHJM6Z4EFDKT-2068475776-9360</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

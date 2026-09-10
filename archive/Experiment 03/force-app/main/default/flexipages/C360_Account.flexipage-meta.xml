@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>c360Account</componentName>
+                <identifier>c360Account</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>C360 Account</masterLabel>
+    <sobjectType>Account</sobjectType>
+    <template>flexipage:recordHomeSingleColTemplateDesktop</template>
+    <type>RecordPage</type>
+</FlexiPage>

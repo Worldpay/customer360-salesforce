@@ -1,0 +1,28 @@
+.c360-alert-centre .alert-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.c360-alert-centre .alert-heading h1 {
+  font-size: 22px;
+  margin: 0 0 4px;
+  color: var(--navy);
+}
+.c360-alert-centre .alert-heading p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.c360-alert-centre .intel ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--ink2);
+  font-size: 13px;
+}
+.c360-alert-centre .intel p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--ink2);
+}

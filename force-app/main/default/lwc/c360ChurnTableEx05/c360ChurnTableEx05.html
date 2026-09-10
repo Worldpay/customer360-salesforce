@@ -1,0 +1,39 @@
+<template>
+    <article class="c360-module panel">
+        <div class="panel-header">
+            <lightning-icon icon-name="utility:trend" size="x-small"></lightning-icon>
+            <h2>{title}</h2>
+        </div>
+        <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Predicted risk</th>
+                        <th>Txn count vs last year</th>
+                        <th>Top driver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={rows} for:item="row">
+                        <tr key={row.account}>
+                            <td><button class="account-link" data-account={row.account} onclick={handleOpenAccount}>{row.account}</button></td>
+                            <td><span class={row.riskPillClass}>{row.risk}</span></td>
+                            <td class="negative">{row.txnChange}</td>
+                            <td>{row.driver}</td>
+                        </tr>
+                    </template>
+                    </tbody>
+                    </table>
+                    </div>
+                    </article>
+                    </template>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9364</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">2895876d-0a76-4b3d-aa7d-8befc5f205b6</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9364, MHJM6Z4EFDKT-2068475776-9364</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

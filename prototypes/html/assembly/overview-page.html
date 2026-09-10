@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Overview Assembly (preview)</title>
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="../shared/shell.css">
+  <link rel="stylesheet" href="../shared/module-base.css">
+  <link rel="stylesheet" href="../modules/material-banner/fragment.css">
+  <link rel="stylesheet" href="../modules/kpi-strip/fragment.css">
+  <link rel="stylesheet" href="../modules/needs-action/fragment.css">
+  <link rel="stylesheet" href="../modules/portfolio-health/fragment.css">
+  <link rel="stylesheet" href="../modules/signal-list/fragment.css">
+  <link rel="stylesheet" href="../modules/accounts-table/fragment.css">
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9278</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">49f48d6d-f040-4f90-8d55-8a2f93f52b39</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9278, MHJM6Z4EFDKT-2068475776-9278</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+  <div class="protobar">
+    <b>Overview assembly</b> — HTML prototype, no Salesforce required
+    · <a href="../modules/kpi-strip/preview.html">KPI</a>
+    · <a href="../modules/needs-action/preview.html">Needs action</a>
+    · <a href="../modules/portfolio-health/preview.html">Health</a>
+    · <a href="../modules/signal-list/preview.html">Signals</a>
+    · <a href="../modules/accounts-table/preview.html">Accounts</a>
+    · <a href="../modules/material-banner/preview.html">Banner</a>
+    · <a href="../modules/account-detail/preview.html">Account detail</a>
+    · <a href="../modules/churn-table/preview.html">Churn table</a>
+    · <a href="../modules/cross-sell-table/preview.html">Cross-sell table</a>
+  </div>
+  <header class="gh">
+    <div class="logo">Global Payments <span>Customer 360</span></div>
+    <div class="search"><span>&#128269;</span><input type="search" placeholder="Search accounts, merchants, opportunities..."></div>
+    <div class="gh-r"><span>&#128276;</span><span class="avatar">SJ</span></div>
+  </header>
+  <nav class="appnav" aria-label="Customer 360 navigation">
+    <span class="appname"><span class="cube"></span>Customer 360</span>
+    <button class="tab active">Overview</button>
+    <button class="tab">Alert Centre</button>
+    <button class="tab">Cross-Sell</button>
+    <button class="tab">Churn</button>
+    <button class="tab">Pathways <span class="cnt">7</span></button>
+  </nav>
+  <div class="wrap">
+    <div class="greet">
+      <h1>Enterprise Account Hub</h1>
+      <div class="date">Tuesday, 26 August 2026 | 42 accounts | Sarah Jenkins (PILOT)</div>
+    </div>
+
+    <!-- material-banner -->
+    <section class="c360-module c360-material-banner" data-module="material-banner">
+      <div class="material-banner" id="material-banner-text"></div>
+    </section>
+
+    <!-- kpi-strip -->
+    <section class="c360-module c360-kpi-strip" data-module="kpi-strip">
+      <div class="grid g-6 kpi-grid" id="kpi-grid"></div>
+    </section>
+
+    <div class="grid g-2" style="margin-top:16px;">
+      <!-- needs-action -->
+      <section class="c360-module c360-needs-action card alerts" data-module="needs-action">
+        <div class="card-h">
+          <span class="ico" style="background:var(--red);">&#9888;</span>
+          <h2>Needs action today</h2>
+          <span class="sub">Intraday · Daily · Monthly</span>
+        </div>
+        <div id="needs-action-list"></div>
+      </section>
+
+      <!-- portfolio-health -->
+      <section class="c360-module c360-portfolio-health card" data-module="portfolio-health">
+        <div class="card-h">
+          <span class="ico" style="background:var(--green);">&#9829;</span>
+          <h2>Portfolio health</h2>
+        </div>
+        <div class="card-b">
+          <div class="row health-row" id="health-tiles"></div>
+          <div class="sect-t">Cross-sell pipeline</div>
+          <div id="pipeline-rows"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- signal-list -->
+    <section class="c360-module c360-signal-list card" data-module="signal-list">
+      <div class="card-h">
+        <span class="ico" style="background:var(--wp);">&#9873;</span>
+        <h2>My signals</h2>
+        <span class="sub" id="sig-count">5 open</span>
+      </div>
+      <div id="signals"></div>
+    </section>
+
+    <!-- accounts-table -->
+    <section class="c360-module c360-accounts-table card" data-module="accounts-table">
+      <div class="card-h">
+        <span class="ico" style="background:var(--navy);">&#9636;</span>
+        <h2>My accounts</h2>
+        <span class="sub">Top movers</span>
+      </div>
+      <div class="table-scroll">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th>Health index</th>
+              <th>Change</th>
+              <th>Industry</th>
+              <th>Revenue (monthly)</th>
+              <th>Health</th>
+              <th>Churn risk</th>
+              <th>Pathways</th>
+              <th>Last activity</th>
+            </tr>
+          </thead>
+          <tbody id="accounts-tbody"></tbody>
+        </table>
+      </div>
+      <p class="provenance">Snowflake → Analytics Engine → Salesforce | 15-min refresh</p>
+    </section>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="../shared/mock-data.js"></script>
+  <script src="../shared/shell.js"></script>
+  <script src="overview.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Org overlay deploy — do NOT push app / flexipage / tab metadata
+**/applications/**
+**/flexipages/**
+**/tabs/**
+**/staticresources/**
+
+# Apex stubs are reference-only; merge into org classes manually
+**/classes/**
+
+# Documentation and org baseline copies
+docs/**
+classesStubsEx05/**

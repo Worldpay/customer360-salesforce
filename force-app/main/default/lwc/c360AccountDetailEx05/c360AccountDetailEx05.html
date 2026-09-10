@@ -1,0 +1,197 @@
+<template>
+    <section class="account-root">
+        <section class="account-highlight">
+            <button class="crumb" type="button" onclick={handleBack}>Home &rsaquo; Enterprise Account Hub</button>
+            <div class="account-title">
+                <span class="account-icon">{accountInitials}</span>
+                <div>
+                    <h1>{account.name}</h1>
+                    <p>{metaLine}</p>
+                </div>
+                <span class={healthPillClass}>Health: {account.health}</span>
+            </div>
+            <div class="facts">
+                <div><span>Account ID</span><b>{detail.accountId}</b></div>
+                <div><span>Annual processing volume (LTM)</span><b>{account.volume}</b></div>
+                <div><span>{churnScoreLabel}</span><b class="watch-text">{detail.churnScorePct}</b></div>
+                <div><span>Churn risk</span><b>{account.risk}</b></div>
+                <div><span>Likelihood to acquire RB</span><b>{crossSell.likelihoodToAcquire}</b></div>
+                <div><span>Health index</span><b>{account.healthIndex}</b></div>
+            </div>
+            <div class="account-actions">
+                <button class="button accent" type="button" onclick={handleExport}>Export PowerPoint</button>
+                <span class="hint">Shift+click account links elsewhere to open Salesforce Record Page.</span>
+            </div>
+        </section>
+
+        <div class="account-layout">
+            <aside class="account-sidebar">
+                <div class="sidebar-header">
+                    <h2>{account.name}</h2>
+                    <p>Account 360</p>
+                </div>
+                <nav class="account-side-nav" aria-label="Account sections">
+                    <template for:each={tabs} for:item="tab">
+                        <button key={tab.key} class={tab.className} type="button" data-tab={tab.key} onclick={handleTabClick}>
+                            <span class="tab-ico">{tab.icon}</span> {tab.label}
+                        </button>
+                    </template>
+                </nav>
+            </aside>
+
+            <div class="account-content">
+                <template lwc:if={isChurn}>
+                    <div class="callout blue">
+                        <span class="co-ic">&#8595;</span>
+                        <div class="co-t"><b>Churn deep-dive.</b> Predicts volume compression / retraction 3–6 months ahead. <span class="wiptag">Output schema v3</span> · illustrative data.</div>
+                    </div>
+                    <div class="metrics3">
+                        <template for:each={churnMetrics} for:item="metric">
+                            <div key={metric.key} class="metric neg">
+                                <div class="m-v">{metric.value}</div>
+                                <div class="m-l">{metric.label}</div>
+                            </div>
+                        </template>
+                    </div>
+                    <article class="panel section-gap">
+                        <div class="panel-header"><h2>Account-level drivers</h2><span>top predictors — click a driver for mid-level detail</span></div>
+                        <div class="table-scroll">
+                            <table class="align-table">
+                                <thead><tr><th>Driver</th><th>Driver name</th><th class="num">Value</th></tr></thead>
+                                <tbody>
+                                    <template for:each={churnDriverRows} for:item="row">
+                                        <tr key={row.key} class={row.rowClass}>
+                                            <td><span class={row.tagClass}>{row.tagLabel}</span></td>
+                                            <td><button type="button" class="driver-link" data-driver={row.name} onclick={handleDriverClick}>{row.name}</button></td>
+                                            <td class="num">{row.value}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="footnote">Churn means volume <b>compression / retraction</b>, not account closure — 3–6 month horizon.</p>
+                    </article>
+                    <template lwc:if={showDrillPanel}>
+                        <article class="panel section-gap driver-drill-panel">
+                            <div class="panel-header">
+                                <h2>{drillTitle}</h2>
+                                <button class="button" type="button" onclick={handleCloseDrill}>Close</button>
+                            </div>
+                            <div class="panel-body">
+                                <h3>Mid-level drivers</h3>
+                                <div class="table-scroll">
+                                    <table class="align-table">
+                                        <thead><tr><th>ID</th><th class="num">Value</th></tr></thead>
+                                        <tbody>
+                                            <template for:each={drillRows} for:item="row">
+                                                <tr key={row.key}>
+                                                    <td>{row.id}</td>
+                                                    <td class="num">{row.value}</td>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </article>
+                    </template>
+                </template>
+
+                <template lwc:if={isCrossSell}>
+                    <div class="callout blue">
+                        <span class="co-ic">&#43;</span>
+                        <div class="co-t"><b>Revenue Boost cross-sell deep-dive.</b> Outcome-based pitch with net-benefit number. <span class="wiptag">Output schema v3</span></div>
+                    </div>
+                    <div class="fbar">
+                        <div class="fld slider-fld">
+                            <label>Price per transaction <span class="slider-val">{priceLabel}</span></label>
+                            <input type="range" min="0.01" max="1" step="0.01" value={crossSellPrice} oninput={handlePriceChange}>
+                        </div>
+                        <div class="fld slider-fld">
+                            <label>A/B testing split <span class="slider-val">{abLabel}</span></label>
+                            <input type="range" min="1" max="99" step="1" value={crossSellAbSplit} oninput={handleAbChange}>
+                        </div>
+                    </div>
+                    <div class="two-column">
+                        <article class="panel">
+                            <div class="panel-header"><h2>Net benefit to merchant</h2><span>Revenue Boost</span></div>
+                            <div class="panel-body">
+                                <span class="risk">{crossSell.likelihoodToAcquire} propensity</span>
+                                <div class="calc">
+                                    <div class="row-c"><span>In-scope transactions</span><span class="c-v">{roiRows.inScopeTransactions}</span></div>
+                                    <div class="row-c"><span>Price per transaction (adj.)</span><span class="c-v">{roiRows.price}</span></div>
+                                    <div class="row-c"><span>A/B testing split</span><span class="c-v">{roiRows.abSplit}</span></div>
+                                    <div class="row-c"><span>Gross revenue uplift (annualised)</span><span class="c-v up">{roiRows.grossUplift}</span></div>
+                                    <div class="row-c"><span>Product cost (annualised)</span><span class="c-v">{roiRows.productCost}</span></div>
+                                    <div class="row-c"><span>Scheme and interchange fee benefit</span><span class="c-v up">{roiRows.schemeBenefit}</span></div>
+                                    <div class="row-c tot"><span>Net benefit (annualised)</span><span class="c-v wp-val">{roiRows.netBenefit}</span></div>
+                                </div>
+                                <p class="decline-codes"><b>Recoverable decline codes:</b> {roiRows.declineCodeList}</p>
+                            </div>
+                        </article>
+                        <article class="panel">
+                            <div class="panel-header"><h2>Account environment declines</h2><span>{peerSegmentLabel}</span></div>
+                            <div class="panel-body">
+                                <template for:each={crossSellKpis} for:item="kpi">
+                                    <div key={kpi.key} class="krow last">
+                                        <span class="kk">{kpi.label}</span>
+                                        <span class={kpi.valueClass}>{kpi.value}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </article>
+                    </div>
+                    <article class="panel section-gap">
+                        <div class="panel-header"><h2>Count &amp; value of declines</h2><span>stacked by decline reason · recoverable via Revenue Boost</span></div>
+                        <template lwc:if={hasDeclineData}>
+                            <div class="decline-chart-row">
+                                <div class="decline-barchart">
+                                    <div class="dbc-axis-y">
+                                        <template for:each={declineAxisSteps} for:item="step">
+                                            <span key={step.key}>{step.label}</span>
+                                        </template>
+                                    </div>
+                                    <div class="dbc-stack-wrap">
+                                        <div class="dbc-stack">
+                                            <template for:each={declineSegments} for:item="seg">
+                                                <div key={seg.key} class="dbc-seg" style={seg.style}>
+                                                    {seg.count}
+                                                    <span class="dbc-cost">{seg.volume}</span>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="decline-chart-kpis">
+                                    <template for:each={declineMetrics} for:item="metric">
+                                        <div key={metric.key} class="krow last">
+                                            <span class="kk">{metric.label}</span>
+                                            <span class="kv">{metric.value}</span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                            <div class="dbc-legend">
+                                <template for:each={declineLegend} for:item="item">
+                                    <span key={item.key}><span class="sw" style={item.swatchStyle}></span>{item.label}</span>
+                                </template>
+                            </div>
+                        </template>
+                        <template lwc:else>
+                            <div class="placeholder-panel">No decline data available.</div>
+                        </template>
+                    </article>
+                </template>
+            </div>
+        </div>
+    </section>
+</template>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9344</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">301b341e-6753-4867-aee0-81b266e6be67</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9344, MHJM6Z4EFDKT-2068475776-9344</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
