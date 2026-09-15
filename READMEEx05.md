@@ -15,12 +15,14 @@ All deployable artefacts use the `Ex05` suffix to avoid collisions with other ex
 
 ## What this is
 
-- **Monolithic hub:** `c360DashboardEx05` (Overview, Alert Centre, Churn, Cross-Sell — account links navigate to Record Page)
-- **Canonical HTML prototype:** [`04. HTML prototypes/C360 Prototype v5.html`](../../../04.%20HTML%20prototypes/C360%20Prototype%20v5.html) — full interactive reference (not duplicated under Experiment 05)
+- **Monolithic hub:** `c360DashboardEx05` (Home with top accounts + portfolio health first, Alert Centre, **All accounts** with portfolio / churn / cross-sell sub-tabs)
+- **Unified HTML prototype:** [`360 HTML prototype.html`](360%20HTML%20prototype.html) — rebuild with `python scripts/build360HtmlPrototype.py` (also writes `360 Accounts Hub prototype.html` alias)
+- **Canonical HTML reference:** [`04. HTML prototypes/C360 Prototype v5.html`](../../../04.%20HTML%20prototypes/C360%20Prototype%20v5.html) — v5 IA source (per-module previews under `prototypes/html/`)
 - **Schema v3 account detail (Record Page):** `c360AccountDetailEx05` — churn / cross-sell deep-dive (preview: [`prototypes/html/modules/account-detail/preview.html`](prototypes/html/modules/account-detail/preview.html))
 - **Wireframe screens:** `c360AlertCentreEx05`, `c360AlertDetailEx05`
 - **Record Page bootstrap:** `c360AccountEx05` (delegates to `c360AccountDetailEx05`)
 - **Shared children:** `c360KpiTileEx05`, `c360SignalListEx05`
+- **Optional App Builder tile (Phase 1):** `c360ConfigurableKpiTileEx05` — metric picklist → `C360_Metric_Definition__mdt` via `C360MetricController` (not embedded in `c360DashboardEx05`)
 - **Mock data:** `c360MockDataEx05` + `c360AccountDetailDataEx05` (`ACCOUNT_DETAIL`, `getAccountDetail()`)
 
 ## What this is NOT
@@ -45,7 +47,7 @@ Then follow [orgWiringRunbookEx05.md](orgWiringRunbookEx05.md) to wire `c360Dash
 
 Browser-previewable HTML modules live under [`prototypes/html/`](prototypes/html/). No Salesforce CLI required — double-click any `preview.html` to open in Chrome or Edge.
 
-**Start here:** [`prototypes/html/assembly/overview-page.html`](prototypes/html/assembly/overview-page.html) — full Overview page composed from modules.
+**Start here:** open [`360 HTML prototype.html`](360%20HTML%20prototype.html) after running `python scripts/build360HtmlPrototype.py`, or [`prototypes/html/assembly/overview-page.html`](prototypes/html/assembly/overview-page.html) for modular Overview only.
 
 ### Folder conventions
 
@@ -93,8 +95,8 @@ Mock data in `prototypes/html/shared/mock-data.js` mirrors `c360MockDataEx05.js`
 | Hub architecture | Monolithic `c360DashboardEx05` | Exp 01 decomposed `c360App` |
 | Account drill-down | NavigationMixin → Record Page | Inline hub view (v5 prototype only; hub LWCs use Record Page) |
 | Alert Centre | Embedded in dashboard nav | Separate App Page tab |
-| Data | Mock in `c360MockDataEx05.js` | `@wire` to org Apex |
-| apiVersion | 62.0 | Template 67.0 |
+| Data | Mock in `c360MockDataEx05.js`; hub user via `getRecord`; cross-sell via `C360CrossSellController` | Full `@wire` to org Apex |
+| apiVersion | 66.0 | Template 67.0 |
 
 ## Bundle inventory
 
@@ -103,6 +105,7 @@ Mock data in `prototypes/html/shared/mock-data.js` mirrors `c360MockDataEx05.js`
 | `c360DashboardEx05` | Yes | C360 Dashboard (ex_04) | App Page, Home Page |
 | `c360MaterialBannerEx05` | Yes | C360 Material Banner (ex_04) | App Page, Home Page |
 | `c360KpiStripEx05` | Yes | C360 KPI Strip (ex_04) | App Page, Home Page |
+| `c360ConfigurableKpiTileEx05` | Yes | C360 KPI Tile (configurable) (ex_05) | App Page, Home Page |
 | `c360NeedsActionEx05` | Yes | C360 Needs Action (ex_04) | App Page, Home Page |
 | `c360PortfolioHealthEx05` | Yes | C360 Portfolio Health (ex_04) | App Page, Home Page |
 | `c360MySignalsEx05` | Yes | C360 My Signals (ex_04) | App Page, Home Page |
@@ -119,6 +122,10 @@ Mock data in `prototypes/html/shared/mock-data.js` mirrors `c360MockDataEx05.js`
 | `c360AccountDetailDataEx05` | No | — | Shared module (Record Page) |
 | ~~`c360PathwaysTableEx05`~~ | — | Deprecated | Removed from hub IA |
 | ~~`c360ExportModalEx05`~~ | — | Deprecated | Removed from hub prototype |
+
+## Development process (Cursor)
+
+See [docs/cursorDevelopmentScope.md](docs/cursorDevelopmentScope.md) for step-by-step repo setup with Cursor (or similar AI tools), data schema handoff, and Customer 360 as the reference example.
 
 ## Full plan and gap analysis
 

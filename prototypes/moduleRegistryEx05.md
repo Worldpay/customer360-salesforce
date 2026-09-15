@@ -2,7 +2,9 @@
 
 Inventory of HTML prototype modules and their LWC conversion status for Experiment 05.
 
-**Last updated:** 2026-09-09 (Experiment 05 — mirrors hub HTML prototype; Pathways/ExportModal bundles not deployed)
+**Last updated:** 2026-09-15 (unified `360 HTML prototype.html` — All accounts nav + sub-tabs; Home priority zone; table loading UX)
+
+**Live data in repo (15 Sep):** `c360DashboardEx05` sidebar uses `getRecord` (User). `c360CrossSellTableEx05` uses `C360CrossSellController.getCrossSellAccounts` — replace placeholder Apex via `scripts/retrieveC360CrossSellController.ps1` when CLI is available.
 
 ## LWC scope (aligned to hub HTML prototype)
 
@@ -10,7 +12,8 @@ Inventory of HTML prototype modules and their LWC conversion status for Experime
 
 | LWC | Role |
 |-----|------|
-| `c360DashboardEx05` | Monolithic hub orchestrator (Overview, Alert Centre, Churn, Cross-Sell) |
+| `c360DashboardEx05` | Hub shell (Home, Alert Centre, **All accounts** with portfolio / churn / cross-sell sub-tabs) |
+| `c360TopAccountsEx05` | Home hero — top accounts by churn or cross-sell |
 | `c360MaterialBannerEx05` | Material changes banner |
 | `c360KpiStripEx05` | KPI row |
 | `c360KpiTileEx05` | KPI tile (child of strip / dashboard) |
@@ -63,9 +66,10 @@ Inventory of HTML prototype modules and their LWC conversion status for Experime
 |-------------|----------|------|------|-----|------------|----------|
 | `kpi-strip` | P0 | done | done | | `c360KpiStripEx05` | done |
 | `needs-action` | P0 | done | done | | `c360NeedsActionEx05` | done |
-| `portfolio-health` | P0 | done | done | | `c360PortfolioHealthEx05` | done |
+| `top-accounts` | P0 | done | done | | `c360TopAccountsEx05` | |
+| `portfolio-health` | P0 | done | done | | `c360PortfolioHealthEx05` (hub: `interactive`) | done |
 | `signal-list` | P0 | done | done | | `c360MySignalsEx05` | |
-| `accounts-table` | P1 | done | done | | `c360AccountsTableEx05` | done |
+| `accounts-table` | P1 | done | done | | `c360AccountsTableEx05` (`variant=portfolio` on Hub) | done |
 | `material-banner` | P1 | done | done | | `c360MaterialBannerEx05` | done |
 | `alert-centre` | P1 | done | done | | `c360AlertCentreEx05` | done |
 | `cross-sell-table` | P2 | done | done | | `c360CrossSellTableEx05` | done |
@@ -83,7 +87,9 @@ Open in a browser (double-click, no Salesforce CLI):
 | **Account detail (schema v3)** | [`html/modules/account-detail/preview.html`](html/modules/account-detail/preview.html) |
 | KPI strip | [`html/modules/kpi-strip/preview.html`](html/modules/kpi-strip/preview.html) |
 | Needs action | [`html/modules/needs-action/preview.html`](html/modules/needs-action/preview.html) |
+| Top accounts (Accounts Hub) | [`html/modules/top-accounts/preview.html`](html/modules/top-accounts/preview.html) |
 | Portfolio health | [`html/modules/portfolio-health/preview.html`](html/modules/portfolio-health/preview.html) |
+| **Unified C360 SPA** | [`360 HTML prototype.html`](../360%20HTML%20prototype.html) — `python scripts/build360HtmlPrototype.py` (also writes hub alias `360 Accounts Hub prototype.html`) |
 | Signal list | [`html/modules/signal-list/preview.html`](html/modules/signal-list/preview.html) |
 | Accounts table | [`html/modules/accounts-table/preview.html`](html/modules/accounts-table/preview.html) |
 | Material banner | [`html/modules/material-banner/preview.html`](html/modules/material-banner/preview.html) |
@@ -99,7 +105,10 @@ Canonical reference: [`04. HTML prototypes/C360 Prototype v5.html`](../../../04.
 - [`html/shared/tokens.css`](html/shared/tokens.css) — design tokens
 - [`html/shared/shell.css`](html/shared/shell.css) — global header and nav
 - [`html/shared/module-base.css`](html/shared/module-base.css) — panel primitives
-- [`html/shared/mock-data.js`](html/shared/mock-data.js) — hub mock DTOs (mirrors `c360MockDataEx05.js`)
+- [`html/shared/mock-data.js`](html/shared/mock-data.js) — overview mock DTOs (mirrors `c360MockDataEx05.js`)
+- [`html/shared/accounts-hub-mock-data.js`](html/shared/accounts-hub-mock-data.js) — portfolio `ACCOUNTS` + hub analytics
+- [`html/shared/table-loading.css`](html/shared/table-loading.css) / [`table-loading.js`](html/shared/table-loading.js) — multi-row table loading overlay (unified SPA)
+- [`html/assembly/c360-unified-spa-app.js`](html/assembly/c360-unified-spa-app.js) — single SPA for unified prototype
 - [`html/shared/account-detail-data.js`](html/shared/account-detail-data.js) — schema v3 `ACCOUNT_DETAIL` (mirrors `c360AccountDetailDataEx05.js`)
 - [`html/shared/shell.js`](html/shared/shell.js) — toast, account navigation with `data-open-account-source`
 

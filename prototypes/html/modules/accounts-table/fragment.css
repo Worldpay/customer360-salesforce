@@ -1,3 +1,25 @@
 .c360-accounts-table {
   margin-top: 22px;
 }
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.filter-bar button {
+  border: 1px solid var(--bd);
+  background: var(--card);
+  border-radius: 16px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+.filter-bar button.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+.wp-val { color: var(--wp); font-weight: 700; }

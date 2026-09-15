@@ -7,6 +7,7 @@
         <members>c360AlertCentreEx05</members>
         <members>c360AlertDetailEx05</members>
         <members>c360ChurnTableEx05</members>
+        <members>c360ConfigurableKpiTileEx05</members>
         <members>c360CrossSellTableEx05</members>
         <members>c360DashboardEx05</members>
         <members>c360KpiStripEx05</members>
@@ -17,7 +18,25 @@
         <members>c360NeedsActionEx05</members>
         <members>c360PortfolioHealthEx05</members>
         <members>c360SignalListEx05</members>
+        <members>c360TopAccountsEx05</members>
         <name>LightningComponentBundle</name>
     </types>
-    <version>62.0</version>
+    <types>
+        <members>C360CrossSellController</members>
+        <members>C360MetricController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>C360_Metric_Definition__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>C360_Metric_Definition.At_Risk_Accounts</members>
+        <members>C360_Metric_Definition.Composite_Health_Index</members>
+        <members>C360_Metric_Definition.Revenue_At_Risk</members>
+        <members>C360_Metric_Definition.Signals_To_Action</members>
+        <members>C360_Metric_Definition.Total_Accounts</members>
+        <name>CustomMetadata</name>
+    </types>
+    <version>66.0</version>
 </Package>

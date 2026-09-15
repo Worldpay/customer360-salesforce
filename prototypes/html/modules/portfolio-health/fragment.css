@@ -7,3 +7,27 @@
 .c360-portfolio-health .mt-v.good { color: var(--green); }
 .c360-portfolio-health .mt-v.watch { color: var(--amber); }
 .c360-portfolio-health .mt-v.risk { color: var(--red); }
+.home-portfolio-health {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+.c360-portfolio-health .mtile--link {
+  flex: 1;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 12px 14px;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.c360-portfolio-health .mtile--link:hover,
+.c360-portfolio-health .mtile--link:focus {
+  outline: none;
+  border-color: var(--sf-blue);
+  box-shadow: 0 2px 8px rgba(1, 118, 211, 0.1);
+}

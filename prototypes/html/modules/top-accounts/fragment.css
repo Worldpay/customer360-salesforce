@@ -1,0 +1,184 @@
+.c360-top-accounts .top-accounts-subtitle {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.c360-top-accounts .top-accounts-hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+.hero-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.hero-mode-toggle {
+  display: inline-flex;
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+}
+.hero-mode-toggle button {
+  border: 0;
+  background: transparent;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+.hero-mode-toggle button.active {
+  background: var(--sf-blue-l);
+  color: var(--navy);
+}
+.hero-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+@media (max-width: 1100px) {
+  .hero-tiles-grid { grid-template-columns: 1fr; }
+}
+.home-priority-zone .hero-tiles-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 900px) {
+  .home-priority-zone .hero-tiles-grid { grid-template-columns: 1fr; }
+}
+.hero-account-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.hero-account-card--clickable {
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.hero-account-card--clickable:hover,
+.hero-account-card--clickable:focus {
+  outline: none;
+  border-color: var(--sf-blue);
+  box-shadow: 0 4px 14px rgba(1, 118, 211, 0.12);
+}
+.hero-card-header {
+  margin: 0 0 12px;
+  padding-right: 28px;
+}
+.hero-account-headline {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.hero-account-meta {
+  margin: 6px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.hero-card-rank {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.hero-row {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--bd);
+}
+.hero-row--compact {
+  padding: 8px 0 12px;
+}
+.hero-row:last-child { border-bottom: 0; }
+.hero-row--model {
+  flex: 1;
+  background: linear-gradient(to bottom, transparent, rgba(1, 118, 211, 0.04));
+  margin: 4px -16px 0;
+  padding: 14px 16px 20px;
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-bottom: 0;
+}
+.hero-row-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.hero-row-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 10px;
+}
+.hero-row-fields--inline .hero-field .hero-val {
+  font-size: 12px;
+  font-weight: 600;
+}
+.hero-row-fields--model {
+  gap: 12px 10px;
+  align-items: stretch;
+}
+.hero-field--model {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.hero-field--model .hero-lbl {
+  min-height: 3.25em;
+  margin-bottom: 8px;
+}
+@media (max-width: 700px) {
+  .hero-row-fields { grid-template-columns: 1fr; }
+  .hero-account-headline { font-size: 1.25rem; }
+}
+.hero-field .hero-lbl {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.hero-field .hero-val {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.hero-field--model .hero-val {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.hero-field--model.hero-field--lead .hero-val {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.hero-metric {
+  display: inline-block;
+}
+.hero-field--model:not(.hero-field--lead) .hero-metric {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.hero-field--model.hero-field--lead .hero-metric {
+  font-size: inherit;
+  font-weight: inherit;
+}

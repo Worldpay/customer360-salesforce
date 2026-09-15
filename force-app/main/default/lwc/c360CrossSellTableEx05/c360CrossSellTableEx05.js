@@ -1,15 +1,33 @@
-import { LightningElement, api } from 'lwc';
-import { CROSS_SELL_ROWS } from 'c/c360MockDataEx05';
+import { LightningElement, api, wire } from 'lwc';
+import getCrossSellAccounts from '@salesforce/apex/C360CrossSellController.getCrossSellAccounts';
 
 export default class C360CrossSellTableEx05 extends LightningElement {
     @api title = 'Open cross-sell opportunities';
     @api subtitle = 'Across your portfolio';
 
-    get rows() {
-        return CROSS_SELL_ROWS.map((row) => ({
-            ...row,
-            propensityPillClass: row.propensityClass
-        }));
+    rows = [];
+    error;
+    wiredResult;
+
+    @wire(getCrossSellAccounts)
+    wiredAccounts(result) {
+        this.wiredResult = result;
+        const { data, error } = result;
+        if (data) {
+            this.rows = data.map((row) => ({
+                ...row,
+                propensityPillClass: row.propensityClass
+            }));
+            this.error = undefined;
+        } else if (error) {
+            this.error = error;
+            this.rows = [];
+            console.error('Error loading cross-sell data', error);
+        }
+    }
+
+    get isLoading() {
+        return !this.wiredResult?.data && !this.wiredResult?.error;
     }
 
     handleOpenAccount(event) {

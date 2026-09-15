@@ -25,8 +25,208 @@ HEADERS = [
     "Requirement",
     "Page",
     "Component",
+    "Section Title",
     "Data Source",
 ]
+
+# UI panel / module headings (match LWC h2 and @api title defaults).
+PORTFOLIO_SUMMARY_SECTION = {
+    "totalAccounts": "Total accounts",
+    "compositeHealthIndex": "Composite health index",
+    "healthIndexDelta": "Composite health index",
+    "signalsToAction": "Signals to action",
+    "signalsChurnCount": "Signals to action",
+    "signalsCrossSellCount": "Signals to action",
+    "atRiskAccounts": "At-risk accounts",
+    "revenueAtRisk": "Revenue at risk",
+    "revenueAtRiskDelta": "Revenue at risk",
+}
+
+CROSS_SELL_SUMMARY_NET_BENEFIT = {
+    "netBenefit",
+    "grossUplift",
+    "inScopeTransactions",
+    "inScopeVolume",
+    "declineCodeList",
+    "cost",
+    "tokenisationImpact",
+}
+
+CROSS_SELL_SUMMARY_ENV_DECLINES = {
+    "merchantApprovalRate",
+    "peerApprovalRate",
+    "merchantVsPeer",
+}
+
+CROSS_SELL_SUMMARY_DECLINE_KPIS = {
+    "valueOfDeclines",
+    "countDeclines",
+    "recoverableSplitMerchant",
+    "recoverableSplitPeer",
+}
+
+ACCOUNT_DETAIL_CHURN_METRICS = {
+    "churnScore",
+    "churnScorePct",
+    "txnTrend1m",
+    "txnTrend3m",
+    "txnTrend6m",
+}
+
+ACCOUNT_HIGHLIGHT_FIELDS = {
+    "accountId",
+    "merchantCount",
+    "market",
+}
+
+
+def infer_section_title(dto: str, field: str, page: str, component: str) -> str:
+    """Map a DTO field to the on-screen section heading where it is shown."""
+    if dto == "PortfolioSummary" and field in PORTFOLIO_SUMMARY_SECTION:
+        return PORTFOLIO_SUMMARY_SECTION[field]
+
+    if dto == "CrossSellSummary":
+        if field in CROSS_SELL_SUMMARY_NET_BENEFIT:
+            return "Net benefit to merchant"
+        if field in CROSS_SELL_SUMMARY_ENV_DECLINES:
+            return "Account environment declines"
+        if field in CROSS_SELL_SUMMARY_DECLINE_KPIS:
+            return "Count & value of declines"
+
+    if dto == "DeclineCode":
+        return "Count & value of declines"
+
+    if dto in ("CrossSellDetail",) and field == "schemeInterchangeBenefit":
+        return "Net benefit to merchant"
+
+    if dto == "CrossSellDetail" and field == "peerSegmentId":
+        return "Account environment declines"
+
+    if dto == "CrossSellDetail" and field == "likelihoodToAcquire":
+        return "Net benefit to merchant"
+
+    if dto == "AccountDetail" and field in ACCOUNT_DETAIL_CHURN_METRICS:
+        return "Churn score & transaction trends"
+
+    if dto == "AccountDetail" and field in ACCOUNT_HIGHLIGHT_FIELDS:
+        return "Account highlight"
+
+    if dto == "AccountDetail" and field == "crossSell":
+        return "Revenue Boost cross-sell deep-dive"
+
+    if dto == "AccountDetail" and field in (
+        "positiveDrivers",
+        "negativeDrivers",
+        "driverDrilldown",
+        "mids",
+    ):
+        return "Account-level drivers"
+
+    if dto == "DriverRow":
+        return "Account-level drivers"
+
+    if dto == "DrilldownRow":
+        return "Mid-level drivers"
+
+    if dto == "MidRow":
+        return "Account-level drivers"
+
+    if dto in ("BASE_PRICE_PER_TXN",) or (
+        dto == "CrossSellDetail" and field == "declineCodes"
+    ):
+        if dto == "BASE_PRICE_PER_TXN":
+            return "Revenue Boost assumptions (sliders)"
+        return "Count & value of declines"
+
+    if dto == "DECLINE_CHART_COLORS":
+        return "Count & value of declines"
+
+    dto_defaults = {
+        "UserContext": "Global header & sidebar",
+        "PortfolioScope": "Enterprise Account Hub",
+        "DataProvenance": "My accounts",
+        "MOCK_ACCOUNT_IDS": "Navigation (account links)",
+        "MaterialChangeBanner": "Material changes banner",
+        "KPI_TILES": "KPI strip",
+        "KpiTile": "KPI strip",
+        "NEEDS_ACTION_ITEMS": "Needs action today",
+        "NeedsActionItem": "Needs action today",
+        "PORTFOLIO_HEALTH": "Portfolio health",
+        "PortfolioHealth": "Portfolio health",
+        "PipelineBar": "Portfolio health — cross-sell pipeline",
+        "SIGNALS": "My signals",
+        "Signal": "My signals",
+        "ACCOUNTS": "My accounts",
+        "Account": "My accounts",
+        "ALERTS": "Active alerts",
+        "Alert": "Active alerts",
+        "ALERT_STATUS_OPTIONS": "Active alerts — status filters",
+        "ALERT_INTEL": "Cross-selling intelligence",
+        "CrossSellIntelligencePanel": "Cross-selling intelligence",
+        "CrossSellIntelRow": "Cross-selling intelligence",
+        "ALERT_DETAIL_BY_ID": "Alert detail",
+        "AlertDetail": "Alert detail — header",
+        "Driver": "Top drivers",
+        "AlertCrossSellIntel": "Cross-sell intelligence",
+        "AlertOutcome": "Record outcome",
+        "CROSS_SELL_ROWS": "Open cross-sell opportunities",
+        "CrossSellOpportunity": "Open cross-sell opportunities",
+        "CHURN_ROWS": "Accounts by churn risk",
+        "ChurnRiskRow": "Accounts by churn risk",
+        "AccountSpotlight": "Account highlight",
+        "AccountDetailInput": "Account 360",
+        "ACCOUNT_DETAIL": "Account 360",
+        "AccountDetail": "Account 360",
+        "CrossSellDetail": "Revenue Boost cross-sell deep-dive",
+        "CrossSellSummary": "Net benefit to merchant",
+        "DashboardState": "App shell & navigation",
+    }
+
+    if dto == "AlertDetail" and field == "trajectory":
+        return "6-month score trajectory"
+    if dto == "AlertDetail" and field == "drivers":
+        return "Top drivers"
+    if dto in ("AlertDetail",) and field in ("score", "arr", "merchantCount", "account", "accountId", "id"):
+        return "Alert detail — header"
+
+    if dto in dto_defaults:
+        return dto_defaults[dto]
+
+    component_defaults = {
+        "c360DashboardEx05": "Enterprise Account Hub",
+        "c360MaterialBannerEx05": "Material changes banner",
+        "c360KpiStripEx05": "KPI strip",
+        "c360KpiTileEx05": "KPI strip",
+        "c360NeedsActionEx05": "Needs action today",
+        "c360PortfolioHealthEx05": "Portfolio health",
+        "c360MySignalsEx05": "My signals",
+        "c360SignalListEx05": "My signals",
+        "c360AccountsTableEx05": "My accounts",
+        "c360AlertCentreEx05": "Alert Centre",
+        "c360AlertDetailEx05": "Alert detail",
+        "c360ChurnTableEx05": "Accounts by churn risk",
+        "c360CrossSellTableEx05": "Open cross-sell opportunities",
+        "c360AccountEx05": "Account highlight",
+        "c360AccountDetailEx05": "Account 360",
+        "c360PathwaysTableEx05": "In-progress pathways",
+        "c360ExportModalEx05": "Export modal",
+    }
+    if component in component_defaults:
+        return component_defaults[component]
+
+    if "Deprecated" in page or "removed" in page.lower():
+        return "Deprecated UI"
+    return page
+
+
+def with_section_title(row: tuple) -> tuple:
+    dto, field, typ, requirement, page, component, data_source = row
+    section = infer_section_title(dto, field, page, component)
+    return (dto, field, typ, requirement, page, component, section, data_source)
+
+
+def expand_rows(rows: list[tuple]) -> list[tuple]:
+    return [with_section_title(row) for row in rows]
 
 ROWS = [
     # Shared session context
@@ -192,7 +392,7 @@ ROWS = [
     ("AccountDetail", "market", "string", "Required", "Account Record Page", "c360AccountDetailEx05", ""),
     ("AccountDetail", "churnScore", "number", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
     ("AccountDetail", "churnScorePct", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
-    ("AccountDetail", "txnTrend1m", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
+    ("AccountDetail", "txnTrend1m", "string", "Optional (not rendered)", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
     ("AccountDetail", "txnTrend3m", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
     ("AccountDetail", "txnTrend6m", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
     ("AccountDetail", "positiveDrivers", "DriverRow[]", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
@@ -202,8 +402,9 @@ ROWS = [
     ("AccountDetail", "crossSell", "CrossSellDetail", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
     ("DriverRow", "name", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
     ("DriverRow", "value", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
-    ("DrilldownRow", "humanCustomerId", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
-    ("DrilldownRow", "authRateAvg6m", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
+    # normalizeDriverDrilldown() reshapes the seed rows into {id, value} before render
+    ("DrilldownRow", "id", "string (seed: humanCustomerId)", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
+    ("DrilldownRow", "value", "string (seed: driver metric)", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
     ("MidRow", "id", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
     ("MidRow", "name", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
     ("MidRow", "negName", "string", "Required", "Account Record Page - Churn tab", "c360AccountDetailEx05", ""),
@@ -229,16 +430,6 @@ ROWS = [
     ("CrossSellSummary", "cost", "number", "Optional", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
     ("CrossSellSummary", "tokenisationImpact", "number", "Optional", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
     ("CrossSellSummary", "inScopeVolume", "number", "Optional", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
-    ("SliceRow", "credential", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
-    ("SliceRow", "channel", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
-    ("SliceRow", "scheme", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
-    ("SliceRow", "market", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
-    ("SliceRow", "volume", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
-    ("SliceRow", "transactions", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
-    ("SliceRow", "approval", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
-    ("SliceRow", "recMerchant", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
-    ("SliceRow", "peerApproval", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
-    ("SliceRow", "recPeer", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
     ("DeclineCode", "code", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
     ("DeclineCode", "name", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
     ("DeclineCode", "volume", "string", "Required", "Account Record Page - Cross-sell tab", "c360AccountDetailEx05", ""),
@@ -285,6 +476,30 @@ DEPRECATED_ROWS = [
     ("ExportRequest", "accountId", "Id", "Deprecated", "Hub (removed)", "c360ExportModalEx05", ""),
     ("ExportRequest", "artefacts", "string[]", "Deprecated", "Hub (removed)", "c360ExportModalEx05", ""),
     ("ExportModal", "accountName", "string", "Deprecated", "Hub (removed)", "c360ExportModalEx05", ""),
+    # SliceRow orphaned with its parent CrossSellDetail.slices - no getter consumes it
+    ("SliceRow", "credential", "string", "Deprecated", "Account Record Page - Cross-sell tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("SliceRow", "channel", "string", "Deprecated", "Account Record Page - Cross-sell tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("SliceRow", "scheme", "string", "Deprecated", "Account Record Page - Cross-sell tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("SliceRow", "market", "string", "Deprecated", "Account Record Page - Cross-sell tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("SliceRow", "volume", "string", "Deprecated", "Account Record Page - Cross-sell tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("SliceRow", "transactions", "string", "Deprecated", "Account Record Page - Cross-sell tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("SliceRow", "approval", "string", "Deprecated", "Account Record Page - Cross-sell tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("SliceRow", "recMerchant", "string", "Deprecated", "Account Record Page - Cross-sell tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("SliceRow", "peerApproval", "string", "Deprecated", "Account Record Page - Cross-sell tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("SliceRow", "recPeer", "string", "Deprecated", "Account Record Page - Cross-sell tab (v5 removed)", "c360AccountDetailEx05", ""),
+    # Pre-normalisation seed shape - superseded by DrilldownRow.id / .value
+    ("DrilldownRow", "humanCustomerId", "string", "Deprecated", "Account Record Page - Churn tab (pre-normalisation)", "c360AccountDetailEx05", ""),
+    ("DrilldownRow", "authRateAvg6m", "string", "Deprecated", "Account Record Page - Churn tab (pre-normalisation)", "c360AccountDetailEx05", ""),
+    # Present in c360AccountDetailDataEx05.js but no getter consumes them
+    ("AccountDetail", "chargebacks", "string", "Deprecated", "Account Record Page - Overview tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("AccountDetail", "servicing", "string", "Deprecated", "Account Record Page - Overview tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("AccountDetail", "volumeTrend", "string", "Deprecated", "Account Record Page - Overview tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("AccountDetail", "volumeTrendNote", "string", "Deprecated", "Account Record Page - Overview tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("AccountDetail", "authTrend", "string", "Deprecated", "Account Record Page - Overview tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("AccountDetail", "cbTrend", "string", "Deprecated", "Account Record Page - Overview tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("AccountDetail", "servicingNote", "string", "Deprecated", "Account Record Page - Overview tab (v5 removed)", "c360AccountDetailEx05", ""),
+    ("Account", "pathways", "integer", "Deprecated", "Hub - Overview (v5 removed)", "c360AccountsTableEx05", ""),
+    ("Pathway", "statusClass", "string", "Deprecated", "Hub - Pathways (removed)", "c360PathwaysTableEx05", ""),
 ]
 
 
@@ -301,11 +516,11 @@ def write_sheet(ws, rows, title_note=None):
             ws.cell(row=row_idx, column=col_idx, value=value)
     ws.freeze_panes = "A2"
     ws.auto_filter.ref = f"A1:{get_column_letter(len(HEADERS))}{len(rows) + 1}"
-    widths = [22, 28, 24, 16, 28, 34, 36]
+    widths = [22, 28, 24, 16, 28, 34, 32, 36]
     for i, width in enumerate(widths, 1):
         ws.column_dimensions[get_column_letter(i)].width = width
     if title_note:
-        ws.cell(row=1, column=8, value=title_note)
+        ws.cell(row=1, column=len(HEADERS) + 1, value=title_note)
 
 
 def _is_junk_zip_entry(name: str) -> bool:
@@ -327,28 +542,33 @@ def sanitize_xlsx(src: Path, dest: Path) -> int:
 
 
 def write_csv(path: Path) -> None:
+    active = expand_rows(ROWS)
+    deprecated = expand_rows(DEPRECATED_ROWS)
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.writer(handle)
         writer.writerow(HEADERS)
-        writer.writerows(ROWS)
+        writer.writerows(active)
         writer.writerow([])
-        writer.writerow(["--- Deprecated ---"])
-        writer.writerows(DEPRECATED_ROWS)
+        writer.writerow(["--- Deprecated ---"] + [""] * (len(HEADERS) - 1))
+        writer.writerows(deprecated)
 
 
 def main():
     wb = Workbook()
     active = wb.active
     active.title = "DTO Inventory"
-    write_sheet(active, ROWS)
+    write_sheet(active, expand_rows(ROWS))
 
     deprecated = wb.create_sheet("Deprecated")
-    write_sheet(deprecated, DEPRECATED_ROWS)
+    write_sheet(deprecated, expand_rows(DEPRECATED_ROWS))
 
     readme = wb.create_sheet("README")
     readme["A1"] = "C360 Experiment 05 - LWC DTO Inventory"
     readme["A3"] = "Generated from c360MockDataEx05.js, c360AccountDetailDataEx05.js, moduleSpec.md, and data-schema.md"
-    readme["A5"] = "Fill the Data Source column with upstream system/table/API (e.g. Snowflake, Data 360, Salesforce Account, Apex method)."
+    readme["A5"] = (
+        "Section Title matches on-screen panel headings (h2 / module titles). "
+        "Fill Data Source with upstream system/table/API (e.g. Snowflake, Data 360, Salesforce Account, Apex method)."
+    )
     readme["A7"] = "Active hub pages: Overview, Alert Centre, Alert Detail, Churn, Cross-Sell."
     readme["A8"] = "Account deep-dives: Account Record Page only (c360AccountEx05 → c360AccountDetailEx05)."
     readme["A10"] = f"Active DTO rows: {len(ROWS)} | Deprecated rows: {len(DEPRECATED_ROWS)}"

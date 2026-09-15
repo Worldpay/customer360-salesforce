@@ -91,28 +91,62 @@
 .kpi.attention .k-val { color: var(--wp); }
 
 .alerts .a {
-  display: flex;
+  display: grid;
+  grid-template-columns: 6.75rem minmax(0, 1fr) 5.75rem;
   gap: 12px;
-  align-items: flex-start;
+  align-items: start;
   padding: 12px 16px;
   border-bottom: 1px solid var(--bd);
 }
 .alerts .a:last-child { border-bottom: 0; }
+.alerts .a .row-tag {
+  grid-column: 1;
+  align-self: start;
+}
+.alerts .a > .sev {
+  grid-column: 1;
+  align-self: start;
+}
+.alerts .a .row-tag .sev,
+.alerts .a > .sev {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 0;
+}
+.alerts .a .a-txt {
+  grid-column: 2;
+  min-width: 0;
+}
+.alerts .a .row-actions {
+  grid-column: 3;
+  align-self: start;
+}
+.alerts .a > .btn {
+  grid-column: 3;
+  align-self: start;
+}
+.alerts .a .row-actions .btn,
+.alerts .a > .btn {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
 .sev {
-  flex: 0 0 auto;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 3px 9px;
   border-radius: 4px;
-  margin-top: 1px;
   white-space: nowrap;
 }
 .sev.now { background: var(--red-l); color: var(--red); border: 1px solid #f3c9c4; }
 .sev.day { background: var(--amber-l); color: var(--amber); border: 1px solid #f5ddb0; }
 .sev.mon { background: var(--sf-blue-l); color: var(--sf-blue-d); border: 1px solid #bfe3fb; }
-.a .a-txt { flex: 1; }
+.a .a-txt { min-width: 0; }
 .a .a-txt b { color: var(--ink); }
 .a .a-txt .m { color: var(--ink2); font-size: 13px; }
 .a .a-txt .meta { color: var(--muted); font-size: 12px; margin-top: 2px; }
@@ -163,31 +197,59 @@
 }
 
 .sig {
-  display: flex;
+  display: grid;
+  grid-template-columns: 6.75rem minmax(0, 1fr) 11.25rem;
   gap: 12px;
-  align-items: flex-start;
+  align-items: start;
   padding: 13px 16px;
   border-bottom: 1px solid var(--bd);
 }
 .sig:last-child { border-bottom: 0; }
 .sig.done { opacity: 0.5; }
-.sig .badge { flex: 0 0 auto; }
+.sig .badge {
+  grid-column: 1;
+  align-self: start;
+  text-align: center;
+  box-sizing: border-box;
+}
 .badge {
   font-size: 11px;
   font-weight: 700;
   padding: 2px 8px;
   border-radius: 4px;
   white-space: nowrap;
+  display: inline-block;
 }
 .badge.cross-sell { background: #eef3ff; color: #2b3f8c; border: 1px solid #ccd7f5; }
 .badge.churn { background: var(--amber-l); color: var(--amber); border: 1px solid #f5ddb0; }
 .badge.fx { background: #e9f8f1; color: #1b7a4b; border: 1px solid #bfe8d3; }
-.sig .s-txt { flex: 1; }
+.sig .s-txt {
+  grid-column: 2;
+  min-width: 0;
+}
 .sig .s-txt .s-h { font-weight: 700; color: var(--ink); }
 .sig .s-txt .s-d { color: var(--ink2); font-size: 13px; margin-top: 2px; }
 .sig .s-txt .s-p { font-size: 12px; color: var(--muted); margin-top: 4px; }
 .sig .s-txt .s-p b { color: var(--sf-blue-d); }
-.sig .s-act { display: flex; gap: 6px; flex-direction: column; align-items: flex-end; }
+.sig .s-act {
+  grid-column: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  width: 100%;
+  align-self: start;
+}
+.sig > .status-pill {
+  grid-column: 3;
+  justify-self: end;
+  align-self: start;
+}
+.sig .s-act .btn {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
 
 .tbl {
   width: 100%;
@@ -204,11 +266,18 @@
   padding: 9px 12px;
   border-bottom: 1px solid var(--bd);
   background: #fafafa;
+  vertical-align: bottom;
 }
 .tbl td {
   padding: 10px 12px;
   border-bottom: 1px solid #f0f0f0;
   color: var(--ink2);
+  vertical-align: middle;
+}
+.tbl td:has(> .pill),
+.tbl td:has(> .status-pill) {
+  width: 1%;
+  white-space: nowrap;
 }
 .tbl tr:hover td { background: #f7fbff; }
 .tbl a.acct, .account-link {
@@ -226,6 +295,8 @@
   padding: 2px 9px;
   border-radius: 11px;
   display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 .pill.good, .good { background: var(--green-l); color: var(--green); }
 .pill.watch, .watch { background: var(--amber-l); color: var(--amber); }
@@ -293,6 +364,9 @@
   border-radius: 10px;
   background: var(--sf-blue-l);
   color: var(--sf-blue-d);
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 @media (max-width: 1100px) {

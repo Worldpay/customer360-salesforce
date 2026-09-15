@@ -39,14 +39,19 @@ export const PATHWAYS = [
 ];
 
 export const ACCOUNTS = [
-    { id: 'pets', name: 'Pets at Home', industry: 'Retail', volume: 'GBP 312m', health: 'Watch', healthClass: 'watch', risk: 'Medium', riskClass: 'watch', crossSell: 'Revenue Boost', pathways: 2, healthIndex: 68.2, healthDelta: '-2.1' },
-    { id: 'willow', name: 'Willow Travel', industry: 'Travel', volume: 'GBP 188m', health: 'At risk', healthClass: 'risk', risk: 'High', riskClass: 'risk', crossSell: '-', pathways: 1, healthIndex: 54.1, healthDelta: '-5.8' },
-    { id: 'deep-blue', name: 'Deep Blue Retail', industry: 'Retail', volume: 'GBP 256m', health: 'Watch', healthClass: 'watch', risk: 'Medium', riskClass: 'watch', crossSell: '-', pathways: 1, healthIndex: 61.7, healthDelta: '-1.4' },
-    { id: 'northwind', name: 'Northwind Foods', industry: 'Grocery', volume: 'GBP 141m', health: 'Healthy', healthClass: 'good', risk: 'Low', riskClass: 'good', crossSell: 'Revenue Boost', pathways: 1, healthIndex: 82.4, healthDelta: '+1.2' },
-    { id: 'aurora', name: 'Aurora Gaming', industry: 'Gaming', volume: 'GBP 204m', health: 'Healthy', healthClass: 'good', risk: 'Low', riskClass: 'good', crossSell: 'FX', pathways: 2, healthIndex: 79.8, healthDelta: '+0.6' },
-    { id: 'acme', name: 'Acme Corporation', industry: 'Enterprise', volume: 'GBP 420m', health: 'Watch', healthClass: 'watch', risk: 'High', riskClass: 'risk', crossSell: 'Smart Routing', pathways: 3, healthIndex: 58.3, healthDelta: '-4.2' },
-    { id: 'intech', name: 'InTech Solutions', industry: 'Technology', volume: 'USD 290m', health: 'Healthy', healthClass: 'good', risk: 'Low', riskClass: 'good', crossSell: 'Tokenisation', pathways: 1, healthIndex: 76.1, healthDelta: '-0.8' }
+    { id: 'willow', name: 'Willow Travel', industry: 'Travel', volume: 'GBP 188m', revenue: 'GBP 188m', health: 'At risk', healthClass: 'risk', risk: 'High', riskClass: 'risk', crossSell: 'FX Optimisation Engine', pathways: 1, healthIndex: 54.1, healthDelta: '-5.8', lastActivity: '2 days ago', predictedTxnChange: '-18% vs LY', predictedTxnChangeSort: -18, topCrossSellProduct: 'FX Optimisation Engine', topCrossSellNetBenefit: 'GBP 0.6m', topCrossSellNetBenefitSort: 600000 },
+    { id: 'pets', name: 'Pets at Home', industry: 'Retail', volume: 'GBP 312m', revenue: 'GBP 312m', health: 'Watch', healthClass: 'watch', risk: 'Medium', riskClass: 'watch', crossSell: 'Revenue Boost', pathways: 2, healthIndex: 68.2, healthDelta: '-2.1', lastActivity: 'Today', predictedTxnChange: '-9% vs LY', predictedTxnChangeSort: -9, topCrossSellProduct: 'Revenue Boost', topCrossSellNetBenefit: 'GBP 1.4m', topCrossSellNetBenefitSort: 1400000 },
+    { id: 'deep-blue', name: 'Deep Blue Retail', industry: 'Retail', volume: 'GBP 256m', revenue: 'GBP 256m', health: 'Watch', healthClass: 'watch', risk: 'Medium', riskClass: 'watch', crossSell: 'FraudSight', pathways: 1, healthIndex: 61.7, healthDelta: '-1.4', lastActivity: 'Yesterday', predictedTxnChange: '-5% vs LY', predictedTxnChangeSort: -5, topCrossSellProduct: 'FraudSight', topCrossSellNetBenefit: 'GBP 0.4m', topCrossSellNetBenefitSort: 400000 },
+    { id: 'acme', name: 'Acme Corporation', industry: 'Enterprise', volume: 'GBP 420m', revenue: 'GBP 420m', health: 'Watch', healthClass: 'watch', risk: 'High', riskClass: 'risk', crossSell: 'Smart Routing', pathways: 3, healthIndex: 58.3, healthDelta: '-4.2', lastActivity: '3 days ago', predictedTxnChange: '-4% vs LY', predictedTxnChangeSort: -4, topCrossSellProduct: 'Smart Routing', topCrossSellNetBenefit: 'GBP 2.1m', topCrossSellNetBenefitSort: 2100000 },
+    { id: 'intech', name: 'InTech Solutions', industry: 'Technology', volume: 'USD 290m', revenue: 'USD 290m', health: 'Healthy', healthClass: 'good', risk: 'Low', riskClass: 'good', crossSell: 'Tokenisation', pathways: 1, healthIndex: 76.1, healthDelta: '-0.8', lastActivity: 'Today', predictedTxnChange: '-2% vs LY', predictedTxnChangeSort: -2, topCrossSellProduct: 'Tokenisation', topCrossSellNetBenefit: 'USD 1.4m', topCrossSellNetBenefitSort: 1400000 },
+    { id: 'northwind', name: 'Northwind Foods', industry: 'Grocery', volume: 'GBP 141m', revenue: 'GBP 141m', health: 'Healthy', healthClass: 'good', risk: 'Low', riskClass: 'good', crossSell: 'Revenue Boost', pathways: 1, healthIndex: 82.4, healthDelta: '+1.2', lastActivity: '4 days ago', predictedTxnChange: '+1% vs LY', predictedTxnChangeSort: 1, topCrossSellProduct: 'Revenue Boost', topCrossSellNetBenefit: 'GBP 0.7m', topCrossSellNetBenefitSort: 700000 },
+    { id: 'aurora', name: 'Aurora Gaming', industry: 'Gaming', volume: 'GBP 204m', revenue: 'GBP 204m', health: 'Healthy', healthClass: 'good', risk: 'Low', riskClass: 'good', crossSell: 'FX', pathways: 2, healthIndex: 79.8, healthDelta: '+0.6', lastActivity: 'Today', predictedTxnChange: '+2% vs LY', predictedTxnChangeSort: 2, topCrossSellProduct: 'FX', topCrossSellNetBenefit: 'GBP 0.9m', topCrossSellNetBenefitSort: 900000 },
+    { id: 'harbor', name: 'Harbor Logistics', industry: 'Logistics', volume: 'GBP 97m', revenue: 'GBP 97m', health: 'At risk', healthClass: 'risk', risk: 'High', riskClass: 'risk', crossSell: 'Instant Payout APIs', pathways: 1, healthIndex: 49.6, healthDelta: '-12.0', lastActivity: '6 days ago', predictedTxnChange: '-12% vs LY', predictedTxnChangeSort: -12, topCrossSellProduct: 'Instant Payout APIs', topCrossSellNetBenefit: 'GBP 0.3m', topCrossSellNetBenefitSort: 300000 },
+    { id: 'summit', name: 'Summit Hotels', industry: 'Hospitality', volume: 'EUR 165m', revenue: 'EUR 165m', health: 'Watch', healthClass: 'watch', risk: 'Medium', riskClass: 'watch', crossSell: 'FX', pathways: 1, healthIndex: 71.3, healthDelta: '-3.0', lastActivity: 'Yesterday', predictedTxnChange: '-3% vs LY', predictedTxnChangeSort: -3, topCrossSellProduct: 'FX', topCrossSellNetBenefit: 'EUR 0.5m', topCrossSellNetBenefitSort: 500000 },
+    { id: 'vertex', name: 'Vertex Media', industry: 'Media', volume: 'GBP 118m', revenue: 'GBP 118m', health: 'Healthy', healthClass: 'good', risk: 'Low', riskClass: 'good', crossSell: 'Tokenisation', pathways: 1, healthIndex: 84.2, healthDelta: '+3.0', lastActivity: 'Today', predictedTxnChange: '+3% vs LY', predictedTxnChangeSort: 3, topCrossSellProduct: 'Tokenisation', topCrossSellNetBenefit: 'GBP 0.5m', topCrossSellNetBenefitSort: 500000 }
 ];
+
+export const PORTFOLIO_HEALTH_FILTERS = ['All', 'Healthy', 'Watch', 'At risk'];
 
 export const SIGNALS = [
     { id: 'pets-boost', category: 'Cross-sell', badgeClass: 'badge cross-sell', title: 'Pets at Home - Revenue Boost and MAU candidate', description: 'High 05-decline volume and ageing card data suitable for Managed Account Updater.', signalStatus: 'open' },
@@ -106,7 +111,11 @@ export const MOCK_ACCOUNT_IDS = {
     'Deep Blue Retail': '001MOCK000000003',
     'Acme Corporation': '001MOCK000000004',
     'InTech Solutions': '001MOCK000000005',
-    'Northwind Foods': '001MOCK000000006'
+    'Northwind Foods': '001MOCK000000006',
+    'Aurora Gaming': '001MOCK000000007',
+    'Harbor Logistics': '001MOCK000000008',
+    'Summit Hotels': '001MOCK000000009',
+    'Vertex Media': '001MOCK000000010'
 };
 
 export const KPI_TILES = [

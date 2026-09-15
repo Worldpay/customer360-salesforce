@@ -36,7 +36,29 @@
     text-transform: uppercase;
 }
 .health-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-.health-grid div { padding: 0.6rem; border: 1px solid var(--c360-border); }
+@media (max-width: 32rem) {
+    .health-grid { grid-template-columns: 1fr; }
+}
+.health-grid div,
+.health-grid .health-tile {
+    padding: 0.6rem;
+    border: 1px solid var(--c360-border);
+    background: var(--c360-surface);
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    cursor: default;
+}
+.health-grid .health-tile {
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.health-grid .health-tile:hover,
+.health-grid .health-tile:focus {
+    outline: none;
+    border-color: #0176d3;
+    box-shadow: 0 2px 8px rgba(1, 118, 211, 0.1);
+}
 .health-grid span { display: block; color: var(--c360-text-muted); font-size: 0.75rem; }
 .health-grid strong { display: block; margin-top: 0.2rem; font-size: 1.5rem; }
 .good-text { color: var(--c360-success); }

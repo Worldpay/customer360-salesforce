@@ -62,3 +62,12 @@ tr:hover td { background: #f7fbff; }
 }
 .watch { display: inline-block; padding: 0.15rem 0.5rem; border-radius: var(--c360-radius); background: #fef6e6; color: var(--c360-warning); font-size: 0.6875rem; font-weight: 700; }
 .risk { display: inline-block; padding: 0.15rem 0.5rem; border-radius: var(--c360-radius); background: #fdecea; color: var(--c360-error); font-size: 0.6875rem; font-weight: 700; }
+.table-loading-host { position: relative; }
+.table-loading-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 12rem;
+    padding: 2rem;
+}
+.table-error { padding: 1.5rem; color: var(--c360-error); font-size: 0.8125rem; }

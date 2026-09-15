@@ -13,6 +13,8 @@
             <property name="title" type="String" default="My accounts" label="Panel title"/>
             <property name="subtitle" type="String" default="Top movers" label="Panel subtitle"/>
             <property name="maxRows" type="Integer" default="5" label="Max rows"/>
+            <property name="variant" type="String" default="overview" label="Layout variant (overview or portfolio)"/>
+            <property name="healthFilter" type="String" default="All" label="Portfolio health filter (portfolio variant)"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

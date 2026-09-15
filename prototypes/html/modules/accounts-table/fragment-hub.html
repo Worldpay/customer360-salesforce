@@ -1,0 +1,33 @@
+<div class="c360-accounts-table-hub" data-module="accounts-table-hub">
+  <div class="filter-bar" role="group" aria-label="Portfolio health filter">
+    <button type="button" class="active" data-health-filter="All">All</button>
+    <button type="button" data-health-filter="Healthy">Healthy</button>
+    <button type="button" data-health-filter="Watch">Watch</button>
+    <button type="button" data-health-filter="At risk">At risk</button>
+  </div>
+  <section class="c360-module c360-accounts-table card">
+    <div class="card-h">
+      <span class="ico" style="background:var(--navy);">&#9636;</span>
+      <h2>Portfolio accounts</h2>
+    </div>
+    <div class="table-scroll">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Account</th>
+            <th>Industry</th>
+            <th>Revenue</th>
+            <th>Health index</th>
+            <th>Health</th>
+            <th>Last activity</th>
+            <th>Predicted change in transaction count</th>
+            <th>Top cross-sell opportunity (product)</th>
+            <th>Top cross-sell opportunity (estimated net benefit)</th>
+          </tr>
+        </thead>
+        <tbody id="accounts-full-tbody"></tbody>
+      </table>
+    </div>
+    <p class="provenance">Snowflake → Analytics Engine → Salesforce | 15-min refresh</p>
+  </section>
+</div>

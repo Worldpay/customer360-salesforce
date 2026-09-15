@@ -21,6 +21,7 @@ Experiment 05 ships **no Apex classes** in the default deploy package. Use this 
 | `getAlerts(statusFilter)` | Alert Centre | `c360AlertCentreEx05` |
 | `getAlertDetail(alertId)` | Alert Detail | `c360AlertDetailEx05` |
 | `getAccountSpotlight(recordId)` | Account sidebar | `c360AccountEx05` |
+| `getCrossSellAccounts()` | Cross-sell mart rows (RM-scoped) | `c360CrossSellTableEx05` |
 | `generateDeck(accountId, options)` | PPT export | `c360ExportModalEx05` |
 
 Copy full stub implementations from `08. Experiments/01/force-app/main/default/classes/` when drafting merges.

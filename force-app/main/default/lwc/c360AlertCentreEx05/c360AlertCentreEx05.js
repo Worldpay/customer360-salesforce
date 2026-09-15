@@ -1,9 +1,22 @@
 import { LightningElement, api } from 'lwc';
 import { ALERTS, ALERT_INTEL } from 'c/c360MockDataEx05';
 
+const LOAD_DELAY_MS = 800;
+
 export default class C360AlertCentreEx05 extends LightningElement {
     @api alerts = ALERTS;
     @api statusFilter = 'All';
+    @api loadDelayMs = LOAD_DELAY_MS;
+
+    isLoading = true;
+
+    connectedCallback() {
+        const delay = Number(this.loadDelayMs) || LOAD_DELAY_MS;
+        // eslint-disable-next-line @lwc/lwc/no-async-operation
+        setTimeout(() => {
+            this.isLoading = false;
+        }, delay);
+    }
 
     get filteredAlerts() {
         if (this.statusFilter === 'All') {
@@ -12,8 +25,20 @@ export default class C360AlertCentreEx05 extends LightningElement {
         return this.alerts.filter((alert) => alert.status === this.statusFilter);
     }
 
+    get tableAlerts() {
+        return this.filteredAlerts.map((alert) => ({
+            ...alert,
+            threshold: '-25',
+            rmTask: alert.rmNotification || '—'
+        }));
+    }
+
     get filteredAlertCount() {
         return this.filteredAlerts.length;
+    }
+
+    get alertCountLabel() {
+        return `${this.filteredAlertCount} shown`;
     }
 
     get statusOptions() {

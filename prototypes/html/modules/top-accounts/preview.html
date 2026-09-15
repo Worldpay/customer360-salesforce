@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Top Accounts (preview)</title>
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/shell.css">
+  <link rel="stylesheet" href="../../shared/module-base.css">
+  <link rel="stylesheet" href="fragment.css">
+</head>
+<body>
+  <div class="protobar">HTML prototype — double-click preview · <a href="../../assembly/overview-page.html">Overview assembly</a></div>
+  <header class="gh">
+    <div class="logo">Global Payments <span>Customer 360</span></div>
+    <div class="search"><span>&#128269;</span><input type="search" placeholder="Search accounts..."></div>
+    <div class="gh-r"><span>&#128276;</span><span class="avatar">SJ</span></div>
+  </header>
+  <nav class="appnav" aria-label="Customer 360 navigation">
+    <span class="appname"><span class="cube"></span>Customer 360</span>
+    <button class="tab active">Accounts Hub home</button>
+  </nav>
+  <div class="wrap">
+    <div class="greet">
+      <h1>Enterprise Account Hub</h1>
+      <div class="date">Module preview · top 3 ranked tiles</div>
+    </div>
+    <div class="module-slot">
+      <section class="c360-module c360-top-accounts" data-module="top-accounts">
+        <p id="hero-subtitle" class="top-accounts-subtitle">Top accounts by predicted change in transaction count</p>
+        <div class="hero-toolbar">
+          <div class="hero-mode-toggle" role="group" aria-label="Hero ranking mode">
+            <button type="button" class="active" data-hero-mode="churn">Churn focus</button>
+            <button type="button" data-hero-mode="crosssell">Cross-sell focus</button>
+          </div>
+          <span class="sub top-accounts-hint">Ranked from portfolio accounts table (mock analytics feed)</span>
+        </div>
+        <div class="hero-tiles-grid" id="hero-tiles-grid" aria-live="polite"></div>
+      </section>
+    </div>
+  </div>
+  <script src="../../shared/accounts-hub-mock-data.js"></script>
+  <script src="fragment.js"></script>
+  <script>
+    var heroMode = 'churn';
+    C360TopAccounts.render({ heroMode: heroMode });
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-hero-mode]');
+      if (!btn) return;
+      heroMode = btn.getAttribute('data-hero-mode');
+      C360TopAccounts.render({ heroMode: heroMode });
+    });
+  </script>
+</body>
+</html>

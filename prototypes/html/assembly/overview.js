@@ -26,13 +26,13 @@
     needsList.innerHTML = NEEDS_ACTION_ITEMS.map(function (item) {
       return (
         '<div class="a">' +
-          '<span class="sev ' + item.severity + '">' + item.severityLabel + '</span>' +
+          '<div class="row-tag"><span class="sev ' + item.severity + '">' + item.severityLabel + '</span></div>' +
           '<div class="a-txt">' +
             '<b>' + item.heading + '</b>' +
             '<div class="m">' + item.body + '</div>' +
             '<div class="meta">' + item.meta + '</div>' +
           '</div>' +
-          '<button class="' + item.buttonClass + '" data-open-account="' + item.accountName + '" data-open-account-source="' + (item.sourceView || 'accounts') + '">' + item.buttonLabel + '</button>' +
+          '<div class="row-actions"><button type="button" class="' + item.buttonClass + '" data-open-account="' + item.accountName + '" data-open-account-source="' + (item.sourceView || 'accounts') + '">' + item.buttonLabel + '</button></div>' +
         '</div>'
       );
     }).join('');

@@ -1,0 +1,46 @@
+<template>
+    <section class="c360-module top-accounts">
+        <p class="subtitle">{subtitle}</p>
+        <div class="hero-toolbar">
+            <div class="hero-mode-toggle" role="group" aria-label="Hero ranking mode">
+                <button type="button" class={churnBtnClass} data-mode="churn" onclick={handleModeClick}>Churn focus</button>
+                <button type="button" class={crossSellBtnClass} data-mode="crosssell" onclick={handleModeClick}>Cross-sell focus</button>
+            </div>
+            <span class="hint">Ranked from portfolio accounts table (mock analytics feed)</span>
+        </div>
+        <div class="hero-tiles-grid" aria-live="polite">
+            <template for:each={rankedCards} for:item="card">
+                <article key={card.id} class="hero-card" tabindex="0" role="button"
+                    data-account={card.name} onclick={handleOpenAccount}>
+                    <div class="rank">#{card.rank}</div>
+                    <header>
+                        <h2>{card.name}</h2>
+                        <p>{card.metaLine}</p>
+                    </header>
+                    <div class="state-row">
+                        <div><span class="lbl">Health index</span><span>{card.healthIndex}</span></div>
+                        <div><span class="lbl">Health</span><span class={card.healthPillClass}>{card.health}</span></div>
+                        <div><span class="lbl">Last activity</span><span>{card.lastActivity}</span></div>
+                    </div>
+                    <div class="model-row">
+                        <div class="tag">Model outputs</div>
+                        <div class="model-fields">
+                            <div class={card.churnLeadClass}>
+                                <span class="lbl">Predicted change in transaction count</span>
+                                <span class={card.txnMetricClass}>{card.predictedTxnChange}</span>
+                            </div>
+                            <div>
+                                <span class="lbl">Top cross-sell (product)</span>
+                                <span>{card.topCrossSellProduct}</span>
+                            </div>
+                            <div class={card.crossSellLeadClass}>
+                                <span class="lbl">Top cross-sell (est. net benefit)</span>
+                                <span class="wp-val">{card.topCrossSellNetBenefit}</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </template>
+        </div>
+    </section>
+</template>

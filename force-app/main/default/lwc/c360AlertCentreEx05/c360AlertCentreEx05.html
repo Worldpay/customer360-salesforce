@@ -3,7 +3,7 @@
         <section class="page-heading">
             <div>
                 <h1>Alert Centre</h1>
-                <p>Churn alerts for pilot RM group | RM notification on material score movement</p>
+                <p>Churn alerts for pilot RM group | IF score &lt; -25% AND RM in pilot → Alert + Task + Email</p>
             </div>
             <span class="pilot-badge">PILOT</span>
         </section>
@@ -15,41 +15,52 @@
         </div>
 
         <div class="two-column">
-            <article class="panel">
+            <article class="panel table-loading-host">
                 <div class="panel-header">
                     <lightning-icon icon-name="utility:warning" size="x-small"></lightning-icon>
                     <h2>Active alerts</h2>
-                    <span>{filteredAlertCount} shown</span>
+                    <span>{alertCountLabel}</span>
                 </div>
-                <div class="table-scroll">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Account</th>
-                                <th>Score</th>
-                                <th>Alert date</th>
-                                <th>Suppression</th>
-                                <th>RM notification</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <template for:each={filteredAlerts} for:item="alert">
-                                <tr key={alert.id}>
-                                    <td>{alert.account}</td>
-                                    <td>{alert.score}%</td>
-                                    <td>{alert.alertDate}</td>
-                                    <td>{alert.suppression}</td>
-                                    <td>{alert.rmNotification}</td>
-                                    <td>{alert.status}</td>
-                                    <td><button class="button" data-id={alert.id} onclick={handleOpenAlert}>Open</button></td>
+                <template lwc:if={isLoading}>
+                    <div class="table-loading-state">
+                        <lightning-spinner alternative-text="Loading alerts" size="medium"></lightning-spinner>
+                    </div>
+                </template>
+                <template lwc:else>
+                    <div class="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Account</th>
+                                    <th>Score</th>
+                                    <th>Threshold</th>
+                                    <th>Alert date</th>
+                                    <th>Suppression</th>
+                                    <th>RM task</th>
+                                    <th>Status</th>
+                                    <th></th>
                                 </tr>
-                            </template>
-                        </tbody>
-                    </table>
-                </div>
-                <p class="footnote">1-month suppression per merchant after Defer. Status workflow: New → In Review → Action Scheduled → Suppressed.</p>
+                            </thead>
+                            <tbody>
+                                <template for:each={tableAlerts} for:item="alert">
+                                    <tr key={alert.id}>
+                                        <td>{alert.account}</td>
+                                        <td class="negative">{alert.score}%</td>
+                                        <td>{alert.threshold}%</td>
+                                        <td>{alert.alertDate}</td>
+                                        <td>{alert.suppression}</td>
+                                        <td>{alert.rmTask}</td>
+                                        <td><span class="status-pill">{alert.status}</span></td>
+                                        <td>
+                                            <button type="button" class="button primary" data-id={alert.id} onclick={handleOpenAlert}>Open</button>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="footnote">1-month suppression per merchant after Defer. Status workflow: New → In Review → Action Scheduled → Suppressed.</p>
+                </template>
             </article>
 
             <article class="panel">
@@ -70,12 +81,3 @@
         </div>
     </section>
 </template>
-<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
-<!--[if gte mso 9]><xml>
-<mso:CustomDocumentProperties>
-<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9357</mso:_dlc_DocId>
-<mso:_dlc_DocIdItemGuid msdt:dt="string">f9e3f98a-a6e2-4b5e-9940-1a166f136a20</mso:_dlc_DocIdItemGuid>
-<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9357, MHJM6Z4EFDKT-2068475776-9357</mso:_dlc_DocIdUrl>
-</mso:CustomDocumentProperties>
-</xml><![endif]-->
-</head>

@@ -6,7 +6,14 @@
 
 # Apex stubs are reference-only; merge into org classes manually
 **/classes/**
+!force-app/main/default/classes/C360CrossSellController.cls
+!force-app/main/default/classes/C360CrossSellController.cls-meta.xml
+!force-app/main/default/classes/C360MetricController.cls
+!force-app/main/default/classes/C360MetricController.cls-meta.xml
 
 # Documentation and org baseline copies
 docs/**
 classesStubsEx05/**
+
+# Superseded experiments
+archive/**

@@ -184,7 +184,6 @@
     font-size: 0.8125rem;
     font-weight: 600;
 }
-.kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
 .two-column {
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
@@ -236,11 +235,79 @@
     text-align: left;
     cursor: pointer;
 }
-@media (max-width: 1100px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.home-priority-zone { margin-bottom: 0.5rem; }
+.home-priority-zone c-c360-top-accounts-ex05 {
+    display: block;
+    margin-bottom: 0;
+}
+.home-health-kpi-row {
+    display: grid;
+    grid-template-columns: minmax(17.5rem, 23.75rem) minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+    margin-bottom: 0;
+}
+.home-health-col,
+.home-kpi-col {
+    min-width: 0;
+}
+@media (max-width: 60rem) {
+    .home-health-kpi-row {
+        grid-template-columns: 1fr;
+    }
+}
+.home-operations-snapshot {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--c360-border);
+}
+.snapshot-title {
+    margin: 0 0 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--c360-text-muted);
+}
+.accounts-hub-cta {
+    margin: 0 0 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--c360-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+}
+.accounts-hub-cta p {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--c360-text-muted);
+}
+.accounts-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-bottom: 1rem;
+}
+.accounts-subnav-btn {
+    border: 1px solid var(--c360-border);
+    background: var(--c360-surface);
+    border-radius: var(--c360-radius);
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c360-text-muted);
+    cursor: pointer;
+}
+.accounts-subnav-btn.active {
+    background: var(--c360-brand-dark);
+    border-color: var(--c360-brand-dark);
+    color: #fff;
+}
 @media (max-width: 850px) {
     .app-shell { flex-direction: column; }
     .app-sidebar { width: 100%; }
     .side-nav { flex-direction: row; flex-wrap: wrap; }
-    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .two-column { grid-template-columns: 1fr; }
 }

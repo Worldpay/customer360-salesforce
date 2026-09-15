@@ -5,7 +5,9 @@
 - [ ] Phase 0c complete: org baseline retrieved and documented
 - [ ] Hub strategy agreed: replace `c360App` vs evolve in place
 - [ ] Pilot scope confirmed: Option A / B / C (default: **C Hybrid**)
-- [ ] apiVersion confirmed (default: **62.0**)
+- [ ] apiVersion confirmed (default: **66.0**)
+- [ ] Hub sidebar shows **logged-in user** (not hard-coded RM name)
+- [ ] Cross-sell tab loads rows via **C360CrossSellController.getCrossSellAccounts** (run `scripts/retrieveC360CrossSellController.ps1` if Apex placeholder)
 - [ ] Component name collision check (`c360DashboardEx05`, `c360KpiTileEx05`, etc.)
 - [ ] CI/CD configured for **LWC-only** deploy (flexipages excluded)
 

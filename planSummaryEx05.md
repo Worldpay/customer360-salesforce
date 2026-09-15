@@ -13,6 +13,7 @@ This document summarises the build plan for **Customer 360 Experiment 05**, an *
 | `c360DashboardEx05` | Monolithic hub — Overview, Alert Centre, Cross-Sell, Churn, Pathways, schema v3 Account | Built (mock data) |
 | `c360AccountDetailEx05` | Tabbed account overview (Output schema v3): churn drill-down, cross-sell ROI sliders, decline chart | Built (mock data) |
 | `c360KpiTileEx05` | Shared KPI child (`detail` / `variant` API) | Built |
+| `c360ConfigurableKpiTileEx05` | App Builder KPI tile; `metricKey` picklist → `C360MetricController` / `C360_Metric_Definition__mdt` | Built (Phase 1 pilot) |
 | `c360SignalListEx05` | Shared signal child (`signalaction` / `signaldismiss`) | Built |
 | `c360AlertCentreEx05` | Wireframe Alert Centre list + cross-sell panel | Built (mock data) |
 | `c360AlertDetailEx05` | Wireframe alert drill-down + outcome form | Built (mock data) |
@@ -20,7 +21,7 @@ This document summarises the build plan for **Customer 360 Experiment 05**, an *
 | `c360AccountEx05` | Account Record Page — delegates to `c360AccountDetailEx05` | Built (mock data) |
 | `c360MockDataEx05` | Shared mock DTOs + `getAccountDetail()` for sandbox UAT | Built |
 
-**Not in deploy package:** Lightning App, FlexiPages, tabs, Apex classes (see `.forceignore`).
+**Not in deploy package:** Lightning App, FlexiPages, tabs. Apex: `C360CrossSellController` and `C360MetricController` are whitelisted in `.forceignore`; other classes remain stubs.
 
 **Pilot scope implemented:** Option C (Hybrid) — `c360DashboardEx05` hub + Alert Centre LWCs + prototype PPT export modal retained.
 
@@ -76,7 +77,7 @@ flowchart TB
 - The target Salesforce org already has a **Customer 360 Lightning App**, **App Page flexipage**, and **Account Record flexipage** configured.
 - Handover deploys **LWC bundles only** — apps, flexipages, tabs, and Apex are excluded via `.forceignore` and `manifest/packageLwcEx05.xml`.
 - An admin will **swap the hub component** on the existing App Page from `c360App` (or equivalent) to `c360DashboardEx05` in Lightning App Builder after deploy.
-- Org `apiVersion` is **62.0** (all `*.js-meta.xml` set accordingly; template originally used 67.0).
+- Org `apiVersion` is **66.0** (all `*.js-meta.xml` set accordingly; template originally used 67.0).
 - Apex integration uses **merge into existing controllers**, not wholesale deploy of handover stubs.
 
 ### Product scope
@@ -244,6 +245,7 @@ flowchart TB
 
 ## Related documents
 
+- [docs/cursorDevelopmentScope.md](docs/cursorDevelopmentScope.md) — development scope, ways of working with Cursor, assumptions, data schema and pipeline, example prompts
 - [README.md](README.md) — quick start and deploy instructions
 - [orgWiringRunbookEx05.md](orgWiringRunbookEx05.md) — App Builder wiring steps
 - [handoffChecklistEx05.md](handoffChecklistEx05.md) — pre/post deploy verification

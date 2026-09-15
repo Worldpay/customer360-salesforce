@@ -1,0 +1,16 @@
+---
+description: Treat archive/ as out of scope unless a path inside it is explicitly named
+alwaysApply: true
+---
+
+# archive/ is out of scope
+
+`archive/` holds superseded work: the Experiment 02 and 03 source trees, plus the
+Experiment 04 and 05 zips. It is not deployed and is not part of the active codebase.
+
+- Do not search, read, or cite `archive/` when answering general questions.
+- Active LWC source is `force-app/main/default/lwc/` only.
+- Read `archive/` only when the user names a path inside it or explicitly asks
+  about a past experiment.
+- Exclude `archive/` from diff and change summaries unless asked. Line-ending-only
+  churn there is expected and not meaningful.

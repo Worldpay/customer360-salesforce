@@ -6,9 +6,22 @@
         </div>
         <div class="panel-body">
             <div class="health-grid">
-                <div><span>Healthy</span><strong class="good-text">{health.healthy}</strong></div>
-                <div><span>Watch</span><strong class="watch-text">{health.watch}</strong></div>
-                <div><span>At risk</span><strong class="risk-text">{health.atRisk}</strong></div>
+                <template lwc:if={interactive}>
+                    <button type="button" class="health-tile" data-health="Healthy" onclick={handleHealthClick}>
+                        <span>Healthy</span><strong class="good-text">{health.healthy}</strong>
+                    </button>
+                    <button type="button" class="health-tile" data-health="Watch" onclick={handleHealthClick}>
+                        <span>Watch</span><strong class="watch-text">{health.watch}</strong>
+                    </button>
+                    <button type="button" class="health-tile" data-health="At risk" onclick={handleHealthClick}>
+                        <span>At risk</span><strong class="risk-text">{health.atRisk}</strong>
+                    </button>
+                </template>
+                <template lwc:else>
+                    <div><span>Healthy</span><strong class="good-text">{health.healthy}</strong></div>
+                    <div><span>Watch</span><strong class="watch-text">{health.watch}</strong></div>
+                    <div><span>At risk</span><strong class="risk-text">{health.atRisk}</strong></div>
+                </template>
             </div>
             <h3>Cross-sell pipeline</h3>
             <template for:each={pipelineRows} for:item="row">
@@ -18,15 +31,6 @@
                     <strong>{row.value}</strong>
                 </div>
             </template>
-            </div>
-            </article>
-            </template>
-<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
-<!--[if gte mso 9]><xml>
-<mso:CustomDocumentProperties>
-<mso:_dlc_DocId msdt:dt="string">MHJM6Z4EFDKT-2068475776-9399</mso:_dlc_DocId>
-<mso:_dlc_DocIdItemGuid msdt:dt="string">d10ce349-e9fc-4cca-bbd9-a97a60726209</mso:_dlc_DocIdItemGuid>
-<mso:_dlc_DocIdUrl msdt:dt="string">https://mckinsey.sharepoint.com/sites/spe-int-ixdzinxxww8/_layouts/15/DocIdRedir.aspx?ID=MHJM6Z4EFDKT-2068475776-9399, MHJM6Z4EFDKT-2068475776-9399</mso:_dlc_DocIdUrl>
-</mso:CustomDocumentProperties>
-</xml><![endif]-->
-</head>
+        </div>
+    </article>
+</template>
