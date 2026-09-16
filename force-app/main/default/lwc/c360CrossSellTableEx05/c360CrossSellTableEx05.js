@@ -1,11 +1,14 @@
 import { LightningElement, api, wire } from 'lwc';
 import getCrossSellAccounts from '@salesforce/apex/C360CrossSellController.getCrossSellAccounts';
 
+const PREVIEW_ROW_COUNT = 5;
+
 export default class C360CrossSellTableEx05 extends LightningElement {
     @api title = 'Open cross-sell opportunities';
     @api subtitle = 'Across your portfolio';
 
-    rows = [];
+    allRows = [];
+    showAllRows = false;
     error;
     wiredResult;
 
@@ -14,20 +17,47 @@ export default class C360CrossSellTableEx05 extends LightningElement {
         this.wiredResult = result;
         const { data, error } = result;
         if (data) {
-            this.rows = data.map((row) => ({
+            this.allRows = data.map((row) => ({
                 ...row,
                 propensityPillClass: row.propensityClass
             }));
             this.error = undefined;
         } else if (error) {
             this.error = error;
-            this.rows = [];
+            this.allRows = [];
             console.error('Error loading cross-sell data', error);
         }
     }
 
     get isLoading() {
         return !this.wiredResult?.data && !this.wiredResult?.error;
+    }
+
+    get rows() {
+        if (this.showAllRows || this.allRows.length <= PREVIEW_ROW_COUNT) {
+            return this.allRows;
+        }
+        return this.allRows.slice(0, PREVIEW_ROW_COUNT);
+    }
+
+    get showTableExpand() {
+        return this.allRows.length > PREVIEW_ROW_COUNT && !this.showAllRows;
+    }
+
+    get showTableCollapse() {
+        return this.allRows.length > PREVIEW_ROW_COUNT && this.showAllRows;
+    }
+
+    get expandButtonLabel() {
+        return `Show all ${this.allRows.length} results`;
+    }
+
+    handleShowAllRows() {
+        this.showAllRows = true;
+    }
+
+    handleShowPreviewRows() {
+        this.showAllRows = false;
     }
 
     handleOpenAccount(event) {

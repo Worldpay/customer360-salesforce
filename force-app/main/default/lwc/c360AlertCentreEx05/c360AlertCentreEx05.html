@@ -3,7 +3,7 @@
         <section class="page-heading">
             <div>
                 <h1>Alert Centre</h1>
-                <p>Churn alerts for pilot RM group | IF score &lt; -25% AND RM in pilot → Alert + Task + Email</p>
+                <p>Churn alerts for pilot RM group | RM notification on material score movement</p>
             </div>
             <span class="pilot-badge">PILOT</span>
         </section>
@@ -15,52 +15,51 @@
         </div>
 
         <div class="two-column">
-            <article class="panel table-loading-host">
+            <article class="panel">
                 <div class="panel-header">
                     <lightning-icon icon-name="utility:warning" size="x-small"></lightning-icon>
                     <h2>Active alerts</h2>
-                    <span>{alertCountLabel}</span>
+                    <span>{filteredAlerts.length} shown</span>
                 </div>
-                <template lwc:if={isLoading}>
-                    <div class="table-loading-state">
-                        <lightning-spinner alternative-text="Loading alerts" size="medium"></lightning-spinner>
-                    </div>
-                </template>
-                <template lwc:else>
-                    <div class="table-scroll">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Account</th>
-                                    <th>Score</th>
-                                    <th>Threshold</th>
-                                    <th>Alert date</th>
-                                    <th>Suppression</th>
-                                    <th>RM task</th>
-                                    <th>Status</th>
-                                    <th></th>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Account</th>
+                                <th>Score</th>
+                                <th>Alert date</th>
+                                <th>Suppression</th>
+                                <th>RM notification</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={tableAlerts} for:item="alert">
+                                <tr key={alert.id}>
+                                    <td>{alert.account}</td>
+                                    <td>{alert.score}%</td>
+                                    <td>{alert.alertDate}</td>
+                                    <td>{alert.suppression}</td>
+                                    <td>{alert.rmNotification}</td>
+                                    <td>{alert.status}</td>
+                                    <td><button class="button" data-id={alert.id} onclick={handleOpenAlert}>Open</button></td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <template for:each={tableAlerts} for:item="alert">
-                                    <tr key={alert.id}>
-                                        <td>{alert.account}</td>
-                                        <td class="negative">{alert.score}%</td>
-                                        <td>{alert.threshold}%</td>
-                                        <td>{alert.alertDate}</td>
-                                        <td>{alert.suppression}</td>
-                                        <td>{alert.rmTask}</td>
-                                        <td><span class="status-pill">{alert.status}</span></td>
-                                        <td>
-                                            <button type="button" class="button primary" data-id={alert.id} onclick={handleOpenAlert}>Open</button>
-                                        </td>
-                                    </tr>
-                                </template>
-                            </tbody>
-                        </table>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+                <template lwc:if={showTableExpand}>
+                    <div class="table-expand-footer">
+                        <button type="button" class="button" onclick={handleShowAllRows}>{expandButtonLabel}</button>
                     </div>
-                    <p class="footnote">1-month suppression per merchant after Defer. Status workflow: New → In Review → Action Scheduled → Suppressed.</p>
                 </template>
+                <template lwc:if={showTableCollapse}>
+                    <div class="table-expand-footer">
+                        <button type="button" class="button" onclick={handleShowPreviewRows}>Show first 5 only</button>
+                    </div>
+                </template>
+                <p class="footnote">1-month suppression per merchant after Defer. Status workflow: New → In Review → Action Scheduled → Suppressed.</p>
             </article>
 
             <article class="panel">

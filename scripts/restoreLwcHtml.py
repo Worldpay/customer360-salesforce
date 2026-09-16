@@ -410,7 +410,12 @@ def main() -> None:
 
         raw = html_path.read_text(encoding="utf-8")
         cleaned = strip_mso(raw)
-        if name in SUFFIXES and not cleaned.rstrip().endswith("</template>"):
+        needs_suffix = name in SUFFIXES and (
+            not cleaned.rstrip().endswith("</template>")
+            or (name == "c360SignalListEx05.html" and "handleDismiss" not in cleaned)
+            or (name == "c360NeedsActionEx05.html" and cleaned.count("</article>") < 1)
+        )
+        if needs_suffix:
             cleaned = cleaned.rstrip() + SUFFIXES[name]
         html_path.write_text(cleaned.strip() + "\n", encoding="utf-8")
         print("fixed", name)

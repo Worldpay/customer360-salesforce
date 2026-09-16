@@ -196,6 +196,12 @@
   font-size: 13px;
 }
 
+.table-expand-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--bd);
+  text-align: center;
+}
+
 .sig {
   display: grid;
   grid-template-columns: 6.75rem minmax(0, 1fr) 11.25rem;

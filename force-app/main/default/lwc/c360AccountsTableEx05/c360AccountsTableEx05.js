@@ -3,6 +3,7 @@ import { ACCOUNTS, PORTFOLIO_HEALTH_FILTERS } from 'c/c360MockDataEx05';
 
 const HEALTH_FILTERS = PORTFOLIO_HEALTH_FILTERS || ['All', 'Healthy', 'Watch', 'At risk'];
 const LOAD_DELAY_MS = 800;
+const PREVIEW_ROW_COUNT = 5;
 
 export default class C360AccountsTableEx05 extends LightningElement {
     @api title = 'My accounts';
@@ -14,6 +15,7 @@ export default class C360AccountsTableEx05 extends LightningElement {
     @api loadDelayMs = LOAD_DELAY_MS;
 
     isLoading = true;
+    showAllRows = false;
 
     connectedCallback() {
         const delay = Number(this.loadDelayMs) || LOAD_DELAY_MS;
@@ -42,7 +44,7 @@ export default class C360AccountsTableEx05 extends LightningElement {
         }));
     }
 
-    get rows() {
+    get allRows() {
         if (this.isPortfolio) {
             const source = this.healthFilter === 'All'
                 ? ACCOUNTS
@@ -52,6 +54,34 @@ export default class C360AccountsTableEx05 extends LightningElement {
         const limit = Number(this.maxRows) || 7;
         const source = ACCOUNTS.slice(0, limit);
         return source.map((account) => this.mapOverviewRow(account));
+    }
+
+    get rows() {
+        const all = this.allRows;
+        if (this.showAllRows || all.length <= PREVIEW_ROW_COUNT) {
+            return all;
+        }
+        return all.slice(0, PREVIEW_ROW_COUNT);
+    }
+
+    get showTableExpand() {
+        return this.allRows.length > PREVIEW_ROW_COUNT && !this.showAllRows;
+    }
+
+    get showTableCollapse() {
+        return this.allRows.length > PREVIEW_ROW_COUNT && this.showAllRows;
+    }
+
+    get expandButtonLabel() {
+        return `Show all ${this.allRows.length} results`;
+    }
+
+    handleShowAllRows() {
+        this.showAllRows = true;
+    }
+
+    handleShowPreviewRows() {
+        this.showAllRows = false;
     }
 
     mapOverviewRow(account) {
@@ -90,6 +120,7 @@ export default class C360AccountsTableEx05 extends LightningElement {
             return;
         }
         this.healthFilter = filter;
+        this.showAllRows = false;
         this.dispatchEvent(new CustomEvent('healthfilterchange', {
             detail: { filter },
             bubbles: true,

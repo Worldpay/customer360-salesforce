@@ -2,6 +2,7 @@ import { LightningElement, api } from 'lwc';
 import { ALERTS, ALERT_INTEL } from 'c/c360MockDataEx05';
 
 const LOAD_DELAY_MS = 800;
+const PREVIEW_ROW_COUNT = 5;
 
 export default class C360AlertCentreEx05 extends LightningElement {
     @api alerts = ALERTS;
@@ -9,6 +10,7 @@ export default class C360AlertCentreEx05 extends LightningElement {
     @api loadDelayMs = LOAD_DELAY_MS;
 
     isLoading = true;
+    showAllRows = false;
 
     connectedCallback() {
         const delay = Number(this.loadDelayMs) || LOAD_DELAY_MS;
@@ -26,11 +28,35 @@ export default class C360AlertCentreEx05 extends LightningElement {
     }
 
     get tableAlerts() {
-        return this.filteredAlerts.map((alert) => ({
+        const all = this.filteredAlerts.map((alert) => ({
             ...alert,
             threshold: '-25',
             rmTask: alert.rmNotification || '—'
         }));
+        if (this.showAllRows || all.length <= PREVIEW_ROW_COUNT) {
+            return all;
+        }
+        return all.slice(0, PREVIEW_ROW_COUNT);
+    }
+
+    get showTableExpand() {
+        return this.filteredAlerts.length > PREVIEW_ROW_COUNT && !this.showAllRows;
+    }
+
+    get showTableCollapse() {
+        return this.filteredAlerts.length > PREVIEW_ROW_COUNT && this.showAllRows;
+    }
+
+    get expandButtonLabel() {
+        return `Show all ${this.filteredAlerts.length} results`;
+    }
+
+    handleShowAllRows() {
+        this.showAllRows = true;
+    }
+
+    handleShowPreviewRows() {
+        this.showAllRows = false;
     }
 
     get filteredAlertCount() {
@@ -93,6 +119,7 @@ export default class C360AlertCentreEx05 extends LightningElement {
 
     handleFilter(event) {
         this.statusFilter = event.currentTarget.dataset.status;
+        this.showAllRows = false;
     }
 
     handleOpenAlert(event) {

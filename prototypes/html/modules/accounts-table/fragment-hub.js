@@ -15,11 +15,19 @@
 
   function render(options) {
     var healthFilter = (options && options.healthFilter) || 'All';
+    var expanded = (options && options.tableExpanded) || {};
     var tbody = document.getElementById('accounts-full-tbody');
     var countEl = document.getElementById('accounts-full-count');
+    var expandEl = document.getElementById('accounts-full-expand');
     if (!tbody) return;
-    var rows = accountsAfterHealthFilter(healthFilter);
-    if (countEl) countEl.textContent = rows.length + ' accounts';
+    var allRows = accountsAfterHealthFilter(healthFilter);
+    var rows = window.C360TableExpand
+      ? window.C360TableExpand.sliceRows('portfolio', allRows, expanded)
+      : allRows;
+    if (countEl) countEl.textContent = allRows.length + ' accounts';
+    if (expandEl && window.C360TableExpand) {
+      expandEl.innerHTML = window.C360TableExpand.footerHtml('portfolio', allRows.length, expanded);
+    }
     tbody.innerHTML = rows.map(function (a) {
       var txnCls = a.predictedTxnChangeSort < 0 ? 'negative' : 'up';
       return (

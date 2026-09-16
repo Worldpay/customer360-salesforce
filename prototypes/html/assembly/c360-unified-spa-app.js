@@ -14,7 +14,8 @@
     crossSellPrice: 0.05,
     crossSellAbSplit: 99,
     selectedDriverKey: null,
-    signals: typeof SIGNALS !== 'undefined' ? SIGNALS.map(function (s) { return Object.assign({}, s); }) : []
+    signals: typeof SIGNALS !== 'undefined' ? SIGNALS.map(function (s) { return Object.assign({}, s); }) : [],
+    tableExpanded: {}
   };
 
   var toastEl = document.getElementById('toast');
@@ -219,7 +220,7 @@
 
   function renderAccountsFullTable() {
     if (window.C360AccountsTableHub) {
-      C360AccountsTableHub.render({ healthFilter: state.healthFilter });
+      C360AccountsTableHub.render({ healthFilter: state.healthFilter, tableExpanded: state.tableExpanded });
     }
   }
 
@@ -241,7 +242,14 @@
     var count = document.getElementById('alert-count');
     if (count) count.textContent = alerts.length + ' shown';
     if (!tbody) return;
-    tbody.innerHTML = alerts.map(function (a) {
+    var expandEl = document.getElementById('alerts-table-expand');
+    var visible = window.C360TableExpand
+      ? window.C360TableExpand.sliceRows('alerts', alerts, state.tableExpanded)
+      : alerts;
+    if (expandEl && window.C360TableExpand) {
+      expandEl.innerHTML = window.C360TableExpand.footerHtml('alerts', alerts.length, state.tableExpanded);
+    }
+    tbody.innerHTML = visible.map(function (a) {
       return '<tr><td>' + a.account + '</td><td class="negative">' + a.score + '%</td><td>' + (a.threshold || '-25') + '%</td><td>' + a.alertDate + '</td><td>' + a.suppression + '</td><td>' + (a.rmTask || a.rmNotification || '—') + '</td><td><span class="status-pill">' + a.status + '</span></td><td><button type="button" class="btn p sm" data-open-alert-id="' + a.id + '">Open</button></td></tr>';
     }).join('');
   }
@@ -278,8 +286,16 @@
 
   function renderChurnTable() {
     var tbody = document.getElementById('churn-tbody');
+    var expandEl = document.getElementById('churn-table-expand');
     if (!tbody) return;
-    tbody.innerHTML = CHURN_ROWS.map(function (row) {
+    var allRows = CHURN_ROWS;
+    var rows = window.C360TableExpand
+      ? window.C360TableExpand.sliceRows('churn', allRows, state.tableExpanded)
+      : allRows;
+    if (expandEl && window.C360TableExpand) {
+      expandEl.innerHTML = window.C360TableExpand.footerHtml('churn', allRows.length, state.tableExpanded);
+    }
+    tbody.innerHTML = rows.map(function (row) {
       var pathway = row.pathway || 'Retention review';
       return (
         '<tr>' +
@@ -295,8 +311,16 @@
 
   function renderCrossSellTable() {
     var tbody = document.getElementById('cross-sell-tbody');
+    var expandEl = document.getElementById('crosssell-table-expand');
     if (!tbody) return;
-    tbody.innerHTML = CROSS_SELL_ROWS.map(function (row) {
+    var allRows = CROSS_SELL_ROWS;
+    var rows = window.C360TableExpand
+      ? window.C360TableExpand.sliceRows('crosssell', allRows, state.tableExpanded)
+      : allRows;
+    if (expandEl && window.C360TableExpand) {
+      expandEl.innerHTML = window.C360TableExpand.footerHtml('crosssell', allRows.length, state.tableExpanded);
+    }
+    tbody.innerHTML = rows.map(function (row) {
       return (
         '<tr>' +
         '<td><button type="button" class="account-link" data-open-account="' + escapeHtml(row.account) + '" data-open-account-source="crosssell">' + escapeHtml(row.account) + '</button></td>' +
@@ -538,7 +562,26 @@
     var filterHealth = e.target.closest('[data-health-filter]');
     if (filterHealth) {
       state.healthFilter = filterHealth.getAttribute('data-health-filter');
+      state.tableExpanded.portfolio = false;
       renderAccountsFullTable();
+      return;
+    }
+    var tableExpandBtn = e.target.closest('[data-table-expand]');
+    if (tableExpandBtn) {
+      state.tableExpanded[tableExpandBtn.getAttribute('data-table-expand')] = true;
+      if (state.activeView === 'alertcentre') renderAlertCentre();
+      else if (state.accountsSubView === 'churn') renderChurnTable();
+      else if (state.accountsSubView === 'crosssell') renderCrossSellTable();
+      else renderAccountsFullTable();
+      return;
+    }
+    var tableCollapseBtn = e.target.closest('[data-table-collapse]');
+    if (tableCollapseBtn) {
+      state.tableExpanded[tableCollapseBtn.getAttribute('data-table-collapse')] = false;
+      if (state.activeView === 'alertcentre') renderAlertCentre();
+      else if (state.accountsSubView === 'churn') renderChurnTable();
+      else if (state.accountsSubView === 'crosssell') renderCrossSellTable();
+      else renderAccountsFullTable();
       return;
     }
     var actionBtn = e.target.closest('[data-action-sig]');

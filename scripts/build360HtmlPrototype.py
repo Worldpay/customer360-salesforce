@@ -375,6 +375,7 @@ BODY_HTML = """<!DOCTYPE html>
   <div id="toast" class="toast toast-proto" role="status"></div>
   <script>
 {table_loading_js}
+{table_expand_js}
 {mock_data}
 {overview_mock_vars}
 {mock_extra}
@@ -443,6 +444,7 @@ def assemble(out_path: Path, title: str, protobar: str) -> None:
         cross_sell_table=frags["cross-sell-table"],
         account_detail=frags["account-detail"],
         table_loading_js=(PROTO / "shared" / "table-loading.js").read_text(encoding="utf-8"),
+        table_expand_js=(PROTO / "shared" / "table-expand.js").read_text(encoding="utf-8"),
         mock_data=(PROTO / "shared" / "accounts-hub-mock-data.js").read_text(encoding="utf-8"),
         overview_mock_vars=OVERVIEW_MOCK_VARS.strip(),
         mock_extra=MOCK_EXTRA.strip(),

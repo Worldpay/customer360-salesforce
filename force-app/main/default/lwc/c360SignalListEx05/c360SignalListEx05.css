@@ -2,13 +2,32 @@
 .signal-list { padding: 0.25rem 0; }
 .signal-row {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: 6.75rem minmax(0, 1fr) 11.25rem;
     gap: 0.75rem;
     align-items: start;
     padding: 0.85rem 1rem;
     border-bottom: 1px solid var(--c360-border-light, #f0f0f0);
 }
 .signal-row:last-child { border-bottom: 0; }
+.row-tag {
+    grid-column: 1;
+    align-self: start;
+}
+.row-tag .badge {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+.signal-copy {
+    grid-column: 2;
+    min-width: 0;
+}
+.signal-actions {
+    grid-column: 3;
+    align-self: start;
+    justify-self: stretch;
+}
 .badge {
     display: inline-block;
     padding: 0.15rem 0.5rem;

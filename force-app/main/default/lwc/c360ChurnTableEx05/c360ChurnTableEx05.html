@@ -32,6 +32,16 @@
                     </tbody>
                 </table>
             </div>
+            <template lwc:if={showTableExpand}>
+                <div class="table-expand-footer">
+                    <button type="button" class="button" onclick={handleShowAllRows}>{expandButtonLabel}</button>
+                </div>
+            </template>
+            <template lwc:if={showTableCollapse}>
+                <div class="table-expand-footer">
+                    <button type="button" class="button" onclick={handleShowPreviewRows}>Show first 5 only</button>
+                </div>
+            </template>
         </template>
     </article>
 </template>

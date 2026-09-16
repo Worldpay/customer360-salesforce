@@ -10,3 +10,16 @@
                 <template lwc:if={signal.done}>
                     <div class="signal-actions row-actions"><span class="status-pill">{signal.statusLabel}</span></div>
                 </template>
+                <template lwc:else>
+                    <div class="signal-actions row-actions">
+                        <button class="button primary" type="button" data-id={signal.id} onclick={handleAction}>Action</button>
+                        <button class="button" type="button" data-id={signal.id} onclick={handleDismiss}>Dismiss</button>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template lwc:if={noSignals}>
+            <p class="empty">No signals in queue.</p>
+        </template>
+    </div>
+</template>

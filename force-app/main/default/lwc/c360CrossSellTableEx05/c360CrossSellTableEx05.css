@@ -70,4 +70,9 @@ tr:hover td { background: #f7fbff; }
     min-height: 12rem;
     padding: 2rem;
 }
+.table-expand-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--c360-border-light);
+    text-align: center;
+}
 .table-error { padding: 1.5rem; color: var(--c360-error); font-size: 0.8125rem; }
