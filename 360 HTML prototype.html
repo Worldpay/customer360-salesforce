@@ -467,7 +467,7 @@ a { color: var(--sf-blue); text-decoration: none; }
   to { transform: rotate(360deg); }
 }
 
-/* c360DashboardEx05.css */
+/* c360Dashboard.css */
 body {
     display: block;
     --c360-brand: #cc0066;
@@ -706,7 +706,7 @@ body { min-height: 100%; }
     cursor: pointer;
 }
 .home-priority-zone { margin-bottom: 0.5rem; }
-.home-priority-zone c-c360-top-accounts-ex05 {
+.home-priority-zone c-c360-top-accounts {
     display: block;
     margin-bottom: 0;
 }
@@ -720,6 +720,14 @@ body { min-height: 100%; }
 .home-health-col,
 .home-kpi-col {
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.home-kpi-col c-c360-user-kpi-tile {
+    flex: 0 0 auto;
+    max-width: 14rem;
 }
 @media (max-width: 60rem) {
     .home-health-kpi-row {
@@ -782,7 +790,7 @@ body { min-height: 100%; }
     .two-column { grid-template-columns: 1fr; }
 }
 
-/* c360AlertDetailEx05.css */
+/* c360AlertDetail.css */
 body { display: block; }
 .alert-detail { max-width: 85rem; margin: 0 auto; }
 .crumb {

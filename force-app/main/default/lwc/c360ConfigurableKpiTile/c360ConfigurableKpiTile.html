@@ -1,0 +1,18 @@
+<template>
+    <section class="c360-module configurable-kpi">
+        <template lwc:if={isLoading}>
+            <div class="kpi-placeholder" aria-busy="true"></div>
+        </template>
+        <template lwc:elseif={error}>
+            <div class="kpi-error">Unable to load metric</div>
+        </template>
+        <template lwc:else>
+            <c-c360-kpi-tile
+                label={tileLabel}
+                value={tileValue}
+                detail={tileDetail}
+                variant={tileVariant}>
+            </c-c360-kpi-tile>
+        </template>
+    </section>
+</template>

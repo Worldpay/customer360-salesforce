@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rename Experiment 05 files/folders to camelCase (no underscores) and update references."""
+"""Rename Customer 360 files/folders to camelCase (no underscores) and update references."""
 
 from __future__ import annotations
 
@@ -15,15 +15,15 @@ TEXT_EXTENSIONS = {
 
 # Explicit filename mappings (old basename without path -> new basename)
 FILENAME_MAP = {
-    "c360LwcDtoInventoryEx05.csv": "c360LwcDtoInventoryEx05.csv",
-    "c360LwcDtoInventoryEx05.xlsx": "c360LwcDtoInventoryEx05.xlsx",
-    "handoffChecklistEx05.md": "handoffChecklistEx05.md",
-    "orgWiringRunbookEx05.md": "orgWiringRunbookEx05.md",
-    "planSummaryEx05.md": "planSummaryEx05.md",
-    "moduleRegistryEx05.md": "moduleRegistryEx05.md",
+    "c360LwcDtoInventory.csv": "c360LwcDtoInventory.csv",
+    "c360LwcDtoInventory.xlsx": "c360LwcDtoInventory.xlsx",
+    "handoffChecklist.md": "handoffChecklist.md",
+    "orgWiringRunbook.md": "orgWiringRunbook.md",
+    "planSummary.md": "planSummary.md",
+    "moduleRegistry.md": "moduleRegistry.md",
     "moduleSpec.md": "moduleSpec.md",
-    "apexMergeGuideEx05.md": "apexMergeGuideEx05.md",
-    "packageLwcEx05.xml": "packageLwcEx05.xml",
+    "apexMergeGuide.md": "apexMergeGuide.md",
+    "packageLwc.xml": "packageLwc.xml",
     "restoreLog.txt": "restoreLog.txt",
     "generateDtoInventory.py": "generateDtoInventory.py",
     "restoreLwcHtml.py": "restoreLwcHtml.py",
@@ -33,18 +33,18 @@ FILENAME_MAP = {
 
 CONTENT_REPLACEMENTS = [
     ("ex05", "ex05"),
-    ("Ex05", "Ex05"),
-    ("c360LwcExperimentEx05", "c360LwcExperimentEx05"),
-    ("classesStubsEx05", "classesStubsEx05"),
-    ("packageLwcEx05", "packageLwcEx05"),
-    ("c360LwcDtoInventoryEx05", "c360LwcDtoInventoryEx05"),
-    ("handoffChecklistEx05", "handoffChecklistEx05"),
-    ("orgWiringRunbookEx05", "orgWiringRunbookEx05"),
-    ("planSummaryEx05", "planSummaryEx05"),
-    ("moduleRegistryEx05", "moduleRegistryEx05"),
+    ("", ""),
+    ("customer360-salesforce", "customer360-salesforce"),
+    ("classesStubs", "classesStubs"),
+    ("packageLwc", "packageLwc"),
+    ("c360LwcDtoInventory", "c360LwcDtoInventory"),
+    ("handoffChecklist", "handoffChecklist"),
+    ("orgWiringRunbook", "orgWiringRunbook"),
+    ("planSummary", "planSummary"),
+    ("moduleRegistry", "moduleRegistry"),
     ("moduleSpec.md", "moduleSpec.md"),
     ("moduleSpec", "moduleSpec"),
-    ("apexMergeGuideEx05", "apexMergeGuideEx05"),
+    ("apexMergeGuide", "apexMergeGuide"),
     ("generateDtoInventory.py", "generateDtoInventory.py"),
     ("restoreLwcHtml.py", "restoreLwcHtml.py"),
     ("sanitizeDtoInventory.py", "sanitizeDtoInventory.py"),
@@ -54,8 +54,8 @@ CONTENT_REPLACEMENTS = [
 
 
 def lwc_name(name: str) -> str:
-    if "Ex05" in name:
-        return name.replace("Ex05", "Ex05")
+    if "" in name:
+        return name.replace("", "")
     return name
 
 
@@ -87,7 +87,7 @@ def new_filename(name: str) -> str | None:
         if mapped == name:
             return None
         return mapped
-    if "Ex05" in name:
+    if "" in name:
         return lwc_name(name)
     return None
 
@@ -102,10 +102,10 @@ def collect_renames() -> list[tuple[Path, Path]]:
                 renames.append((root_path / filename, root_path / new_name))
         for dirname in list(dirnames):
             new_dir = new_filename(dirname)
-            if not new_dir and "Ex05" in dirname:
+            if not new_dir and "" in dirname:
                 new_dir = lwc_name(dirname)
-            elif dirname == "classesStubsEx05":
-                new_dir = "classesStubsEx05"
+            elif dirname == "classesStubs":
+                new_dir = "classesStubs"
             if new_dir and new_dir != dirname:
                 renames.append((root_path / dirname, root_path / new_dir))
     return renames

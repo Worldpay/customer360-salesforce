@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "c360LwcExperimentEx05",
+  "name": "customer360-salesforce",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "66.0"

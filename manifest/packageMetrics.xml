@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>C360MetricController</members>
+        <members>C360MetricKeyPicklist</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>C360_Metric_Definition__mdt</members>
+        <members>C360_User_Preferences__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>C360_Metric_Definition.At_Risk_Accounts</members>
+        <members>C360_Metric_Definition.Composite_Health_Index</members>
+        <members>C360_Metric_Definition.Revenue_At_Risk</members>
+        <members>C360_Metric_Definition.Signals_To_Action</members>
+        <members>C360_Metric_Definition.Total_Accounts</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>c360ConfigurableKpiTile</members>
+        <members>c360UserKpiTile</members>
+        <members>c360KpiTile</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <version>66.0</version>
+</Package>

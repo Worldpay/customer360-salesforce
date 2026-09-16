@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>C360 Revenue Boost Business Case</masterLabel>
+    <description>Legacy Revenue Boost business-case calculator (mock data). Parallel to account-detail cross-sell tab.</description>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage,lightning__HomePage">
+            <property name="title" type="String" default="Revenue Boost" label="Page title (reserved for future chrome)"/>
+        </targetConfig>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Account</object>
+            </objects>
+            <property name="title" type="String" default="Revenue Boost" label="Page title (reserved for future chrome)"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

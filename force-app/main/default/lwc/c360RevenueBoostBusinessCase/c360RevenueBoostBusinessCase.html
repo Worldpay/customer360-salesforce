@@ -1,0 +1,155 @@
+<template>
+    <section class="c360-module rb-root">
+        <div class="fbar">
+            <div class="fld">
+                <lightning-combobox
+                    name="account"
+                    label="Account name &amp; ID"
+                    value={accountKey}
+                    options={accountOptions}
+                    onchange={handleAccountChange}
+                ></lightning-combobox>
+            </div>
+            <div class="fld">
+                <lightning-combobox
+                    name="mid"
+                    label="MID"
+                    value={mid}
+                    options={midOptions}
+                    onchange={handleMidChange}
+                ></lightning-combobox>
+            </div>
+        </div>
+
+        <article class="panel">
+            <div class="panel-header">
+                <lightning-icon icon-name="utility:settings" size="x-small" class="header-icon"></lightning-icon>
+                <h2>Manual inputs</h2>
+                <span>Adjust assumptions for this MID</span>
+            </div>
+            <div class="panel-body rb-manual-grid">
+                <div>
+                    <div class="rb-input-row">
+                        <label class="field-label" for="rb-price">Price per transaction ($)</label>
+                        <input
+                            id="rb-price"
+                            class="native-input"
+                            type="number"
+                            min="0.01"
+                            max="5"
+                            step="0.01"
+                            value={pricePerTxn}
+                            oninput={handlePriceChange}
+                        />
+                    </div>
+                    <div class="rb-input-row">
+                        <label class="field-label" for="rb-util">Token utilisation rate</label>
+                        <input
+                            id="rb-util"
+                            class="native-input"
+                            type="number"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value={tokenUtilisation}
+                            oninput={handleUtilChange}
+                        />
+                    </div>
+                </div>
+                <div class={recommendedClass}>
+                    <div>Recommended token utilisation rate</div>
+                    <div class="rec-val">{recommendedLabel}</div>
+                    <template lwc:if={utilDiffersFromRecommended}>
+                        <p class="util-hint">Current rate differs from recommendation.</p>
+                    </template>
+                </div>
+            </div>
+        </article>
+
+        <article class="panel section-gap">
+            <div class="panel-header">
+                <h2>Business case summary — annual estimate</h2>
+            </div>
+            <div class="panel-body">
+                <template for:each={summaryRows} for:item="row">
+                    <div key={row.key} class={row.rowClass}>
+                        <span class="rb-lbl">{row.lbl}</span>
+                        <span class="rb-val">{row.val}</span>
+                        <span class="rb-note">{row.note}</span>
+                    </div>
+                </template>
+            </div>
+        </article>
+
+        <article class="panel section-gap">
+            <div class="panel-header">
+                <h2>Revenue Boost authorisation rate impact</h2>
+            </div>
+            <div class="panel-body">
+                <div class="rb-auth-grid">
+                    <div class="rb-auth-h"></div>
+                    <div class="rb-auth-h">Counts</div>
+                    <div class="rb-auth-h">Rates</div>
+                    <div class="rb-auth-row">
+                        <span>Total in-scope auths</span>
+                        <span class="num">{auth.totalInScopeAuthsLabel}</span>
+                        <span class="num">{auth.approvalRateLabel}</span>
+                    </div>
+                    <div class="rb-auth-row">
+                        <span>Approvals</span>
+                        <span class="num">{auth.approvalsLabel}</span>
+                        <span class="num">—</span>
+                    </div>
+                    <div class="rb-auth-row uplift">
+                        <span>Uplift</span>
+                        <span class="num">{auth.upliftCountLabel}</span>
+                        <span class="num">{auth.upliftRateLabel}</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="panel section-gap">
+            <div class="panel-header">
+                <h2>Revenue Boost addressable decline code breakdown</h2>
+                <button type="button" class="button primary" onclick={handleDeclineToggle}>{declineToggleLabel}</button>
+            </div>
+            <div class={declineBodyClass}>
+                <div class="table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Decline reason</th>
+                                <th class="num">Eligible decline (#)</th>
+                                <th class="num">Eligible decline ($)</th>
+                                <th class="num">% Revenue Boost cure rate</th>
+                                <th class="num">Est. recovered count</th>
+                                <th class="num">Est. recovered amount ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total">
+                                <td>Grand total</td>
+                                <td class="num">{declineGrandTotal.eligibleCountLabel}</td>
+                                <td class="num">{declineGrandTotal.eligibleAmountLabel}</td>
+                                <td class="num">—</td>
+                                <td class="num">{declineGrandTotal.estCountLabel}</td>
+                                <td class="num">{declineGrandTotal.estAmountLabel}</td>
+                            </tr>
+                            <template for:each={declineRows} for:item="row">
+                                <tr key={row.key}>
+                                    <td>{row.reason}</td>
+                                    <td class="num">{row.eligibleCountLabel}</td>
+                                    <td class="num">{row.eligibleAmountLabel}</td>
+                                    <td class="num">{row.cureRateLabel}</td>
+                                    <td class="num">{row.estCountLabel}</td>
+                                    <td class="num">{row.estAmountLabel}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+    </section>
+</template>

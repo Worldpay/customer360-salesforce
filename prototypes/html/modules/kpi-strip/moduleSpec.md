@@ -1,4 +1,4 @@
-# c360KpiStripEx05
+# c360KpiStrip
 
 ## Requirement
 R01 — portfolio summary KPIs on Overview

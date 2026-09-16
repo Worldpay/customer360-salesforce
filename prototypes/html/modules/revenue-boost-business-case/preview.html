@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Revenue Boost business case (preview)</title>
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/shell.css">
+  <link rel="stylesheet" href="../../shared/module-base.css">
+  <link rel="stylesheet" href="fragment.css">
+</head>
+<body>
+  <div class="protobar">
+    HTML prototype — isolated module · not in hub assembly ·
+    <a href="../../assembly/overview-page.html">Overview assembly</a> ·
+    <a href="../account-detail/preview.html?account=Pets%20at%20Home&amp;source=crosssell">Account detail cross-sell (parallel)</a>
+  </div>
+  <header class="gh">
+    <div class="logo">Global Payments <span>Customer 360</span></div>
+    <div class="search"><span>&#128269;</span><input type="search" placeholder="Search accounts..."></div>
+    <div class="gh-r"><span>&#128276;</span><span class="avatar">SJ</span></div>
+  </header>
+  <nav class="appnav" aria-label="Customer 360 navigation">
+    <span class="appname"><span class="cube"></span>Customer 360</span>
+    <button class="tab">Overview</button>
+    <button class="tab active">Revenue Boost</button>
+  </nav>
+  <div class="wrap">
+    <div class="greet">
+      <h1>Revenue Boost</h1>
+      <div class="date">Business case calculator · legacy IA restyled with C360 tokens · illustrative data only</div>
+    </div>
+    <div class="module-slot">
+      <section class="c360-module c360-revenue-boost-business-case" data-module="revenue-boost-business-case">
+        <div class="fbar" id="rb-filters"></div>
+
+        <div class="card">
+          <div class="card-h">
+            <span class="ico" style="background:var(--wp);">&#9881;</span>
+            <h2>Manual inputs</h2>
+            <span class="sub">Adjust assumptions for this MID</span>
+          </div>
+          <div class="card-b rb-manual-grid">
+            <div id="rb-manual-fields"></div>
+            <div class="rb-recommended" id="rb-recommended"></div>
+          </div>
+        </div>
+
+        <div class="card rb-section-gap">
+          <div class="card-h">
+            <h2>Business case summary — annual estimate</h2>
+          </div>
+          <div class="card-b">
+            <div class="rb-summary" id="rb-summary"></div>
+          </div>
+        </div>
+
+        <div class="card rb-section-gap">
+          <div class="card-h">
+            <h2>Revenue Boost authorisation rate impact</h2>
+          </div>
+          <div class="card-b">
+            <div class="rb-auth-grid" id="rb-auth-impact"></div>
+          </div>
+        </div>
+
+        <div class="card rb-section-gap">
+          <div class="card-h">
+            <h2>Revenue Boost addressable decline code breakdown</h2>
+            <button type="button" class="btn sm p" id="rb-decline-toggle" aria-expanded="true">Hide</button>
+          </div>
+          <div class="rb-decline-body" id="rb-decline-body">
+            <div class="table-scroll">
+              <table class="tbl rb-decline-tbl">
+                <thead>
+                  <tr>
+                    <th>Decline reason</th>
+                    <th class="num">Eligible decline (#)</th>
+                    <th class="num">Eligible decline ($)</th>
+                    <th class="num">% Revenue Boost cure rate</th>
+                    <th class="num">Est. recovered count</th>
+                    <th class="num">Est. recovered amount ($)</th>
+                  </tr>
+                </thead>
+                <tbody id="rb-decline-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="../../shared/revenue-boost-business-case-data.js"></script>
+  <script src="../../shared/shell.js"></script>
+  <script src="fragment.js"></script>
+</body>
+</html>

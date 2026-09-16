@@ -1,5 +1,5 @@
 /**
- * App Builder dynamic picklist for c360ConfigurableKpiTileEx05 metricKey property.
+ * App Builder dynamic picklist for c360ConfigurableKpiTile metricKey property.
  */
 global with sharing class C360MetricKeyPicklist extends VisualEditor.DynamicPickList {
     global override VisualEditor.DataRow getDefaultValue() {

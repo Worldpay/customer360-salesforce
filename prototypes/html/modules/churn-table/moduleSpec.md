@@ -1,4 +1,4 @@
-# c360ChurnTableEx05
+# c360ChurnTable
 
 ## Requirement
 R05 — portfolio churn risk table

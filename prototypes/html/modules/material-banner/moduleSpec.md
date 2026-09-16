@@ -1,4 +1,4 @@
-# c360MaterialBannerEx05
+# c360MaterialBanner
 
 ## Requirement
 R01 — material changes banner above KPI strip

@@ -1,4 +1,4 @@
-# c360AlertCentreEx05
+# c360AlertCentre
 
 ## Requirement
 R02 — Alert Centre with status filters and cross-sell intel panel

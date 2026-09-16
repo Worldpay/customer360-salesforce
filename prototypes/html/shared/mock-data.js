@@ -1,4 +1,4 @@
-/** Shared mock DTOs for HTML prototypes (mirrors c360MockDataEx05.js). */
+/** Shared mock DTOs for HTML prototypes (mirrors c360MockData.js). */
 
 var ACCOUNTS = [
   { id: 'pets', name: 'Pets at Home', industry: 'Retail', volume: 'GBP 312m', health: 'Watch', healthClass: 'watch', risk: 'Medium', riskClass: 'watch', crossSell: 'Revenue Boost', healthIndex: 68.2, healthDelta: '-2.1' },

@@ -1,4 +1,4 @@
-# c360TopAccountsEx05
+# c360TopAccounts
 
 ## Requirement
 R01 — Accounts Hub home hero: top 3 accounts by churn or cross-sell ranking
@@ -16,10 +16,10 @@ R01 — Accounts Hub home hero: top 3 accounts by churn or cross-sell ranking
 - accountopen: { accountName: string, sourceView: 'overview' }
 
 ## Mock DTO
-`ACCOUNTS` in `shared/accounts-hub-mock-data.js` (HTML hub) · extended `ACCOUNTS` in `c360MockDataEx05` (LWC)
+`ACCOUNTS` in `shared/accounts-hub-mock-data.js` (HTML hub) · extended `ACCOUNTS` in `c360MockData` (LWC)
 
 ## HTML fragment root
 `<section class="c360-module c360-top-accounts" data-module="top-accounts">`
 
 ## Composition
-Future Accounts Hub home flexipage: `c360TopAccountsEx05` + `c360PortfolioHealthEx05` (interactive) — wire `portfoliohealthfilter` to `c360AccountsTableEx05` variant `portfolio`.
+Future Accounts Hub home flexipage: `c360TopAccounts` + `c360PortfolioHealth` (interactive) — wire `portfoliohealthfilter` to `c360AccountsTable` variant `portfolio`.

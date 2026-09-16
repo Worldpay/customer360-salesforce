@@ -10,4 +10,4 @@ if (-not (Get-Command sf -ErrorAction SilentlyContinue)) {
 }
 
 sf project retrieve start -m ApexClass:C360CrossSellController
-Write-Host "Copy retrieved class to classesStubsEx05/ if it differs from force-app (reference sync)."
+Write-Host "Copy retrieved class to classesStubs/ if it differs from force-app (reference sync)."

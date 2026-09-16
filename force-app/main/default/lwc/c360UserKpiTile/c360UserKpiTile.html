@@ -1,0 +1,30 @@
+<template>
+    <section class="user-kpi-tile">
+        <div class="user-kpi-picker">
+            <lightning-combobox
+                name="homeMetric"
+                label="Your KPI"
+                value={comboboxValue}
+                placeholder="Select a metric"
+                options={metricOptions}
+                disabled={comboboxDisabled}
+                onchange={handleMetricChange}
+                variant="label-hidden">
+            </lightning-combobox>
+        </div>
+        <template lwc:if={isLoading}>
+            <div class="kpi-placeholder" aria-busy="true"></div>
+        </template>
+        <template lwc:elseif={error}>
+            <div class="kpi-error">Unable to load metric</div>
+        </template>
+        <template lwc:else>
+            <c-c360-kpi-tile
+                label={tileLabel}
+                value={tileValue}
+                detail={tileDetail}
+                variant={tileVariant}>
+            </c-c360-kpi-tile>
+        </template>
+    </section>
+</template>

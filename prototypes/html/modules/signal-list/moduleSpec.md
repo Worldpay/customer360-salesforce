@@ -1,4 +1,4 @@
-# c360MySignalsEx05
+# c360MySignals
 
 ## Requirement
 R03 — signals list with action and dismiss (App Builder tile)
@@ -14,7 +14,7 @@ R03 — signals list with action and dismiss (App Builder tile)
 - showtoast: { message: string }
 
 ## Child component
-- `c360SignalListEx05` (not exposed — list rows only)
+- `c360SignalList` (not exposed — list rows only)
 
 ## Mock DTO
-`SIGNALS` in `c360MockDataEx05.js`
+`SIGNALS` in `c360MockData.js`

@@ -1,5 +1,5 @@
 /**
- * Cross-sell rows for c360CrossSellTableEx05 (@wire getCrossSellAccounts).
+ * Cross-sell rows for c360CrossSellTable (@wire getCrossSellAccounts).
  *
  * Replace this file with the exact sandbox version when available:
  *   sf project retrieve start -m ApexClass:C360CrossSellController

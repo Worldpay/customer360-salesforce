@@ -1,4 +1,4 @@
-# c360AccountsTableEx05
+# c360AccountsTable
 
 ## Requirement
 R01 — portfolio accounts table (Overview top movers · Accounts Hub full portfolio)

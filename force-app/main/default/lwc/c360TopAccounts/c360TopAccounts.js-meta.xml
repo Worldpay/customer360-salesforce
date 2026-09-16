@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>C360 Top Accounts</masterLabel>
+    <description>Accounts Hub hero — top 3 accounts by churn or cross-sell ranking.</description>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage,lightning__HomePage">
+            <property name="heroMode" type="String" default="churn" label="Default hero mode (churn or crosssell)"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

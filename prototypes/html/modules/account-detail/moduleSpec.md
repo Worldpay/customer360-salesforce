@@ -1,10 +1,10 @@
-# c360AccountDetailEx05
+# c360AccountDetail
 
 ## Requirement
 Output schema v3 — account Record Page deep-dive (Churn risk, Cross-sell) aligned to **C360 Prototype v5**
 
 ## App Builder
-- Region: Account Record Page main region via `c360AccountEx05` (not embedded in hub dashboard)
+- Region: Account Record Page main region via `c360Account` (not embedded in hub dashboard)
 - Design attributes: none (account + sourceView passed from parent)
 
 ## @api (LWC)
@@ -29,4 +29,4 @@ Output schema v3 — account Record Page deep-dive (Churn risk, Cross-sell) alig
 | Cross-sell | Price + A/B sliders; net benefit includes product cost; scheme & interchange fee benefit; decline chart |
 
 ## LWC status
-`c360AccountDetailEx05` — **built** (Experiment 05, v5)
+`c360AccountDetail` — **built** (Customer 360, v5)

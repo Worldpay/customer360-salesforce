@@ -1,4 +1,4 @@
-"""Strip SharePoint/OneDrive junk from c360LwcDtoInventoryEx05.xlsx.
+"""Strip SharePoint/OneDrive junk from c360LwcDtoInventory.xlsx.
 
 OneDrive can inject [trash]/*.dat and customXml/* into .xlsx files in synced folders,
 which makes Excel hang on "Processing". Run this script immediately before opening in Excel:
@@ -11,7 +11,7 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-TARGET = ROOT / "c360LwcDtoInventoryEx05.xlsx"
+TARGET = ROOT / "c360LwcDtoInventory.xlsx"
 
 JUNK_PREFIXES = ("[trash]/", "customXml/")
 JUNK_EXACT = {"docProps/custom.xml"}

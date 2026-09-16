@@ -15,7 +15,7 @@
 
 # Documentation and org baseline copies
 docs/**
-classesStubsEx05/**
+classesStubs/**
 
 # Superseded experiments
 archive/**

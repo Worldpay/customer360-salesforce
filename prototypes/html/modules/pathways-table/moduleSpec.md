@@ -1,4 +1,4 @@
-# c360PathwaysTableEx05
+# c360PathwaysTable (deprecated)
 
 ## Requirement
 R02 / BR-002 — in-progress pathways table with scope toggle

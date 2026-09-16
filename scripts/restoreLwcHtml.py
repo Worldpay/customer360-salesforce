@@ -13,7 +13,7 @@ TRANSCRIPT = Path(
 MSO_PATTERN = re.compile(r"<html xmlns:mso.*?(?:</head>|$)", re.DOTALL)
 
 SUFFIXES = {
-    "c360AccountsTableEx05.html": """
+    "c360AccountsTable.html": """
                 </tbody>
             </table>
         </div>
@@ -21,36 +21,36 @@ SUFFIXES = {
     </article>
 </template>
 """,
-    "c360ChurnTableEx05.html": """
+    "c360ChurnTable.html": """
                 </tbody>
             </table>
         </div>
     </article>
 </template>
 """,
-    "c360CrossSellTableEx05.html": """
+    "c360CrossSellTable.html": """
                 </tbody>
             </table>
         </div>
     </article>
 </template>
 """,
-    "c360PortfolioHealthEx05.html": """
+    "c360PortfolioHealth.html": """
         </div>
     </article>
 </template>
 """,
-    "c360KpiStripEx05.html": """
+    "c360KpiStrip.html": """
         </div>
     </section>
 </template>
 """,
-    "c360NeedsActionEx05.html": """
+    "c360NeedsAction.html": """
         </div>
     </article>
 </template>
 """,
-    "c360SignalListEx05.html": """
+    "c360SignalList.html": """
                 <template lwc:else>
                     <div class="signal-actions row-actions">
                         <button class="button" data-id={signal.id} onclick={handleAction}>Action</button>
@@ -279,15 +279,15 @@ DASHBOARD = """<template>
                         <span>Material changes: 3 accounts moved to At risk this week | Revenue at risk GBP 2.8m</span>
                     </div>
                     <div class="kpi-grid">
-                        <c-c360-kpi-tile-ex05 label="Total accounts" value="42" detail="Enterprise and eCommerce"></c-c360-kpi-tile-ex05>
-                        <c-c360-kpi-tile-ex05 label="Composite health index" value="72.4" detail="+0.6 vs last month"></c-c360-kpi-tile-ex05>
-                        <c-c360-kpi-tile-ex05 label="Signals to action" value={openSignalCount} detail={openSignalSummary} variant="attention"></c-c360-kpi-tile-ex05>
-                        <c-c360-kpi-tile-ex05 label="At-risk accounts" value="3" detail="Watch list expanded"></c-c360-kpi-tile-ex05>
-                        <c-c360-kpi-tile-ex05 label="Revenue at risk" value="GBP 2.8m" detail="Pilot portfolio"></c-c360-kpi-tile-ex05>
+                        <c-c360-kpi-tile label="Total accounts" value="42" detail="Enterprise and eCommerce"></c-c360-kpi-tile>
+                        <c-c360-kpi-tile label="Composite health index" value="72.4" detail="+0.6 vs last month"></c-c360-kpi-tile>
+                        <c-c360-kpi-tile label="Signals to action" value={openSignalCount} detail={openSignalSummary} variant="attention"></c-c360-kpi-tile>
+                        <c-c360-kpi-tile label="At-risk accounts" value="3" detail="Watch list expanded"></c-c360-kpi-tile>
+                        <c-c360-kpi-tile label="Revenue at risk" value="GBP 2.8m" detail="Pilot portfolio"></c-c360-kpi-tile>
                     </div>
                     <div class="two-column">
-                        <c-c360-needs-action-ex05 onaccountopen={handleOpenAccount}></c-c360-needs-action-ex05>
-                        <c-c360-portfolio-health-ex05></c-c360-portfolio-health-ex05>
+                        <c-c360-needs-action onaccountopen={handleOpenAccount}></c-c360-needs-action>
+                        <c-c360-portfolio-health></c-c360-portfolio-health>
                     </div>
                     <article class="panel section-panel">
                         <div class="panel-header">
@@ -295,41 +295,41 @@ DASHBOARD = """<template>
                             <h2>My signals</h2>
                             <span>{openSignalCount} open</span>
                         </div>
-                        <c-c360-signal-list-ex05 signals={signals} onsignalaction={handleSignalAction} onsignaldismiss={handleSignalDismiss}></c-c360-signal-list-ex05>
+                        <c-c360-signal-list signals={signals} onsignalaction={handleSignalAction} onsignaldismiss={handleSignalDismiss}></c-c360-signal-list>
                     </article>
-                    <c-c360-accounts-table-ex05 max-rows="7" onaccountopen={handleOpenAccount}></c-c360-accounts-table-ex05>
+                    <c-c360-accounts-table max-rows="7" onaccountopen={handleOpenAccount}></c-c360-accounts-table>
                 </template>
 
                 <template lwc:if={isAlertCentre}>
-                    <c-c360-alert-centre-ex05 onalertselect={handleAlertSelect}></c-c360-alert-centre-ex05>
+                    <c-c360-alert-centre onalertselect={handleAlertSelect}></c-c360-alert-centre>
                 </template>
 
                 <template lwc:if={isAlertDetail}>
-                    <c-c360-alert-detail-ex05 alert-id={selectedAlertId} onback={handleAlertBack} onalertaction={handleAlertAction}></c-c360-alert-detail-ex05>
+                    <c-c360-alert-detail alert-id={selectedAlertId} onback={handleAlertBack} onalertaction={handleAlertAction}></c-c360-alert-detail>
                 </template>
 
                 <template lwc:if={isChurn}>
                     <section class="page-heading">
                         <div><h1>Churn</h1><p>Predicted volume compression and retraction, 3-6 months ahead</p></div>
                     </section>
-                    <c-c360-churn-table-ex05 onaccountopen={handleOpenAccount}></c-c360-churn-table-ex05>
+                    <c-c360-churn-table onaccountopen={handleOpenAccount}></c-c360-churn-table>
                 </template>
 
                 <template lwc:if={isCrossSell}>
                     <section class="page-heading">
                         <div><h1>Cross-Sell</h1><p>Revenue Boost is the priority product for this phase</p></div>
                     </section>
-                    <c-c360-cross-sell-table-ex05 onaccountopen={handleOpenAccount}></c-c360-cross-sell-table-ex05>
+                    <c-c360-cross-sell-table onaccountopen={handleOpenAccount}></c-c360-cross-sell-table>
                 </template>
 
                 <template lwc:if={isAccount}>
-                    <c-c360-account-detail-ex05
+                    <c-c360-account-detail
                         account={selectedAccount}
                         source-view={accountSourceView}
                         onnavigate={handleAccountNavigate}
                         onexport={handleAccountExport}
                         onaccountsubtab={handleAccountSubTab}
-                    ></c-c360-account-detail-ex05>
+                    ></c-c360-account-detail>
                 </template>
             </main>
         </div>
@@ -392,14 +392,14 @@ def patch_account_detail(contents: str) -> str:
 
 def main() -> None:
     overrides = {
-        "c360DashboardEx05.html": DASHBOARD,
-        "c360AlertCentreEx05.html": ALERT_CENTRE,
-        "c360AlertDetailEx05.html": ALERT_DETAIL,
+        "c360Dashboard.html": DASHBOARD,
+        "c360AlertCentre.html": ALERT_CENTRE,
+        "c360AlertDetail.html": ALERT_DETAIL,
     }
 
-    account_detail = restore_from_transcript("c360AccountDetailEx05.html")
+    account_detail = restore_from_transcript("c360AccountDetail.html")
     if account_detail:
-        overrides["c360AccountDetailEx05.html"] = patch_account_detail(account_detail)
+        overrides["c360AccountDetail.html"] = patch_account_detail(account_detail)
 
     for html_path in LWC.rglob("*.html"):
         name = html_path.name
@@ -412,8 +412,8 @@ def main() -> None:
         cleaned = strip_mso(raw)
         needs_suffix = name in SUFFIXES and (
             not cleaned.rstrip().endswith("</template>")
-            or (name == "c360SignalListEx05.html" and "handleDismiss" not in cleaned)
-            or (name == "c360NeedsActionEx05.html" and cleaned.count("</article>") < 1)
+            or (name == "c360SignalList.html" and "handleDismiss" not in cleaned)
+            or (name == "c360NeedsAction.html" and cleaned.count("</article>") < 1)
         )
         if needs_suffix:
             cleaned = cleaned.rstrip() + SUFFIXES[name]
