@@ -22,7 +22,7 @@ All deployable artefacts use the `Ex05` suffix to avoid collisions with other ex
 - **Wireframe screens:** `c360AlertCentreEx05`, `c360AlertDetailEx05`
 - **Record Page bootstrap:** `c360AccountEx05` (delegates to `c360AccountDetailEx05`)
 - **Shared children:** `c360KpiTileEx05`, `c360SignalListEx05`
-- **Optional App Builder tile (Phase 1):** `c360ConfigurableKpiTileEx05` — metric picklist → `C360_Metric_Definition__mdt` via `C360MetricController` (not embedded in `c360DashboardEx05`)
+- **Configurable KPI (Phase 1):** Hub embeds `c360UserKpiTileEx05` (runtime metric combobox + per-user `C360_User_Preferences__c`); optional App Builder `c360ConfigurableKpiTileEx05` via `C360MetricKeyPicklist` → `C360_Metric_Definition__mdt` / `C360MetricController`
 - **Mock data:** `c360MockDataEx05` + `c360AccountDetailDataEx05` (`ACCOUNT_DETAIL`, `getAccountDetail()`)
 
 ## What this is NOT
@@ -106,6 +106,7 @@ Mock data in `prototypes/html/shared/mock-data.js` mirrors `c360MockDataEx05.js`
 | `c360MaterialBannerEx05` | Yes | C360 Material Banner (ex_04) | App Page, Home Page |
 | `c360KpiStripEx05` | Yes | C360 KPI Strip (ex_04) | App Page, Home Page |
 | `c360ConfigurableKpiTileEx05` | Yes | C360 KPI Tile (configurable) (ex_05) | App Page, Home Page |
+| `c360UserKpiTileEx05` | No (hub child) | User-pickable KPI tile (ex_05) | Inside `c360DashboardEx05` Home |
 | `c360NeedsActionEx05` | Yes | C360 Needs Action (ex_04) | App Page, Home Page |
 | `c360PortfolioHealthEx05` | Yes | C360 Portfolio Health (ex_04) | App Page, Home Page |
 | `c360MySignalsEx05` | Yes | C360 My Signals (ex_04) | App Page, Home Page |

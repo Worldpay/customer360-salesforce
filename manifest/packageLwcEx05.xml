@@ -8,6 +8,7 @@
         <members>c360AlertDetailEx05</members>
         <members>c360ChurnTableEx05</members>
         <members>c360ConfigurableKpiTileEx05</members>
+        <members>c360UserKpiTileEx05</members>
         <members>c360CrossSellTableEx05</members>
         <members>c360DashboardEx05</members>
         <members>c360KpiStripEx05</members>
@@ -24,10 +25,12 @@
     <types>
         <members>C360CrossSellController</members>
         <members>C360MetricController</members>
+        <members>C360MetricKeyPicklist</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>C360_Metric_Definition__mdt</members>
+        <members>C360_User_Preferences__c</members>
         <name>CustomObject</name>
     </types>
     <types>

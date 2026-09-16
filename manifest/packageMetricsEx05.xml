@@ -2,10 +2,12 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>C360MetricController</members>
+        <members>C360MetricKeyPicklist</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>C360_Metric_Definition__mdt</members>
+        <members>C360_User_Preferences__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -18,6 +20,7 @@
     </types>
     <types>
         <members>c360ConfigurableKpiTileEx05</members>
+        <members>c360UserKpiTileEx05</members>
         <members>c360KpiTileEx05</members>
         <name>LightningComponentBundle</name>
     </types>

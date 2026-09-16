@@ -13,7 +13,8 @@ This document summarises the build plan for **Customer 360 Experiment 05**, an *
 | `c360DashboardEx05` | Monolithic hub — Overview, Alert Centre, Cross-Sell, Churn, Pathways, schema v3 Account | Built (mock data) |
 | `c360AccountDetailEx05` | Tabbed account overview (Output schema v3): churn drill-down, cross-sell ROI sliders, decline chart | Built (mock data) |
 | `c360KpiTileEx05` | Shared KPI child (`detail` / `variant` API) | Built |
-| `c360ConfigurableKpiTileEx05` | App Builder KPI tile; `metricKey` picklist → `C360MetricController` / `C360_Metric_Definition__mdt` | Built (Phase 1 pilot) |
+| `c360ConfigurableKpiTileEx05` | App Builder KPI tile; Apex picklist `C360MetricKeyPicklist` → `C360MetricController` / CMDT | Built (Phase 1 pilot) |
+| `c360UserKpiTileEx05` | Hub Home user KPI combobox; persists `Home_Metric_Key__c` on `C360_User_Preferences__c` | Built (Phase 1 pilot) |
 | `c360SignalListEx05` | Shared signal child (`signalaction` / `signaldismiss`) | Built |
 | `c360AlertCentreEx05` | Wireframe Alert Centre list + cross-sell panel | Built (mock data) |
 | `c360AlertDetailEx05` | Wireframe alert drill-down + outcome form | Built (mock data) |

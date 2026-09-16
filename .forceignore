@@ -10,6 +10,8 @@
 !force-app/main/default/classes/C360CrossSellController.cls-meta.xml
 !force-app/main/default/classes/C360MetricController.cls
 !force-app/main/default/classes/C360MetricController.cls-meta.xml
+!force-app/main/default/classes/C360MetricKeyPicklist.cls
+!force-app/main/default/classes/C360MetricKeyPicklist.cls-meta.xml
 
 # Documentation and org baseline copies
 docs/**
