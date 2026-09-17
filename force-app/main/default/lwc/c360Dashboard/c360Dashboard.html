@@ -104,9 +104,9 @@
                     </template>
                     <template lwc:if={isAccountsChurn}>
                         <section class="page-heading">
-                            <div class="page-heading-title">
-                                <lightning-icon icon-name="utility:arrowdown" size="small" class="page-heading-icon churn-icon"></lightning-icon>
-                                <div><h1>Churn</h1><p>Predicted volume compression and retraction, 3-6 months ahead</p></div>
+                            <div>
+                                <h1>Churn</h1>
+                                <p>Predicted volume compression and retraction, 3-6 months ahead</p>
                             </div>
                         </section>
                         <c-c360-churn-table onaccountopen={handleOpenAccount}></c-c360-churn-table>

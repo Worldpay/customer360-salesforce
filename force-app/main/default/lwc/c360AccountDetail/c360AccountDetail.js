@@ -13,7 +13,7 @@ const TABS = [
     { key: 'cx', label: 'Cross-sell', icon: '+' }
 ];
 
-const DRIVER_PREVIEW_COUNT = 5;
+const DRILL_PREVIEW_COUNT = 5;
 
 function sourceToTab(source) {
     if (source === 'crosssell') return 'cx';
@@ -29,7 +29,7 @@ export default class C360AccountDetail extends LightningElement {
     crossSellAbSplit = 99;
     selectedDriverKey = null;
     showDrillPanel = false;
-    showAllChurnDrivers = false;
+    showAllDrillRows = false;
 
     @api
     get account() {
@@ -38,7 +38,6 @@ export default class C360AccountDetail extends LightningElement {
     set account(value) {
         this._account = value;
         this.closeDrill();
-        this.showAllChurnDrivers = false;
     }
 
     @api
@@ -142,30 +141,14 @@ export default class C360AccountDetail extends LightningElement {
     }
 
     get churnDriverRows() {
-        const all = this.allChurnDriverRows;
-        if (this.showAllChurnDrivers || all.length <= DRIVER_PREVIEW_COUNT) {
-            return all;
-        }
-        return all.slice(0, DRIVER_PREVIEW_COUNT);
-    }
-
-    get showDriversExpand() {
-        return this.allChurnDriverRows.length > DRIVER_PREVIEW_COUNT && !this.showAllChurnDrivers;
-    }
-
-    get showDriversCollapse() {
-        return this.allChurnDriverRows.length > DRIVER_PREVIEW_COUNT && this.showAllChurnDrivers;
-    }
-
-    get driversExpandLabel() {
-        return `Show all ${this.allChurnDriverRows.length} results`;
+        return this.allChurnDriverRows;
     }
 
     get drillTitle() {
         return 'Driver detail — ' + (this.selectedDriverKey || '');
     }
 
-    get drillRows() {
+    get allDrillRows() {
         if (!this.selectedDriverKey) {
             return [];
         }
@@ -173,8 +156,28 @@ export default class C360AccountDetail extends LightningElement {
         return rows.map((row, index) => ({ ...row, key: 'drill-' + index }));
     }
 
+    get displayDrillRows() {
+        const all = this.allDrillRows;
+        if (this.showAllDrillRows || all.length <= DRILL_PREVIEW_COUNT) {
+            return all;
+        }
+        return all.slice(0, DRILL_PREVIEW_COUNT);
+    }
+
+    get showDrillExpand() {
+        return this.allDrillRows.length > DRILL_PREVIEW_COUNT && !this.showAllDrillRows;
+    }
+
+    get showDrillCollapse() {
+        return this.allDrillRows.length > DRILL_PREVIEW_COUNT && this.showAllDrillRows;
+    }
+
+    get drillExpandLabel() {
+        return `Show all ${this.allDrillRows.length} results`;
+    }
+
     get hasDrillRows() {
-        return this.drillRows.length > 0;
+        return this.allDrillRows.length > 0;
     }
 
     get priceLabel() {
@@ -296,6 +299,7 @@ export default class C360AccountDetail extends LightningElement {
     handleDriverClick(event) {
         this.selectedDriverKey = event.currentTarget.dataset.driver;
         this.activeTab = 'ch';
+        this.showAllDrillRows = false;
         this.showDrillPanel = true;
         // eslint-disable-next-line @lwc/lwc/no-async-operation
         requestAnimationFrame(() => {
@@ -311,6 +315,7 @@ export default class C360AccountDetail extends LightningElement {
     closeDrill() {
         this.selectedDriverKey = null;
         this.showDrillPanel = false;
+        this.showAllDrillRows = false;
     }
 
     handlePriceChange(event) {
@@ -321,11 +326,11 @@ export default class C360AccountDetail extends LightningElement {
         this.crossSellAbSplit = parseInt(event.target.value, 10);
     }
 
-    handleShowAllDrivers() {
-        this.showAllChurnDrivers = true;
+    handleShowAllDrillRows() {
+        this.showAllDrillRows = true;
     }
 
-    handleShowPreviewDrivers() {
-        this.showAllChurnDrivers = false;
+    handleShowPreviewDrillRows() {
+        this.showAllDrillRows = false;
     }
 }
