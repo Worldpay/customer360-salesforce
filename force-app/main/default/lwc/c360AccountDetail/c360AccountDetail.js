@@ -13,6 +13,8 @@ const TABS = [
     { key: 'cx', label: 'Cross-sell', icon: '+' }
 ];
 
+const DRIVER_PREVIEW_COUNT = 5;
+
 function sourceToTab(source) {
     if (source === 'crosssell') return 'cx';
     return 'ch';
@@ -27,6 +29,7 @@ export default class C360AccountDetail extends LightningElement {
     crossSellAbSplit = 99;
     selectedDriverKey = null;
     showDrillPanel = false;
+    showAllChurnDrivers = false;
 
     @api
     get account() {
@@ -35,6 +38,7 @@ export default class C360AccountDetail extends LightningElement {
     set account(value) {
         this._account = value;
         this.closeDrill();
+        this.showAllChurnDrivers = false;
     }
 
     @api
@@ -110,7 +114,7 @@ export default class C360AccountDetail extends LightningElement {
         ];
     }
 
-    get churnDriverRows() {
+    get allChurnDriverRows() {
         const d = this.detail;
         const selected = this.selectedDriverKey;
         const rows = [];
@@ -135,6 +139,26 @@ export default class C360AccountDetail extends LightningElement {
             });
         });
         return rows;
+    }
+
+    get churnDriverRows() {
+        const all = this.allChurnDriverRows;
+        if (this.showAllChurnDrivers || all.length <= DRIVER_PREVIEW_COUNT) {
+            return all;
+        }
+        return all.slice(0, DRIVER_PREVIEW_COUNT);
+    }
+
+    get showDriversExpand() {
+        return this.allChurnDriverRows.length > DRIVER_PREVIEW_COUNT && !this.showAllChurnDrivers;
+    }
+
+    get showDriversCollapse() {
+        return this.allChurnDriverRows.length > DRIVER_PREVIEW_COUNT && this.showAllChurnDrivers;
+    }
+
+    get driversExpandLabel() {
+        return `Show all ${this.allChurnDriverRows.length} results`;
     }
 
     get drillTitle() {
@@ -295,5 +319,13 @@ export default class C360AccountDetail extends LightningElement {
 
     handleAbChange(event) {
         this.crossSellAbSplit = parseInt(event.target.value, 10);
+    }
+
+    handleShowAllDrivers() {
+        this.showAllChurnDrivers = true;
+    }
+
+    handleShowPreviewDrivers() {
+        this.showAllChurnDrivers = false;
     }
 }

@@ -9,7 +9,6 @@ export default class C360AccountsTable extends LightningElement {
     @api title = 'My accounts';
     @api subtitle = 'Top movers';
     @api maxRows = 7;
-    @api provenance = 'Snowflake → Analytics Engine → Salesforce | 15-min refresh';
     @api variant = 'overview';
     @api healthFilter = 'All';
     @api loadDelayMs = LOAD_DELAY_MS;

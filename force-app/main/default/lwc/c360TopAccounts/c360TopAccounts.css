@@ -115,6 +115,9 @@
     font-size: 1.35rem;
     font-weight: 800;
 }
+.model-field.lead .wp-val {
+    font-size: 1.35rem;
+}
 .negative { color: #ba0517; }
 .up { color: #2e844a; }
 .wp-val { color: var(--c360-wp); font-weight: 700; }

@@ -271,6 +271,11 @@ tr.driver-row-selected .driver-link {
 .krow { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--c360-border-light); font-size: 0.8125rem; }
 .krow.last { border-bottom: 0; }
 .footnote { margin: 0.75rem 1rem 1rem; font-size: 0.75rem; color: var(--c360-text-muted); }
+.table-expand-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--c360-border-light);
+    text-align: center;
+}
 .panel-body h3 { margin: 1rem 0 0.5rem; font-size: 0.875rem; color: var(--c360-brand-dark); }
 .align-table th.num, .align-table td.num { text-align: right; }
 .kk { color: var(--c360-text-secondary); }

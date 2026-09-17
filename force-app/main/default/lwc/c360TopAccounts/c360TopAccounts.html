@@ -6,7 +6,6 @@
                 <button type="button" class={churnBtnClass} data-mode="churn" onclick={handleModeClick}>Churn focus</button>
                 <button type="button" class={crossSellBtnClass} data-mode="crosssell" onclick={handleModeClick}>Cross-sell focus</button>
             </div>
-            <span class="hint">Ranked from portfolio accounts table (mock analytics feed)</span>
         </div>
         <div class="hero-tiles-grid" aria-live="polite">
             <template for:each={rankedCards} for:item="card">

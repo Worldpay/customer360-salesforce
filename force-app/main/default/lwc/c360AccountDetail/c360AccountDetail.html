@@ -20,7 +20,6 @@
             </div>
             <div class="account-actions">
                 <button class="button accent" type="button" onclick={handleExport}>Export PowerPoint</button>
-                <span class="hint">Shift+click account links elsewhere to open Salesforce Record Page.</span>
             </div>
         </section>
 
@@ -43,7 +42,7 @@
                 <template lwc:if={isChurn}>
                     <div class="callout blue">
                         <span class="co-ic">&#8595;</span>
-                        <div class="co-t"><b>Churn deep-dive.</b> Predicts volume compression / retraction 3-6 months ahead. <span class="wiptag">Output schema v3</span> | illustrative data.</div>
+                        <div class="co-t"><b>Churn deep-dive.</b> Predicts volume compression / retraction 3-6 months ahead.</div>
                     </div>
                     <div class="metrics3">
                         <template for:each={churnMetrics} for:item="metric">
@@ -69,7 +68,16 @@
                                 </tbody>
                             </table>
                         </div>
-                        <p class="footnote">Churn means volume <b>compression / retraction</b>, not account closure - 3-6 month horizon.</p>
+                        <template lwc:if={showDriversExpand}>
+                            <div class="table-expand-footer">
+                                <button type="button" class="button" onclick={handleShowAllDrivers}>{driversExpandLabel}</button>
+                            </div>
+                        </template>
+                        <template lwc:if={showDriversCollapse}>
+                            <div class="table-expand-footer">
+                                <button type="button" class="button" onclick={handleShowPreviewDrivers}>Show first 5 only</button>
+                            </div>
+                        </template>
                     </article>
                     <template lwc:if={showDrillPanel}>
                         <article class="panel section-gap driver-drill-panel">
@@ -100,7 +108,7 @@
                 <template lwc:if={isCrossSell}>
                     <div class="callout blue">
                         <span class="co-ic">&#43;</span>
-                        <div class="co-t"><b>Revenue Boost cross-sell deep-dive.</b> Outcome-based pitch with net-benefit number. <span class="wiptag">Output schema v3</span></div>
+                        <div class="co-t"><b>Revenue Boost cross-sell deep-dive.</b> Outcome-based pitch with net-benefit number.</div>
                     </div>
                     <div class="fbar">
                         <div class="fld slider-fld">

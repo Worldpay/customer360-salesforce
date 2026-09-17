@@ -62,8 +62,8 @@ export default class C360TopAccounts extends LightningElement {
                 rank: index + 1,
                 metaLine: `${account.industry} · ${account.revenue || account.volume}`,
                 txnMetricClass: txnNegative ? 'negative' : 'up',
-                churnLeadClass: mode.leadField === 'predictedTxnChange' ? 'model-field lead' : 'model-field',
-                crossSellLeadClass: mode.leadField === 'topCrossSellNetBenefit' ? 'model-field lead' : 'model-field',
+                churnLeadClass: 'model-field lead',
+                crossSellLeadClass: 'model-field lead',
                 healthPillClass: account.healthClass
             };
         });

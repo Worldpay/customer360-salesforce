@@ -19,11 +19,23 @@
 }
 .dashboard, :host { min-height: 100%; }
 .protobar {
-    background: #032d60;
-    color: #fff;
-    font-size: 0.75rem;
-    padding: 0.375rem 1rem;
-    text-align: center;
+    display: none;
+}
+.needs-action-full {
+    display: block;
+    width: 100%;
+}
+.page-heading-title {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+}
+.page-heading-icon {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+.page-heading-icon.churn-icon {
+    --slds-c-icon-color-foreground-default: var(--c360-error);
 }
 .app-shell {
     display: flex;

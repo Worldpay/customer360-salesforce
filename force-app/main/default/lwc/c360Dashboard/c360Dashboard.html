@@ -1,7 +1,4 @@
 <template>
-    <div class="protobar">
-        Wireframe IA (side nav) + design system tokens — schema v3 account deep-dives — <b>illustrative data only</b>
-    </div>
     <div class="app-shell">
         <aside class="app-sidebar" aria-label="Customer 360 navigation">
             <div class="sidebar-brand">
@@ -76,9 +73,7 @@
                             <span aria-hidden="true">&#8599;</span>
                             <span>Material changes: 3 accounts moved to At risk this week | Revenue at risk GBP 2.8m</span>
                         </div>
-                        <div class="two-column">
-                            <c-c360-needs-action onaccountopen={handleOpenAccount}></c-c360-needs-action>
-                        </div>
+                        <c-c360-needs-action class="needs-action-full" onaccountopen={handleOpenAccount}></c-c360-needs-action>
                         <article class="panel section-panel">
                             <div class="panel-header">
                                 <lightning-icon icon-name="utility:priority" size="x-small"></lightning-icon>
@@ -110,7 +105,10 @@
                     </template>
                     <template lwc:if={isAccountsChurn}>
                         <section class="page-heading">
-                            <div><h1>Churn</h1><p>Predicted volume compression and retraction, 3-6 months ahead</p></div>
+                            <div class="page-heading-title">
+                                <lightning-icon icon-name="utility:arrowdown" size="small" class="page-heading-icon churn-icon"></lightning-icon>
+                                <div><h1>Churn</h1><p>Predicted volume compression and retraction, 3-6 months ahead</p></div>
+                            </div>
                         </section>
                         <c-c360-churn-table onaccountopen={handleOpenAccount}></c-c360-churn-table>
                     </template>
