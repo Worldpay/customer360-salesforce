@@ -8,7 +8,6 @@
         <members>c360AlertDetail</members>
         <members>c360ChurnTable</members>
         <members>c360ConfigurableKpiTile</members>
-        <members>c360UserKpiTile</members>
         <members>c360CrossSellTable</members>
         <members>c360Dashboard</members>
         <members>c360KpiStrip</members>

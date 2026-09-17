@@ -69,15 +69,15 @@ Use this instead of (or alongside) the monolithic `c360Dashboard` when building 
 
 Deploy metric CMDT, hierarchy custom setting, Apex, and LWCs (included in `manifest/packageLwc.xml`, or metrics delta via `manifest/packageMetrics.xml`).
 
-**Hub (built-in):** `c360Dashboard` Home includes **`c360UserKpiTile`** — combobox **Your KPI** lists metrics from CMDT; choice is stored per user in **C360 User Preferences** (`Home_Metric_Key__c`). View or edit defaults: Setup → **Custom Settings** → **C360 User Preferences** → **Manage** (org / profile / user hierarchy).
+**App Builder:** `c360ConfigurableKpiTile` — drag **C360 KPI Tile (configurable)** onto an App or Home page (one instance per KPI). The **Metric** property uses Apex picklist `C360MetricKeyPicklist` (options from CMDT — no manual `js-meta.xml` value list).
 
-**App Builder (optional extra tiles):** `c360ConfigurableKpiTile` — drag **C360 KPI Tile (configurable)** onto an App or Home page (one instance per KPI). The **Metric** property uses Apex picklist `C360MetricKeyPicklist` (options from CMDT — no manual `js-meta.xml` value list).
+Per-user home metric preference (`Home_Metric_Key__c` on **C360 User Preferences**) remains available for future hub wiring; the hub no longer embeds a user KPI combobox tile.
 
-**Adding a metric:** Deploy a new `C360_Metric_Definition` CMDT record with `Metric_Key__c` + display fields; it appears in App Builder and in the hub combobox after deploy.
+**Adding a metric:** Deploy a new `C360_Metric_Definition` CMDT record with `Metric_Key__c` + display fields; it appears in App Builder after deploy.
 
 Pilot values mirror `KPI_TILES` in `c360MockData.js` (Setup → Custom Metadata Types → C360 Metric Definition → Manage Records).
 
-**Smoke test:** Change hub combobox → refresh page → same metric; App Builder tile shows CMDT label/value for selected metric.
+**Smoke test:** App Builder tile shows CMDT label/value for selected metric.
 
 ## Step 3 — Wire Account spotlight (Record Page)
 

@@ -20,7 +20,6 @@
     </types>
     <types>
         <members>c360ConfigurableKpiTile</members>
-        <members>c360UserKpiTile</members>
         <members>c360KpiTile</members>
         <name>LightningComponentBundle</name>
     </types>

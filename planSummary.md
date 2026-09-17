@@ -14,7 +14,6 @@ This document summarises the build plan for **Customer 360 Customer 360**, an **
 | `c360AccountDetail` | Tabbed account overview (Output schema v3): churn drill-down, cross-sell ROI sliders, decline chart | Built (mock data) |
 | `c360KpiTile` | Shared KPI child (`detail` / `variant` API) | Built |
 | `c360ConfigurableKpiTile` | App Builder KPI tile; Apex picklist `C360MetricKeyPicklist` → `C360MetricController` / CMDT | Built (Phase 1 pilot) |
-| `c360UserKpiTile` | Hub Home user KPI combobox; persists `Home_Metric_Key__c` on `C360_User_Preferences__c` | Built (Phase 1 pilot) |
 | `c360SignalList` | Shared signal child (`signalaction` / `signaldismiss`) | Built |
 | `c360AlertCentre` | Wireframe Alert Centre list + cross-sell panel | Built (mock data) |
 | `c360AlertDetail` | Wireframe alert drill-down + outcome form | Built (mock data) |

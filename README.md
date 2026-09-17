@@ -18,7 +18,7 @@ Template-aligned, **LWC-only org overlay** for the Customer 360 hub and related 
 - **Wireframe screens:** `c360AlertCentre`, `c360AlertDetail`
 - **Record Page bootstrap:** `c360Account` (delegates to `c360AccountDetail`)
 - **Shared children:** `c360KpiTile`, `c360SignalList`
-- **Configurable KPI (Phase 1):** Hub embeds `c360UserKpiTile` (runtime metric combobox + per-user `C360_User_Preferences__c`); optional App Builder `c360ConfigurableKpiTile` via `C360MetricKeyPicklist` → `C360_Metric_Definition__mdt` / `C360MetricController`
+- **Configurable KPI (Phase 1):** Optional App Builder `c360ConfigurableKpiTile` via `C360MetricKeyPicklist` → `C360_Metric_Definition__mdt` / `C360MetricController`
 - **Mock data:** `c360MockData` + `c360AccountDetailData` (`ACCOUNT_DETAIL`, `getAccountDetail()`)
 
 ## What this is NOT
@@ -103,7 +103,6 @@ Mock data in `prototypes/html/shared/mock-data.js` mirrors `c360MockData.js`; `a
 | `c360MaterialBanner` | Yes | C360 Material Banner | App Page, Home Page |
 | `c360KpiStrip` | Yes | C360 KPI Strip | App Page, Home Page |
 | `c360ConfigurableKpiTile` | Yes | C360 KPI Tile (configurable) | App Page, Home Page |
-| `c360UserKpiTile` | No (hub child) | User-pickable KPI tile | Inside `c360Dashboard` Home |
 | `c360NeedsAction` | Yes | C360 Needs Action | App Page, Home Page |
 | `c360PortfolioHealth` | Yes | C360 Portfolio Health | App Page, Home Page |
 | `c360MySignals` | Yes | C360 My Signals | App Page, Home Page |
