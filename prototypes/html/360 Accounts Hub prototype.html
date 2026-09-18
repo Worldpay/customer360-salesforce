@@ -1,0 +1,3513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer 360 — Accounts Hub prototype</title>
+  <style>
+/* tokens.css */
+:root {
+  --sf-blue: #0176d3;
+  --sf-blue-d: #014486;
+  --sf-blue-l: #eaf5fe;
+  --wp: #cc0066;
+  --wp-d: #99004c;
+  --bg: #f3f3f3;
+  --card: #ffffff;
+  --bd: #e5e5e5;
+  --bd2: #c9c9c9;
+  --ink: #181818;
+  --ink2: #444444;
+  --muted: #706e6b;
+  --green: #2e844a;
+  --green-l: #eafaef;
+  --amber: #dd7a01;
+  --amber-l: #fef6e6;
+  --red: #ba0517;
+  --red-l: #fdecea;
+  --navy: #032d60;
+  --font: "Salesforce Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --shadow: 0 2px 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.1);
+  --radius: 0.35rem;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+button { font-family: inherit; cursor: pointer; }
+a { color: var(--sf-blue); text-decoration: none; }
+
+/* module-base.css */
+.grid { display: grid; gap: 16px; }
+.g-2 { grid-template-columns: 2fr 1fr; }
+.g-3 { grid-template-columns: repeat(3, 1fr); }
+.g-6 { grid-template-columns: repeat(6, 1fr); }
+.row { display: flex; gap: 16px; flex-wrap: wrap; }
+.hide { display: none !important; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.card-h {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--bd);
+}
+.card-h h2 {
+  font-size: 15px;
+  margin: 0;
+  color: var(--navy);
+  font-weight: 700;
+  flex: 1;
+}
+.card-h .sub {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.card-b { padding: 16px; }
+.card-h .ico {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+}
+
+.btn {
+  border: 1px solid var(--bd2);
+  background: #fff;
+  color: var(--sf-blue);
+  border-radius: var(--radius);
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.btn:hover { background: #f4f9ff; }
+.btn.p {
+  background: var(--sf-blue);
+  border-color: var(--sf-blue);
+  color: #fff;
+}
+.btn.p:hover { background: var(--sf-blue-d); }
+.btn.wp {
+  background: var(--wp);
+  border-color: var(--wp);
+  color: #fff;
+}
+.btn.wp:hover { background: var(--wp-d); }
+.btn.sm { padding: 4px 10px; font-size: 12px; }
+
+.kpi {
+  background: #fff;
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+}
+.kpi .k-lbl {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+.kpi .k-val {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.1;
+  margin-top: 6px;
+}
+.kpi .k-sub { font-size: 12px; color: var(--ink2); margin-top: 3px; }
+.kpi.attention .k-val { color: var(--wp); }
+
+.alerts .a {
+  display: grid;
+  grid-template-columns: 6.75rem minmax(0, 1fr) 5.75rem;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--bd);
+}
+.alerts .a:last-child { border-bottom: 0; }
+.alerts .a .row-tag {
+  grid-column: 1;
+  align-self: start;
+}
+.alerts .a > .sev {
+  grid-column: 1;
+  align-self: start;
+}
+.alerts .a .row-tag .sev,
+.alerts .a > .sev {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 0;
+}
+.alerts .a .a-txt {
+  grid-column: 2;
+  min-width: 0;
+}
+.alerts .a .row-actions {
+  grid-column: 3;
+  align-self: start;
+}
+.alerts .a > .btn {
+  grid-column: 3;
+  align-self: start;
+}
+.alerts .a .row-actions .btn,
+.alerts .a > .btn {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+.sev {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.sev.now { background: var(--red-l); color: var(--red); border: 1px solid #f3c9c4; }
+.sev.day { background: var(--amber-l); color: var(--amber); border: 1px solid #f5ddb0; }
+.sev.mon { background: var(--sf-blue-l); color: var(--sf-blue-d); border: 1px solid #bfe3fb; }
+.a .a-txt { min-width: 0; }
+.a .a-txt b { color: var(--ink); }
+.a .a-txt .m { color: var(--ink2); font-size: 13px; }
+.a .a-txt .meta { color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+.mtile {
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+.mtile .mt-l { font-size: 12px; color: var(--muted); font-weight: 700; }
+.mtile .mt-v { font-size: 22px; font-weight: 700; color: var(--navy); margin-top: 4px; }
+
+.sect-t {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 22px 2px 10px;
+}
+
+.drv {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.drv:last-child { border-bottom: 0; }
+.drv .d-n { flex: 1; }
+.drv .d-n b { color: var(--ink); }
+.drv .d-n .d-s { font-size: 12px; color: var(--muted); }
+.drv .d-bar {
+  flex: 0 0 160px;
+  height: 8px;
+  background: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.drv .d-bar i { display: block; height: 100%; background: var(--amber); }
+.drv .d-bar.pos i { background: var(--green); }
+.drv .d-pct {
+  flex: 0 0 56px;
+  text-align: right;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.table-expand-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--bd);
+  text-align: center;
+}
+
+.sig {
+  display: grid;
+  grid-template-columns: 6.75rem minmax(0, 1fr) 11.25rem;
+  gap: 12px;
+  align-items: start;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--bd);
+}
+.sig:last-child { border-bottom: 0; }
+.sig.done { opacity: 0.5; }
+.sig .badge {
+  grid-column: 1;
+  align-self: start;
+  text-align: center;
+  box-sizing: border-box;
+}
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  display: inline-block;
+}
+.badge.cross-sell { background: #eef3ff; color: #2b3f8c; border: 1px solid #ccd7f5; }
+.badge.churn { background: var(--amber-l); color: var(--amber); border: 1px solid #f5ddb0; }
+.badge.fx { background: #e9f8f1; color: #1b7a4b; border: 1px solid #bfe8d3; }
+.sig .s-txt {
+  grid-column: 2;
+  min-width: 0;
+}
+.sig .s-txt .s-h { font-weight: 700; color: var(--ink); }
+.sig .s-txt .s-d { color: var(--ink2); font-size: 13px; margin-top: 2px; }
+.sig .s-txt .s-p { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.sig .s-txt .s-p b { color: var(--sf-blue-d); }
+.sig .s-act {
+  grid-column: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  width: 100%;
+  align-self: start;
+}
+.sig > .status-pill {
+  grid-column: 3;
+  justify-self: end;
+  align-self: start;
+}
+.sig .s-act .btn {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.tbl th {
+  text-align: left;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--bd);
+  background: #fafafa;
+  vertical-align: bottom;
+}
+.tbl td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  color: var(--ink2);
+  vertical-align: middle;
+}
+.tbl td:has(> .pill),
+.tbl td:has(> .status-pill) {
+  width: 1%;
+  white-space: nowrap;
+}
+.tbl tr:hover td { background: #f7fbff; }
+.tbl a.acct, .account-link {
+  font-weight: 700;
+  color: var(--sf-blue);
+  cursor: pointer;
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+.pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 11px;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.pill.good, .good { background: var(--green-l); color: var(--green); }
+.pill.watch, .watch { background: var(--amber-l); color: var(--amber); }
+.pill.risk, .risk { background: var(--red-l); color: var(--red); }
+.pill.info, .info { background: var(--sf-blue-l); color: var(--sf-blue-d); }
+.pill.grey, .grey { background: #eee; color: #555; }
+
+.down, .negative { color: var(--red); font-weight: 700; }
+.up { color: var(--green); font-weight: 700; }
+
+.table-scroll { overflow-x: auto; }
+.provenance, .footnote {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 10px 16px;
+  margin: 0;
+  border-top: 1px solid var(--bd);
+}
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--bd2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.seg button {
+  border: 0;
+  background: #fff;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--ink2);
+}
+.seg button.active {
+  background: var(--sf-blue);
+  color: #fff;
+  font-weight: 700;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.filters button {
+  border: 1px solid var(--bd2);
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--ink2);
+}
+.filters button.active {
+  background: var(--sf-blue);
+  border-color: var(--sf-blue);
+  color: #fff;
+  font-weight: 700;
+}
+
+.status-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--sf-blue-l);
+  color: var(--sf-blue-d);
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: 1100px) {
+  .g-6 { grid-template-columns: repeat(3, 1fr); }
+  .g-3 { grid-template-columns: repeat(2, 1fr); }
+  .g-2 { grid-template-columns: 1fr; }
+}
+
+/* table-loading.css */
+.table-loading-host {
+  position: relative;
+  min-height: 120px;
+}
+.table-loading-host.is-loading {
+  min-height: 200px;
+}
+.table-loading-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius);
+}
+.table-loading-host.is-loading .table-loading-overlay {
+  display: flex;
+}
+.table-loading-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--bd);
+  border-top-color: var(--sf-blue);
+  border-radius: 50%;
+  animation: c360-spin 0.75s linear infinite;
+}
+.table-loading-label {
+  margin-left: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+@keyframes c360-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* c360Dashboard.css */
+body {
+    display: block;
+    --c360-brand: #cc0066;
+    --c360-brand-dark: #032d60;
+    --c360-surface: #ffffff;
+    --c360-surface-alt: #f3f3f3;
+    --c360-border: #dddbda;
+    --c360-border-light: #f0f0f0;
+    --c360-text-primary: #181818;
+    --c360-text-secondary: #444444;
+    --c360-text-muted: #706e6b;
+    --c360-action: #0176d3;
+    --c360-success: #2e844a;
+    --c360-warning: #a35b00;
+    --c360-error: #ba0517;
+    --c360-radius: 0.25rem;
+    --c360-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+    --c360-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+body { min-height: 100%; }
+.protobar {
+    background: #032d60;
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 0.375rem 1rem;
+    text-align: center;
+}
+.app-shell {
+    display: flex;
+    min-height: calc(100vh - 2rem);
+    background: var(--c360-surface-alt);
+}
+.app-sidebar {
+    width: 15rem;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--c360-brand-dark);
+    color: #fff;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 1rem 1rem 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.sidebar-brand strong { display: block; font-size: 0.9375rem; line-height: 1.2; }
+.pilot-badge {
+    display: inline-block;
+    margin-top: 0.2rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 1rem;
+    background: var(--c360-brand);
+    color: #fff;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+.cube {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 0.25rem;
+    background: linear-gradient(135deg, var(--c360-brand), #99004c);
+    flex-shrink: 0;
+}
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.75rem 0.5rem;
+    flex: 1;
+}
+.side-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 0;
+    border-radius: var(--c360-radius);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.8125rem;
+    text-align: left;
+    cursor: pointer;
+}
+.side-nav-item:hover:not(:disabled) { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.side-nav-item.active { background: rgba(1, 118, 211, 0.35); color: #fff; font-weight: 700; }
+.side-nav-item:disabled, .side-nav-placeholder { opacity: 0.45; cursor: not-allowed; }
+.side-count {
+    padding: 0.05rem 0.4rem;
+    border-radius: 1rem;
+    background: var(--c360-brand);
+    color: #fff;
+    font-size: 0.625rem;
+    font-weight: 700;
+}
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.85rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.75rem;
+}
+.sidebar-user strong { display: block; font-size: 0.8125rem; }
+.sidebar-user span { color: rgba(255, 255, 255, 0.65); }
+.app-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+.global-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1.25rem;
+    background: var(--c360-surface);
+    border-bottom: 1px solid var(--c360-border);
+    min-height: 3.25rem;
+}
+.search-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--c360-border);
+    border-radius: 1.25rem;
+    background: var(--c360-surface-alt);
+    color: var(--c360-text-muted);
+    font-size: 0.8125rem;
+}
+.search-wrap input {
+    flex: 1;
+    border: 0;
+    background: transparent;
+    outline: none;
+    font-size: 0.8125rem;
+    color: var(--c360-text-primary);
+    font-family: inherit;
+}
+.avatar {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--c360-action);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+.page-content {
+    flex: 1;
+    margin: 0;
+    padding: 1.25rem 1.25rem 3rem;
+    overflow-x: auto;
+}
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.page-heading h1 { margin: 0; color: var(--c360-brand-dark); font-size: 1.5rem; }
+.page-heading p { margin: 0.25rem 0 0; color: var(--c360-text-muted); font-size: 0.8125rem; }
+.material-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #bfe8d3;
+    border-radius: var(--c360-radius);
+    background: #eafaef;
+    color: #2e844a;
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+.two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: start;
+}
+.panel {
+    overflow: hidden;
+    background: var(--c360-surface);
+    border: 1px solid var(--c360-border);
+    border-radius: var(--c360-radius);
+    box-shadow: var(--c360-shadow-sm);
+}
+.section-panel { margin-top: 1.4rem; }
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--c360-border);
+    color: var(--c360-brand-dark);
+}
+.panel-header h2 { flex: 1; margin: 0; font-size: 0.9375rem; }
+.panel-header span { color: var(--c360-text-muted); font-size: 0.75rem; }
+.button {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid #b0adab;
+    border-radius: var(--c360-radius);
+    background: #fff;
+    color: var(--c360-action);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+.toast {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 100;
+    max-width: 22rem;
+    padding: 0.75rem 1rem;
+    border: 0;
+    border-radius: var(--c360-radius);
+    background: var(--c360-brand-dark);
+    color: #fff;
+    box-shadow: var(--c360-shadow-md);
+    text-align: left;
+    cursor: pointer;
+}
+.home-priority-zone { margin-bottom: 0.5rem; }
+.home-priority-zone c-c360-top-accounts {
+    display: block;
+    margin-bottom: 0;
+}
+.home-health-kpi-row {
+    display: grid;
+    grid-template-columns: minmax(17.5rem, 23.75rem) minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+    margin-bottom: 0;
+}
+.home-health-col,
+.home-kpi-col {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+@media (max-width: 60rem) {
+    .home-health-kpi-row {
+        grid-template-columns: 1fr;
+    }
+}
+.home-operations-snapshot {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--c360-border);
+}
+.snapshot-title {
+    margin: 0 0 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--c360-text-muted);
+}
+.accounts-hub-cta {
+    margin: 0 0 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--c360-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+}
+.accounts-hub-cta p {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--c360-text-muted);
+}
+.accounts-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-bottom: 1rem;
+}
+.accounts-subnav-btn {
+    border: 1px solid var(--c360-border);
+    background: var(--c360-surface);
+    border-radius: var(--c360-radius);
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c360-text-muted);
+    cursor: pointer;
+}
+.accounts-subnav-btn.active {
+    background: var(--c360-brand-dark);
+    border-color: var(--c360-brand-dark);
+    color: #fff;
+}
+@media (max-width: 850px) {
+    .app-shell { flex-direction: column; }
+    .app-sidebar { width: 100%; }
+    .side-nav { flex-direction: row; flex-wrap: wrap; }
+    .two-column { grid-template-columns: 1fr; }
+}
+
+/* c360AlertDetail.css */
+body { display: block; }
+.alert-detail { max-width: 85rem; margin: 0 auto; }
+.crumb {
+    margin-bottom: 0.75rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #0176d3;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.page-heading h1 { margin: 0; color: #032d60; font-size: 1.5rem; }
+.page-heading p { margin: 0.25rem 0 0; color: #706e6b; font-size: 0.8125rem; }
+.actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+    gap: 1rem;
+}
+.panel {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.section-panel { margin-top: 1rem; }
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #dddbda;
+    color: #032d60;
+}
+.panel-header h2 { flex: 1; margin: 0; font-size: 0.9375rem; }
+.panel-header span { color: #706e6b; font-size: 0.75rem; }
+.panel-body { padding: 1rem; }
+.chart {
+    display: flex;
+    align-items: end;
+    gap: 0.6rem;
+    height: 9rem;
+    padding: 1rem;
+}
+.bar { flex: 1; background: #0176d3; border-radius: 0.15rem 0.15rem 0 0; }
+.bar.negative { background: #ba0517; }
+.bar.positive { background: #2e844a; }
+.driver {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 9rem auto;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.75rem;
+}
+.driver i { height: 0.5rem; overflow: hidden; border-radius: 1rem; background: #e5e5e5; }
+.driver em { display: block; height: 100%; background: #ba0517; }
+.form-grid { display: grid; gap: 0.75rem; }
+.button {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid #b0adab;
+    border-radius: 0.25rem;
+    background: #fff;
+    color: #0176d3;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+.button.primary { background: #0176d3; border-color: #0176d3; color: #fff; }
+ul { margin: 0.5rem 0 0; padding-left: 1.1rem; color: #444; font-size: 0.8125rem; }
+@media (max-width: 850px) { .two-column { grid-template-columns: 1fr; } }
+
+/* fragment.css */
+.c360-top-accounts .top-accounts-subtitle {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.c360-top-accounts .top-accounts-hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+.hero-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.hero-mode-toggle {
+  display: inline-flex;
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+}
+.hero-mode-toggle button {
+  border: 0;
+  background: transparent;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+.hero-mode-toggle button.active {
+  background: var(--sf-blue-l);
+  color: var(--navy);
+}
+.hero-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+@media (max-width: 1100px) {
+  .hero-tiles-grid { grid-template-columns: 1fr; }
+}
+.home-priority-zone .hero-tiles-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 900px) {
+  .home-priority-zone .hero-tiles-grid { grid-template-columns: 1fr; }
+}
+.hero-account-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.hero-account-card--clickable {
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.hero-account-card--clickable:hover,
+.hero-account-card--clickable:focus {
+  outline: none;
+  border-color: var(--sf-blue);
+  box-shadow: 0 4px 14px rgba(1, 118, 211, 0.12);
+}
+.hero-card-header {
+  margin: 0 0 12px;
+  padding-right: 28px;
+}
+.hero-account-headline {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.hero-account-meta {
+  margin: 6px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.hero-card-rank {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.hero-row {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--bd);
+}
+.hero-row--compact {
+  padding: 8px 0 12px;
+}
+.hero-row:last-child { border-bottom: 0; }
+.hero-row--model {
+  flex: 1;
+  background: linear-gradient(to bottom, transparent, rgba(1, 118, 211, 0.04));
+  margin: 4px -16px 0;
+  padding: 14px 16px 20px;
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-bottom: 0;
+}
+.hero-row-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.hero-row-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 10px;
+}
+.hero-row-fields--inline .hero-field .hero-val {
+  font-size: 12px;
+  font-weight: 600;
+}
+.hero-row-fields--model {
+  gap: 12px 10px;
+  align-items: stretch;
+}
+.hero-field--model {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.hero-field--model .hero-lbl {
+  min-height: 3.25em;
+  margin-bottom: 8px;
+}
+@media (max-width: 700px) {
+  .hero-row-fields { grid-template-columns: 1fr; }
+  .hero-account-headline { font-size: 1.25rem; }
+}
+.hero-field .hero-lbl {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.hero-field .hero-val {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.hero-field--model .hero-val {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.hero-field--model.hero-field--lead .hero-val {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.hero-metric {
+  display: inline-block;
+}
+.hero-field--model:not(.hero-field--lead) .hero-metric {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.hero-field--model.hero-field--lead .hero-metric {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* fragment.css */
+.c360-material-banner .material-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, var(--sf-blue-l), #fff);
+  border: 1px solid #bfe3fb;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--sf-blue-d);
+  font-weight: 600;
+  box-shadow: var(--shadow);
+}
+.c360-material-banner .material-banner::before {
+  content: "↗";
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* fragment.css */
+.c360-kpi-strip .kpi-grid {
+  margin: 14px 0 6px;
+}
+
+/* fragment.css */
+/* Module-specific overrides — uses shared .alerts styles */
+
+/* fragment.css */
+.c360-portfolio-health .health-row {
+  gap: 10px;
+}
+.c360-portfolio-health .health-row .mtile {
+  flex: 1;
+}
+.c360-portfolio-health .mt-v.good { color: var(--green); }
+.c360-portfolio-health .mt-v.watch { color: var(--amber); }
+.c360-portfolio-health .mt-v.risk { color: var(--red); }
+.home-portfolio-health {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+.c360-portfolio-health .mtile--link {
+  flex: 1;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 12px 14px;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.c360-portfolio-health .mtile--link:hover,
+.c360-portfolio-health .mtile--link:focus {
+  outline: none;
+  border-color: var(--sf-blue);
+  box-shadow: 0 2px 8px rgba(1, 118, 211, 0.1);
+}
+
+/* fragment.css */
+.c360-signal-list {
+  margin-top: 22px;
+}
+
+/* fragment.css */
+.c360-accounts-table {
+  margin-top: 22px;
+}
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.filter-bar button {
+  border: 1px solid var(--bd);
+  background: var(--card);
+  border-radius: 16px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+.filter-bar button.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+.wp-val { color: var(--wp); font-weight: 700; }
+
+/* fragment.css */
+.c360-alert-centre .alert-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.c360-alert-centre .alert-heading h1 {
+  font-size: 22px;
+  margin: 0 0 4px;
+  color: var(--navy);
+}
+.c360-alert-centre .alert-heading p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.c360-alert-centre .intel ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--ink2);
+  font-size: 13px;
+}
+.c360-alert-centre .intel p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--ink2);
+}
+
+/* fragment.css */
+/* Uses shared table styles */
+
+/* fragment.css */
+/* Uses shared table styles */
+
+/* fragment.css */
+.c360-account-detail .acct-hl {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.c360-account-detail .crumb {
+  border: 0;
+  background: none;
+  color: var(--sf-blue);
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+}
+.c360-account-detail .acct-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.c360-account-detail .acct-title > div { flex: 1; min-width: 200px; }
+.c360-account-detail .acct-title h1 { margin: 0; color: var(--navy); font-size: 24px; }
+.c360-account-detail .acct-title p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+.c360-account-detail .acct-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--wp);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+.c360-account-detail .acct-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--bd);
+}
+.c360-account-detail .acct-facts span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.c360-account-detail .acct-facts b { display: block; margin-top: 4px; font-size: 15px; }
+.c360-account-detail .acct-actions { display: flex; gap: 12px; align-items: center; margin-top: 16px; flex-wrap: wrap; }
+.c360-account-detail .hint { font-size: 12px; color: var(--muted); }
+.c360-account-detail .subtabs { display: flex; gap: 4px; border-bottom: 1px solid var(--bd); margin: 16px 0; }
+.c360-account-detail .subtab {
+  padding: 10px 16px;
+  border: 0;
+  background: transparent;
+  color: var(--ink2);
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+.c360-account-detail .subtab.active { color: var(--wp); border-bottom-color: var(--wp); font-weight: 700; }
+.c360-account-detail .callout {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+.c360-account-detail .callout.warn { background: #fef6e6; border: 1px solid #f5ddb0; }
+.c360-account-detail .callout.info { background: #eaf5fe; border: 1px solid #bfe3fb; }
+.c360-account-detail .co-t { color: var(--ink2); }
+.c360-account-detail .mtile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.c360-account-detail .mtile .mt-d { font-size: 12px; font-weight: 700; margin-top: 4px; }
+.c360-account-detail .vol-chart { display: flex; align-items: end; gap: 8px; height: 140px; padding: 16px; }
+.c360-account-detail .vol-chart i { flex: 1; height: 78%; background: var(--sf-blue); }
+.c360-account-detail .vol-chart i:nth-child(2) { height: 88%; }
+.c360-account-detail .vol-chart i:nth-child(3) { height: 76%; }
+.c360-account-detail .vol-chart i:nth-child(4) { height: 70%; }
+.c360-account-detail .vol-chart i:nth-child(5) { height: 64%; }
+.c360-account-detail .vol-chart i:nth-child(6) { height: 58%; }
+.c360-account-detail .vol-chart .dip { background: var(--amber); }
+.c360-account-detail .vol-chart .short { height: 42%; }
+.c360-account-detail .pw-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+}
+.c360-account-detail .fbar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.c360-account-detail .fld label { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+.c360-account-detail .fld select, .c360-account-detail .fake {
+  min-width: 140px;
+  padding: 6px 10px;
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  font-size: 13px;
+  background: #fff;
+}
+.c360-account-detail .metrics3 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.c360-account-detail .metric {
+  padding: 16px;
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  text-align: center;
+  background: #fff;
+}
+.c360-account-detail .metric.neg { border-color: #f3c9c4; background: #fffafa; }
+.c360-account-detail .metric .m-v { font-size: 24px; font-weight: 800; color: var(--navy); }
+.c360-account-detail .metric.neg .m-v { color: var(--red); }
+.c360-account-detail .metric .m-l { font-size: 11px; color: var(--muted); margin-top: 6px; }
+.c360-account-detail .tag-pos, .c360-account-detail .tag-neg {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.c360-account-detail .tag-pos { background: var(--green-l); color: var(--green); }
+.c360-account-detail .tag-neg { background: var(--red-l); color: var(--red); }
+.c360-account-detail tr.driver-row-selected {
+  background: #eaf5fe;
+}
+.c360-account-detail tr.driver-row-selected .driver-link {
+  color: var(--brand-dark, #0a2540);
+}
+.c360-account-detail .driver-link {
+  border: 0;
+  background: none;
+  color: var(--sf-blue);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+.c360-account-detail .opp-box strong { display: block; color: var(--wp); font-size: 20px; margin: 8px 0; }
+.c360-account-detail .note {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #eafaef;
+  border: 1px solid #bfe8d3;
+  border-radius: var(--radius);
+  font-size: 12px;
+  color: var(--ink2);
+}
+.c360-account-detail .slider-fld input[type="range"] { width: 100%; accent-color: var(--wp); }
+.c360-account-detail .slider-val { font-weight: 700; color: var(--navy); }
+.c360-account-detail .calc .row-c {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+}
+.c360-account-detail .calc .row-c.tot { border-top: 2px solid var(--bd); font-weight: 700; }
+.c360-account-detail .c-v.up { color: var(--green); }
+.c360-account-detail .c-v.down { color: var(--red); }
+.c360-account-detail .c-v.wp-val { color: var(--wp); font-size: 18px; font-weight: 700; }
+.c360-account-detail .netbox {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--navy), #014486);
+  color: #fff;
+  text-align: center;
+}
+.c360-account-detail .netbox .n-l { font-size: 11px; opacity: 0.85; text-transform: uppercase; }
+.c360-account-detail .netbox .n-v { font-size: 28px; font-weight: 800; }
+.c360-account-detail .krow { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
+.c360-account-detail .decline-chart-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 0.4fr);
+  gap: 20px;
+  padding: 16px;
+}
+.c360-account-detail .decline-barchart { display: flex; gap: 12px; align-items: flex-end; min-height: 240px; }
+.c360-account-detail .dbc-axis-y {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 224px;
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+}
+.c360-account-detail .dbc-stack {
+  width: 120px;
+  height: 224px;
+  display: flex;
+  flex-direction: column-reverse;
+  border: 1px solid var(--bd);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.c360-account-detail .dbc-seg {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 4px;
+  text-align: center;
+}
+.c360-account-detail .dbc-cost { font-size: 10px; opacity: 0.9; }
+.c360-account-detail .decline-chart-kpis { border-left: 1px solid var(--bd); padding-left: 20px; display: flex; flex-direction: column; justify-content: center; }
+.c360-account-detail .dbc-legend { display: flex; flex-wrap: wrap; gap: 12px 20px; padding: 0 16px 16px; font-size: 12px; color: var(--ink2); }
+.c360-account-detail .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+.c360-account-detail .placeholder-panel {
+  padding: 20px;
+  border: 1px dashed var(--bd);
+  border-radius: var(--radius);
+  background: #fafafa;
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
+}
+@media (max-width: 900px) {
+  .c360-account-detail .acct-facts, .c360-account-detail .mtile-grid, .c360-account-detail .metrics3 { grid-template-columns: repeat(2, 1fr); }
+  .c360-account-detail .decline-chart-row { grid-template-columns: 1fr; }
+  .c360-account-detail .decline-chart-kpis { border-left: 0; border-top: 1px solid var(--bd); padding: 16px 0 0; }
+}
+
+
+.view { display: none; }
+.view.active { display: block; }
+.accounts-sub-panel { display: none; }
+.accounts-sub-panel.active { display: block; }
+.home-priority-zone { margin-bottom: 8px; }
+.home-priority-zone .hero-tiles-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 0;
+}
+@media (max-width: 900px) {
+  .home-priority-zone .hero-tiles-grid { grid-template-columns: 1fr; }
+}
+.home-health-kpi-row {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+@media (max-width: 960px) {
+  .home-health-kpi-row { grid-template-columns: 1fr; }
+}
+.home-health-kpi-row .home-portfolio-health {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.home-health-kpi-row .c360-portfolio-health .health-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.home-health-kpi-row .c360-portfolio-health .health-row .mtile,
+.home-health-kpi-row .c360-portfolio-health .health-row .mtile--link {
+  flex: unset;
+  width: auto;
+}
+@media (max-width: 520px) {
+  .home-health-kpi-row .c360-portfolio-health .health-row {
+    grid-template-columns: 1fr;
+  }
+}
+.home-health-kpi-row .kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.home-operations-snapshot {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--bd);
+}
+.home-operations-snapshot .snapshot-title {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.accounts-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.accounts-subnav button {
+  border: 1px solid var(--bd);
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+.accounts-subnav button.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+.c360-alert-centre .alert-heading .pilot-badge {
+  display: inline-block;
+  margin-top: 0;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--wp);
+  border: 1px solid var(--wp);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+.c360-account-detail .acct-layout {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+  align-items: start;
+}
+.c360-account-detail .acct-side {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.c360-account-detail .acct-side-h h2 { margin: 0; font-size: 16px; color: var(--navy); }
+.c360-account-detail .acct-side-h p { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+.c360-account-detail .acct-side-nav { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; }
+.c360-account-detail .acct-side-nav .subtab {
+  text-align: left;
+  border-bottom: 0;
+  border-radius: var(--radius);
+}
+.c360-account-detail .acct-side-nav .subtab.active {
+  background: var(--sf-blue-l);
+  border-bottom: 0;
+}
+.alert-detail .bar-track {
+  height: 0.5rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #e5e5e5;
+}
+#toast.toast-proto {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.25s;
+}
+#toast.toast-proto.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.accounts-hub-cta {
+  margin: 0 0 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--bd);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+@media (max-width: 900px) {
+  .c360-account-detail .acct-layout { grid-template-columns: 1fr; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="protobar">Customer 360 Accounts Hub — double-click to open · illustrative data only · no Salesforce required</div>
+  <div class="app-shell">
+    <aside class="app-sidebar" aria-label="Customer 360 navigation">
+      <div class="sidebar-brand">
+        <span class="cube" aria-hidden="true"></span>
+        <div><strong>Customer 360</strong><span class="pilot-badge">PILOT</span></div>
+      </div>
+      <nav class="side-nav" id="side-nav">
+        <button type="button" class="side-nav-item active" data-nav-view="overview">Home</button>
+        <button type="button" class="side-nav-item" data-nav-view="alertcentre">Alert Centre <span class="side-count">3</span></button>
+        <button type="button" class="side-nav-item side-nav-placeholder" disabled>Analytics</button>
+        <button type="button" class="side-nav-item side-nav-placeholder" disabled>Customers</button>
+        <button type="button" class="side-nav-item" data-nav-view="allaccounts">All accounts</button>
+        <button type="button" class="side-nav-item" data-nav-view="churn">Churn</button>
+        <button type="button" class="side-nav-item" data-nav-view="crosssell">Cross-sell</button>
+        <button type="button" class="side-nav-item side-nav-placeholder" disabled>Reports</button>
+        <button type="button" class="side-nav-item side-nav-placeholder" disabled>Settings</button>
+      </nav>
+      <div class="sidebar-user">
+        <span class="avatar" title="Sarah Jenkins">SJ</span>
+        <div><strong>Sarah Jenkins</strong><span>RM — Enterprise</span></div>
+      </div>
+    </aside>
+    <div class="app-main">
+      <header class="global-header">
+        <div class="search-wrap">
+          <span aria-hidden="true">&#128269;</span>
+          <input type="search" placeholder="Search customers, alerts, accounts..." aria-label="Search">
+        </div>
+      </header>
+      <main class="page-content">
+        <div class="view active" data-view-panel="overview">
+          <section class="page-heading">
+            <div>
+              <h1>Enterprise Account Hub</h1>
+              <p>Tuesday, 26 August 2026 | 42 accounts | Here's what needs your attention today.</p>
+            </div>
+            <button type="button" class="button" id="export-pdf-btn">Export PDF</button>
+          </section>
+          <div class="home-priority-zone">
+            <section class="c360-module c360-top-accounts" data-module="top-accounts">
+  <p id="hero-subtitle" class="top-accounts-subtitle">Top accounts by predicted change in transaction count</p>
+  <div class="hero-toolbar">
+    <div class="hero-mode-toggle" role="group" aria-label="Hero ranking mode">
+      <button type="button" class="active" data-hero-mode="churn">Churn focus</button>
+      <button type="button" data-hero-mode="crosssell">Cross-sell focus</button>
+    </div>
+    <span class="sub top-accounts-hint">Ranked from portfolio accounts table (mock analytics feed)</span>
+  </div>
+  <div class="hero-tiles-grid" id="hero-tiles-grid" aria-live="polite"></div>
+</section>
+            <div class="accounts-hub-cta">
+              <p style="margin:0;font-size:13px;color:var(--muted);">View all accounts with health, model outputs, and product facts.</p>
+              <button type="button" class="button primary" id="go-accounts-table">Open full accounts table</button>
+            </div>
+            <div class="home-health-kpi-row">
+              <div class="home-portfolio-health"><section class="c360-module c360-portfolio-health card" data-module="portfolio-health">
+  <div class="card-h">
+    <span class="ico" style="background:var(--green);">&#9829;</span>
+    <h2>Portfolio health</h2>
+  </div>
+  <div class="card-b">
+    <div class="row health-row" id="health-tiles"></div>
+    <div class="sect-t">Cross-sell pipeline</div>
+    <div id="pipeline-rows"></div>
+  </div>
+</section></div>
+              <div class="home-kpi-strip" aria-label="Portfolio KPIs">
+                <div class="kpi-grid" id="kpi-grid"></div>
+              </div>
+            </div>
+          </div>
+          <div class="home-operations-snapshot">
+            <h2 class="snapshot-title">Operations snapshot</h2>
+            <div class="material-banner"><span aria-hidden="true">&#8599;</span><span id="material-banner-text"></span></div>
+            <section class="c360-module c360-needs-action card alerts" style="margin-top:16px;">
+              <div class="card-h"><span class="ico" style="background:var(--red);">&#9888;</span><h2>Needs action today</h2><span class="sub">Intraday · Daily · Monthly</span></div>
+              <div id="needs-action-list"></div>
+            </section>
+            <article class="panel section-panel">
+              <div class="panel-header"><h2>My signals</h2><span id="sig-count">5 open</span></div>
+              <div id="signals"></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="view" data-view-panel="alertcentre"><section class="c360-module c360-alert-centre" data-module="alert-centre">
+  <div class="alert-heading">
+    <div>
+      <h1>Alert Centre</h1>
+      <p>Churn alerts for pilot RM group | IF score &lt; -25% AND RM in pilot → Alert + Task + Email</p>
+    </div>
+    <span class="pilot-badge">PILOT</span>
+  </div>
+
+  <div class="filters" id="alert-filters"></div>
+
+  <div class="grid g-2">
+    <article class="card">
+      <div class="card-h">
+        <span class="ico" style="background:var(--amber);">&#9888;</span>
+        <h2>Active alerts</h2>
+        <span class="sub" id="alert-count">4 shown</span>
+      </div>
+      <div class="table-scroll">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th>Score</th>
+              <th>Threshold</th>
+              <th>Alert date</th>
+              <th>Suppression</th>
+              <th>RM task</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="alerts-tbody"></tbody>
+        </table>
+      </div>
+      <div id="alerts-table-expand"></div>
+      <p class="footnote">1-month suppression per merchant after Defer. Status workflow: New → In Review → Action Scheduled → Suppressed.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-h">
+        <span class="ico" style="background:var(--wp);">&#43;</span>
+        <h2>Cross-selling intelligence</h2>
+      </div>
+      <div class="card-b intel">
+        <p><strong>Pipeline value:</strong> GBP 4.8m across pilot accounts</p>
+        <p><strong>Average confidence:</strong> 71%</p>
+        <ul>
+          <li>Smart Routing — Acme Corporation (78%)</li>
+          <li>Tokenisation — InTech Solutions (65%)</li>
+          <li>FX Optimisation Engine — Summit Ventures (62%)</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section></div>
+        <div class="view" data-view-panel="alertdetail"><div id="alert-detail-root" class="alert-detail"></div></div>
+
+        <div class="view" data-view-panel="allaccounts">
+          <div class="accounts-sub-panel active" data-accounts-sub-panel="portfolio">
+            <section class="page-heading">
+              <div>
+                <h1>All accounts</h1>
+                <p><span id="accounts-full-count">10 accounts</span> · filter by portfolio health</p>
+              </div>
+            </section>
+            <div class="c360-accounts-table-hub" data-module="accounts-table-hub">
+  <div class="filter-bar" role="group" aria-label="Portfolio health filter">
+    <button type="button" class="active" data-health-filter="All">All</button>
+    <button type="button" data-health-filter="Healthy">Healthy</button>
+    <button type="button" data-health-filter="Watch">Watch</button>
+    <button type="button" data-health-filter="At risk">At risk</button>
+  </div>
+  <section class="c360-module c360-accounts-table card">
+    <div class="card-h">
+      <span class="ico" style="background:var(--navy);">&#9636;</span>
+      <h2>Portfolio accounts</h2>
+    </div>
+    <div class="table-scroll">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Account</th>
+            <th>Industry</th>
+            <th>Revenue</th>
+            <th>Health index</th>
+            <th>Health</th>
+            <th>Last activity</th>
+            <th>Predicted change in transaction count</th>
+            <th>Top cross-sell opportunity (product)</th>
+            <th>Top cross-sell opportunity (estimated net benefit)</th>
+          </tr>
+        </thead>
+        <tbody id="accounts-full-tbody"></tbody>
+      </table>
+    </div>
+    <div id="accounts-full-expand"></div>
+    <p class="provenance">Snowflake → Analytics Engine → Salesforce | 15-min refresh</p>
+  </section>
+</div>
+          </div>
+          <div class="accounts-sub-panel" data-accounts-sub-panel="churn">
+            <section class="page-heading"><div><h1>Churn</h1><p>Predicted volume compression and retraction, 3-6 months ahead</p></div></section>
+            <section class="c360-module c360-churn-table card" data-module="churn-table">
+  <div class="card-h">
+    <span class="ico" style="background:var(--amber);">&#8681;</span>
+    <h2>Accounts by churn risk</h2>
+  </div>
+  <div class="table-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>Predicted risk</th>
+          <th>Txn count vs last year</th>
+          <th>Top driver</th>
+          <th>Recommended pathway</th>
+        </tr>
+      </thead>
+      <tbody id="churn-tbody"></tbody>
+    </table>
+  </div>
+  <div id="churn-table-expand"></div>
+</section>
+          </div>
+          <div class="accounts-sub-panel" data-accounts-sub-panel="crosssell">
+            <section class="page-heading"><div><h1>Cross-Sell</h1><p>Revenue Boost is the priority product for this phase</p></div></section>
+            <section class="c360-module c360-cross-sell-table card" data-module="cross-sell-table">
+  <div class="card-h">
+    <span class="ico" style="background:var(--wp);">&#43;</span>
+    <h2>Open cross-sell opportunities</h2>
+    <span class="sub">Across your portfolio</span>
+  </div>
+  <div class="table-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>Product</th>
+          <th>Propensity</th>
+          <th>Est. uplift / yr</th>
+          <th>Top driver</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="cross-sell-tbody"></tbody>
+    </table>
+  </div>
+  <div id="crosssell-table-expand"></div>
+</section>
+          </div>
+        </div>
+
+        <div class="view" data-view-panel="account"><section class="c360-module c360-account-detail" data-module="account-detail">
+  <div class="acct-hl">
+    <button type="button" class="crumb" id="acct-back">Home &rsaquo; Enterprise Account Hub</button>
+    <div class="acct-title">
+      <span class="acct-icon" id="acct-init">PH</span>
+      <div>
+        <h1 id="acct-name">Pets at Home</h1>
+        <p id="acct-meta"></p>
+      </div>
+      <span class="pill watch" id="acct-health-pill">Health: Watch</span>
+    </div>
+    <div class="acct-facts" id="acct-facts"></div>
+    <div class="acct-actions">
+      <button type="button" class="btn wp" id="acct-export">Export PowerPoint</button>
+      <span class="hint">Opens from hub tables with entry-context tab (churn / cross-sell).</span>
+    </div>
+  </div>
+
+  <div class="acct-layout">
+    <aside class="acct-side">
+      <div class="acct-side-h"><h2 id="acct-sidebar-name">Pets at Home</h2><p>Account 360</p></div>
+      <nav class="acct-side-nav" id="acct-subtabs">
+        <button type="button" class="subtab active" data-sub="ch">Churn risk</button>
+        <button type="button" class="subtab" data-sub="cx">Cross-sell</button>
+      </nav>
+    </aside>
+    <div class="acct-main">
+      <div class="subview" data-subview="ch" id="acct-sub-ch">
+        <div class="callout info"><span>&#8595;</span><div class="co-t"><b>Churn deep-dive.</b> Output schema v3 · illustrative data.</div></div>
+        <div class="metrics3" id="acct-churn-metrics"></div>
+        <div class="card">
+          <div class="card-h"><h2>Account-level drivers</h2><span class="sub">top predictors — click a driver for mid-level detail</span></div>
+          <div class="table-scroll">
+            <table class="tbl"><thead><tr><th>Driver</th><th>Driver name</th><th>Value</th></tr></thead><tbody id="acct-churn-drivers"></tbody></table>
+          </div>
+        </div>
+        <div class="card hide" id="ch-driver-drill-panel" style="margin-top:16px;">
+          <div class="card-h"><h2 id="ch-drill-title">Driver detail</h2><button type="button" class="btn sm" id="ch-drill-close">Close</button></div>
+          <div class="card-b">
+            <h3>Mid-level drivers</h3>
+            <div class="table-scroll">
+              <table class="tbl"><thead><tr><th>ID</th><th>Value</th></tr></thead><tbody id="ch-drill-tbody"></tbody></table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subview hide" data-subview="cx" id="acct-sub-cx">
+        <div class="callout info"><span>&#43;</span><div class="co-t"><b>Revenue Boost cross-sell deep-dive.</b> Output schema v3</div></div>
+        <div class="fbar">
+          <div class="fld slider-fld"><label>Price per transaction <span class="slider-val" id="cx-price-val">0.05</span></label><input type="range" id="cx-price-slider" min="0.01" max="1" step="0.01" value="0.05"></div>
+          <div class="fld slider-fld"><label>A/B testing split <span class="slider-val" id="cx-ab-val">99%</span></label><input type="range" id="cx-ab-slider" min="1" max="99" step="1" value="99"></div>
+        </div>
+        <div class="grid g-2">
+          <div class="card"><div class="card-h"><h2>Net benefit to merchant</h2><span class="sub">Revenue Boost</span></div><div class="card-b" id="acct-cx-roi"></div></div>
+          <div class="card"><div class="card-h"><h2>Account environment declines</h2><span class="sub" id="acct-peer-segment">vs peer group</span></div><div class="card-b" id="acct-cx-kpis"></div></div>
+        </div>
+        <div class="card" style="margin-top:16px;">
+          <div class="card-h"><h2>Count &amp; value of declines</h2><span class="sub">stacked by decline reason</span></div>
+          <div class="decline-chart-row">
+            <div id="acct-cx-decline-chart"></div>
+            <div class="decline-chart-kpis" id="acct-cx-decline-metrics"></div>
+          </div>
+          <div class="dbc-legend" id="acct-cx-decline-legend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section></div>
+      </main>
+    </div>
+  </div>
+  <div id="toast" class="toast toast-proto" role="status"></div>
+  <script>
+(function () {
+  function ensureHost(container) {
+    if (!container) return null;
+    var host = container.closest('.table-loading-host');
+    if (!host) {
+      host = document.createElement('div');
+      host.className = 'table-loading-host';
+      var parent = container.parentNode;
+      if (container.classList.contains('table-scroll')) {
+        parent.insertBefore(host, container);
+        host.appendChild(container);
+      } else {
+        parent.insertBefore(host, container);
+        host.appendChild(container);
+      }
+    }
+    if (!host.querySelector('.table-loading-overlay')) {
+      var overlay = document.createElement('div');
+      overlay.className = 'table-loading-overlay';
+      overlay.setAttribute('aria-live', 'polite');
+      overlay.innerHTML =
+        '<div class="table-loading-spinner" role="status" aria-label="Loading"></div>' +
+        '<span class="table-loading-label">Loading accounts…</span>';
+      host.insertBefore(overlay, host.firstChild);
+    }
+    return host;
+  }
+
+  function run(options) {
+    var container = options.container;
+    var renderFn = options.renderFn;
+    var delayMs = options.delayMs == null ? 800 : options.delayMs;
+    var label = options.label || 'Loading accounts…';
+    var host = ensureHost(container);
+    if (!host || typeof renderFn !== 'function') return;
+    var overlay = host.querySelector('.table-loading-label');
+    if (overlay) overlay.textContent = label;
+    host.classList.add('is-loading');
+    setTimeout(function () {
+      renderFn();
+      host.classList.remove('is-loading');
+    }, delayMs);
+  }
+
+  window.C360TableLoading = { run: run, ensureHost: ensureHost };
+})();
+
+(function () {
+  var DEFAULT_VISIBLE = 5;
+
+  function sliceRows(key, rows, expanded) {
+    if (!rows || !rows.length) return rows || [];
+    if (expanded[key]) return rows;
+    return rows.slice(0, DEFAULT_VISIBLE);
+  }
+
+  function footerHtml(key, total, expanded) {
+    if (total <= DEFAULT_VISIBLE) return '';
+    if (expanded[key]) {
+      return (
+        '<div class="table-expand-footer">' +
+        '<button type="button" class="btn sm" data-table-collapse="' + key + '">Show first ' + DEFAULT_VISIBLE + ' only</button>' +
+        '</div>'
+      );
+    }
+    return (
+      '<div class="table-expand-footer">' +
+      '<button type="button" class="btn sm" data-table-expand="' + key + '">Show all ' + total + ' results</button>' +
+      '</div>'
+    );
+  }
+
+  window.C360TableExpand = {
+    DEFAULT_VISIBLE: DEFAULT_VISIBLE,
+    sliceRows: sliceRows,
+    footerHtml: footerHtml
+  };
+})();
+
+/** Mock portfolio table for Accounts Hub HTML prototype (illustrative DTOs). */
+
+var ACCOUNTS = [
+  {
+    id: 'willow',
+    name: 'Willow Travel',
+    industry: 'Travel',
+    revenue: 'GBP 188m',
+    healthIndex: 54.1,
+    health: 'At risk',
+    healthClass: 'risk',
+    lastActivity: '2 days ago',
+    predictedTxnChange: '-18% vs LY',
+    predictedTxnChangeSort: -18,
+    topCrossSellProduct: 'FX Optimisation Engine',
+    topCrossSellNetBenefit: 'GBP 0.6m',
+    topCrossSellNetBenefitSort: 600000,
+    risk: 'High',
+    riskClass: 'risk'
+  },
+  {
+    id: 'pets',
+    name: 'Pets at Home',
+    industry: 'Retail',
+    revenue: 'GBP 312m',
+    healthIndex: 68.2,
+    health: 'Watch',
+    healthClass: 'watch',
+    lastActivity: 'Today',
+    predictedTxnChange: '-9% vs LY',
+    predictedTxnChangeSort: -9,
+    topCrossSellProduct: 'Revenue Boost',
+    topCrossSellNetBenefit: 'GBP 1.4m',
+    topCrossSellNetBenefitSort: 1400000,
+    risk: 'Medium',
+    riskClass: 'watch'
+  },
+  {
+    id: 'deep-blue',
+    name: 'Deep Blue Retail',
+    industry: 'Retail',
+    revenue: 'GBP 256m',
+    healthIndex: 61.7,
+    health: 'Watch',
+    healthClass: 'watch',
+    lastActivity: 'Yesterday',
+    predictedTxnChange: '-5% vs LY',
+    predictedTxnChangeSort: -5,
+    topCrossSellProduct: 'FraudSight',
+    topCrossSellNetBenefit: 'GBP 0.4m',
+    topCrossSellNetBenefitSort: 400000,
+    risk: 'Medium',
+    riskClass: 'watch'
+  },
+  {
+    id: 'acme',
+    name: 'Acme Corporation',
+    industry: 'Enterprise',
+    revenue: 'GBP 420m',
+    healthIndex: 58.3,
+    health: 'Watch',
+    healthClass: 'watch',
+    lastActivity: '3 days ago',
+    predictedTxnChange: '-4% vs LY',
+    predictedTxnChangeSort: -4,
+    topCrossSellProduct: 'Smart Routing',
+    topCrossSellNetBenefit: 'GBP 2.1m',
+    topCrossSellNetBenefitSort: 2100000,
+    risk: 'High',
+    riskClass: 'risk'
+  },
+  {
+    id: 'intech',
+    name: 'InTech Solutions',
+    industry: 'Technology',
+    revenue: 'USD 290m',
+    healthIndex: 76.1,
+    health: 'Healthy',
+    healthClass: 'good',
+    lastActivity: 'Today',
+    predictedTxnChange: '-2% vs LY',
+    predictedTxnChangeSort: -2,
+    topCrossSellProduct: 'Tokenisation',
+    topCrossSellNetBenefit: 'USD 1.4m',
+    topCrossSellNetBenefitSort: 1400000,
+    risk: 'Low',
+    riskClass: 'good'
+  },
+  {
+    id: 'northwind',
+    name: 'Northwind Foods',
+    industry: 'Grocery',
+    revenue: 'GBP 141m',
+    healthIndex: 82.4,
+    health: 'Healthy',
+    healthClass: 'good',
+    lastActivity: '4 days ago',
+    predictedTxnChange: '+1% vs LY',
+    predictedTxnChangeSort: 1,
+    topCrossSellProduct: 'Revenue Boost',
+    topCrossSellNetBenefit: 'GBP 0.7m',
+    topCrossSellNetBenefitSort: 700000,
+    risk: 'Low',
+    riskClass: 'good'
+  },
+  {
+    id: 'aurora',
+    name: 'Aurora Gaming',
+    industry: 'Gaming',
+    revenue: 'GBP 204m',
+    healthIndex: 79.8,
+    health: 'Healthy',
+    healthClass: 'good',
+    lastActivity: 'Today',
+    predictedTxnChange: '+2% vs LY',
+    predictedTxnChangeSort: 2,
+    topCrossSellProduct: 'FX',
+    topCrossSellNetBenefit: 'GBP 0.9m',
+    topCrossSellNetBenefitSort: 900000,
+    risk: 'Low',
+    riskClass: 'good'
+  },
+  {
+    id: 'harbor',
+    name: 'Harbor Logistics',
+    industry: 'Logistics',
+    revenue: 'GBP 97m',
+    healthIndex: 49.6,
+    health: 'At risk',
+    healthClass: 'risk',
+    lastActivity: '6 days ago',
+    predictedTxnChange: '-12% vs LY',
+    predictedTxnChangeSort: -12,
+    topCrossSellProduct: 'Instant Payout APIs',
+    topCrossSellNetBenefit: 'GBP 0.3m',
+    topCrossSellNetBenefitSort: 300000,
+    risk: 'High',
+    riskClass: 'risk'
+  },
+  {
+    id: 'summit',
+    name: 'Summit Hotels',
+    industry: 'Hospitality',
+    revenue: 'EUR 165m',
+    healthIndex: 71.3,
+    health: 'Watch',
+    healthClass: 'watch',
+    lastActivity: 'Yesterday',
+    predictedTxnChange: '-3% vs LY',
+    predictedTxnChangeSort: -3,
+    topCrossSellProduct: 'FX',
+    topCrossSellNetBenefit: 'EUR 0.5m',
+    topCrossSellNetBenefitSort: 500000,
+    risk: 'Medium',
+    riskClass: 'watch'
+  },
+  {
+    id: 'vertex',
+    name: 'Vertex Media',
+    industry: 'Media',
+    revenue: 'GBP 118m',
+    healthIndex: 84.2,
+    health: 'Healthy',
+    healthClass: 'good',
+    lastActivity: 'Today',
+    predictedTxnChange: '+3% vs LY',
+    predictedTxnChangeSort: 3,
+    topCrossSellProduct: 'Tokenisation',
+    topCrossSellNetBenefit: 'GBP 0.5m',
+    topCrossSellNetBenefitSort: 500000,
+    risk: 'Low',
+    riskClass: 'good'
+  }
+];
+
+var PORTFOLIO_HEALTH_FILTERS = ['All', 'Healthy', 'Watch', 'At risk'];
+
+var CROSS_SELL_ROWS = [
+  { account: 'Pets at Home', product: 'Revenue Boost', propensity: 'High', propensityClass: 'risk', uplift: 'GBP 1.4m', driver: 'High 05-decline volume' },
+  { account: 'Acme Corporation', product: 'Smart Routing', propensity: 'High', propensityClass: 'risk', uplift: 'GBP 2.1m', driver: 'Auth-rate volatility' },
+  { account: 'Northwind Foods', product: 'Revenue Boost', propensity: 'Medium', propensityClass: 'watch', uplift: 'GBP 0.7m', driver: 'Non-MIT scheme fees' },
+  { account: 'Aurora Gaming', product: 'FX', propensity: 'Medium', propensityClass: 'watch', uplift: 'GBP 0.9m', driver: '6-currency settlement' },
+  { account: 'InTech Solutions', product: 'Tokenisation', propensity: 'Medium', propensityClass: 'watch', uplift: 'USD 1.4m', driver: 'Card-on-file expansion' }
+];
+
+var CHURN_ROWS = [
+  { account: 'Willow Travel', risk: 'High', riskClass: 'risk', txnChange: '-18% vs LY', driver: 'Brazil market under plan', pathway: 'Retention review' },
+  { account: 'Harbor Logistics', risk: 'High', riskClass: 'risk', txnChange: '-12% vs LY', driver: 'Carrier contract loss', pathway: 'Executive escalation' },
+  { account: 'Pets at Home', risk: 'Medium', riskClass: 'watch', txnChange: '-9% vs LY', driver: 'Brazil compression', pathway: 'Pricing review' },
+  { account: 'Deep Blue Retail', risk: 'Medium', riskClass: 'watch', txnChange: '-5% vs LY', driver: '05-decline and servicing', pathway: 'Auth optimisation' },
+  { account: 'Acme Corporation', risk: 'High', riskClass: 'risk', txnChange: '-4% vs LY', driver: 'UK gateway compression', pathway: 'Retention review' }
+];
+
+var ALERTS = [
+  { id: 'alert-acme', account: 'Acme Corporation', score: -32, alertDate: '26 Aug 2026', suppression: 'None', rmNotification: 'Email sent', status: 'New' },
+  { id: 'alert-intech', account: 'InTech Solutions', score: -28, alertDate: '25 Aug 2026', suppression: 'None', rmNotification: 'Email sent', status: 'In Review' },
+  { id: 'alert-willow', account: 'Willow Travel', score: -22, alertDate: '24 Aug 2026', suppression: 'Active (12d left)', rmNotification: 'Not notified', status: 'Suppressed' },
+  { id: 'alert-pets', account: 'Pets at Home', score: -19, alertDate: '23 Aug 2026', suppression: 'None', rmNotification: 'Pending', status: 'Action Scheduled' }
+];
+
+var ALERT_STATUS_OPTIONS = ['All', 'New', 'In Review', 'Action Scheduled', 'Suppressed'];
+
+ACCOUNTS.forEach(function (a) {
+  if (!a.volume) a.volume = a.revenue;
+  if (!a.crossSell) a.crossSell = a.topCrossSellProduct;
+  if (a.pathways === undefined) a.pathways = 1;
+  if (a.healthDelta === undefined) {
+    a.healthDelta = a.predictedTxnChangeSort < 0 ? String(a.predictedTxnChangeSort) : '+' + a.predictedTxnChangeSort;
+  }
+});
+
+var PORTFOLIO_HEALTH = (function () {
+  var healthy = 0;
+  var watch = 0;
+  var atRisk = 0;
+  ACCOUNTS.forEach(function (a) {
+    if (a.health === 'Healthy') healthy++;
+    else if (a.health === 'Watch') watch++;
+    else if (a.health === 'At risk') atRisk++;
+  });
+  return {
+    healthy: healthy,
+    watch: watch,
+    atRisk: atRisk,
+    pipeline: [
+      { name: 'Revenue Boost', detail: '6 live opportunities', width: '72%', value: 'GBP 4.1m' },
+      { name: 'FX', detail: '3 live opportunities', width: '40%', value: 'GBP 2.3m' },
+      { name: 'FraudSight', detail: '1 live opportunity', width: '16%', value: 'GBP 0.6m' }
+    ]
+  };
+})();
+
+var SIGNALS = [
+  { id: 'pets-boost', category: 'Cross-sell', badgeClass: 'badge cross-sell', title: 'Pets at Home - Revenue Boost and MAU candidate', description: 'High 05-decline volume and ageing card data suitable for Managed Account Updater.', signalStatus: 'open' },
+  { id: 'willow-risk', category: 'Churn', badgeClass: 'badge churn', title: 'Willow Travel - Volume compression -18% / 60 days', description: 'Brazil market under plan; contract renewal window approaching.', signalStatus: 'open' },
+  { id: 'northwind-boost', category: 'Cross-sell', badgeClass: 'badge cross-sell', title: 'Northwind Foods - Revenue Boost', description: 'Non-MIT scheme fees rising on recurring transactions.', signalStatus: 'open' },
+  { id: 'deep-blue-risk', category: 'Churn', badgeClass: 'badge churn', title: 'Deep Blue Retail - Auth-rate decline and servicing tickets up', description: 'Auth rate down 4.1 percentage points over three days; three open tickets.', signalStatus: 'open' },
+  { id: 'aurora-fx', category: 'Cross-sell', badgeClass: 'badge fx', title: 'Aurora Gaming - FX opportunity', description: 'Settlement across six currencies with material FX exposure.', signalStatus: 'open' }
+];
+
+var KPI_TILES = [
+  { label: 'Total accounts', value: '42', detail: 'Enterprise and eCommerce', attention: false },
+  { label: 'Composite health index', value: '72.4', detail: '+0.6 vs last month', attention: false },
+  { label: 'Signals to action', value: '5', detail: '2 churn | 3 cross-sell', attention: true, dynamic: true },
+  { label: 'At-risk accounts', value: '3', detail: 'Watch list expanded', attention: false },
+  { label: 'Revenue at risk', value: 'GBP 2.8m', detail: 'Pilot portfolio', attention: false }
+];
+
+var NEEDS_ACTION_ITEMS = [
+  { id: 'na-1', severity: 'now', severityLabel: 'Intraday', heading: 'Pets at Home - volume down 24% today', body: 'Possible incident or traffic shift. Brazil and UK gateways affected.', meta: 'Detected 08:12 | MID-level drop across 4 MIDs', accountName: 'Pets at Home', buttonLabel: 'Review', primary: true },
+  { id: 'na-2', severity: 'day', severityLabel: 'Daily', heading: 'Deep Blue Retail - 3-day auth-rate decline', body: 'Concentrated on 05 do-not-honour decline code.', meta: 'Rolling 3-day window', accountName: 'Deep Blue Retail', buttonLabel: 'Open', primary: false },
+  { id: 'na-3', severity: 'month', severityLabel: 'Monthly', heading: 'Willow Travel - compression risk rising to High', body: 'Volume down 18% over 60 days; Brazil market under plan.', meta: 'Monthly churn model refresh', accountName: 'Willow Travel', buttonLabel: 'Open', primary: false }
+];
+
+var MATERIAL_BANNER = {
+  message: 'Material changes: 3 accounts moved to At risk this week | Revenue at risk GBP 2.8m'
+};
+var PATHWAYS = [
+  { id: 'pets-boost', account: 'Pets at Home', name: 'Revenue Boost pitch', stage: 'Solutioning', owner: 'Implementation Manager', date: '12 Sep', status: 'On track', statusClass: 'good', scope: 'me' },
+  { id: 'pets-review', account: 'Pets at Home', name: 'Pricing and performance review', stage: 'CDD review', owner: 'CDD / Legal', date: '20 Sep', status: 'At risk', statusClass: 'watch', scope: 'me' },
+  { id: 'willow-review', account: 'Willow Travel', name: 'Pricing review', stage: 'Discovery', owner: 'Relationship Manager', date: '28 Sep', status: 'On track', statusClass: 'good', scope: 'me' }
+];
+
+var DECLINE_CHART_COLORS = ['#0176d3', '#ba0517', '#dd7a01', '#2e844a', '#706e6b'];
+
+function fmtMoney(n) {
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+  if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
+  return '$' + n;
+}
+
+var ALERT_DETAIL_BY_ID = {
+  'alert-acme': {
+    id: 'alert-acme', account: 'Acme Corporation', score: -32, arr: 'GBP 14.2m', merchantCount: 42,
+    trajectory: [12, 8, 4, -2, -8, -18],
+    drivers: [
+      { label: 'Volume compression - UK gateway', impact: '+38%', width: '88%' },
+      { label: 'Auth-rate decline on 05 code', impact: '+24%', width: '62%' },
+      { label: 'Competitor pricing signal', impact: '-8%', width: '28%' }
+    ],
+    crossSell: { pipeline: 'GBP 2.1m', confidence: 78, products: ['Smart Routing', 'FX Optimisation Engine'] }
+  },
+  'alert-intech': {
+    id: 'alert-intech', account: 'InTech Solutions', score: -28, arr: 'USD 9.8m', merchantCount: 28,
+    trajectory: [6, 2, -1, -6, -12, -22],
+    drivers: [
+      { label: 'Settlement delay complaints', impact: '+31%', width: '76%' },
+      { label: 'FX exposure unmanaged', impact: '+18%', width: '48%' }
+    ],
+    crossSell: { pipeline: 'USD 1.4m', confidence: 65, products: ['Tokenisation', 'Instant Payout APIs'] }
+  },
+  'alert-willow': {
+    id: 'alert-willow', account: 'Willow Travel', score: -22, arr: 'GBP 6.1m', merchantCount: 12,
+    trajectory: [4, 0, -4, -10, -16, -22],
+    drivers: [{ label: 'Brazil volume compression', impact: '+42%', width: '90%' }],
+    crossSell: { pipeline: 'GBP 0.6m', confidence: 58, products: ['FX Optimisation Engine'] }
+  },
+  'alert-pets': {
+    id: 'alert-pets', account: 'Pets at Home', score: -19, arr: 'GBP 11.3m', merchantCount: 18,
+    trajectory: [8, 6, 2, -2, -6, -12],
+    drivers: [{ label: 'Intraday volume drop', impact: '+35%', width: '80%' }],
+    crossSell: { pipeline: 'GBP 1.4m', confidence: 82, products: ['Revenue Boost', 'Managed Account Updater'] }
+  }
+};
+
+ALERTS.forEach(function (a) {
+  if (a.threshold === undefined) a.threshold = -25;
+  if (a.rmTask === undefined) a.rmTask = a.rmNotification || 'Task created';
+});
+
+ACCOUNTS.forEach(function (a) {
+  if (a.pathways === undefined) a.pathways = 1;
+});
+
+KPI_TILES.forEach(function (t) {
+  if (t.label === 'Signals to action') t.dynamic = true;
+});
+/** Schema v3 account detail mock DTOs (aligned to C360 Prototype v5). */
+
+var CHURN_SCORE_LABEL = 'Predicted change in transaction count in 3-6 months';
+
+function formatDrillValue(driverValue, index) {
+  var value = String(driverValue);
+  if (value === 'Yes' || value === 'No') return index % 4 === 0 ? 'No' : 'Yes';
+  if (value === 'Rising') return ['Low', 'Medium', 'High', 'Rising'][index % 4];
+  if (value.indexOf('days') !== -1) {
+    var baseDays = parseInt(value, 10) || 0;
+    return Math.max(1, baseDays + (index - 5)) + ' days';
+  }
+  if (value.indexOf('%') !== -1) {
+    var basePct = parseFloat(value) || 0;
+    return (Math.round((basePct + (index - 5) * 0.7) * 10) / 10) + '%';
+  }
+  if (/^\d+$/.test(value)) return String(Math.max(0, parseInt(value, 10) + (index - 5)));
+  return value;
+}
+
+function expandDrillRows(driverValue, existing, idBase) {
+  var rows = [];
+  for (var i = 0; i < 10; i++) {
+    var source = existing && existing[i];
+    rows.push({
+      id: (source && (source.id || source.humanCustomerId)) || ('HC-' + idBase + String(i + 1).padStart(3, '0')),
+      value: i === 0 ? String(driverValue) : formatDrillValue(driverValue, i)
+    });
+  }
+  return rows;
+}
+
+function normalizeDriverDrilldown(detail, accountSeed) {
+  var drill = {};
+  var drivers = (detail.positiveDrivers || []).concat(detail.negativeDrivers || []);
+  drivers.forEach(function (driver, index) {
+    var existing = detail.driverDrilldown && detail.driverDrilldown[driver.name];
+    drill[driver.name] = expandDrillRows(driver.value, existing, accountSeed + index * 10);
+  });
+  return drill;
+}
+
+var ACCOUNT_DETAIL = {
+    'Pets at Home': {
+      accountId: '1',
+      merchantCount: 18,
+      market: 'GBR',
+      authRate: '81.2%',
+      chargebacks: '0.41%',
+      servicing: '2',
+      volumeTrend: '-6%',
+      volumeTrendNote: 'QoQ decline',
+      authTrend: 'In range',
+      cbTrend: 'Below threshold',
+      servicingNote: 'open tickets',
+      churnScore: 0.3,
+      churnScorePct: '30%',
+      txnTrend1m: '-4%',
+      txnTrend3m: '-18%',
+      txnTrend6m: '-32%',
+      positiveDrivers: [
+        { name: 'Authorisation rate', value: '94.2%' },
+        { name: 'Pricing review completed flag', value: 'Yes' },
+        { name: 'NPS / CSAT / OSAT score', value: '72' }
+      ],
+      negativeDrivers: [
+        { name: 'Pricing adjustment count (in past 1-3 months)', value: '4' },
+        { name: 'Transaction decline percentage (in past 3-6 months)', value: '-18%' },
+        { name: 'Dispute rate', value: '0.82%' }
+      ],
+      driverDrilldown: {
+        'Authorisation rate': [
+          { humanCustomerId: 'HC-100234', authRateAvg6m: '94.2%' },
+          { humanCustomerId: 'HC-100235', authRateAvg6m: '91.8%' },
+          { humanCustomerId: 'HC-100236', authRateAvg6m: '89.4%' }
+        ],
+        'Pricing adjustment count (in past 1-3 months)': [
+          { humanCustomerId: 'HC-100234', authRateAvg6m: '94.2%' },
+          { humanCustomerId: 'HC-100237', authRateAvg6m: '87.1%' }
+        ],
+        'Transaction decline percentage (in past 3-6 months)': [
+          { humanCustomerId: 'HC-100238', authRateAvg6m: '82.6%' },
+          { humanCustomerId: 'HC-100239', authRateAvg6m: '79.3%' },
+          { humanCustomerId: 'HC-100240', authRateAvg6m: '76.8%' }
+        ],
+        'Dispute rate': [
+          { humanCustomerId: 'HC-100241', authRateAvg6m: '88.5%' }
+        ],
+        'Pricing review completed flag': [
+          { humanCustomerId: 'HC-100234', authRateAvg6m: '94.2%' }
+        ],
+        'NPS / CSAT / OSAT score': [
+          { humanCustomerId: 'HC-100242', authRateAvg6m: '93.1%' },
+          { humanCustomerId: 'HC-100243', authRateAvg6m: '90.7%' }
+        ]
+      },
+      mids: [
+        { id: '123', name: 'ABC', negName: 'Transaction decline percentage (in past 3-6 months)', negValue: '-18%', posName: 'Authorisation rate', posValue: '94.2%' },
+        { id: '456', name: 'DEF', negName: 'Transaction decline percentage (in past 3-6 months)', negValue: '-20%', posName: 'Authorisation rate', posValue: '88.1%' },
+        { id: '789', name: 'XYZ', negName: 'Transaction decline percentage (in past 3-6 months)', negValue: '-32%', posName: 'NPS / CSAT / OSAT score', posValue: '81' }
+      ],
+      crossSell: {
+        likelihoodToAcquire: 'High',
+        peerSegmentId: 'PS-GBR-RET',
+        summary: {
+          netBenefit: 187500,
+          cost: 62000,
+          tokenisationImpact: 14500,
+          grossUplift: 312000,
+          inScopeVolume: 4850000,
+          inScopeTransactions: 97000,
+          declineCodeList: '05, 51, 54, 82, N7, 608',
+          merchantApprovalRate: '81.2%',
+          peerApprovalRate: '84.7%',
+          merchantVsPeer: '-3.50%',
+          recoverableSplitMerchant: '34%',
+          recoverableSplitPeer: '29%',
+          valueOfDeclines: '$0.84M',
+          countDeclines: '12K'
+        },
+        slices: [
+          { credential: 'MIT', channel: 'CNP', scheme: 'Visa', market: 'GBR', volume: '$1.42M', transactions: '28,400', approval: '80.9%', recMerchant: '3.6%', peerApproval: '85.1%', recPeer: '3.1%' },
+          { credential: 'CIT', channel: 'CNP', scheme: 'Visa', market: 'GBR', volume: '$980K', transactions: '19,600', approval: '82.1%', recMerchant: '2.8%', peerApproval: '83.9%', recPeer: '2.7%' }
+        ],
+        declineCodes: [
+          { code: '54', name: 'Expired card', volume: '$842K', count: '12,450', countNum: 12450, color: '#dd7a01', shareMerchant: '38%', sharePeer: '29%', curable: 'Y', curePct: '10%', eligible: 'Yes', recoveredRevenue: '$84K' },
+          { code: '51', name: 'Insufficient funds', volume: '$616K', count: '9,820', countNum: 9820, color: '#ba0517', shareMerchant: '27%', sharePeer: '31%', curable: 'N', curePct: '—', eligible: 'No', recoveredRevenue: '—' },
+          { code: '05', name: 'Do not honour', volume: '$478K', count: '7,310', countNum: 7310, color: '#0176d3', shareMerchant: '21%', sharePeer: '24%', curable: 'N', curePct: '—', eligible: 'No', recoveredRevenue: '—' }
+        ],
+        schemeInterchangeBenefit: 42000,
+        productDrivers: [
+          { label: 'High do-not-honour / 05 declines', sub: 'recoverable via intelligent routing', pct: '41%', width: '84%' },
+          { label: 'Non-MIT scheme fees', sub: 'recurring transactions mis-flagged', pct: '27%', width: '58%' },
+          { label: 'Ageing card data (MAU)', sub: 'expired-card declines suitable for Account Updater', pct: '19%', width: '44%' }
+        ]
+      }
+    },
+    'Willow Travel': {
+      accountId: '2',
+      merchantCount: 12,
+      market: 'GBR',
+      authRate: '78.4%',
+      chargebacks: '0.52%',
+      servicing: '4',
+      volumeTrend: '-18%',
+      volumeTrendNote: '60-day compression',
+      authTrend: 'Below peer',
+      cbTrend: 'Watch',
+      servicingNote: 'open tickets',
+      churnScore: 0.5,
+      churnScorePct: '50%',
+      txnTrend1m: '-8%',
+      txnTrend3m: '-32%',
+      txnTrend6m: '-41%',
+      positiveDrivers: [
+        { name: 'Authorisation rate', value: '88.1%' },
+        { name: 'Product count', value: '3' },
+        { name: 'Pricing review completed flag', value: 'Yes' }
+      ],
+      negativeDrivers: [
+        { name: 'Pricing adjustment count (in past 1-3 months)', value: '7' },
+        { name: 'Transaction decline (in past 3-6 months)', value: '-32%' },
+        { name: 'Complaint resolution time', value: '14 days' }
+      ],
+      driverDrilldown: {
+        'Authorisation rate': [
+          { humanCustomerId: 'HC-200114', authRateAvg6m: '88.1%' },
+          { humanCustomerId: 'HC-200115', authRateAvg6m: '85.4%' }
+        ],
+        'Transaction decline (in past 3-6 months)': [
+          { humanCustomerId: 'HC-200116', authRateAvg6m: '74.2%' },
+          { humanCustomerId: 'HC-200117', authRateAvg6m: '71.8%' }
+        ],
+        'Pricing adjustment count (in past 1-3 months)': [
+          { humanCustomerId: 'HC-200118', authRateAvg6m: '83.6%' }
+        ],
+        'Complaint resolution time': [
+          { humanCustomerId: 'HC-200119', authRateAvg6m: '80.9%' }
+        ],
+        'Product count': [
+          { humanCustomerId: 'HC-200120', authRateAvg6m: '86.7%' }
+        ],
+        'Pricing review completed flag': [
+          { humanCustomerId: 'HC-200121', authRateAvg6m: '89.2%' }
+        ]
+      },
+      mids: [
+        { id: '201', name: 'Willow UK', negName: 'Transaction decline (in past 3-6 months)', negValue: '-32%', posName: 'Product count', posValue: '3' },
+        { id: '202', name: 'Willow BR', negName: 'Pricing adjustment count (in past 1-3 months)', negValue: '7', posName: 'Authorisation rate', posValue: '88.1%' }
+      ],
+      crossSell: {
+        likelihoodToAcquire: 'Medium',
+        peerSegmentId: 'PS-GBR-TRV',
+        summary: {
+          netBenefit: 94000,
+          cost: 41000,
+          tokenisationImpact: 0,
+          grossUplift: 158000,
+          inScopeVolume: 2210000,
+          inScopeTransactions: 28000,
+          declineCodeList: '05, 51, 54, 14, 65',
+          merchantApprovalRate: '77.6%',
+          peerApprovalRate: '80.1%',
+          merchantVsPeer: '-2.50%',
+          recoverableSplitMerchant: '41%',
+          recoverableSplitPeer: '33%',
+          valueOfDeclines: '$0.52M',
+          countDeclines: '8K'
+        },
+        slices: [
+          { credential: 'MIT', channel: 'CNP', scheme: 'Visa', market: 'GBR', volume: '$620K', transactions: '12,400', approval: '77.1%', recMerchant: '5.2%', peerApproval: '79.8%', recPeer: '4.8%' }
+        ],
+        declineCodes: [
+          { code: '54', name: 'Expired card', volume: '$125K', count: '1,860', countNum: 1860, color: '#dd7a01', shareMerchant: '44%', sharePeer: '33%', curable: 'Y', curePct: '8%', eligible: 'Yes', recoveredRevenue: '$10K' },
+          { code: '51', name: 'Insufficient funds', volume: '$89K', count: '1,124', countNum: 1124, color: '#ba0517', shareMerchant: '31%', sharePeer: '28%', curable: 'N', curePct: '—', eligible: 'No', recoveredRevenue: '—' }
+        ],
+        schemeInterchangeBenefit: 18000,
+        productDrivers: [
+          { label: 'Brazil market under plan', sub: 'volume compression risk', pct: '38%', width: '76%' }
+        ]
+      }
+    },
+    'Deep Blue Retail': {
+      accountId: '3',
+      merchantCount: 9,
+      market: 'GBR',
+      authRate: '86.3%',
+      chargebacks: '0.38%',
+      servicing: '3',
+      volumeTrend: '-5%',
+      volumeTrendNote: 'QoQ decline',
+      authTrend: 'In range',
+      cbTrend: 'Below threshold',
+      servicingNote: 'open tickets',
+      churnScore: 0.2,
+      churnScorePct: '20%',
+      txnTrend1m: '-2%',
+      txnTrend3m: '-8%',
+      txnTrend6m: '-15%',
+      positiveDrivers: [
+        { name: 'NPS / CSAT / OSAT score', value: '81' },
+        { name: 'Product count', value: '10' },
+        { name: 'Authorisation rate', value: '91.5%' }
+      ],
+      negativeDrivers: [
+        { name: 'Transaction decline percentage (in past 3-6 months)', value: '-8%' },
+        { name: 'Pricing adjustment count (in past 1-3 months)', value: '1' },
+        { name: 'Complaint resolution time', value: '6 days' }
+      ],
+      driverDrilldown: {
+        'NPS / CSAT / OSAT score': [
+          { humanCustomerId: 'HC-300201', authRateAvg6m: '91.5%' },
+          { humanCustomerId: 'HC-300202', authRateAvg6m: '90.2%' }
+        ],
+        'Transaction decline percentage (in past 3-6 months)': [
+          { humanCustomerId: 'HC-300203', authRateAvg6m: '86.4%' }
+        ],
+        'Authorisation rate': [
+          { humanCustomerId: 'HC-300204', authRateAvg6m: '91.5%' }
+        ],
+        'Product count': [
+          { humanCustomerId: 'HC-300205', authRateAvg6m: '92.8%' }
+        ]
+      },
+      mids: [
+        { id: '301', name: 'Deep Blue Main', negName: 'Transaction decline percentage (in past 3-6 months)', negValue: '-8%', posName: 'NPS / CSAT / OSAT score', posValue: '81' }
+      ],
+      crossSell: {
+        likelihoodToAcquire: 'Medium',
+        peerSegmentId: 'PS-GBR-RET',
+        summary: {
+          netBenefit: 412000,
+          cost: 118000,
+          tokenisationImpact: 28700,
+          grossUplift: 645000,
+          inScopeVolume: 9120000,
+          inScopeTransactions: 182400,
+          declineCodeList: '05, 51, 54, 82, N7, 14, 608',
+          merchantApprovalRate: '86.3%',
+          peerApprovalRate: '88.1%',
+          merchantVsPeer: '-1.80%',
+          recoverableSplitMerchant: '22%',
+          recoverableSplitPeer: '31%',
+          valueOfDeclines: '$1.2M',
+          countDeclines: '18K'
+        },
+        slices: [
+          { credential: 'MIT', channel: 'CNP', scheme: 'Visa', market: 'GBR', volume: '$2.1M', transactions: '42,000', approval: '86.1%', recMerchant: '2.0%', peerApproval: '87.9%', recPeer: '1.9%' }
+        ],
+        declineCodes: [
+          { code: '54', name: 'Expired card', volume: '$2.1M', count: '24,800', countNum: 24800, color: '#dd7a01', shareMerchant: '52%', sharePeer: '41%', curable: 'Y', curePct: '12%', eligible: 'Yes', recoveredRevenue: '$252K' }
+        ],
+        schemeInterchangeBenefit: 95000,
+        productDrivers: [
+          { label: '05-decline and servicing', sub: 'auth-rate dip concentrated on do-not-honour', pct: '35%', width: '70%' }
+        ]
+      }
+    },
+    'Northwind Foods': {
+      accountId: '4',
+      merchantCount: 6,
+      market: 'GBR',
+      authRate: '79.8%',
+      chargebacks: '0.35%',
+      servicing: '1',
+      volumeTrend: '+2%',
+      volumeTrendNote: 'Stable',
+      authTrend: 'In range',
+      cbTrend: 'Below threshold',
+      servicingNote: 'open tickets',
+      churnScore: 0.15,
+      churnScorePct: '15%',
+      txnTrend1m: '+1%',
+      txnTrend3m: '-2%',
+      txnTrend6m: '-4%',
+      positiveDrivers: [
+        { name: 'Authorisation rate', value: '92.0%' },
+        { name: 'Product count', value: '5' },
+        { name: 'NPS / CSAT / OSAT score', value: '78' }
+      ],
+      negativeDrivers: [
+        { name: 'Non-MIT scheme fees', value: 'Rising' },
+        { name: 'Transaction decline percentage (in past 3-6 months)', value: '-4%' },
+        { name: 'Dispute rate', value: '0.45%' }
+      ],
+      driverDrilldown: {
+        'Authorisation rate': [
+          { humanCustomerId: 'HC-400301', authRateAvg6m: '92.0%' }
+        ],
+        'Non-MIT scheme fees': [
+          { humanCustomerId: 'HC-400302', authRateAvg6m: '79.8%' },
+          { humanCustomerId: 'HC-400303', authRateAvg6m: '78.2%' }
+        ],
+        'Transaction decline percentage (in past 3-6 months)': [
+          { humanCustomerId: 'HC-400304', authRateAvg6m: '81.4%' }
+        ],
+        'Dispute rate': [
+          { humanCustomerId: 'HC-400305', authRateAvg6m: '80.1%' }
+        ],
+        'NPS / CSAT / OSAT score': [
+          { humanCustomerId: 'HC-400306', authRateAvg6m: '88.3%' }
+        ],
+        'Product count': [
+          { humanCustomerId: 'HC-400307', authRateAvg6m: '90.5%' }
+        ]
+      },
+      mids: [
+        { id: '401', name: 'Northwind Main', negName: 'Non-MIT scheme fees', negValue: 'Rising', posName: 'Authorisation rate', posValue: '92.0%' }
+      ],
+      crossSell: {
+        likelihoodToAcquire: 'Medium',
+        peerSegmentId: 'PS-GBR-RET',
+        summary: {
+          netBenefit: 120000,
+          cost: 48000,
+          tokenisationImpact: 8200,
+          grossUplift: 195000,
+          inScopeVolume: 1850000,
+          inScopeTransactions: 42000,
+          declineCodeList: '05, 51, 54',
+          merchantApprovalRate: '79.8%',
+          peerApprovalRate: '84.7%',
+          merchantVsPeer: '-4.90%',
+          recoverableSplitMerchant: '36%',
+          recoverableSplitPeer: '29%',
+          valueOfDeclines: '$0.45M',
+          countDeclines: '6K'
+        },
+        slices: [
+          { credential: 'MIT', channel: 'CNP', scheme: 'Visa', market: 'GBR', volume: '$890K', transactions: '18,200', approval: '78.5%', recMerchant: '4.2%', peerApproval: '84.2%', recPeer: '3.5%' }
+        ],
+        declineCodes: [
+          { code: '51', name: 'Insufficient funds', volume: '$320K', count: '4,200', countNum: 4200, color: '#ba0517', shareMerchant: '32%', sharePeer: '30%', curable: 'N', curePct: '—', eligible: 'No', recoveredRevenue: '—' }
+        ],
+        schemeInterchangeBenefit: 22000,
+        productDrivers: [
+          { label: 'Non-MIT scheme fees', sub: 'recurring transactions mis-flagged', pct: '45%', width: '90%' }
+        ]
+      }
+    }
+  };
+
+function getAccountDetail(name) {
+  var detail = ACCOUNT_DETAIL[name] || ACCOUNT_DETAIL['Pets at Home'];
+  var seed = (parseInt(detail.accountId, 10) || 1) * 100;
+  return Object.assign({}, detail, { driverDrilldown: normalizeDriverDrilldown(detail, seed) });
+}
+
+function accountsWithDetail() {
+  return ACCOUNTS.filter(function (account) { return ACCOUNT_DETAIL[account.name]; });
+}
+
+(function () {
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function heroModeLabel(mode) {
+    return mode === 'churn'
+      ? 'Top accounts by predicted change in transaction count'
+      : 'Top accounts by cross-sell opportunity (estimated net benefit)';
+  }
+
+  function topAccountsForHero(heroMode) {
+    if (typeof ACCOUNTS === 'undefined') return [];
+    var list = ACCOUNTS.slice();
+    if (heroMode === 'churn') {
+      list.sort(function (a, b) { return a.predictedTxnChangeSort - b.predictedTxnChangeSort; });
+    } else {
+      list.sort(function (a, b) { return b.topCrossSellNetBenefitSort - a.topCrossSellNetBenefitSort; });
+    }
+    return list.slice(0, 3);
+  }
+
+  function heroField(label, value) {
+    return (
+      '<div class="hero-field">' +
+      '<span class="hero-lbl">' + escapeHtml(label) + '</span>' +
+      '<span class="hero-val">' + value + '</span>' +
+      '</div>'
+    );
+  }
+
+  function heroModelField(label, value, emphasis) {
+    var lead = emphasis ? ' hero-field--lead' : '';
+    return (
+      '<div class="hero-field hero-field--model' + lead + '">' +
+      '<span class="hero-lbl">' + escapeHtml(label) + '</span>' +
+      '<span class="hero-val">' + value + '</span>' +
+      '</div>'
+    );
+  }
+
+  function renderHeroCard(account, rank, heroMode) {
+    var txnCls = account.predictedTxnChangeSort < 0 ? 'negative' : 'up';
+    var churnFocus = heroMode === 'churn';
+    return (
+      '<article class="hero-account-card hero-account-card--clickable" tabindex="0" role="link" ' +
+      'data-open-account="' + escapeHtml(account.name) + '" data-open-account-source="overview" ' +
+      'aria-label="Open account ' + escapeHtml(account.name) + '">' +
+      '<div class="hero-card-rank">#' + rank + '</div>' +
+      '<header class="hero-card-header">' +
+      '<h2 class="hero-account-headline">' + escapeHtml(account.name) + '</h2>' +
+      '<p class="hero-account-meta">' + escapeHtml(account.industry) + ' · ' + escapeHtml(account.revenue) + '</p>' +
+      '</header>' +
+      '<div class="hero-row hero-row--state hero-row--compact">' +
+      '<div class="hero-row-fields hero-row-fields--inline">' +
+      heroField('Health index', escapeHtml(String(account.healthIndex))) +
+      heroField('Health', '<span class="pill ' + account.healthClass + '">' + escapeHtml(account.health) + '</span>') +
+      heroField('Last activity', escapeHtml(account.lastActivity)) +
+      '</div></div>' +
+      '<div class="hero-row hero-row--model">' +
+      '<div class="hero-row-tag">Model outputs</div>' +
+      '<div class="hero-row-fields hero-row-fields--model">' +
+      heroModelField('Predicted change in transaction count', '<span class="hero-metric ' + txnCls + '">' + escapeHtml(account.predictedTxnChange) + '</span>', churnFocus) +
+      heroModelField('Top cross-sell (product)', escapeHtml(account.topCrossSellProduct), false) +
+      heroModelField('Top cross-sell (est. net benefit)', '<span class="hero-metric wp-val">' + escapeHtml(account.topCrossSellNetBenefit) + '</span>', !churnFocus) +
+      '</div></div>' +
+      '</article>'
+    );
+  }
+
+  function render(options) {
+    var heroMode = (options && options.heroMode) || 'churn';
+    var grid = document.getElementById('hero-tiles-grid');
+    var subtitle = document.getElementById('hero-subtitle');
+    if (subtitle) subtitle.textContent = heroModeLabel(heroMode);
+    if (!grid) return;
+    var top = topAccountsForHero(heroMode);
+    grid.innerHTML = top.map(function (a, i) { return renderHeroCard(a, i + 1, heroMode); }).join('');
+    document.querySelectorAll('[data-hero-mode]').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-hero-mode') === heroMode);
+    });
+  }
+
+  window.C360TopAccounts = {
+    render: render,
+    getSubtitle: heroModeLabel,
+    topAccountsForHero: topAccountsForHero
+  };
+})();
+
+(function () {
+  function render() {
+    if (typeof PORTFOLIO_HEALTH === 'undefined') return;
+    var h = PORTFOLIO_HEALTH;
+    var tiles = document.getElementById('health-tiles');
+    var pipeline = document.getElementById('pipeline-rows');
+    if (!tiles || !pipeline) return;
+    tiles.innerHTML =
+      '<button type="button" class="mtile mtile--link" data-portfolio-health-filter="Healthy" aria-label="View Healthy accounts">' +
+      '<div class="mt-l">Healthy</div><div class="mt-v good">' + h.healthy + '</div></button>' +
+      '<button type="button" class="mtile mtile--link" data-portfolio-health-filter="Watch" aria-label="View Watch accounts">' +
+      '<div class="mt-l">Watch</div><div class="mt-v watch">' + h.watch + '</div></button>' +
+      '<button type="button" class="mtile mtile--link" data-portfolio-health-filter="At risk" aria-label="View At risk accounts">' +
+      '<div class="mt-l">At risk</div><div class="mt-v risk">' + h.atRisk + '</div></button>';
+    pipeline.innerHTML = h.pipeline.map(function (row) {
+      return (
+        '<div class="drv">' +
+        '<div class="d-n"><b>' + row.name + '</b><div class="d-s">' + row.detail + '</div></div>' +
+        '<div class="d-bar pos"><i style="width:' + row.width + '"></i></div>' +
+        '<div class="d-pct">' + row.value + '</div>' +
+        '</div>'
+      );
+    }).join('');
+  }
+
+  window.C360PortfolioHealth = { render: render };
+
+  if (document.getElementById('health-tiles') && !window.C360_UNIFIED_SPA && !window.C360_ACCOUNTS_HUB_SPA) {
+    render();
+  }
+})();
+
+(function () {
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function accountsAfterHealthFilter(healthFilter) {
+    if (typeof ACCOUNTS === 'undefined') return [];
+    if (healthFilter === 'All') return ACCOUNTS.slice();
+    return ACCOUNTS.filter(function (a) { return a.health === healthFilter; });
+  }
+
+  function render(options) {
+    var healthFilter = (options && options.healthFilter) || 'All';
+    var expanded = (options && options.tableExpanded) || {};
+    var tbody = document.getElementById('accounts-full-tbody');
+    var countEl = document.getElementById('accounts-full-count');
+    var expandEl = document.getElementById('accounts-full-expand');
+    if (!tbody) return;
+    var allRows = accountsAfterHealthFilter(healthFilter);
+    var rows = window.C360TableExpand
+      ? window.C360TableExpand.sliceRows('portfolio', allRows, expanded)
+      : allRows;
+    if (countEl) countEl.textContent = allRows.length + ' accounts';
+    if (expandEl && window.C360TableExpand) {
+      expandEl.innerHTML = window.C360TableExpand.footerHtml('portfolio', allRows.length, expanded);
+    }
+    tbody.innerHTML = rows.map(function (a) {
+      var txnCls = a.predictedTxnChangeSort < 0 ? 'negative' : 'up';
+      return (
+        '<tr>' +
+        '<td><button type="button" class="account-link" data-open-account="' + escapeHtml(a.name) + '" data-open-account-source="accounts">' + escapeHtml(a.name) + '</button></td>' +
+        '<td>' + escapeHtml(a.industry) + '</td>' +
+        '<td>' + escapeHtml(a.revenue) + '</td>' +
+        '<td>' + escapeHtml(String(a.healthIndex)) + '</td>' +
+        '<td><span class="pill ' + a.healthClass + '">' + escapeHtml(a.health) + '</span></td>' +
+        '<td>' + escapeHtml(a.lastActivity) + '</td>' +
+        '<td class="' + txnCls + '">' + escapeHtml(a.predictedTxnChange) + '</td>' +
+        '<td>' + escapeHtml(a.topCrossSellProduct) + '</td>' +
+        '<td class="wp-val">' + escapeHtml(a.topCrossSellNetBenefit) + '</td>' +
+        '</tr>'
+      );
+    }).join('');
+    document.querySelectorAll('[data-health-filter]').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-health-filter') === healthFilter);
+    });
+  }
+
+  window.C360AccountsTableHub = {
+    render: render,
+    accountsAfterHealthFilter: accountsAfterHealthFilter
+  };
+})();
+
+/* Unified Customer 360 SPA — assembled into 360 HTML prototype.html */
+(function () {
+  window.C360_UNIFIED_SPA = true;
+  var state = {
+    activeView: 'overview',
+    heroMode: 'churn',
+    healthFilter: 'All',
+    accountsSubView: 'portfolio',
+    selectedAlertId: 'alert-acme',
+    selectedAccount: ACCOUNTS[0],
+    accountSourceView: 'overview',
+    accountSubTab: 'ch',
+    alertFilter: 'All',
+    crossSellPrice: 0.05,
+    crossSellAbSplit: 99,
+    selectedDriverKey: null,
+    signals: typeof SIGNALS !== 'undefined' ? SIGNALS.map(function (s) { return Object.assign({}, s); }) : [],
+    tableExpanded: {}
+  };
+
+  var toastEl = document.getElementById('toast');
+  var toastTimer;
+
+  window.c360Toast = function (msg) {
+    if (!toastEl) return;
+    toastEl.innerHTML = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 3200);
+  };
+
+  function sourceToTab(source) {
+    return source === 'crosssell' ? 'cx' : 'ch';
+  }
+
+  function sourceToView(source) {
+    if (source === 'churn' || source === 'crosssell' || source === 'accounts') return 'allaccounts';
+    return 'overview';
+  }
+
+  function accountTabToNavView(tabKey) {
+    if (tabKey === 'cx') return 'crosssell';
+    if (tabKey === 'ch') return 'churn';
+    return 'overview';
+  }
+
+  function navHighlightView() {
+    if (state.activeView === 'alertdetail') return 'alertcentre';
+    if (state.activeView === 'account') {
+      if (state.accountSourceView === 'overview') return 'overview';
+      if (state.accountSourceView === 'churn') return 'churn';
+      if (state.accountSourceView === 'crosssell') return 'crosssell';
+      if (state.accountSourceView === 'accounts') return 'allaccounts';
+      return accountTabToNavView(state.accountSubTab);
+    }
+    if (state.activeView === 'allaccounts') {
+      if (state.accountsSubView === 'churn') return 'churn';
+      if (state.accountsSubView === 'crosssell') return 'crosssell';
+      return 'allaccounts';
+    }
+    return state.activeView;
+  }
+
+  function syncAccountsSubPanels() {
+    document.querySelectorAll('[data-accounts-sub-panel]').forEach(function (panel) {
+      panel.classList.toggle('active', panel.getAttribute('data-accounts-sub-panel') === state.accountsSubView);
+    });
+  }
+
+  function withTableLoading(container, label, renderFn) {
+    if (window.C360TableLoading && container) {
+      C360TableLoading.run({ container: container, label: label, renderFn: renderFn });
+    } else {
+      renderFn();
+    }
+  }
+
+  function setView(view) {
+    state.activeView = view;
+    document.querySelectorAll('[data-view-panel]').forEach(function (el) {
+      el.classList.toggle('active', el.getAttribute('data-view-panel') === view);
+    });
+    var highlight = navHighlightView();
+    document.querySelectorAll('[data-nav-view]').forEach(function (btn) {
+      var v = btn.getAttribute('data-nav-view');
+      btn.classList.toggle('active', v === highlight);
+    });
+    if (view === 'overview') {
+      renderHeroTiles();
+      renderPortfolioHealth();
+      renderOperationsSnapshot();
+    }
+    if (view === 'allaccounts') {
+      syncAccountsSubPanels();
+      renderAllAccountsSubView();
+    }
+    if (view === 'alertcentre') renderAlertCentreWithLoading();
+    if (view === 'alertdetail') renderAlertDetail();
+    if (view === 'account') renderAccountDetail(state.selectedAccount);
+  }
+
+  function openAccount(name, source) {
+    var found = ACCOUNTS.find(function (a) { return a.name === name; });
+    state.selectedAccount = found || ACCOUNTS[0];
+    state.accountSourceView = source || 'accounts';
+    if (source === 'overview') {
+      state.accountSubTab = state.heroMode === 'crosssell' ? 'cx' : 'ch';
+    } else {
+      state.accountSubTab = sourceToTab(state.accountSourceView);
+    }
+    state.selectedDriverKey = null;
+    setView('account');
+    activateAccountTab(state.accountSubTab);
+  }
+
+  window.C360App = { setView: setView, openAccount: openAccount };
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function goToAllAccountsPortfolio(resetFilter) {
+    if (resetFilter) state.healthFilter = 'All';
+    state.accountsSubView = 'portfolio';
+    setView('allaccounts');
+  }
+
+  function goToAccountsWithHealthFilter(filter) {
+    state.healthFilter = filter;
+    state.accountsSubView = 'portfolio';
+    setView('allaccounts');
+  }
+
+  function renderAllAccountsSubView() {
+    if (state.accountsSubView === 'portfolio') {
+      var scroll = document.querySelector('[data-accounts-sub-panel="portfolio"] .table-scroll');
+      withTableLoading(scroll, 'Loading portfolio accounts…', function () {
+        renderAccountsFullTable();
+      });
+    } else if (state.accountsSubView === 'churn') {
+      var chScroll = document.querySelector('[data-accounts-sub-panel="churn"] .table-scroll');
+      withTableLoading(chScroll, 'Loading churn accounts…', renderChurnTable);
+    } else if (state.accountsSubView === 'crosssell') {
+      var cxScroll = document.querySelector('[data-accounts-sub-panel="crosssell"] .table-scroll');
+      withTableLoading(cxScroll, 'Loading cross-sell opportunities…', renderCrossSellTable);
+    }
+  }
+
+  function openSignalCount() {
+    return state.signals.filter(function (s) { return s.signalStatus === 'open'; }).length;
+  }
+
+  function openSignalSummary() {
+    var open = openSignalCount();
+    var churn = state.signals.filter(function (s) { return s.signalStatus === 'open' && s.category === 'Churn'; }).length;
+    return churn + ' churn | ' + (open - churn) + ' cross-sell';
+  }
+
+  function renderOperationsSnapshot() {
+    var banner = document.getElementById('material-banner-text');
+    if (banner && typeof MATERIAL_BANNER !== 'undefined') {
+      banner.textContent = MATERIAL_BANNER.message || MATERIAL_BANNER.text || '';
+    }
+    var kpiGrid = document.getElementById('kpi-grid');
+    if (kpiGrid && typeof KPI_TILES !== 'undefined') {
+      kpiGrid.innerHTML = KPI_TILES.map(function (tile) {
+        var val = tile.dynamic ? String(openSignalCount()) : tile.value;
+        var det = tile.dynamic ? openSignalSummary() : tile.detail;
+        var cls = 'kpi' + (tile.attention ? ' attention' : '');
+        return '<div class="' + cls + '"><div class="k-lbl">' + tile.label + '</div><div class="k-val">' + val + '</div><div class="k-sub">' + det + '</div></div>';
+      }).join('');
+    }
+    var needsList = document.getElementById('needs-action-list');
+    if (needsList && typeof NEEDS_ACTION_ITEMS !== 'undefined') {
+      needsList.innerHTML = NEEDS_ACTION_ITEMS.map(function (item) {
+        var btnCls = item.primary ? 'btn p' : 'btn';
+        return (
+          '<div class="a">' +
+          '<div class="row-tag"><span class="sev ' + item.severity + '">' + item.severityLabel + '</span></div>' +
+          '<div class="a-txt"><b>' + item.heading + '</b><div class="m">' + item.body + '</div><div class="meta">' + item.meta + '</div></div>' +
+          '<div class="row-actions"><button type="button" class="' + btnCls + '" data-open-account="' + item.accountName + '" data-open-account-source="accounts">' + item.buttonLabel + '</button></div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+    renderSignals();
+  }
+
+  function renderSignals() {
+    var container = document.getElementById('signals');
+    var countEl = document.getElementById('sig-count');
+    if (countEl) countEl.textContent = openSignalCount() + ' open';
+    if (!container) return;
+    container.innerHTML = state.signals.map(function (sig) {
+      var done = sig.signalStatus !== 'open';
+      var statusLabel = sig.signalStatus === 'actioned' ? 'Actioned' : (sig.signalStatus === 'dismissed' ? 'Dismissed' : '');
+      if (done) {
+        return '<div class="sig done"><span class="' + sig.badgeClass + '">' + sig.category + '</span><div class="s-txt"><div class="s-h">' + sig.title + '</div><div class="s-d">' + sig.description + '</div></div><span class="status-pill">' + statusLabel + '</span></div>';
+      }
+      return '<div class="sig" data-sig data-sig-id="' + sig.id + '"><span class="' + sig.badgeClass + '">' + sig.category + '</span><div class="s-txt"><div class="s-h">' + sig.title + '</div><div class="s-d">' + sig.description + '</div></div><div class="s-act"><button type="button" class="btn p sm" data-action-sig>Action</button><button type="button" class="btn sm" data-dismiss-sig>Dismiss</button></div></div>';
+    }).join('');
+  }
+
+  function renderAlertCentreWithLoading() {
+    var scroll = document.querySelector('[data-view-panel="alertcentre"] .table-scroll');
+    withTableLoading(scroll, 'Loading alerts…', renderAlertCentre);
+  }
+
+  function renderPortfolioHealth() {
+    if (window.C360PortfolioHealth) C360PortfolioHealth.render();
+  }
+
+  function renderHeroTiles() {
+    if (window.C360TopAccounts) C360TopAccounts.render({ heroMode: state.heroMode });
+  }
+
+  function renderAccountsFullTable() {
+    if (window.C360AccountsTableHub) {
+      C360AccountsTableHub.render({ healthFilter: state.healthFilter, tableExpanded: state.tableExpanded });
+    }
+  }
+
+  function filteredAlerts() {
+    if (state.alertFilter === 'All') return ALERTS;
+    return ALERTS.filter(function (a) { return a.status === state.alertFilter; });
+  }
+
+  function renderAlertCentre() {
+    var container = document.getElementById('alert-filters');
+    if (container) {
+      container.innerHTML = ALERT_STATUS_OPTIONS.map(function (status) {
+        var active = status === state.alertFilter ? ' active' : '';
+        return '<button type="button" class="' + active.trim() + '" data-filter-status="' + status + '">' + status + '</button>';
+      }).join('');
+    }
+    var tbody = document.getElementById('alerts-tbody');
+    var alerts = filteredAlerts();
+    var count = document.getElementById('alert-count');
+    if (count) count.textContent = alerts.length + ' shown';
+    if (!tbody) return;
+    var expandEl = document.getElementById('alerts-table-expand');
+    var visible = window.C360TableExpand
+      ? window.C360TableExpand.sliceRows('alerts', alerts, state.tableExpanded)
+      : alerts;
+    if (expandEl && window.C360TableExpand) {
+      expandEl.innerHTML = window.C360TableExpand.footerHtml('alerts', alerts.length, state.tableExpanded);
+    }
+    tbody.innerHTML = visible.map(function (a) {
+      return '<tr><td>' + a.account + '</td><td class="negative">' + a.score + '%</td><td>' + (a.threshold || '-25') + '%</td><td>' + a.alertDate + '</td><td>' + a.suppression + '</td><td>' + (a.rmTask || a.rmNotification || '—') + '</td><td><span class="status-pill">' + a.status + '</span></td><td><button type="button" class="btn p sm" data-open-alert-id="' + a.id + '">Open</button></td></tr>';
+    }).join('');
+  }
+
+  function renderAlertDetail() {
+    var detail = ALERT_DETAIL_BY_ID[state.selectedAlertId] || ALERT_DETAIL_BY_ID['alert-acme'];
+    var root = document.getElementById('alert-detail-root');
+    if (!root || !detail) return;
+    var drivers = (detail.drivers || []).map(function (d) {
+      return '<div class="driver"><span>' + d.label + '</span><div class="bar-track"><i style="width:' + d.width + ';display:block;height:100%;background:#ba0517;border-radius:1rem;"></i></div><strong>' + d.impact + '</strong></div>';
+    }).join('');
+    var bars = (detail.trajectory || []).map(function (value) {
+      var h = Math.max(12, Math.abs(value) * 3 + 20);
+      var cls = value < 0 ? 'bar negative' : 'bar positive';
+      return '<i class="' + cls + '" style="height:' + h + '%"></i>';
+    }).join('');
+    var products = (detail.crossSell && detail.crossSell.products || []).map(function (p) { return '<li>' + p + '</li>'; }).join('');
+    root.innerHTML =
+      '<button type="button" class="crumb" id="alert-detail-back">Alert Centre</button>' +
+      '<section class="page-heading"><div><h1>Alert detail — ' + detail.account + '</h1><p>Score ' + detail.score + '% | ARR ' + detail.arr + ' | ' + detail.merchantCount + ' merchants</p></div>' +
+      '<div class="actions"><button type="button" class="button" data-alert-action="resolve">Mark resolved</button><button type="button" class="button" data-alert-action="defer">Defer signal</button><button type="button" class="button" data-alert-action="dismiss">Dismiss</button><button type="button" class="button primary" data-alert-action="escalate">Escalate to manager</button></div></section>' +
+      '<div class="two-column"><article class="panel"><div class="panel-header"><h2>6-month score trajectory</h2></div><div class="chart">' + bars + '</div></article>' +
+      '<article class="panel"><div class="panel-header"><h2>Top drivers</h2></div><div class="panel-body">' + drivers + '</div></article></div>' +
+      '<article class="panel section-panel"><div class="panel-header"><h2>Cross-sell intelligence</h2></div><div class="panel-body"><p><strong>Pipeline:</strong> ' + detail.crossSell.pipeline + '</p><p><strong>Confidence:</strong> ' + detail.crossSell.confidence + '%</p><ul>' + products + '</ul></div></article>' +
+      '<article class="panel section-panel"><div class="panel-header"><h2>Record outcome</h2></div><div class="panel-body form-grid"><label>Interaction date<input type="date"></label><label>Interaction type<select><option>Call</option><option>Email</option><option>Meeting</option></select></label><label>Outcome<select><option>Action scheduled</option><option>Deferred</option><option>Resolved</option><option>Escalated</option></select></label><label>Follow-up actions<textarea rows="3" placeholder="Notes for manager visibility"></textarea></label></div></article>';
+    var back = document.getElementById('alert-detail-back');
+    if (back) back.addEventListener('click', function () { setView('alertcentre'); });
+    root.querySelectorAll('[data-alert-action]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        window.c360Toast('Alert ' + btn.getAttribute('data-alert-action') + ' recorded (preview). Manager visibility updated.');
+      });
+    });
+  }
+
+  function renderChurnTable() {
+    var tbody = document.getElementById('churn-tbody');
+    var expandEl = document.getElementById('churn-table-expand');
+    if (!tbody) return;
+    var allRows = CHURN_ROWS;
+    var rows = window.C360TableExpand
+      ? window.C360TableExpand.sliceRows('churn', allRows, state.tableExpanded)
+      : allRows;
+    if (expandEl && window.C360TableExpand) {
+      expandEl.innerHTML = window.C360TableExpand.footerHtml('churn', allRows.length, state.tableExpanded);
+    }
+    tbody.innerHTML = rows.map(function (row) {
+      var pathway = row.pathway || 'Retention review';
+      return (
+        '<tr>' +
+        '<td><button type="button" class="account-link" data-open-account="' + escapeHtml(row.account) + '" data-open-account-source="churn">' + escapeHtml(row.account) + '</button></td>' +
+        '<td><span class="pill ' + row.riskClass + '">' + escapeHtml(row.risk) + '</span></td>' +
+        '<td class="negative">' + escapeHtml(row.txnChange) + '</td>' +
+        '<td>' + escapeHtml(row.driver) + '</td>' +
+        '<td>' + escapeHtml(pathway) + '</td>' +
+        '</tr>'
+      );
+    }).join('');
+  }
+
+  function renderCrossSellTable() {
+    var tbody = document.getElementById('cross-sell-tbody');
+    var expandEl = document.getElementById('crosssell-table-expand');
+    if (!tbody) return;
+    var allRows = CROSS_SELL_ROWS;
+    var rows = window.C360TableExpand
+      ? window.C360TableExpand.sliceRows('crosssell', allRows, state.tableExpanded)
+      : allRows;
+    if (expandEl && window.C360TableExpand) {
+      expandEl.innerHTML = window.C360TableExpand.footerHtml('crosssell', allRows.length, state.tableExpanded);
+    }
+    tbody.innerHTML = rows.map(function (row) {
+      return (
+        '<tr>' +
+        '<td><button type="button" class="account-link" data-open-account="' + escapeHtml(row.account) + '" data-open-account-source="crosssell">' + escapeHtml(row.account) + '</button></td>' +
+        '<td>' + escapeHtml(row.product) + '</td>' +
+        '<td><span class="pill ' + row.propensityClass + '">' + escapeHtml(row.propensity) + '</span></td>' +
+        '<td>' + escapeHtml(row.uplift) + '</td>' +
+        '<td>' + escapeHtml(row.driver) + '</td>' +
+        '<td><button type="button" class="btn sm" data-open-account="' + escapeHtml(row.account) + '" data-open-account-source="crosssell">Open</button></td>' +
+        '</tr>'
+      );
+    }).join('');
+  }
+
+  function activateAccountTab(tabKey) {
+    state.accountSubTab = tabKey;
+    document.querySelectorAll('.c360-account-detail .subtab').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.sub === tabKey);
+    });
+    document.querySelectorAll('.c360-account-detail .subview').forEach(function (panel) {
+      panel.classList.toggle('hide', panel.dataset.subview !== tabKey);
+    });
+  }
+
+  function closeDriverDrill() {
+    state.selectedDriverKey = null;
+    var panel = document.getElementById('ch-driver-drill-panel');
+    if (panel) panel.classList.add('hide');
+    if (state.selectedAccount) renderChurnDrivers(getAccountDetail(state.selectedAccount.name));
+  }
+
+  function renderDriverDrillTable() {
+    if (!state.selectedDriverKey || !state.selectedAccount) return;
+    var detail = getAccountDetail(state.selectedAccount.name);
+    var rows = (detail.driverDrilldown && detail.driverDrilldown[state.selectedDriverKey]) || [];
+    document.getElementById('ch-drill-title').textContent = 'Driver detail — ' + state.selectedDriverKey;
+    document.getElementById('ch-drill-tbody').innerHTML = rows.map(function (r) {
+      return '<tr><td>' + (r.id || r.humanCustomerId) + '</td><td class="num">' + (r.value || r.authRateAvg6m) + '</td></tr>';
+    }).join('');
+  }
+
+  function openDriverDrill(driverName) {
+    state.selectedDriverKey = driverName;
+    activateAccountTab('ch');
+    document.getElementById('ch-driver-drill-panel').classList.remove('hide');
+    renderDriverDrillTable();
+    renderChurnDrivers(getAccountDetail(state.selectedAccount.name));
+  }
+
+  function renderChurnDrivers(detail) {
+    var driverRows = [];
+    var selected = state.selectedDriverKey;
+    detail.negativeDrivers.forEach(function (d, i) {
+      var rowClass = d.name === selected ? ' class="driver-row-selected"' : '';
+      driverRows.push('<tr' + rowClass + '><td><span class="tag-neg">Negative Driver ' + (i + 1) + '</span></td><td><button type="button" class="driver-link" data-driver="' + d.name + '">' + d.name + '</button></td><td class="num">' + d.value + '</td></tr>');
+    });
+    detail.positiveDrivers.forEach(function (d, i) {
+      var rowClass = d.name === selected ? ' class="driver-row-selected"' : '';
+      driverRows.push('<tr' + rowClass + '><td><span class="tag-pos">Positive Driver ' + (i + 1) + '</span></td><td><button type="button" class="driver-link" data-driver="' + d.name + '">' + d.name + '</button></td><td class="num">' + d.value + '</td></tr>');
+    });
+    document.getElementById('acct-churn-drivers').innerHTML = driverRows.join('');
+  }
+
+  function renderDeclineChart(cx) {
+    var codes = cx.declineCodes || [];
+    var s = cx.summary || {};
+    var metricsEl = document.getElementById('acct-cx-decline-metrics');
+    if (!codes.length) {
+      document.getElementById('acct-cx-decline-chart').innerHTML = '<div class="placeholder-panel">No decline data available.</div>';
+      document.getElementById('acct-cx-decline-legend').innerHTML = '';
+      if (metricsEl) metricsEl.innerHTML = '';
+      return;
+    }
+    var stackHeight = 224;
+    var totalCount = codes.reduce(function (sum, d) { return sum + (d.countNum || 0); }, 0);
+    var axisSteps = [totalCount, Math.round(totalCount * 0.66), Math.round(totalCount * 0.33), 0];
+    var axisHtml = axisSteps.map(function (v) {
+      return '<span>' + (v >= 1000 ? Math.round(v / 1000) + 'k' : v) + '</span>';
+    }).join('');
+    var segsHtml = codes.map(function (d, i) {
+      var h = totalCount ? Math.max(32, (d.countNum / totalCount) * stackHeight) : 32;
+      var color = d.color || DECLINE_CHART_COLORS[i % DECLINE_CHART_COLORS.length];
+      return '<div class="dbc-seg" style="height:' + h + 'px;background:' + color + ';">' + d.count + '<span class="dbc-cost">' + d.volume + '</span></div>';
+    }).join('');
+    document.getElementById('acct-cx-decline-chart').innerHTML =
+      '<div class="decline-barchart"><div class="dbc-axis-y">' + axisHtml + '</div><div class="dbc-stack-wrap"><div class="dbc-stack">' + segsHtml + '</div></div></div>';
+    metricsEl.innerHTML =
+      '<div class="krow"><span>Value of declines</span><span><b>' + (s.valueOfDeclines || '—') + '</b></span></div>' +
+      '<div class="krow"><span>Count of declines</span><span><b>' + (s.countDeclines || '—') + '</b></span></div>' +
+      '<div class="krow"><span>% merchant recoverable declines</span><span><b>' + (s.recoverableSplitMerchant || '—') + '</b></span></div>' +
+      '<div class="krow"><span>% peer recoverable declines</span><span><b>' + (s.recoverableSplitPeer || '—') + '</b></span></div>';
+    document.getElementById('acct-cx-decline-legend').innerHTML = codes.map(function (d, i) {
+      var color = d.color || DECLINE_CHART_COLORS[i % DECLINE_CHART_COLORS.length];
+      return '<span><span class="sw" style="background:' + color + ';"></span>' + d.code + ' ' + d.name + ' — ' + d.count + ' · ' + d.volume + (d.curable === 'Y' ? ' · RB curable (' + d.curePct + ')' : '') + '</span>';
+    }).join('');
+  }
+
+  function renderCrossSellRoi(account, detail) {
+    var cx = detail.crossSell;
+    var s = cx.summary;
+    var price = state.crossSellPrice;
+    var ab = state.crossSellAbSplit / 100;
+    var recoverableUplift = Math.round(s.grossUplift * ab);
+    var productCost = Math.round(s.inScopeTransactions * price * ab);
+    var schemeBenefit = Math.round((cx.schemeInterchangeBenefit || 0) * ab);
+    var netBenefit = recoverableUplift + schemeBenefit - productCost;
+    document.getElementById('acct-peer-segment').textContent = 'vs peer group (' + cx.peerSegmentId + ')';
+    document.getElementById('acct-cx-roi').innerHTML =
+      '<span class="pill ' + (cx.likelihoodToAcquire === 'High' ? 'risk' : 'watch') + '">' + cx.likelihoodToAcquire + ' propensity</span>' +
+      '<div class="calc" style="margin-top:12px;">' +
+      '<div class="row-c"><span>In-scope transactions</span><span class="c-v">' + s.inScopeTransactions.toLocaleString() + '</span></div>' +
+      '<div class="row-c"><span>Price per transaction (adj.)</span><span class="c-v">' + price.toFixed(2) + '</span></div>' +
+      '<div class="row-c"><span>A/B testing split</span><span class="c-v">' + state.crossSellAbSplit + '%</span></div>' +
+      '<div class="row-c"><span>Gross revenue uplift (annualised)</span><span class="c-v up">+' + fmtMoney(recoverableUplift) + '</span></div>' +
+      '<div class="row-c"><span>Product cost (annualised)</span><span class="c-v">' + fmtMoney(productCost) + '</span></div>' +
+      '<div class="row-c"><span>Scheme and interchange fee benefit</span><span class="c-v up">+' + fmtMoney(schemeBenefit) + '</span></div>' +
+      '<div class="row-c tot"><span>Net benefit (annualised)</span><span class="c-v wp-val">' + fmtMoney(netBenefit) + '</span></div></div>' +
+      '<p style="margin-top:12px;font-size:12px;color:var(--muted);"><b>Recoverable decline codes:</b> ' + s.declineCodeList + '</p>';
+  }
+
+  function syncCrossSellSliderLabels() {
+    document.getElementById('cx-price-val').textContent = state.crossSellPrice.toFixed(2);
+    document.getElementById('cx-ab-val').textContent = state.crossSellAbSplit + '%';
+    document.getElementById('cx-price-slider').value = state.crossSellPrice;
+    document.getElementById('cx-ab-slider').value = state.crossSellAbSplit;
+  }
+
+  function renderAccountDetail(account) {
+    var detail = getAccountDetail(account.name);
+    var cx = detail.crossSell;
+    var parts = account.name.split(' ');
+    var init = (parts[0][0] + (parts[1] ? parts[1][0] : '')).toUpperCase();
+    document.getElementById('acct-init').textContent = init;
+    document.getElementById('acct-name').textContent = account.name;
+    var sidebarName = document.getElementById('acct-sidebar-name');
+    if (sidebarName) sidebarName.textContent = account.name;
+    document.getElementById('acct-meta').textContent =
+      'Enterprise | ' + account.industry + ' | RM: Sarah Jenkins | Account ID: ' + detail.accountId + ' | ' + detail.merchantCount + ' MIDs | Market: ' + detail.market;
+    document.getElementById('acct-health-pill').textContent = 'Health: ' + account.health;
+    document.getElementById('acct-health-pill').className = 'pill ' + account.healthClass;
+    document.getElementById('acct-facts').innerHTML =
+      '<div><span>Account ID</span><b>' + detail.accountId + '</b></div><div><span>Annual processing volume (LTM)</span><b>' + account.volume + '</b></div><div><span>' + CHURN_SCORE_LABEL + '</span><b class="watch">' + detail.churnScorePct + '</b></div><div><span>Churn risk</span><b>' + account.risk + '</b></div><div><span>Likelihood to acquire RB</span><b>' + cx.likelihoodToAcquire + '</b></div><div><span>Health index</span><b>' + account.healthIndex + '</b></div>';
+    if (!state.selectedDriverKey) closeDriverDrill();
+    else renderDriverDrillTable();
+    syncCrossSellSliderLabels();
+    function churnMetricClass(value) { return String(value).indexOf('-') === 0 ? 'metric neg' : 'metric'; }
+    document.getElementById('acct-churn-metrics').innerHTML =
+      '<div class="metric neg"><div class="m-v">' + detail.churnScorePct + '</div><div class="m-l">' + CHURN_SCORE_LABEL + '</div></div>' +
+      '<div class="' + churnMetricClass(detail.txnTrend3m) + '"><div class="m-v">' + detail.txnTrend3m + '</div><div class="m-l">Transaction trend (3 months)</div></div>' +
+      '<div class="' + churnMetricClass(detail.txnTrend6m) + '"><div class="m-v">' + detail.txnTrend6m + '</div><div class="m-l">Transaction trend (6 months)</div></div>';
+    renderChurnDrivers(detail);
+    renderCrossSellRoi(account, detail);
+    var s = cx.summary;
+    document.getElementById('acct-cx-kpis').innerHTML =
+      '<div class="krow"><span>Merchant approval rate</span><span><b>' + s.merchantApprovalRate + '</b></span></div><div class="krow"><span>Peer approval rate</span><span><b>' + s.peerApprovalRate + '</b></span></div><div class="krow"><span>Merchant vs peer group</span><span class="down"><b>' + s.merchantVsPeer + '</b></span></div>';
+    renderDeclineChart(cx);
+  }
+
+  document.querySelectorAll('[data-nav-view]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn.disabled) return;
+      var v = btn.getAttribute('data-nav-view');
+      if (v === 'allaccounts') goToAllAccountsPortfolio(true);
+      else if (v === 'churn') {
+        state.accountsSubView = 'churn';
+        setView('allaccounts');
+      } else if (v === 'crosssell') {
+        state.accountsSubView = 'crosssell';
+        setView('allaccounts');
+      } else setView(v);
+    });
+  });
+
+  var goAccounts = document.getElementById('go-accounts-table');
+  if (goAccounts) goAccounts.addEventListener('click', function () { goToAllAccountsPortfolio(true); });
+
+  var exportPdf = document.getElementById('export-pdf-btn');
+  if (exportPdf) {
+    exportPdf.addEventListener('click', function () {
+      window.c360Toast('Export PDF — deferred to Record Page / reporting (preview).');
+    });
+  }
+
+  var acctBack = document.getElementById('acct-back');
+  if (acctBack) {
+    acctBack.addEventListener('click', function () {
+      var v = sourceToView(state.accountSourceView);
+      if (v === 'allaccounts') {
+        if (state.accountSourceView === 'churn') state.accountsSubView = 'churn';
+        else if (state.accountSourceView === 'crosssell') state.accountsSubView = 'crosssell';
+        else state.accountsSubView = 'portfolio';
+      }
+      setView(v);
+    });
+  }
+  var acctExport = document.getElementById('acct-export');
+  if (acctExport) {
+    acctExport.addEventListener('click', function () {
+      window.c360Toast('Generating Global Payments-branded deck for <b>' + state.selectedAccount.name + '</b>…');
+    });
+  }
+  var acctSubtabs = document.getElementById('acct-subtabs');
+  if (acctSubtabs) {
+    acctSubtabs.addEventListener('click', function (e) {
+      var tab = e.target.closest('[data-sub]');
+      if (tab) activateAccountTab(tab.dataset.sub);
+    });
+  }
+  var chDrillClose = document.getElementById('ch-drill-close');
+  if (chDrillClose) chDrillClose.addEventListener('click', closeDriverDrill);
+  var cxPriceSlider = document.getElementById('cx-price-slider');
+  if (cxPriceSlider) {
+    cxPriceSlider.addEventListener('input', function (e) {
+      state.crossSellPrice = parseFloat(e.target.value);
+      syncCrossSellSliderLabels();
+      renderCrossSellRoi(state.selectedAccount, getAccountDetail(state.selectedAccount.name));
+    });
+  }
+  var cxAbSlider = document.getElementById('cx-ab-slider');
+  if (cxAbSlider) {
+    cxAbSlider.addEventListener('input', function (e) {
+      state.crossSellAbSplit = parseInt(e.target.value, 10);
+      syncCrossSellSliderLabels();
+      renderCrossSellRoi(state.selectedAccount, getAccountDetail(state.selectedAccount.name));
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    var modeBtn = e.target.closest('[data-hero-mode]');
+    if (modeBtn) {
+      state.heroMode = modeBtn.getAttribute('data-hero-mode');
+      renderHeroTiles();
+      return;
+    }
+    var portfolioHealth = e.target.closest('[data-portfolio-health-filter]');
+    if (portfolioHealth) {
+      goToAccountsWithHealthFilter(portfolioHealth.getAttribute('data-portfolio-health-filter'));
+      return;
+    }
+    var filterHealth = e.target.closest('[data-health-filter]');
+    if (filterHealth) {
+      state.healthFilter = filterHealth.getAttribute('data-health-filter');
+      state.tableExpanded.portfolio = false;
+      renderAccountsFullTable();
+      return;
+    }
+    var tableExpandBtn = e.target.closest('[data-table-expand]');
+    if (tableExpandBtn) {
+      state.tableExpanded[tableExpandBtn.getAttribute('data-table-expand')] = true;
+      if (state.activeView === 'alertcentre') renderAlertCentre();
+      else if (state.accountsSubView === 'churn') renderChurnTable();
+      else if (state.accountsSubView === 'crosssell') renderCrossSellTable();
+      else renderAccountsFullTable();
+      return;
+    }
+    var tableCollapseBtn = e.target.closest('[data-table-collapse]');
+    if (tableCollapseBtn) {
+      state.tableExpanded[tableCollapseBtn.getAttribute('data-table-collapse')] = false;
+      if (state.activeView === 'alertcentre') renderAlertCentre();
+      else if (state.accountsSubView === 'churn') renderChurnTable();
+      else if (state.accountsSubView === 'crosssell') renderCrossSellTable();
+      else renderAccountsFullTable();
+      return;
+    }
+    var actionBtn = e.target.closest('[data-action-sig]');
+    if (actionBtn) {
+      var sigEl = actionBtn.closest('[data-sig]');
+      if (sigEl) {
+        var id = sigEl.getAttribute('data-sig-id');
+        state.signals.forEach(function (s) { if (s.id === id) s.signalStatus = 'actioned'; });
+        renderSignals();
+        var kpiGrid = document.getElementById('kpi-grid');
+        if (kpiGrid && typeof KPI_TILES !== 'undefined') {
+          kpiGrid.innerHTML = KPI_TILES.map(function (tile) {
+            var val = tile.dynamic ? String(openSignalCount()) : tile.value;
+            var det = tile.dynamic ? openSignalSummary() : tile.detail;
+            var cls = 'kpi' + (tile.attention ? ' attention' : '');
+            return '<div class="' + cls + '"><div class="k-lbl">' + tile.label + '</div><div class="k-val">' + val + '</div><div class="k-sub">' + det + '</div></div>';
+          }).join('');
+        }
+        window.c360Toast('Signal actioned — row marked as complete.');
+      }
+      return;
+    }
+    var dismissBtn = e.target.closest('[data-dismiss-sig]');
+    if (dismissBtn) {
+      var sigEl2 = dismissBtn.closest('[data-sig]');
+      if (sigEl2) {
+        var id2 = sigEl2.getAttribute('data-sig-id');
+        state.signals.forEach(function (s) { if (s.id === id2) s.signalStatus = 'dismissed'; });
+        renderSignals();
+        window.c360Toast('Signal dismissed — row greyed out.');
+      }
+      return;
+    }
+    var acct = e.target.closest('[data-open-account]');
+    if (acct) {
+      openAccount(acct.getAttribute('data-open-account'), acct.getAttribute('data-open-account-source') || 'accounts');
+      return;
+    }
+    var alertBtn = e.target.closest('[data-open-alert-id]');
+    if (alertBtn) {
+      state.selectedAlertId = alertBtn.getAttribute('data-open-alert-id');
+      setView('alertdetail');
+      return;
+    }
+    var filterBtn = e.target.closest('[data-filter-status]');
+    if (filterBtn) {
+      state.alertFilter = filterBtn.getAttribute('data-filter-status');
+      renderAlertCentre();
+      return;
+    }
+    var driverBtn = e.target.closest('[data-driver]');
+    if (driverBtn) openDriverDrill(driverBtn.dataset.driver);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var card = e.target.closest('.hero-account-card--clickable');
+    if (!card || e.target.closest('[data-hero-mode]')) return;
+    e.preventDefault();
+    openAccount(card.getAttribute('data-open-account'), card.getAttribute('data-open-account-source') || 'overview');
+  });
+
+  renderHeroTiles();
+  renderPortfolioHealth();
+  renderOperationsSnapshot();
+  syncAccountsSubPanels();
+  setView('overview');
+})();
+
+  </script>
+</body>
+</html>

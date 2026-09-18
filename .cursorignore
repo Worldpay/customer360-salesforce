@@ -1,0 +1,3 @@
+# Excluded from Cursor indexing and @-mention context (see .cursor/rules/archive-scope.mdc)
+archive/
+
