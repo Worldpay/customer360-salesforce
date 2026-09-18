@@ -10,20 +10,24 @@ This is the **top of the knowledge hierarchy**. Everything else - requirements, 
 Rules for maintaining it:
 
 - **Only unbreakable rules go here.** If Charlie says "I'd prefer X" or "X would be nicer", that is a preference - it belongs in `requirements-registry.md` tagged `[SF preference - not confirmed constraint]`, not here.
-- Every entry carries a **status**: `Confirmed` (Charlie/Jordan validated), `Direction` (agreed intent, not yet feasibility-tested), or `Claimed - verify` (asserted but not yet checked).
-- When a constraint is confirmed or overturned, update the row and note it in the wiki log.
+- When Charlie/Jordan **confirms or overturns** a platform limit, update the numbered list above or the placeholders below and note the change in the programme wiki log.
 - This file is structured for **handoff beyond Cursor** - a Salesforce developer should be able to read it cold.
 
-## Confirmed direction and patterns (from client sessions, pending formal feasibility sign-off)
+## Constraints taken into build (input from user sessions)
 
-| # | Constraint / rule | Why it matters for the UI | Source | Status |
-|---|-------------------|---------------------------|--------|--------|
-| 1 | Hosted on Salesforce; access from elsewhere via a deep link into Salesforce | Settles the "where does it live" debate - build for Salesforce, satisfy Mark's remote-access ask with a link | [Client meeting] Dylan/Steve 05-06/08 | Direction |
-| 2 | Built with Lightning Web Components (LWC) on the Salesforce Lightning Design System | Prototype and final code must map to LWC; design language is Lightning | [Client meeting] Dylan/Steve 05-06/08 | Direction |
-| 3 | Data connection via **Data 360 / Data Cloud** to Snowflake; reuse the lead-scoring schema/connector pattern John already bought | The UI reads from Snowflake through Data 360, not a bespoke pipe; there is a working precedent to learn from | [Client meeting] Dylan/Steve; [Client meeting] 2026-07-02 architecture note | Direction (pattern proven for lead scoring) |
-| 4 | Cannot surface very large row counts in the Salesforce UI - data sits in the back end, only the needed subset is presented | Rules out "scroll through everything" designs; UI must query/aggregate. Tested against ~1bn rows in Data 360 / Snowflake | [Client meeting] Dylan/Steve 05-06/08 | Confirmed (volume tested) |
-| 5 | LLM-generated Apex is experimental; the **client owns testing, UAT and deployment** | McKinsey/QB hands over HTML + Apex; it is not deployed directly - it runs through the client's test/UAT/deploy/defect-triage pipeline | [Client meeting] Dylan/Steve 05-06/08 | Process constraint |
-| 6 | The code-generation tool/approach is **FIS-approved** for continued use | Governance green light for the LLM-to-Salesforce approach | [Client meeting] Dylan/Steve (Charlie asserted) | Claimed - verify |
+The six rules below were captured as **inputs across multiple client and working sessions** (architecture, feasibility, and delivery). They were brought into **Cursor** (and this repo) so generated prototypes, LWCs, and handoff artefacts stay **compatible with Salesforce** and with the agreed delivery model—not as a formal signed-off feasibility matrix.
+
+1. **Hosted on Salesforce; access from elsewhere via a deep link into Salesforce** — Build for Salesforce as the system of record; remote or off-platform access is satisfied by linking into Salesforce, not by duplicating the app elsewhere.
+
+2. **Built with Lightning Web Components (LWC) on the Salesforce Lightning Design System** — Browser prototypes and production UI should map to LWC; visual language follows Lightning / SLDS.
+
+3. **Data connection via Data 360 / Data Cloud to Snowflake; reuse the lead-scoring schema/connector pattern** — The UI consumes warehouse data through Data 360, not a one-off integration; follow the precedent already used for lead scoring.
+
+4. **Do not surface very large row counts in the Salesforce UI** — Data stays in the back end; the UI shows only queried or aggregated subsets (designs that imply scrolling through full datasets are out of scope).
+
+5. **LLM-generated Apex is experimental; the client owns testing, UAT, and deployment** — Delivery hands over HTML and Apex for the client pipeline; McKinsey/QB does not deploy directly to production without client test/UAT/defect triage.
+
+6. **The code-generation tool/approach is FIS-approved for continued use** — LLM-assisted build (e.g. Cursor) is allowed under client governance for this programme; treat as an input until explicitly reconfirmed with FIS.
 
 ## Distinguishing hard rules from preferences
 
