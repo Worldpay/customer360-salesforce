@@ -11,6 +11,7 @@ export {
     rbFmtMoney,
     rbFmtPct
 } from './c360RevenueBoostBusinessCaseData';
+export { MERCHANT_BUSINESS_CASE_HEADER } from './c360MerchantBusinessCaseHeaderData';
 
 export const BASE_PRICE_PER_TXN = 0.05;
 

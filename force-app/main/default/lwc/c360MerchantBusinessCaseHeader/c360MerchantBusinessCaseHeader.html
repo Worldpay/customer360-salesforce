@@ -1,0 +1,28 @@
+<template>
+    <section class="c360-module c360-merchant-business-case-header">
+        <div class="mbc-head">
+            <h2 class="mbc-title">{displayTitle}</h2>
+            <div class="mbc-actions">
+                <template for:each={displayActions} for:item="action">
+                    <button key={action.id} type="button" class={action.actionClass} data-id={action.id} onclick={handleAction}>
+                        {action.label}
+                    </button>
+                </template>
+            </div>
+        </div>
+        <div class="mbc-metrics">
+            <template for:each={displayMetrics} for:item="metric">
+                <article key={metric.id} class={metric.metricClass}>
+                    <div class="mbc-label">
+                        <span>{metric.label}</span>
+                        <template if:true={metric.showInfo}>
+                            <button type="button" class="mbc-info" data-id={metric.id} aria-label={metric.label} onclick={handleInfo}>i</button>
+                        </template>
+                    </div>
+                    <div class="mbc-value">{metric.value}</div>
+                    <div class="mbc-caption">{metric.caption}</div>
+                </article>
+            </template>
+        </div>
+    </section>
+</template>

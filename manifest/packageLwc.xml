@@ -13,6 +13,7 @@
         <members>c360KpiStrip</members>
         <members>c360KpiTile</members>
         <members>c360MaterialBanner</members>
+        <members>c360MerchantBusinessCaseHeader</members>
         <members>c360MockData</members>
         <members>c360MySignals</members>
         <members>c360NeedsAction</members>

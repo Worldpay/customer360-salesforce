@@ -59,12 +59,14 @@ Exposed bundles (tables, banners, KPI strip, Alert Centre, etc.) can be placed i
 
 - **HTML:** [`prototypes/html/modules/revenue-boost-business-case/preview.html`](prototypes/html/modules/revenue-boost-business-case/preview.html)
 - **LWC:** `c360RevenueBoostBusinessCase` — legacy business-case IA (filters, manual inputs, summary, auth impact, decline table)
+- **HTML:** [`prototypes/html/modules/merchant-business-case-header/preview.html`](prototypes/html/modules/merchant-business-case-header/preview.html)
+- **LWC:** `c360MerchantBusinessCaseHeader` — header only (title, two actions, four metrics)
 
 ### Shared / child-only
 
 | Module | Role |
 |--------|------|
-| `c360MockData` | Hub mock DTOs; re-exports account detail + Revenue Boost case data |
+| `c360MockData` | Hub mock DTOs; re-exports account detail, Revenue Boost case data, and Merchant Business Case header |
 | `c360AccountDetailData` | `ACCOUNT_DETAIL` for Record Page |
 | `c360KpiTile`, `c360SignalList` | Children of strip / signals panels |
 | `c360TopAccounts` | Home hero (also exposed for App Builder) |
@@ -141,6 +143,7 @@ Wire **`c360Dashboard`** on the hub App Page and **`c360Account`** on Account Re
 | `c360Dashboard` | Yes | Customer 360 Dashboard | App Page, Home Page |
 | `c360TopAccounts` | Yes | C360 Top Accounts | App Page, Home Page |
 | `c360MaterialBanner` | Yes | C360 Material Banner | App Page, Home Page |
+| `c360MerchantBusinessCaseHeader` | Yes | C360 Merchant Business Case Header | App Page, Home Page, Account Record Page |
 | `c360KpiStrip` | Yes | C360 KPI Strip | App Page, Home Page |
 | `c360ConfigurableKpiTile` | Yes | C360 KPI Tile (configurable) | App Page, Home Page |
 | `c360NeedsAction` | Yes | C360 Needs Action | App Page, Home Page |
@@ -163,7 +166,7 @@ HTML → LWC mapping and preview links: **[`prototypes/moduleRegistry.md`](proto
 ## Data & schema artefacts
 
 - Field inventory: `c360LwcDtoInventory.csv` / `.xlsx` (generate with `scripts/generateDtoInventory.py`)
-- HTML mocks mirror LWC: `prototypes/html/shared/mock-data.js`, `account-detail-data.js`, `revenue-boost-business-case-data.js`
+- HTML mocks mirror LWC: `prototypes/html/shared/mock-data.js`, `account-detail-data.js`, `revenue-boost-business-case-data.js`, `merchant-business-case-header-data.js`
 
 ## Development with Cursor
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Merchant Business Case header (preview)</title>
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/shell.css">
+  <link rel="stylesheet" href="../../shared/module-base.css">
+  <link rel="stylesheet" href="fragment.css">
+</head>
+<body>
+  <div class="protobar">
+    HTML prototype — isolated module · not in hub assembly ·
+    <a href="../../assembly/overview-page.html">Overview assembly</a>
+  </div>
+  <header class="gh">
+    <div class="logo">Global Payments <span>Customer 360</span></div>
+    <div class="search"><span>&#128269;</span><input type="search" placeholder="Search accounts..."></div>
+    <div class="gh-r"><span>&#128276;</span><span class="avatar">SJ</span></div>
+  </header>
+  <nav class="appnav" aria-label="Customer 360 navigation">
+    <span class="appname"><span class="cube"></span>Customer 360</span>
+    <button class="tab">Overview</button>
+    <button class="tab active">Merchant Business Case</button>
+  </nav>
+  <div class="wrap">
+    <div class="greet">
+      <h1>Merchant Business Case</h1>
+      <div class="date">Header module preview · illustrative data only</div>
+    </div>
+    <div class="module-slot">
+      <section class="c360-module c360-merchant-business-case-header" data-module="merchant-business-case-header">
+        <div class="mbc-head">
+          <h2 class="mbc-title" id="mbc-title"></h2>
+          <div class="mbc-actions" id="mbc-actions"></div>
+        </div>
+        <div class="mbc-metrics" id="mbc-metrics"></div>
+      </section>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="../../shared/merchant-business-case-header-data.js"></script>
+  <script src="../../shared/shell.js"></script>
+  <script src="fragment.js"></script>
+</body>
+</html>

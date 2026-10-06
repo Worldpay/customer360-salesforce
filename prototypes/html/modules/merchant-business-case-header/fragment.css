@@ -1,0 +1,134 @@
+.c360-merchant-business-case-header {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 20px 20px;
+}
+
+.c360-merchant-business-case-header .mbc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.c360-merchant-business-case-header .mbc-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.c360-merchant-business-case-header .mbc-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.c360-merchant-business-case-header .mbc-action.text {
+  border: 0;
+  background: transparent;
+  color: var(--ink2);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 10px;
+}
+
+.c360-merchant-business-case-header .mbc-action.text:hover {
+  color: var(--ink);
+}
+
+.c360-merchant-business-case-header .mbc-action.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+  border-radius: 999px;
+  padding: 7px 14px;
+}
+
+.c360-merchant-business-case-header .mbc-action.primary:hover {
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.c360-merchant-business-case-header .mbc-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 16px;
+  align-items: stretch;
+}
+
+.c360-merchant-business-case-header .mbc-metric {
+  min-width: 0;
+  padding: 4px 2px;
+}
+
+.c360-merchant-business-case-header .mbc-metric.emphasized {
+  border: 1px solid var(--sf-blue);
+  border-radius: 0.75rem;
+  padding: 14px 16px;
+}
+
+.c360-merchant-business-case-header .mbc-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.c360-merchant-business-case-header .mbc-info {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--bd2);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+}
+
+.c360-merchant-business-case-header .mbc-value {
+  margin-top: 6px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--navy);
+}
+
+.c360-merchant-business-case-header .mbc-metric.tone-positive .mbc-value {
+  color: var(--green);
+}
+
+.c360-merchant-business-case-header .mbc-metric.tone-accent .mbc-value {
+  color: var(--sf-blue);
+}
+
+.c360-merchant-business-case-header .mbc-caption {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .c360-merchant-business-case-header .mbc-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .c360-merchant-business-case-header .mbc-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .c360-merchant-business-case-header .mbc-metrics {
+    grid-template-columns: 1fr;
+  }
+}
