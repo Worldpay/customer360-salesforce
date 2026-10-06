@@ -21,7 +21,7 @@ export const MERCHANT_BUSINESS_CASE_HEADER = {
             value: '$120K',
             caption: 'Annual contract value · Illustrative',
             tone: 'positive',
-            emphasized: false,
+            emphasized: true,
             info: true
         },
         {
@@ -30,15 +30,24 @@ export const MERCHANT_BUSINESS_CASE_HEADER = {
             value: '1.2M',
             caption: 'Out of 120M Total Transactions',
             tone: 'positive',
-            emphasized: false
+            emphasized: true
         },
         {
             id: 'auth-rate',
             label: 'Optimized Authorization Rate',
             value: '+3.2 pp',
-            caption: 'Across tokenised MIDs',
+            caption: 'Across 4 associated MIDs',
             tone: 'accent',
             emphasized: true
         }
-    ]
+    ],
+    assumptions: {
+        tokenUtilisationLabel: 'Token Utilization Rate',
+        recommendedLabel: 'Recommended: 69%',
+        tokenUtilisation: '72',
+        priceLabel: 'Price Per Transaction',
+        pricePerTransaction: '0.1',
+        currencySymbol: '$',
+        applyLabel: 'Apply Assumptions'
+    }
 };

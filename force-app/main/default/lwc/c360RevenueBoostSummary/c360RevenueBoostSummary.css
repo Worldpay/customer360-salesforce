@@ -1,0 +1,121 @@
+:host {
+    display: block;
+    --sf-blue: #0176d3;
+    --sf-blue-l: #eaf5fe;
+    --card: #ffffff;
+    --bd2: #c9c9c9;
+    --ink: #181818;
+    --ink2: #444444;
+    --muted: #706e6b;
+    --navy: #032d60;
+    --radius: 0.35rem;
+}
+
+.rbs-page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 18px 8px 32px;
+}
+
+.rbs-top,
+.rbs-title-row,
+.rbs-filter,
+.rbs-tools {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.rbs-top,
+.rbs-title-row {
+    justify-content: space-between;
+}
+
+.rbs-top {
+    margin-bottom: 14px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.rbs-back,
+.rbs-export,
+.rbs-initiate {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.rbs-back {
+    border: 0;
+    background: transparent;
+    color: var(--ink2);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.rbs-account {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.rbs-badge {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--sf-blue-l);
+    color: var(--sf-blue);
+    font-size: 12px;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.rbs-meta,
+.rbs-synced,
+.rbs-mid-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.rbs-meta {
+    margin: 6px 0 0;
+}
+
+.rbs-export,
+.rbs-initiate {
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+}
+
+.rbs-export {
+    border: 1px solid var(--bd2);
+    background: var(--card);
+    color: var(--ink);
+}
+
+.rbs-initiate {
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: #fff;
+}
+
+.rbs-filter {
+    margin: 18px 0;
+}
+
+.rbs-mid {
+    border: 1px solid var(--bd2);
+    border-radius: var(--radius);
+    background: var(--card);
+    padding: 7px 10px;
+    min-width: 220px;
+}
+
+.rbs-children {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

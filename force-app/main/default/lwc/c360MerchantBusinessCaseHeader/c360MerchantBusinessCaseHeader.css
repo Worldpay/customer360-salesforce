@@ -50,12 +50,13 @@
 }
 
 .mbc-action.text {
-    border: 0;
-    background: transparent;
-    color: var(--ink2);
+    border: 1px solid var(--bd2);
+    background: var(--card);
+    color: var(--ink);
     font-size: 13px;
     font-weight: 600;
-    padding: 7px 10px;
+    border-radius: 999px;
+    padding: 7px 14px;
 }
 
 .mbc-action.text:hover {
@@ -139,6 +140,58 @@
     margin-top: 4px;
     font-size: 12px;
     color: var(--muted);
+}
+
+.mbc-assumptions {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px 20px;
+    margin-top: 16px;
+}
+
+.mbc-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mbc-field-label {
+    font-size: 13px;
+    color: var(--ink2);
+}
+
+.mbc-recommended {
+    color: var(--muted);
+}
+
+.mbc-input {
+    width: 72px;
+    border: 1px solid var(--bd2);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--ink);
+    font: inherit;
+    font-weight: 600;
+    padding: 6px 8px;
+}
+
+.mbc-price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mbc-currency {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    border: 1px solid var(--bd2);
+    border-radius: var(--radius);
+    color: var(--ink2);
+    font-size: 13px;
 }
 
 @media (max-width: 900px) {

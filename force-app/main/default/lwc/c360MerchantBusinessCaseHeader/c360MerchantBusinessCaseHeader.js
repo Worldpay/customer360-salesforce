@@ -11,6 +11,7 @@ export default class C360MerchantBusinessCaseHeader extends LightningElement {
     @api title;
     @api metrics;
     @api actions;
+    assumptions = MERCHANT_BUSINESS_CASE_HEADER.assumptions;
 
     get displayTitle() {
         return this.title || MERCHANT_BUSINESS_CASE_HEADER.title;
@@ -53,6 +54,25 @@ export default class C360MerchantBusinessCaseHeader extends LightningElement {
         this.dispatchEvent(
             new ShowToastEvent({
                 title: label,
+                message: 'Preview only',
+                variant: 'info'
+            })
+        );
+    }
+
+    handleApply() {
+        const util = this.template.querySelector('[data-field="token-utilisation"]').value;
+        const price = this.template.querySelector('[data-field="price-per-transaction"]').value;
+        this.dispatchEvent(
+            new CustomEvent('applyassumptions', {
+                detail: { tokenUtilisation: util, pricePerTransaction: price },
+                bubbles: true,
+                composed: true
+            })
+        );
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title: this.assumptions.applyLabel,
                 message: 'Preview only',
                 variant: 'info'
             })

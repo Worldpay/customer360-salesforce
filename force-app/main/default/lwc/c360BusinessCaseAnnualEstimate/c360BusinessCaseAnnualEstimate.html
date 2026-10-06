@@ -1,0 +1,24 @@
+<template>
+    <section class="c360-module">
+        <h2 class="panel-title">{title}</h2>
+        <p class="scope">{scope}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="num">Annual value</th>
+                    <th>Basis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={rows} for:item="row">
+                    <tr key={row.id} class={row.rowClass}>
+                        <th scope="row">{row.label}</th>
+                        <td class="num">{row.value}</td>
+                        <td class="basis">{row.basis}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </section>
+</template>

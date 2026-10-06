@@ -1,0 +1,23 @@
+<template>
+    <section class="c360-module">
+        <h2 class="panel-title">{title}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="num">Counts</th>
+                    <th class="num">Values</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={rows} for:item="row">
+                    <tr key={row.id}>
+                        <th scope="row">{row.label}</th>
+                        <td class="num">{row.count}</td>
+                        <td class="num">{row.value}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </section>
+</template>

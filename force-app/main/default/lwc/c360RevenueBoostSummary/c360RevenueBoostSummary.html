@@ -1,0 +1,31 @@
+<template>
+    <div class="rbs-page">
+        <div class="rbs-top">
+            <div class="rbs-crumbs">{crumbLine}</div>
+            <button type="button" class="rbs-back" onclick={handleChrome}>{backLabel}</button>
+        </div>
+        <div class="rbs-title-row">
+            <div>
+                <h1 class="rbs-account">{page.accountName} <span class="rbs-badge">{page.badge}</span></h1>
+                <p class="rbs-meta">{page.accountLine}</p>
+            </div>
+            <div class="rbs-tools">
+                <span class="rbs-synced">{page.lastSynced}</span>
+                <button type="button" class="rbs-export" onclick={handleChrome}>{page.exportLabel}</button>
+                <button type="button" class="rbs-initiate" onclick={handleChrome}>{page.initiateLabel}</button>
+            </div>
+        </div>
+        <div class="rbs-filter">
+            <span class="rbs-mid-label">{page.midLabel}</span>
+            <span class="rbs-mid">{page.midValue}</span>
+        </div>
+        <div class="rbs-children">
+            <c-c360-merchant-business-case-header onapplyassumptions={handleApplyAssumptions}></c-c360-merchant-business-case-header>
+            <c-c360-last12-months-summary></c-c360-last12-months-summary>
+            <c-c360-business-case-annual-estimate
+                token-utilisation={tokenUtilisation}
+                price-per-transaction={pricePerTransaction}
+            ></c-c360-business-case-annual-estimate>
+        </div>
+    </div>
+</template>

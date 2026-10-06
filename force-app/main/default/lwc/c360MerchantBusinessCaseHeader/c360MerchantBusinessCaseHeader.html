@@ -24,5 +24,22 @@
                 </article>
             </template>
         </div>
+        <div class="mbc-assumptions">
+            <label class="mbc-field">
+                <span class="mbc-field-label">
+                    {assumptions.tokenUtilisationLabel}
+                    <span class="mbc-recommended">({assumptions.recommendedLabel})</span>
+                </span>
+                <input class="mbc-input" data-field="token-utilisation" inputmode="decimal" value={assumptions.tokenUtilisation}>
+            </label>
+            <label class="mbc-field">
+                <span class="mbc-field-label">{assumptions.priceLabel}</span>
+                <span class="mbc-price">
+                    <input class="mbc-input" data-field="price-per-transaction" inputmode="decimal" value={assumptions.pricePerTransaction}>
+                    <span class="mbc-currency">{assumptions.currencySymbol}</span>
+                </span>
+            </label>
+            <button type="button" class="mbc-action text" onclick={handleApply}>{assumptions.applyLabel}</button>
+        </div>
     </section>
 </template>
