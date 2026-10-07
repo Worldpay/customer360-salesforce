@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Enterprise Account Hub for Churn (preview)</title>
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/shell.css">
+  <link rel="stylesheet" href="fragment.css">
+  <link rel="stylesheet" href="../churn-alert-notification/fragment.css">
+  <link rel="stylesheet" href="../churn-metric-tiles/fragment.css">
+  <link rel="stylesheet" href="../churn-current-status/fragment.css">
+</head>
+<body>
+  <div class="protobar">
+    HTML prototype — Enterprise Account Hub for Churn · three child modules · not in hub assembly
+  </div>
+  <div data-module="enterprise-account-hub-churn">
+    <header class="eah-bar">
+      <h1 class="eah-product"></h1>
+      <div class="eah-search"><input type="search" aria-label="Search portfolios and alerts"></div>
+      <div class="eah-user">
+        <button type="button" class="eah-bell" data-eah-action="notifications" aria-label="Notifications">&#128276;</button>
+        <span class="eah-avatar"></span>
+        <span>
+          <span class="eah-user-name"></span><br>
+          <span class="eah-user-role"></span>
+        </span>
+        <button type="button" class="eah-gear" data-eah-action="settings" aria-label="Settings">&#9881;</button>
+      </div>
+    </header>
+    <div class="eah-page">
+      <div class="eah-top">
+        <div class="eah-crumbs"></div>
+        <button type="button" class="eah-back" data-eah-action="back"></button>
+      </div>
+      <div class="eah-title-row">
+        <div>
+          <h2 class="eah-account"></h2>
+          <p class="eah-meta"></p>
+        </div>
+        <div class="eah-tools">
+          <span class="eah-synced"></span>
+          <span class="eah-tools-actions"></span>
+        </div>
+      </div>
+      <div class="eah-children">
+        <section class="c360-module c360-churn-alert-notification" data-module="churn-alert-notification">
+          <div class="can-body"></div>
+        </section>
+        <section class="c360-module c360-churn-metric-tiles" data-module="churn-metric-tiles">
+          <div class="cmt-grid"></div>
+        </section>
+        <section class="c360-module c360-churn-current-status" data-module="churn-current-status">
+          <div class="ccs-bar"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="../../shared/enterprise-account-hub-churn-data.js"></script>
+  <script src="../../shared/churn-alert-notification-data.js"></script>
+  <script src="../../shared/churn-metric-tiles-data.js"></script>
+  <script src="../../shared/churn-current-status-data.js"></script>
+  <script src="../../shared/shell.js"></script>
+  <script src="fragment.js"></script>
+  <script src="../churn-alert-notification/fragment.js"></script>
+  <script src="../churn-metric-tiles/fragment.js"></script>
+  <script src="../churn-current-status/fragment.js"></script>
+</body>
+</html>

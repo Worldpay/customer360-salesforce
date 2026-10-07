@@ -1,0 +1,63 @@
+.c360-churn-current-status .ccs-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  padding: 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow);
+  font-size: 13px;
+}
+
+.c360-churn-current-status .ccs-state {
+  color: var(--ink2);
+  font-weight: 600;
+}
+
+.c360-churn-current-status .ccs-pill {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--green-l);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.c360-churn-current-status .ccs-triggered,
+.c360-churn-current-status .ccs-visibility {
+  color: var(--muted);
+}
+
+.c360-churn-current-status .ccs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.c360-churn-current-status .ccs-action {
+  border-radius: 0.4rem;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.c360-churn-current-status .ccs-action.text {
+  border: 1px solid var(--bd2);
+  background: var(--card);
+  color: var(--ink);
+}
+
+.c360-churn-current-status .ccs-action.danger {
+  border: 1px solid var(--red);
+  background: var(--red);
+  color: #fff;
+}

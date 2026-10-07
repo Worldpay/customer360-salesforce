@@ -2,7 +2,7 @@
 
 Inventory of HTML prototype modules and their LWC conversion status for Customer 360.
 
-**Last updated:** 2026-10-06 (`c360MerchantBusinessCaseHeader` built on mock data — not deployed)
+**Last updated:** 2026-10-07 (`enterprise-account-hub-churn` HTML preview — three children, LWC not started)
 
 **Live data in repo (15 Sep):** `c360Dashboard` sidebar uses `getRecord` (User). `c360CrossSellTable` uses `C360CrossSellController.getCrossSellAccounts` — replace placeholder Apex via `scripts/retrieveC360CrossSellController.ps1` when CLI is available.
 
@@ -78,6 +78,10 @@ Inventory of HTML prototype modules and their LWC conversion status for Customer
 | **`account-detail`** | **P0** | **done** | **done** | | **`c360AccountDetail`** | **Record Page only** |
 | **`revenue-boost-business-case`** | **—** | **done** | **done** | | **`c360RevenueBoostBusinessCase`** | **Isolated — App/Record Page** |
 | `merchant-business-case-header` | P0 | done | done | | `c360MerchantBusinessCaseHeader` | Isolated — not in hub |
+| `enterprise-account-hub-churn` | P0 | done | done | | `c360EnterpriseAccountHubChurn` | Isolated — parent |
+| `churn-alert-notification` | P0 | done | done | | `c360ChurnAlertNotification` | Child of `c360EnterpriseAccountHubChurn` |
+| `churn-metric-tiles` | P0 | done | done | | `c360ChurnMetricTiles` | Child of `c360EnterpriseAccountHubChurn` |
+| `churn-current-status` | P0 | done | done | | `c360ChurnCurrentStatus` | Child of `c360EnterpriseAccountHubChurn` |
 
 **Note:** `revenue-boost-business-case` is a parallel legacy business-case layout; it is **not** included in `build360HtmlPrototype.py` / unified SPA. `merchant-business-case-header` is a separate Merchant Business Case header and is also excluded from the hub assembly.
 
@@ -103,6 +107,7 @@ Open in a browser (double-click, no Salesforce CLI):
 | Pathways table | [`html/modules/pathways-table/preview.html`](html/modules/pathways-table/preview.html) |
 | **Revenue Boost business case (isolated)** | [`html/modules/revenue-boost-business-case/preview.html`](html/modules/revenue-boost-business-case/preview.html) |
 | **Merchant Business Case header (isolated)** | [`html/modules/merchant-business-case-header/preview.html`](html/modules/merchant-business-case-header/preview.html) |
+| **Churn alert screen** | [`html/modules/enterprise-account-hub-churn/preview.html`](html/modules/enterprise-account-hub-churn/preview.html) |
 
 Canonical reference: [`04. HTML prototypes/C360 Prototype v5.html`](../../../04.%20HTML%20prototypes/C360%20Prototype%20v5.html) — Customer 360 uses per-module HTML previews under `prototypes/html/modules/` only (no full-page copy in this folder).
 
