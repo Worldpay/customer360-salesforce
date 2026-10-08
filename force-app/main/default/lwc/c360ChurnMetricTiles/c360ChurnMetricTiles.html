@@ -1,0 +1,17 @@
+<template>
+    <div class="cmt-grid">
+        <template for:each={tiles} for:item="tile">
+            <article key={tile.id} class="cmt-tile">
+                <div class="cmt-top">
+                    <span class="cmt-label">{tile.label}</span>
+                    <span class={tile.badgeClass}>{tile.badge}</span>
+                </div>
+                <div class={tile.valueClass}>{tile.value}</div>
+                <div class="cmt-caption">{tile.caption}</div>
+                <template if:true={tile.showTrend}>
+                    <div class={tile.trendClass}>{tile.trendMark} {tile.trend}</div>
+                </template>
+            </article>
+        </template>
+    </div>
+</template>

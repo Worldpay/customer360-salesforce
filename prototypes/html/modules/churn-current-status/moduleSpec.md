@@ -14,4 +14,4 @@ Child of `enterprise-account-hub-churn`. Current status, trigger date, and actio
 
 ## LWC target
 
-`c360ChurnCurrentStatus` — child of `c360EnterpriseAccountHubChurn` only. Not created yet.
+`c360ChurnCurrentStatus` — built on mock data. Child of `c360EnterpriseAccountHubChurn`.

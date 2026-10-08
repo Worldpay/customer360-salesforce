@@ -61,6 +61,8 @@ Exposed bundles (tables, banners, KPI strip, Alert Centre, etc.) can be placed i
 - **LWC:** `c360RevenueBoostBusinessCase` — legacy business-case IA (filters, manual inputs, summary, auth impact, decline table)
 - **HTML:** [`prototypes/html/modules/merchant-business-case-header/preview.html`](prototypes/html/modules/merchant-business-case-header/preview.html)
 - **LWC:** `c360MerchantBusinessCaseHeader` — header only (title, two actions, four metrics)
+- **HTML:** [`prototypes/html/modules/enterprise-account-hub-churn/preview.html`](prototypes/html/modules/enterprise-account-hub-churn/preview.html)
+- **LWC:** `c360EnterpriseAccountHubChurn` — churn alert screen (notification, metric tiles, current status)
 
 ### Shared / child-only
 
@@ -153,7 +155,9 @@ Wire **`c360Dashboard`** on the hub App Page and **`c360Account`** on Account Re
 | `c360AlertCentre` | Yes | C360 Alert Centre | App Page, Home Page |
 | `c360CrossSellTable` | Yes | C360 Cross-Sell Table | App Page, Home Page |
 | `c360ChurnTable` | Yes | C360 Churn Table | App Page, Home Page |
+| `c360EnterpriseAccountHubChurn` | Yes | C360 Churn Alert Screen | App Page, Home Page, Account Record Page |
 | `c360RevenueBoostBusinessCase` | Yes | C360 Revenue Boost Business Case | App Page, Home Page, Account Record Page |
+| `c360RevenueBoostSummary` | Yes | C360 Revenue Boost Summary | App Page, Home Page, Account Record Page |
 | `c360AlertDetail` | Yes | C360 Alert Detail | App Page, Home Page |
 | `c360Account` | Yes | C360 Account Spotlight | Account Record Page |
 | `c360AccountDetail` | No | — | Child (`c360Account` / hub) |

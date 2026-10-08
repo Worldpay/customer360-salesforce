@@ -1,0 +1,42 @@
+<template>
+    <div class="eah">
+        <header class="eah-bar">
+            <h1 class="eah-product">{page.product}</h1>
+            <div class="eah-search">
+                <input type="search" aria-label="Search portfolios and alerts" placeholder={page.searchPlaceholder}>
+            </div>
+            <div class="eah-user">
+                <button type="button" class="eah-bell" onclick={handleChrome} aria-label="Notifications">&#128276;</button>
+                <span class="eah-avatar">{page.userInitials}</span>
+                <span>
+                    <span class="eah-user-name">{page.userName}</span><br>
+                    <span class="eah-user-role">{page.userRole}</span>
+                </span>
+                <button type="button" class="eah-gear" onclick={handleChrome} aria-label="Settings">&#9881;</button>
+            </div>
+        </header>
+        <div class="eah-page">
+            <div class="eah-top">
+                <div class="eah-crumbs">{crumbLine}</div>
+                <button type="button" class="eah-back" onclick={handleChrome}>{backLabel}</button>
+            </div>
+            <div class="eah-title-row">
+                <div>
+                    <h2 class="eah-account">{page.accountName}</h2>
+                    <p class="eah-meta">{page.accountLine}</p>
+                </div>
+                <div class="eah-tools">
+                    <span class="eah-synced">{page.lastSynced}</span>
+                    <template for:each={actions} for:item="action">
+                        <button key={action.id} type="button" class={action.actionClass} onclick={handleChrome}>{action.label}</button>
+                    </template>
+                </div>
+            </div>
+            <div class="eah-children">
+                <c-c360-churn-alert-notification></c-c360-churn-alert-notification>
+                <c-c360-churn-metric-tiles></c-c360-churn-metric-tiles>
+                <c-c360-churn-current-status></c-c360-churn-current-status>
+            </div>
+        </div>
+    </div>
+</template>

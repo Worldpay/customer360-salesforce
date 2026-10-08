@@ -14,6 +14,7 @@ export {
 export { MERCHANT_BUSINESS_CASE_HEADER } from './c360MerchantBusinessCaseHeaderData';
 export { LAST_12_MONTHS_SUMMARY } from './c360Last12MonthsSummaryData';
 export { BUSINESS_CASE_ANNUAL_ESTIMATE, REVENUE_BOOST_SUMMARY } from './c360BusinessCaseAnnualEstimateData';
+export { ENTERPRISE_ACCOUNT_HUB_CHURN, CHURN_ALERT_NOTIFICATION, CHURN_METRIC_TILES, CHURN_CURRENT_STATUS } from './c360EnterpriseAccountHubChurnData';
 
 export const BASE_PRICE_PER_TXN = 0.05;
 

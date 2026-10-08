@@ -7,10 +7,14 @@
         <members>c360AlertCentre</members>
         <members>c360AlertDetail</members>
         <members>c360BusinessCaseAnnualEstimate</members>
+        <members>c360ChurnAlertNotification</members>
+        <members>c360ChurnCurrentStatus</members>
+        <members>c360ChurnMetricTiles</members>
         <members>c360ChurnTable</members>
         <members>c360ConfigurableKpiTile</members>
         <members>c360CrossSellTable</members>
         <members>c360Dashboard</members>
+        <members>c360EnterpriseAccountHubChurn</members>
         <members>c360KpiStrip</members>
         <members>c360KpiTile</members>
         <members>c360Last12MonthsSummary</members>

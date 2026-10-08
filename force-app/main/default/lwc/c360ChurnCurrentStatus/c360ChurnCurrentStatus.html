@@ -1,0 +1,14 @@
+<template>
+    <section class="ccs-bar">
+        <div class="ccs-state"><span>{status.statusLabel}</span> <span class="ccs-pill">{status.status}</span></div>
+        <div class="ccs-triggered">{status.triggered}</div>
+        <div class="ccs-actions">
+            <template for:each={actions} for:item="action">
+                <button key={action.id} type="button" class={action.actionClass} data-id={action.id} onclick={handleAction}>
+                    {action.label}
+                </button>
+            </template>
+        </div>
+        <div class="ccs-visibility">{status.visibility}</div>
+    </section>
+</template>

@@ -1,0 +1,67 @@
+:host {
+    display: block;
+    --red: #ba0517;
+    --ink: #181818;
+}
+
+.can-body {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 0.75rem;
+    background: var(--red);
+    color: #fff;
+}
+
+.can-icon {
+    flex-shrink: 0;
+    font-size: 18px;
+}
+
+.can-copy {
+    margin: 0;
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.can-sep {
+    opacity: 0.8;
+    margin: 0 4px;
+}
+
+.can-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    font-size: 12px;
+}
+
+.can-priority {
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #7a1020;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.can-view {
+    border: 0;
+    border-radius: 0.4rem;
+    background: var(--ink);
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    .can-body {
+        flex-wrap: wrap;
+    }
+}

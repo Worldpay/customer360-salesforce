@@ -14,4 +14,4 @@ Child of `enterprise-account-hub-churn`. Red notification for a newly generated 
 
 ## LWC target
 
-`c360ChurnAlertNotification` — child of `c360EnterpriseAccountHubChurn` only. Not created yet.
+`c360ChurnAlertNotification` — built on mock data. Child of `c360EnterpriseAccountHubChurn`.

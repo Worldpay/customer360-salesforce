@@ -1,0 +1,77 @@
+:host {
+    display: block;
+    --card: #ffffff;
+    --bd: #e5e5e5;
+    --bd2: #c9c9c9;
+    --ink: #181818;
+    --ink2: #444444;
+    --muted: #706e6b;
+    --green: #2e844a;
+    --green-l: #eafaef;
+    --red: #ba0517;
+    --shadow: 0 2px 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.ccs-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    padding: 12px 16px;
+    background: var(--card);
+    border: 1px solid var(--bd);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow);
+    font-size: 13px;
+}
+
+.ccs-state {
+    color: var(--ink2);
+    font-weight: 600;
+}
+
+.ccs-pill {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--green-l);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.ccs-triggered,
+.ccs-visibility {
+    color: var(--muted);
+}
+
+.ccs-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.ccs-action {
+    border-radius: 0.4rem;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.ccs-action.text {
+    border: 1px solid var(--bd2);
+    background: var(--card);
+    color: var(--ink);
+}
+
+.ccs-action.danger {
+    border: 1px solid var(--red);
+    background: var(--red);
+    color: #fff;
+}

@@ -14,4 +14,4 @@ Identified Risk Signals, Identified Expansion Opportunities, and Performance & T
 
 ## LWC target
 
-`c360EnterpriseAccountHubChurn` will compose `c360ChurnAlertNotification`, `c360ChurnMetricTiles`, and `c360ChurnCurrentStatus`. HTML preview only until that build starts.
+`c360EnterpriseAccountHubChurn` composes `c360ChurnAlertNotification`, `c360ChurnMetricTiles`, and `c360ChurnCurrentStatus` on mock data.

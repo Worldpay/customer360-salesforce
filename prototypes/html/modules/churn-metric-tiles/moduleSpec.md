@@ -14,4 +14,4 @@ Child of `enterprise-account-hub-churn`. Six display tiles: Churn Score, Churn R
 
 ## LWC target
 
-`c360ChurnMetricTiles` — child of `c360EnterpriseAccountHubChurn` only. Not created yet.
+`c360ChurnMetricTiles` — built on mock data. Child of `c360EnterpriseAccountHubChurn`.

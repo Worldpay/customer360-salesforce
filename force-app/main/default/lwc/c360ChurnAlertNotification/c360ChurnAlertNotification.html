@@ -1,0 +1,11 @@
+<template>
+    <section class="can-body">
+        <span class="can-icon" aria-hidden="true">&#128276;</span>
+        <p class="can-copy"><strong>{alert.title}</strong> <span class="can-sep">|</span> {alert.message}</p>
+        <div class="can-meta">
+            <span>{alert.timestamp}</span>
+            <span class="can-priority">{alert.priority}</span>
+            <button type="button" class="can-view" onclick={handleView}>{alert.viewLabel}</button>
+        </div>
+    </section>
+</template>

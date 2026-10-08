@@ -1,0 +1,183 @@
+:host {
+    display: block;
+    --sf-blue: #0176d3;
+    --card: #ffffff;
+    --bd2: #c9c9c9;
+    --ink: #181818;
+    --ink2: #444444;
+    --muted: #706e6b;
+    --navy: #032d60;
+}
+
+.eah-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 20px;
+    background: var(--navy);
+    color: #fff;
+}
+
+.eah-product {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.eah-search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.eah-search input {
+    width: min(420px, 100%);
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font: inherit;
+    padding: 8px 14px;
+}
+
+.eah-search input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.eah-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.eah-bell,
+.eah-gear,
+.eah-back,
+.eah-action {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.eah-bell,
+.eah-gear {
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+}
+
+.eah-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sf-blue);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.eah-user-name {
+    font-weight: 700;
+}
+
+.eah-user-role {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 12px;
+}
+
+.eah-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 20px 40px;
+}
+
+.eah-top,
+.eah-title-row,
+.eah-tools {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.eah-top,
+.eah-title-row {
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.eah-crumbs,
+.eah-meta,
+.eah-synced {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.eah-back {
+    border: 0;
+    background: transparent;
+    color: var(--ink2);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.eah-account {
+    margin: 8px 0 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.eah-meta {
+    margin: 4px 0 0;
+}
+
+.eah-tools {
+    flex-shrink: 0;
+    margin-top: 8px;
+    gap: 8px;
+}
+
+.eah-action {
+    border-radius: 0.5rem;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 12px;
+}
+
+.eah-action.text {
+    border: 1px solid var(--bd2);
+    background: var(--card);
+    color: var(--ink);
+}
+
+.eah-action.primary {
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: #fff;
+}
+
+.eah-action.accent {
+    border: 1px solid var(--sf-blue);
+    background: var(--sf-blue);
+    color: #fff;
+}
+
+.eah-children {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+@media (max-width: 800px) {
+    .eah-bar,
+    .eah-title-row,
+    .eah-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
