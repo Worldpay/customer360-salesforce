@@ -1,0 +1,77 @@
+<template>
+    <div class="cav-shell">
+        <aside class="cav-side">
+            <div class="cav-brand"><span class="cav-mark">C3</span><span>{page.brand}</span></div>
+            <nav class="cav-nav" aria-label="Customer 360">
+                <template for:each={navItems} for:item="item">
+                    <button key={item.id} type="button" class={item.itemClass} data-label={item.label} aria-current={item.ariaCurrent} onclick={handleChrome}>
+                        <template if:true={item.isHome}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+                        </template>
+                        <template if:true={item.isAlertCentre}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4 3.5 19h17L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M12 10v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                        </template>
+                        <template if:true={item.isCrossSell}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                        </template>
+                        <template if:true={item.isAnalytics}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19V10M12 19V5M19 19v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                        </template>
+                        <template if:true={item.isCustomers}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.8"></circle><path d="M4 19c.6-2.4 2.5-4 5-4s4.4 1.6 5 4M16.2 15c1.8.3 3.2 1.5 3.8 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><circle cx="17" cy="9" r="2.2" stroke="currentColor" stroke-width="1.8"></circle></svg>
+                        </template>
+                        <template if:true={item.isReports}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3.5h7l5 5V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M14 3.5V9h5.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+                        </template>
+                        <template if:true={item.isSettings}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M6 6l1.6 1.6M16.4 16.4 18 18M18 6l-1.6 1.6M7.6 16.4 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                        </template>
+                        <span>{item.label}</span>
+                    </button>
+                </template>
+            </nav>
+            <div class="cav-side-date">{page.navDate}</div>
+        </aside>
+        <div class="cav-main">
+            <header class="cav-bar">
+                <h1 class="cav-product">{page.product}</h1>
+                <div class="cav-search">
+                    <input type="search" aria-label="Search portfolios and alerts" placeholder={page.searchPlaceholder}>
+                </div>
+                <div class="cav-user">
+                    <button type="button" class="cav-bell" data-label="Notifications" onclick={handleChrome} aria-label="Notifications">&#128276;</button>
+                    <span class="cav-avatar">{page.userInitials}</span>
+                    <span>
+                        <span class="cav-user-name">{page.userName}</span><br>
+                        <span class="cav-user-role">{page.userRole}</span>
+                    </span>
+                    <button type="button" class="cav-gear" data-label="Settings" onclick={handleChrome} aria-label="Settings">&#9881;</button>
+                </div>
+            </header>
+            <div class="cav-page">
+                <div class="cav-top">
+                    <div class="cav-crumbs">{crumbLine}</div>
+                    <button type="button" class="cav-back" data-label={page.backLabel} onclick={handleChrome}>{backLabel}</button>
+                </div>
+                <div class="cav-title-row">
+                    <div>
+                        <h2 class="cav-account">{page.accountName}</h2>
+                        <p class="cav-meta">{page.accountLine}</p>
+                    </div>
+                    <div class="cav-tools">
+                        <span class="cav-synced">{page.lastSynced}</span>
+                        <template for:each={actions} for:item="action">
+                            <button key={action.id} type="button" class={action.actionClass} data-label={action.label} onclick={handleChrome}>{action.label}</button>
+                        </template>
+                    </div>
+                </div>
+                <div class="cav-children">
+                    <c-c360-churn-alert-notification></c-c360-churn-alert-notification>
+                    <c-c360-churn-metric-tiles></c-c360-churn-metric-tiles>
+                    <c-c360-churn-current-status></c-c360-churn-current-status>
+                    <c-c360-identified-risk-signals></c-c360-identified-risk-signals>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

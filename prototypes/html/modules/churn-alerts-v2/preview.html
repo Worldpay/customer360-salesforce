@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Churn Alerts v2 (preview)</title>
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/shell.css">
+  <link rel="stylesheet" href="fragment.css">
+  <link rel="stylesheet" href="../churn-alert-notification/fragment.css">
+  <link rel="stylesheet" href="../churn-metric-tiles/fragment.css">
+  <link rel="stylesheet" href="../churn-current-status/fragment.css">
+  <link rel="stylesheet" href="../identified-risk-signals/fragment.css">
+</head>
+<body>
+  <div class="protobar">
+    HTML prototype — Churn Alerts v2 · sidebar, hub bar, reused churn children, Identified Risk Signals · not in hub assembly
+  </div>
+  <div data-module="churn-alerts-v2" class="cav-shell">
+    <aside class="cav-side">
+      <div class="cav-brand"><span class="cav-mark">C3</span><span class="cav-brand-name"></span></div>
+      <nav class="cav-nav" aria-label="Customer 360"></nav>
+      <div class="cav-side-date"></div>
+    </aside>
+    <div class="cav-main">
+      <header class="cav-bar">
+        <h1 class="cav-product"></h1>
+        <div class="cav-search"><input type="search" aria-label="Search portfolios and alerts"></div>
+        <div class="cav-user">
+          <button type="button" class="cav-bell" data-cav-action="notifications" aria-label="Notifications">&#128276;</button>
+          <span class="cav-avatar"></span>
+          <span>
+            <span class="cav-user-name"></span><br>
+            <span class="cav-user-role"></span>
+          </span>
+          <button type="button" class="cav-gear" data-cav-action="settings" aria-label="Settings">&#9881;</button>
+        </div>
+      </header>
+      <div class="cav-page">
+      <div class="cav-top">
+        <div class="cav-crumbs"></div>
+        <button type="button" class="cav-back" data-cav-action="back"></button>
+      </div>
+      <div class="cav-title-row">
+        <div>
+          <h2 class="cav-account"></h2>
+          <p class="cav-meta"></p>
+        </div>
+        <div class="cav-tools">
+          <span class="cav-synced"></span>
+          <span class="cav-tools-actions"></span>
+        </div>
+      </div>
+      <div class="cav-children">
+        <section class="c360-module c360-churn-alert-notification" data-module="churn-alert-notification">
+          <div class="can-body"></div>
+        </section>
+        <section class="c360-module c360-churn-metric-tiles" data-module="churn-metric-tiles">
+          <div class="cmt-grid"></div>
+        </section>
+        <section class="c360-module c360-churn-current-status" data-module="churn-current-status">
+          <div class="ccs-bar"></div>
+        </section>
+        <section class="c360-module c360-identified-risk-signals" data-module="identified-risk-signals">
+          <button type="button" class="irs-row" aria-expanded="false">
+            <span class="irs-lead">
+              <span class="irs-title"></span>
+              <span class="irs-badge"></span>
+            </span>
+            <svg class="irs-chevron" preserveAspectRatio="none" overflow="visible" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9L12 15L18 9" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </section>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="../../shared/churn-alerts-v2-data.js"></script>
+  <script src="../../shared/churn-alert-notification-data.js"></script>
+  <script src="../../shared/churn-metric-tiles-data.js"></script>
+  <script src="../../shared/churn-current-status-data.js"></script>
+  <script src="../../shared/identified-risk-signals-data.js"></script>
+  <script src="../../shared/shell.js"></script>
+  <script src="fragment.js"></script>
+  <script src="../churn-alert-notification/fragment.js"></script>
+  <script src="../churn-metric-tiles/fragment.js"></script>
+  <script src="../churn-current-status/fragment.js"></script>
+  <script src="../identified-risk-signals/fragment.js"></script>
+</body>
+</html>

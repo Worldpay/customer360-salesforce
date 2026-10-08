@@ -1,0 +1,277 @@
+:host {
+  display: block;
+  --sf-blue: #0176d3;
+  --card: #ffffff;
+  --bd: #e5e5e5;
+  --bd2: #c9c9c9;
+  --ink: #181818;
+  --ink2: #444444;
+  --muted: #706e6b;
+  --navy: #032d60;
+}
+
+.cav-shell {
+  display: flex;
+  align-items: stretch;
+  min-height: 720px;
+}
+
+.cav-side {
+  width: 220px;
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-right: 1px solid var(--bd);
+  padding: 20px 12px 16px;
+}
+
+.cav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px 18px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.cav-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.cav-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cav-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink2);
+  padding: 8px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cav-nav-item svg {
+  flex-shrink: 0;
+}
+
+.cav-nav-item.active {
+  background: var(--ink);
+  color: #fff;
+}
+
+.cav-side-date {
+  margin-top: auto;
+  padding: 16px 8px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.cav-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.cav-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  background: var(--navy);
+  color: #fff;
+}
+
+.cav-product {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cav-search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.cav-search input {
+  width: min(420px, 100%);
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font: inherit;
+  padding: 8px 14px;
+}
+
+.cav-search input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cav-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.cav-bell,
+.cav-gear {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sf-blue);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cav-user-name { font-weight: 700; }
+.cav-user-role { color: rgba(255, 255, 255, 0.75); font-size: 12px; }
+
+.cav-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 20px 40px;
+}
+
+.cav-top,
+.cav-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cav-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.cav-back,
+.cav-action {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.cav-back {
+  border: 0;
+  background: transparent;
+  color: var(--ink2);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cav-account {
+  margin: 8px 0 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cav-meta {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.cav-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.cav-synced {
+  color: var(--muted);
+  font-size: 13px;
+  margin-right: 6px;
+}
+
+.cav-action {
+  border-radius: 0.5rem;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 12px;
+}
+
+.cav-action.text {
+  border: 1px solid var(--bd2);
+  background: var(--card);
+  color: var(--ink);
+}
+
+.cav-action.primary {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+.cav-action.accent {
+  border: 1px solid var(--sf-blue);
+  background: var(--sf-blue);
+  color: #fff;
+}
+
+.cav-children {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+@media (max-width: 800px) {
+  .cav-shell,
+  .cav-bar,
+  .cav-title-row,
+  .cav-top,
+  .cav-tools {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cav-side {
+    width: auto;
+    flex-basis: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--bd);
+  }
+
+  .cav-side-date {
+    margin-top: 16px;
+  }
+}

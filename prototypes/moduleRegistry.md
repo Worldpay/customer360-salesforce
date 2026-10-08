@@ -2,7 +2,7 @@
 
 Inventory of HTML prototype modules and their LWC conversion status for Customer 360.
 
-**Last updated:** 2026-10-07 (`enterprise-account-hub-churn` HTML preview — three children, LWC not started)
+**Last updated:** 2026-10-08 (`c360ChurnAlertsV2` LWC on mock data)
 
 **Live data in repo (15 Sep):** `c360Dashboard` sidebar uses `getRecord` (User). `c360CrossSellTable` uses `C360CrossSellController.getCrossSellAccounts` — replace placeholder Apex via `scripts/retrieveC360CrossSellController.ps1` when CLI is available.
 
@@ -82,6 +82,8 @@ Inventory of HTML prototype modules and their LWC conversion status for Customer
 | `churn-alert-notification` | P0 | done | done | | `c360ChurnAlertNotification` | Child of `c360EnterpriseAccountHubChurn` |
 | `churn-metric-tiles` | P0 | done | done | | `c360ChurnMetricTiles` | Child of `c360EnterpriseAccountHubChurn` |
 | `churn-current-status` | P0 | done | done | | `c360ChurnCurrentStatus` | Child of `c360EnterpriseAccountHubChurn` |
+| `churn-alerts-v2` | P0 | done | done | | `c360ChurnAlertsV2` | Isolated — parent |
+| `identified-risk-signals` | P0 | done | done | | `c360IdentifiedRiskSignals` | Child of `c360ChurnAlertsV2` |
 
 **Note:** `revenue-boost-business-case` is a parallel legacy business-case layout; it is **not** included in `build360HtmlPrototype.py` / unified SPA. `merchant-business-case-header` is a separate Merchant Business Case header and is also excluded from the hub assembly.
 
@@ -108,6 +110,8 @@ Open in a browser (double-click, no Salesforce CLI):
 | **Revenue Boost business case (isolated)** | [`html/modules/revenue-boost-business-case/preview.html`](html/modules/revenue-boost-business-case/preview.html) |
 | **Merchant Business Case header (isolated)** | [`html/modules/merchant-business-case-header/preview.html`](html/modules/merchant-business-case-header/preview.html) |
 | **Churn alert screen** | [`html/modules/enterprise-account-hub-churn/preview.html`](html/modules/enterprise-account-hub-churn/preview.html) |
+| **Churn Alerts v2** | [`html/modules/churn-alerts-v2/preview.html`](html/modules/churn-alerts-v2/preview.html) |
+| **Identified Risk Signals (child)** | [`html/modules/identified-risk-signals/preview.html`](html/modules/identified-risk-signals/preview.html) |
 
 Canonical reference: [`04. HTML prototypes/C360 Prototype v5.html`](../../../04.%20HTML%20prototypes/C360%20Prototype%20v5.html) — Customer 360 uses per-module HTML previews under `prototypes/html/modules/` only (no full-page copy in this folder).
 

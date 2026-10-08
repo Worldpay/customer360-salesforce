@@ -63,6 +63,8 @@ Exposed bundles (tables, banners, KPI strip, Alert Centre, etc.) can be placed i
 - **LWC:** `c360MerchantBusinessCaseHeader` — header only (title, two actions, four metrics)
 - **HTML:** [`prototypes/html/modules/enterprise-account-hub-churn/preview.html`](prototypes/html/modules/enterprise-account-hub-churn/preview.html)
 - **LWC:** `c360EnterpriseAccountHubChurn` — churn alert screen (notification, metric tiles, current status)
+- **HTML:** [`prototypes/html/modules/churn-alerts-v2/preview.html`](prototypes/html/modules/churn-alerts-v2/preview.html)
+- **LWC:** `c360ChurnAlertsV2` — Churn Alerts v2 (sidebar, hub bar, notification, metric tiles, current status, collapsed risk signals)
 
 ### Shared / child-only
 
@@ -156,6 +158,8 @@ Wire **`c360Dashboard`** on the hub App Page and **`c360Account`** on Account Re
 | `c360CrossSellTable` | Yes | C360 Cross-Sell Table | App Page, Home Page |
 | `c360ChurnTable` | Yes | C360 Churn Table | App Page, Home Page |
 | `c360EnterpriseAccountHubChurn` | Yes | C360 Churn Alert Screen | App Page, Home Page, Account Record Page |
+| `c360ChurnAlertsV2` | Yes | C360 Churn Alerts v2 | App Page, Home Page, Account Record Page |
+| `c360IdentifiedRiskSignals` | No | — | Child (`c360ChurnAlertsV2`) |
 | `c360RevenueBoostBusinessCase` | Yes | C360 Revenue Boost Business Case | App Page, Home Page, Account Record Page |
 | `c360RevenueBoostSummary` | Yes | C360 Revenue Boost Summary | App Page, Home Page, Account Record Page |
 | `c360AlertDetail` | Yes | C360 Alert Detail | App Page, Home Page |
