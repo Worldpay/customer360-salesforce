@@ -1,0 +1,187 @@
+:host {
+    display: block;
+    --sf-blue: #0176d3;
+    --card: #ffffff;
+    --bd: #e5e5e5;
+    --bd2: #c9c9c9;
+    --ink: #181818;
+    --ink2: #444444;
+    --muted: #706e6b;
+    --shadow: 0 2px 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.pat-card {
+  padding: 20px;
+  border: 1px solid var(--bd);
+  border-radius: 0.75rem;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.pat-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pat-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.pat-subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.pat-collapse {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.pat-chevron {
+  transform: scaleY(-1);
+}
+
+.pat-ranges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.pat-range {
+  border: 1px solid var(--bd2);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink2);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.pat-range.is-selected {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+.pat-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.pat-chart {
+  border: 1px solid var(--bd);
+  border-radius: 0.75rem;
+  padding: 14px 14px 10px;
+}
+
+.pat-chart-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.pat-chart-latest {
+  margin: 4px 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.pat-chart svg {
+  display: block;
+  width: 100%;
+  height: 72px;
+}
+
+.pat-table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.pat-table th,
+.pat-table td {
+  padding: 10px 8px;
+  border-top: 1px solid var(--bd);
+  text-align: right;
+}
+
+.pat-table th:first-child,
+.pat-table td:first-child {
+  text-align: left;
+}
+
+.pat-table thead th {
+  border-top: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pat-scenario {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--bd);
+}
+
+.pat-scenario-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pat-scenario-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pat-action {
+  border-radius: 0.5rem;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.pat-action.text {
+  border: 1px solid var(--bd2);
+  background: var(--card);
+  color: var(--ink);
+}
+
+.pat-action.primary {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+@media (max-width: 800px) {
+  .pat-charts,
+  .pat-scenario {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

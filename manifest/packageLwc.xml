@@ -15,7 +15,9 @@
         <members>c360ConfigurableKpiTile</members>
         <members>c360CrossSellTable</members>
         <members>c360Dashboard</members>
+        <members>c360EnterpriseAccountHome</members>
         <members>c360EnterpriseAccountHubChurn</members>
+        <members>c360IdentifiedExpansionOpportunities</members>
         <members>c360IdentifiedRiskSignals</members>
         <members>c360KpiStrip</members>
         <members>c360KpiTile</members>
@@ -25,6 +27,7 @@
         <members>c360MockData</members>
         <members>c360MySignals</members>
         <members>c360NeedsAction</members>
+        <members>c360PerformanceAndTrends</members>
         <members>c360PortfolioHealth</members>
         <members>c360RevenueBoostBusinessCase</members>
         <members>c360RevenueBoostSummary</members>

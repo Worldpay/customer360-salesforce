@@ -2,7 +2,7 @@
 
 Inventory of HTML prototype modules and their LWC conversion status for Customer 360.
 
-**Last updated:** 2026-10-08 (`c360ChurnAlertsV2` LWC on mock data)
+**Last updated:** 2026-10-08 (`c360EnterpriseAccountHome` LWC on mock data)
 
 **Live data in repo (15 Sep):** `c360Dashboard` sidebar uses `getRecord` (User). `c360CrossSellTable` uses `C360CrossSellController.getCrossSellAccounts` — replace placeholder Apex via `scripts/retrieveC360CrossSellController.ps1` when CLI is available.
 
@@ -84,6 +84,9 @@ Inventory of HTML prototype modules and their LWC conversion status for Customer
 | `churn-current-status` | P0 | done | done | | `c360ChurnCurrentStatus` | Child of `c360EnterpriseAccountHubChurn` |
 | `churn-alerts-v2` | P0 | done | done | | `c360ChurnAlertsV2` | Isolated — parent |
 | `identified-risk-signals` | P0 | done | done | | `c360IdentifiedRiskSignals` | Child of `c360ChurnAlertsV2` |
+| `enterprise-account-home` | P0 | done | done | | `c360EnterpriseAccountHome` | Isolated — parent |
+| `identified-expansion-opportunities` | P0 | done | done | | `c360IdentifiedExpansionOpportunities` | Child of `c360EnterpriseAccountHome` |
+| `performance-and-trends` | P0 | done | done | | `c360PerformanceAndTrends` | Child of `c360EnterpriseAccountHome` |
 
 **Note:** `revenue-boost-business-case` is a parallel legacy business-case layout; it is **not** included in `build360HtmlPrototype.py` / unified SPA. `merchant-business-case-header` is a separate Merchant Business Case header and is also excluded from the hub assembly.
 
@@ -112,6 +115,9 @@ Open in a browser (double-click, no Salesforce CLI):
 | **Churn alert screen** | [`html/modules/enterprise-account-hub-churn/preview.html`](html/modules/enterprise-account-hub-churn/preview.html) |
 | **Churn Alerts v2** | [`html/modules/churn-alerts-v2/preview.html`](html/modules/churn-alerts-v2/preview.html) |
 | **Identified Risk Signals (child)** | [`html/modules/identified-risk-signals/preview.html`](html/modules/identified-risk-signals/preview.html) |
+| **Enterprise Account Home** | [`html/modules/enterprise-account-home/preview.html`](html/modules/enterprise-account-home/preview.html) |
+| **Identified Expansion Opportunities (child)** | [`html/modules/identified-expansion-opportunities/preview.html`](html/modules/identified-expansion-opportunities/preview.html) |
+| **Performance and Trends (child)** | [`html/modules/performance-and-trends/preview.html`](html/modules/performance-and-trends/preview.html) |
 
 Canonical reference: [`04. HTML prototypes/C360 Prototype v5.html`](../../../04.%20HTML%20prototypes/C360%20Prototype%20v5.html) — Customer 360 uses per-module HTML previews under `prototypes/html/modules/` only (no full-page copy in this folder).
 

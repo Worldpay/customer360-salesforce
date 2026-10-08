@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Enterprise Account Home (preview)</title>
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/shell.css">
+  <link rel="stylesheet" href="fragment.css">
+  <link rel="stylesheet" href="../churn-alert-notification/fragment.css">
+  <link rel="stylesheet" href="../churn-metric-tiles/fragment.css">
+  <link rel="stylesheet" href="../churn-current-status/fragment.css">
+  <link rel="stylesheet" href="../identified-risk-signals/fragment.css">
+  <link rel="stylesheet" href="../identified-expansion-opportunities/fragment.css">
+  <link rel="stylesheet" href="../performance-and-trends/fragment.css">
+</head>
+<body>
+  <div class="protobar">
+    HTML prototype — Enterprise Account Home · sidebar, hub bar, churn sections, expansion opportunities, performance and trends · not in hub assembly
+  </div>
+  <div data-module="enterprise-account-home" class="ehome-shell">
+    <aside class="ehome-side">
+      <div class="ehome-brand"><span class="ehome-mark">C3</span><span class="ehome-brand-name"></span></div>
+      <nav class="ehome-nav" aria-label="Customer 360"></nav>
+      <div class="ehome-side-date"></div>
+    </aside>
+    <div class="ehome-main">
+      <header class="ehome-bar">
+        <h1 class="ehome-product"></h1>
+        <div class="ehome-search"><input type="search" aria-label="Search portfolios and alerts"></div>
+        <div class="ehome-user">
+          <button type="button" class="ehome-bell" data-ehome-action="notifications" aria-label="Notifications">&#128276;</button>
+          <span class="ehome-avatar"></span>
+          <span>
+            <span class="ehome-user-name"></span><br>
+            <span class="ehome-user-role"></span>
+          </span>
+          <button type="button" class="ehome-gear" data-ehome-action="settings" aria-label="Settings">&#9881;</button>
+        </div>
+      </header>
+      <div class="ehome-page">
+      <div class="ehome-top">
+        <div class="ehome-crumbs"></div>
+        <button type="button" class="ehome-back" data-ehome-action="back"></button>
+      </div>
+      <div class="ehome-title-row">
+        <div>
+          <h2 class="ehome-account"></h2>
+          <p class="ehome-meta"></p>
+        </div>
+        <div class="ehome-tools">
+          <span class="ehome-synced"></span>
+          <span class="ehome-tools-actions"></span>
+        </div>
+      </div>
+      <div class="ehome-children">
+        <section class="c360-module c360-churn-alert-notification" data-module="churn-alert-notification">
+          <div class="can-body"></div>
+        </section>
+        <section class="c360-module c360-churn-metric-tiles" data-module="churn-metric-tiles">
+          <div class="cmt-grid"></div>
+        </section>
+        <section class="c360-module c360-churn-current-status" data-module="churn-current-status">
+          <div class="ccs-bar"></div>
+        </section>
+        <section class="c360-module c360-identified-risk-signals" data-module="identified-risk-signals">
+          <button type="button" class="irs-row" aria-expanded="false">
+            <span class="irs-lead">
+              <span class="irs-title"></span>
+              <span class="irs-badge"></span>
+            </span>
+            <svg class="irs-chevron" preserveAspectRatio="none" overflow="visible" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9L12 15L18 9" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </section>
+        <section class="c360-module c360-identified-expansion-opportunities" data-module="identified-expansion-opportunities">
+          <button type="button" class="ieo-row" aria-expanded="false">
+            <span class="ieo-lead">
+              <span class="ieo-title"></span>
+              <span class="ieo-badge"></span>
+            </span>
+            <svg class="ieo-chevron" preserveAspectRatio="none" overflow="visible" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 9L12 15L18 9" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </section>
+        <section class="c360-module c360-performance-and-trends" data-module="performance-and-trends">
+          <div class="pat-card">
+            <div class="pat-head">
+              <div>
+                <h2 class="pat-title"></h2>
+                <p class="pat-subtitle"></p>
+              </div>
+              <button type="button" class="pat-collapse" data-pat-action="collapse" aria-expanded="true" aria-label="Performance and Trends">
+                <svg class="pat-chevron" preserveAspectRatio="none" overflow="visible" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M6 9L12 15L18 9" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="pat-ranges"></div>
+            <div class="pat-charts"></div>
+            <div class="pat-table-wrap"></div>
+            <div class="pat-scenario">
+              <h3 class="pat-scenario-title"></h3>
+              <div class="pat-scenario-actions"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="../../shared/enterprise-account-home-data.js"></script>
+  <script src="../../shared/churn-alert-notification-data.js"></script>
+  <script src="../../shared/churn-metric-tiles-data.js"></script>
+  <script src="../../shared/churn-current-status-data.js"></script>
+  <script src="../../shared/identified-risk-signals-data.js"></script>
+  <script src="../../shared/identified-expansion-opportunities-data.js"></script>
+  <script src="../../shared/performance-and-trends-data.js"></script>
+  <script src="../../shared/shell.js"></script>
+  <script src="fragment.js"></script>
+  <script src="../churn-alert-notification/fragment.js"></script>
+  <script src="../churn-metric-tiles/fragment.js"></script>
+  <script src="../churn-current-status/fragment.js"></script>
+  <script src="../identified-risk-signals/fragment.js"></script>
+  <script src="../identified-expansion-opportunities/fragment.js"></script>
+  <script src="../performance-and-trends/fragment.js"></script>
+</body>
+</html>

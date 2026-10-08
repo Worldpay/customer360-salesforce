@@ -1,0 +1,55 @@
+:host {
+    display: block;
+    --card: #ffffff;
+    --bd: #e5e5e5;
+    --ink: #181818;
+    --green: #2e844a;
+    --green-l: #eafaef;
+    --shadow: 0 2px 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.ieo-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid var(--bd);
+    border-radius: 0.75rem;
+    background: var(--card);
+    box-shadow: var(--shadow);
+    color: var(--ink);
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.ieo-lead {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.ieo-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.ieo-badge {
+    flex-shrink: 0;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--green-l);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+}
+
+.ieo-chevron {
+    flex-shrink: 0;
+}

@@ -1,0 +1,59 @@
+<template>
+    <div class="pat-card">
+        <div class="pat-head">
+            <div>
+                <h2 class="pat-title">{trends.title}</h2>
+                <p class="pat-subtitle">{trends.subtitle}</p>
+            </div>
+            <button type="button" class="pat-collapse" data-id="collapse" data-label="Performance &amp; Trends" aria-expanded="true" aria-label="Performance and Trends" onclick={handleAction}>
+                <svg class="pat-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9L12 15L18 9" stroke="#1E293B" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="pat-ranges">
+            <template for:each={ranges} for:item="range">
+                <button key={range.id} type="button" class={range.rangeClass} data-range={range.id} onclick={handleRange}>{range.label}</button>
+            </template>
+        </div>
+        <div class="pat-charts">
+            <template for:each={charts} for:item="chart">
+                <article key={chart.id} class="pat-chart">
+                    <h3 class="pat-chart-title">{chart.title}</h3>
+                    <p class="pat-chart-latest">{chart.latest}</p>
+                    <svg viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true">
+                        <polyline fill="none" stroke="#0176d3" stroke-width="2" points={chart.linePoints}></polyline>
+                    </svg>
+                </article>
+            </template>
+        </div>
+        <table class="pat-table">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <template for:each={periods} for:item="period">
+                        <th key={period}>{period}</th>
+                    </template>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={tableRows} for:item="row">
+                    <tr key={row.metric}>
+                        <td>{row.metric}</td>
+                        <template for:each={row.cells} for:item="cell">
+                            <td key={cell.key}>{cell.value}</td>
+                        </template>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <div class="pat-scenario">
+            <h3 class="pat-scenario-title">{trends.scenarioTitle}</h3>
+            <div class="pat-scenario-actions">
+                <template for:each={scenarioActions} for:item="action">
+                    <button key={action.id} type="button" class={action.actionClass} data-id={action.id} data-label={action.label} onclick={handleAction}>{action.label}</button>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>
