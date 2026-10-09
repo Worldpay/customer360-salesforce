@@ -1,0 +1,61 @@
+.alerts-page {
+  padding: 20px 28px 40px;
+}
+
+.alerts-title-row,
+.alerts-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.alerts-back,
+.alerts-export,
+.alerts-save,
+.alerts-action,
+.alerts-name {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--sf-blue);
+}
+
+.alerts-title {
+  margin: 8px 0;
+}
+
+.alerts-search,
+.alerts-select {
+  border: 1px solid var(--bd2);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.alerts-summary,
+.alerts-note {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.alerts-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: #fff;
+  font-size: 13px;
+}
+
+.alerts-table th,
+.alerts-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--bd);
+  text-align: left;
+}
+
+.alerts-action {
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: var(--ink);
+}

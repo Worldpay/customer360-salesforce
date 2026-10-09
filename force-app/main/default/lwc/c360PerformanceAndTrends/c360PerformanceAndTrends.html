@@ -20,9 +20,11 @@
             <template for:each={charts} for:item="chart">
                 <article key={chart.id} class="pat-chart">
                     <h3 class="pat-chart-title">{chart.title}</h3>
+                    <template if:true={chart.caption}><p class="pat-chart-caption">{chart.caption}</p></template>
                     <p class="pat-chart-latest">{chart.latest}</p>
-                    <svg viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true">
-                        <polyline fill="none" stroke="#0176d3" stroke-width="2" points={chart.linePoints}></polyline>
+                    <template if:true={chart.note}><p class="pat-chart-note">{chart.note}</p></template>
+                    <svg viewBox="0 0 120 48" preserveAspectRatio="none" aria-hidden="true">
+                        <polyline fill="none" stroke="#2e844a" stroke-width="2" points={chart.linePoints}></polyline>
                     </svg>
                 </article>
             </template>

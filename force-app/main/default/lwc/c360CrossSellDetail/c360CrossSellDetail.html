@@ -1,0 +1,38 @@
+<template>
+    <section class="c360-cross-sell-detail" data-account-id={accountId}>
+        <div class="xsd-bars">
+            <template for:each={comparisons} for:item="item">
+                <article key={item.label} class="xsd-bar">
+                    <h3>{item.label}</h3>
+                    <p class="xsd-value">{item.value}</p>
+                    <p>{item.caption}</p>
+                    <div class="xsd-track"><span style={item.barStyle}></span></div>
+                </article>
+            </template>
+        </div>
+        <section class="xsd-decline">
+            <h2 class="xsd-decline-title">{page.declineTitle}</h2>
+            <span class="xsd-badge">{page.declineBadge}</span>
+            <h3 class="xsd-table-title">{page.declineTable}</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <template for:each={columns} for:item="column">
+                            <th key={column}>{column}</th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={rows} for:item="row">
+                        <tr key={row.key}>
+                            <template for:each={row.cells} for:item="cell">
+                                <td key={cell.key}>{cell.value}</td>
+                            </template>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <p class="xsd-note">{page.declineNote}</p>
+        </section>
+    </section>
+</template>

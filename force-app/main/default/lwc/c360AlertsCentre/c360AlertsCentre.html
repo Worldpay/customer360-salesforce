@@ -1,0 +1,44 @@
+<template>
+    <section class="alerts-page">
+        <div class="alerts-crumbs">{crumbLine}</div>
+        <button type="button" class="alerts-back" onclick={handleBack}>{backLabel}</button>
+        <div class="alerts-title-row">
+            <h2 class="alerts-title">{page.title}</h2>
+            <div>
+                <span class="alerts-updated">{page.updated}</span>
+                <button type="button" class="alerts-export" onclick={handleInert}>{page.exportLabel}</button>
+            </div>
+        </div>
+        <div class="alerts-filters">
+            <input class="alerts-search" type="search" aria-label="Filter alerts" placeholder={page.searchPlaceholder}>
+            <label>Priority <select class="alerts-select" aria-label="Priority"><option>All</option></select></label>
+            <label>Status <select class="alerts-select" aria-label="Status"><option>All</option></select></label>
+            <button type="button" class="alerts-save" onclick={handleInert}>Save Filters</button>
+        </div>
+        <p class="alerts-summary">{page.summary}</p>
+        <table class="alerts-table">
+            <thead>
+                <tr>
+                    <th>Account name</th><th>Churn score</th><th>Threshold</th><th>Alert date</th>
+                    <th>Suppression</th><th>RM task</th><th>Email</th><th>Status</th><th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={rows} for:item="row">
+                    <tr key={row.id}>
+                        <td><button type="button" class="alerts-name" data-account-id={row.id} data-account-name={row.name} onclick={handleOpen}>{row.name}</button></td>
+                        <td>{row.score}</td>
+                        <td>{row.threshold}</td>
+                        <td>{row.date}</td>
+                        <td>{row.suppression}</td>
+                        <td>{row.task}</td>
+                        <td>{row.email}</td>
+                        <td>{row.status}</td>
+                        <td><button type="button" class="alerts-action" data-account-id={row.id} data-account-name={row.name} onclick={handleOpen}>Action</button></td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <p class="alerts-note">{page.note}</p>
+    </section>
+</template>

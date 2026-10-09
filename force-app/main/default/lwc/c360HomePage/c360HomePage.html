@@ -1,0 +1,110 @@
+<template>
+    <section class="home-page">
+        <div class="home-hero">
+            <div>
+                <h2 class="home-greeting">{page.greeting}</h2>
+                <span class="home-pill">{page.alertPill}</span>
+                <p class="home-subtitle">{page.subtitle}</p>
+            </div>
+            <div>
+                <p class="home-updated">{page.updated}</p>
+                <div class="home-tools">
+                    <button type="button" class="home-range" onclick={handleInert}>{page.range}</button>
+                    <template for:each={page.tools} for:item="tool">
+                        <button key={tool} type="button" class="home-tool" onclick={handleInert}>{tool}</button>
+                    </template>
+                </div>
+            </div>
+        </div>
+        <div class="home-kpis">
+            <template for:each={page.kpis} for:item="kpi">
+                <article key={kpi.label} class="home-kpi">
+                    <p class="home-kpi-label">{kpi.label}</p>
+                    <p class="home-kpi-value">{kpi.value} <template if:true={kpi.tag}><span>{kpi.tag}</span></template></p>
+                    <template if:true={kpi.note}><p class="home-kpi-note">{kpi.note}</p></template>
+                </article>
+            </template>
+        </div>
+        <c-c360-churn-alert-notification></c-c360-churn-alert-notification>
+        <section class="home-table-card">
+            <div class="home-table-tools">
+                <div class="home-filters">
+                    <template for:each={filters} for:item="item">
+                        <button key={item.id} type="button" class={item.filterClass} data-filter={item.id} onclick={handleFilter}>{item.label} ({item.count})</button>
+                    </template>
+                </div>
+                <input class="home-search" type="search" aria-label="Filter accounts" placeholder={page.searchPlaceholder}>
+            </div>
+            <table class="home-table">
+                <thead>
+                    <tr>
+                        <th>Account name</th><th>Churn score</th><th>Δ Change</th><th>Risk level</th>
+                        <th>Churn signal</th><th>Cross-sell leads</th><th>Total lead ACV</th><th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={accounts} for:item="account">
+                        <tr key={account.id}>
+                            <td>{account.name}</td>
+                            <td>{account.score}</td>
+                            <td class={account.deltaClass}>{account.delta}</td>
+                            <td><span class={account.riskClass}>{account.risk}</span></td>
+                            <td>{account.signal}</td>
+                            <td>{account.leads}</td>
+                            <td>{account.acv}</td>
+                            <td class="home-actions">
+                                <template for:each={account.actionButtons} for:item="action">
+                                    <button key={action.key} type="button" class="home-text" onclick={handleInert}>{action.label}</button>
+                                </template>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <p class="home-page-label">{page.pageLabel}</p>
+        </section>
+        <section class="home-section">
+            <div class="home-section-head">
+                <h2>{page.signalsTitle}</h2>
+                <span class="home-pill">{page.signalsBadge}</span>
+                <button type="button" class="home-link" onclick={handleInert}>{page.signalsLink} ›</button>
+            </div>
+            <div class="home-signals">
+                <template for:each={signals} for:item="signal">
+                    <article key={signal.id} class="home-card" data-view={signal.view} data-account-id={signal.id} data-account-name={signal.name} onclick={handleGo}>
+                        <p class="home-card-kicker"><span class={signal.levelClass}>{signal.level}</span> {signal.name} <span class="home-state">{signal.state}</span></p>
+                        <h3>{signal.title}</h3>
+                        <p>{signal.body}</p>
+                        <p>{signal.impact}</p>
+                        <p class="home-date">{signal.date}</p>
+                        <div class="home-card-actions">
+                            <button type="button" class="home-text" onclick={handleInert}>Dismiss</button>
+                            <button type="button" class="home-text" onclick={handleInert}>Defer</button>
+                            <button type="button" class="home-text" data-view={signal.view} data-account-id={signal.id} data-account-name={signal.name} onclick={handleGo}>Action</button>
+                        </div>
+                    </article>
+                </template>
+            </div>
+        </section>
+        <section class="home-section">
+            <div class="home-section-head">
+                <h2>{page.leadsTitle}</h2>
+                <button type="button" class="home-link" onclick={handleInert}>{page.leadsLink} ›</button>
+            </div>
+            <div class="home-leads">
+                <template for:each={leads} for:item="lead">
+                    <article key={lead.id} class="home-card" data-view={lead.view} data-account-id={lead.id} data-account-name={lead.name} onclick={handleGo}>
+                        <h3>{lead.name}</h3>
+                        <p>{lead.product}</p>
+                        <p>Estimated ACV {lead.acv}</p>
+                        <p>Merchant ROI {lead.roi}</p>
+                        <div class="home-card-actions">
+                            <button type="button" class="home-text" onclick={handleInert}>Dismiss</button>
+                            <button type="button" class="home-text" data-view={lead.view} data-account-id={lead.id} data-account-name={lead.name} onclick={handleGo}>Learn More</button>
+                        </div>
+                    </article>
+                </template>
+            </div>
+        </section>
+    </section>
+</template>

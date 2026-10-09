@@ -2,7 +2,7 @@
 
 Inventory of HTML prototype modules and their LWC conversion status for Customer 360.
 
-**Last updated:** 2026-10-08 (`c360EnterpriseAccountHome` LWC on mock data)
+**Last updated:** 2026-10-09 (`c360Customer360Shell` LWC on mock data)
 
 **Live data in repo (15 Sep):** `c360Dashboard` sidebar uses `getRecord` (User). `c360CrossSellTable` uses `C360CrossSellController.getCrossSellAccounts` — replace placeholder Apex via `scripts/retrieveC360CrossSellController.ps1` when CLI is available.
 
@@ -85,6 +85,10 @@ Inventory of HTML prototype modules and their LWC conversion status for Customer
 | `churn-alerts-v2` | P0 | done | done | | `c360ChurnAlertsV2` | Isolated — parent |
 | `identified-risk-signals` | P0 | done | done | | `c360IdentifiedRiskSignals` | Child of `c360ChurnAlertsV2` |
 | `enterprise-account-home` | P0 | done | done | | `c360EnterpriseAccountHome` | Isolated — parent |
+| `customer-360-shell` | P0 | done | done | | `c360Customer360Shell` | Isolated shell. Salesforce URL parameters are not set |
+| `home-page` | P0 | done | done | | `c360HomePage` | Child of `c360Customer360Shell` |
+| `alerts-centre` | P0 | done | done | | `c360AlertsCentre` | Child of `c360Customer360Shell`. Distinct from hub `alert-centre` |
+| `cross-sell-detail` | P0 | done | done | | `c360CrossSellDetail` | Auth comparison and decline table |
 | `identified-expansion-opportunities` | P0 | done | done | | `c360IdentifiedExpansionOpportunities` | Child of `c360EnterpriseAccountHome` |
 | `performance-and-trends` | P0 | done | done | | `c360PerformanceAndTrends` | Child of `c360EnterpriseAccountHome` |
 
@@ -118,6 +122,7 @@ Open in a browser (double-click, no Salesforce CLI):
 | **Enterprise Account Home** | [`html/modules/enterprise-account-home/preview.html`](html/modules/enterprise-account-home/preview.html) |
 | **Identified Expansion Opportunities (child)** | [`html/modules/identified-expansion-opportunities/preview.html`](html/modules/identified-expansion-opportunities/preview.html) |
 | **Performance and Trends (child)** | [`html/modules/performance-and-trends/preview.html`](html/modules/performance-and-trends/preview.html) |
+| **Customer 360 shell** | [`html/modules/customer-360-shell/preview.html`](html/modules/customer-360-shell/preview.html) |
 
 Canonical reference: [`04. HTML prototypes/C360 Prototype v5.html`](../../../04.%20HTML%20prototypes/C360%20Prototype%20v5.html) — Customer 360 uses per-module HTML previews under `prototypes/html/modules/` only (no full-page copy in this folder).
 

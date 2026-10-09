@@ -28,9 +28,13 @@
       return '<button type="button" class="pat-range' + (range.selected ? ' is-selected' : '') + '" data-pat-action="range" data-range="' + esc(range.id) + '">' + esc(range.label) + '</button>';
     }).join('');
     root.querySelector('.pat-charts').innerHTML = (data.charts || []).map(function (chart) {
+      var note = chart.note ? '<p class="pat-chart-note">' + esc(chart.note) + '</p>' : '';
+      var caption = chart.caption ? '<p class="pat-chart-caption">' + esc(chart.caption) + '</p>' : '';
       return '<article class="pat-chart"><h3 class="pat-chart-title">' + esc(chart.title) + '</h3>' +
+        caption +
         '<p class="pat-chart-latest">' + esc(chart.latest) + '</p>' +
-        '<svg viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="#0176d3" stroke-width="2" points="' + line(chart.points || []) + '"/></svg></article>';
+        note +
+        '<svg viewBox="0 0 120 48" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="#2e844a" stroke-width="2" points="' + line(chart.points || []) + '"/></svg></article>';
     }).join('');
     var head = '<tr><th>Metric</th>' + (data.periods || []).map(function (period) {
       return '<th>' + esc(period) + '</th>';

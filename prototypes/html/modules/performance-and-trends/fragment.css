@@ -88,8 +88,15 @@
   color: var(--ink);
 }
 
+.c360-performance-and-trends .pat-chart-caption,
+.c360-performance-and-trends .pat-chart-note {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .c360-performance-and-trends .pat-chart-latest {
-  margin: 4px 0 8px;
+  margin: 8px 0;
   font-size: 20px;
   font-weight: 700;
   color: var(--ink);

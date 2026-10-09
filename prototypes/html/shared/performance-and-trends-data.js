@@ -15,10 +15,38 @@ window.PERFORMANCE_AND_TRENDS = {
   ],
   periods: ['30d', '60d', '90d', '12m'],
   charts: [
-    { id: 'auth', title: 'Auth Rate Trend', latest: '96.8%', points: [28, 36, 34, 42, 48, 46, 55, 62] },
-    { id: 'approval', title: 'Approval Rate Trend', latest: '94.2%', points: [40, 44, 42, 50, 56, 54, 60, 68] },
-    { id: 'margin', title: 'Net Margin Trend', latest: '18.4 bps', points: [70, 64, 60, 52, 48, 40, 36, 30] },
-    { id: 'chargeback', title: 'Chargeback Trend', latest: '0.31%', points: [58, 54, 50, 46, 42, 38, 34, 28] }
+    {
+      id: 'volume',
+      title: 'Processing Volume',
+      caption: 'Monthly total volume in GBP (Millions)',
+      latest: '£2.4M CURRENT',
+      note: 'Peak: £2.6M (Dec)',
+      points: [30, 34, 28, 40, 48, 44, 52, 50, 58, 62, 60, 56]
+    },
+    {
+      id: 'approval',
+      title: 'Approval Rate Trend',
+      caption: 'Successful authorizations vs total attempts',
+      latest: '94.2%',
+      note: '+1.3% vs Avg',
+      points: [22, 28, 36, 48, 46, 58, 62]
+    },
+    {
+      id: 'margin',
+      title: 'Net Margin (bps)',
+      caption: 'Rolling average overlay demonstrating compression',
+      latest: '18.4 BPS ATTN',
+      note: 'Below target since Jun 2026',
+      points: [70, 66, 60, 54, 48, 42, 38, 34, 30]
+    },
+    {
+      id: 'chargeback',
+      title: 'Chargeback Rate',
+      caption: 'Maintained below the critical scheme threshold of 0.5%',
+      latest: '0.31% HEALTHY',
+      note: 'THRESHOLD: 0.40%',
+      points: [62, 54, 46, 36, 22, 18, 28]
+    }
   ],
   rows: [
     { metric: 'Auth Rate', cells: ['97.4%', '97.1%', '96.9%', '96.8%'] },

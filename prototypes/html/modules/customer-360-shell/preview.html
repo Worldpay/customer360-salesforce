@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Customer 360 shell (preview)</title>
+  <base href="/modules/customer-360-shell/">
+  <link rel="stylesheet" href="../../shared/tokens.css">
+  <link rel="stylesheet" href="../../shared/shell.css">
+  <link rel="stylesheet" href="fragment.css">
+  <link rel="stylesheet" href="../home-page/fragment.css">
+  <link rel="stylesheet" href="../alerts-centre/fragment.css">
+  <link rel="stylesheet" href="../enterprise-account-home/fragment.css">
+  <link rel="stylesheet" href="../churn-alert-notification/fragment.css">
+  <link rel="stylesheet" href="../churn-metric-tiles/fragment.css">
+  <link rel="stylesheet" href="../churn-current-status/fragment.css">
+  <link rel="stylesheet" href="../identified-risk-signals/fragment.css">
+  <link rel="stylesheet" href="../identified-expansion-opportunities/fragment.css">
+  <link rel="stylesheet" href="../performance-and-trends/fragment.css">
+  <link rel="stylesheet" href="../revenue-boost-summary/fragment.css">
+  <link rel="stylesheet" href="../merchant-business-case-header/fragment.css">
+  <link rel="stylesheet" href="../revenue-boost-summary/children.css">
+  <link rel="stylesheet" href="../cross-sell-detail/fragment.css">
+</head>
+<body>
+  <div class="protobar">
+    HTML prototype — Customer 360 shell · Home, Alerts Centre, churn account, cross-sell account · URL contract not set · not in hub assembly
+  </div>
+  <div data-module="customer-360-shell" class="hub-shell">
+    <aside class="hub-side">
+      <div class="hub-brand"><span class="hub-mark">C3</span><span class="hub-brand-name"></span></div>
+      <nav class="hub-nav" aria-label="Customer 360"></nav>
+      <div class="hub-side-date"></div>
+    </aside>
+    <div class="hub-main">
+      <header class="hub-bar">
+        <h1 class="hub-product"></h1>
+        <div class="hub-search"><input type="search" aria-label="Search portfolios and alerts"></div>
+        <div class="hub-user">
+          <button type="button" class="hub-bell" data-hub-action="notifications" aria-label="Notifications">&#128276;</button>
+          <span class="hub-avatar"></span>
+          <span>
+            <span class="hub-user-name"></span><br>
+            <span class="hub-user-role"></span>
+          </span>
+          <button type="button" class="hub-gear" data-hub-action="settings" aria-label="Settings">&#9881;</button>
+        </div>
+      </header>
+
+      <div class="hub-view" data-view="home">
+        <section class="home-page" data-module="home-page">
+          <div class="home-hero">
+            <div>
+              <h2 class="home-greeting"></h2>
+              <span class="home-pill"></span>
+              <p class="home-subtitle"></p>
+            </div>
+            <div>
+              <p class="home-updated"></p>
+              <div class="home-tools">
+                <button type="button" class="home-range"></button>
+                <span class="home-tool-list"></span>
+              </div>
+            </div>
+          </div>
+          <div class="home-kpis"></div>
+          <section class="c360-module c360-churn-alert-notification" data-module="churn-alert-notification">
+            <div class="can-body"></div>
+          </section>
+          <section class="home-table-card">
+            <div class="home-table-tools">
+              <div class="home-filters"></div>
+              <input class="home-search" type="search" aria-label="Filter accounts">
+            </div>
+            <table class="home-table">
+              <thead>
+                <tr>
+                  <th>Account name</th><th>Churn score</th><th>Δ Change</th><th>Risk level</th>
+                  <th>Churn signal</th><th>Cross-sell leads</th><th>Total lead ACV</th><th>Actions</th>
+                </tr>
+              </thead>
+              <tbody class="home-rows"></tbody>
+            </table>
+            <p class="home-page-label"></p>
+          </section>
+          <section class="home-section">
+            <div class="home-section-head">
+              <h2 class="home-signals-title"></h2>
+              <span class="home-signals-badge home-pill"></span>
+              <button type="button" class="home-link home-signals-link"></button>
+            </div>
+            <div class="home-signals"></div>
+          </section>
+          <section class="home-section">
+            <div class="home-section-head">
+              <h2 class="home-leads-title"></h2>
+              <button type="button" class="home-link home-leads-link"></button>
+            </div>
+            <div class="home-leads"></div>
+          </section>
+        </section>
+      </div>
+
+      <div class="hub-view" data-view="alerts">
+        <section class="alerts-page" data-module="alerts-centre">
+          <div class="alerts-crumbs"></div>
+          <button type="button" class="alerts-back"></button>
+          <div class="alerts-title-row">
+            <h2 class="alerts-title"></h2>
+            <div>
+              <span class="alerts-updated"></span>
+              <button type="button" class="alerts-export"></button>
+            </div>
+          </div>
+          <div class="alerts-filters">
+            <input class="alerts-search" type="search" aria-label="Filter alerts">
+            <label>Priority <select class="alerts-select" aria-label="Priority"><option>All</option></select></label>
+            <label>Status <select class="alerts-select" aria-label="Status"><option>All</option></select></label>
+            <button type="button" class="alerts-save">Save Filters</button>
+          </div>
+          <p class="alerts-summary"></p>
+          <table class="alerts-table">
+            <thead>
+              <tr>
+                <th>Account name</th><th>Churn score</th><th>Threshold</th><th>Alert date</th>
+                <th>Suppression</th><th>RM task</th><th>Email</th><th>Status</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody class="alerts-rows"></tbody>
+          </table>
+          <p class="alerts-note"></p>
+        </section>
+      </div>
+
+      <div class="hub-view" data-view="churn">
+        <div class="ehome-page">
+          <div class="ehome-top">
+            <div class="ehome-crumbs"></div>
+            <button type="button" class="ehome-back" data-hub-go="home"></button>
+          </div>
+          <div class="ehome-title-row">
+            <div>
+              <h2 class="ehome-account"></h2>
+              <p class="ehome-meta"></p>
+            </div>
+            <div class="ehome-tools">
+              <span class="ehome-synced"></span>
+              <span class="ehome-tools-actions"></span>
+            </div>
+          </div>
+          <p class="hub-empty ehome-missing" hidden>No churn insights for this AccountId in the preview mock.</p>
+          <div class="ehome-children">
+            <section class="c360-module c360-churn-alert-notification" data-module="churn-alert-notification">
+              <div class="can-body"></div>
+            </section>
+            <section class="c360-module c360-churn-metric-tiles" data-module="churn-metric-tiles">
+              <div class="cmt-grid"></div>
+            </section>
+            <section class="c360-module c360-churn-current-status" data-module="churn-current-status">
+              <div class="ccs-bar"></div>
+            </section>
+            <section class="c360-module c360-identified-risk-signals" data-module="identified-risk-signals">
+              <button type="button" class="irs-row" aria-expanded="false">
+                <span class="irs-lead"><span class="irs-title"></span><span class="irs-badge"></span></span>
+                <svg class="irs-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+            </section>
+            <section class="c360-module c360-identified-expansion-opportunities" data-module="identified-expansion-opportunities">
+              <button type="button" class="ieo-row" aria-expanded="false">
+                <span class="ieo-lead"><span class="ieo-title"></span><span class="ieo-badge"></span></span>
+                <svg class="ieo-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+            </section>
+            <section class="c360-module c360-performance-and-trends" data-module="performance-and-trends">
+              <div class="pat-card">
+                <div class="pat-head">
+                  <div>
+                    <h2 class="pat-title"></h2>
+                    <p class="pat-subtitle"></p>
+                  </div>
+                  <button type="button" class="pat-collapse" data-pat-action="collapse" aria-expanded="true" aria-label="Performance and Trends">
+                    <svg class="pat-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/></svg>
+                  </button>
+                </div>
+                <div class="pat-ranges"></div>
+                <div class="pat-charts"></div>
+                <div class="pat-table-wrap"></div>
+                <div class="pat-scenario">
+                  <h3 class="pat-scenario-title"></h3>
+                  <div class="pat-scenario-actions"></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div class="hub-view" data-view="analytics">
+        <section class="hub-empty">
+          <h2>Analytics</h2>
+          <p>Opened from /analytics. This slice has no Analytics page.</p>
+        </section>
+      </div>
+
+      <div class="hub-view" data-view="customers">
+        <section class="hub-empty">
+          <h2>Customers</h2>
+          <p>Opened from /customers. This slice has no Customers page.</p>
+        </section>
+      </div>
+
+      <div class="hub-view" data-view="cross-sell">
+        <div class="rbs-page" data-module="revenue-boost-summary">
+          <div class="rbs-top">
+            <div class="rbs-crumbs"></div>
+            <button type="button" class="rbs-back" data-hub-go="home"></button>
+          </div>
+          <div class="rbs-title-row">
+            <div>
+              <h1 class="rbs-account"></h1>
+              <p class="rbs-meta"></p>
+            </div>
+            <div class="rbs-tools">
+              <span class="rbs-synced"></span>
+              <button type="button" class="rbs-export" data-rbs-action="export"></button>
+              <button type="button" class="rbs-initiate" data-rbs-action="initiate"></button>
+            </div>
+          </div>
+          <div class="rbs-filter">
+            <label class="rbs-mid-label" for="rbs-mid"></label>
+            <select id="rbs-mid" class="rbs-mid"></select>
+          </div>
+          <p class="hub-empty rbs-missing" hidden>No cross-sell recommendations for this AccountId in the preview mock.</p>
+          <div class="rbs-children">
+            <section class="c360-module c360-merchant-business-case-header" data-module="merchant-business-case-header">
+              <div class="mbc-head"><h2 class="mbc-title"></h2><div class="mbc-actions"></div></div>
+              <div class="mbc-metrics"></div>
+              <div class="mbc-assumptions"></div>
+            </section>
+            <section class="c360-module c360-last-12-months-summary" data-module="last-12-months-summary">
+              <h2 class="l12-title"></h2>
+              <table class="l12-table"><thead></thead><tbody></tbody></table>
+            </section>
+            <section class="c360-module c360-business-case-annual-estimate" data-module="business-case-annual-estimate">
+              <h2 class="bca-title"></h2>
+              <p class="bca-scope"></p>
+              <table class="bca-table"><thead></thead><tbody></tbody></table>
+            </section>
+            <section class="c360-module c360-cross-sell-detail" data-module="cross-sell-detail">
+              <div class="xsd-bars"></div>
+              <section class="xsd-decline">
+                <h2 class="xsd-decline-title"></h2>
+                <span class="xsd-badge"></span>
+                <h3 class="xsd-table-title"></h3>
+                <table class="xsd-table"></table>
+                <p class="xsd-note"></p>
+              </section>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="../../shared/customer-360-shell-data.js"></script>
+  <script src="../../shared/home-page-data.js"></script>
+  <script src="../../shared/alerts-centre-data.js"></script>
+  <script src="../../shared/enterprise-account-home-data.js"></script>
+  <script src="../../shared/churn-alert-notification-data.js"></script>
+  <script src="../../shared/churn-metric-tiles-data.js"></script>
+  <script src="../../shared/churn-current-status-data.js"></script>
+  <script src="../../shared/identified-risk-signals-data.js"></script>
+  <script src="../../shared/identified-expansion-opportunities-data.js"></script>
+  <script src="../../shared/performance-and-trends-data.js"></script>
+  <script src="../../shared/revenue-boost-summary-data.js"></script>
+  <script src="../../shared/merchant-business-case-header-data.js"></script>
+  <script src="../../shared/last-12-months-summary-data.js"></script>
+  <script src="../../shared/business-case-annual-estimate-data.js"></script>
+  <script src="../../shared/cross-sell-detail-data.js"></script>
+  <script src="../../shared/shell.js"></script>
+  <script src="../churn-alert-notification/fragment.js"></script>
+  <script src="../churn-metric-tiles/fragment.js"></script>
+  <script src="../churn-current-status/fragment.js"></script>
+  <script src="../identified-risk-signals/fragment.js"></script>
+  <script src="../identified-expansion-opportunities/fragment.js"></script>
+  <script src="../performance-and-trends/fragment.js"></script>
+  <script src="../merchant-business-case-header/fragment.js"></script>
+  <script src="../last-12-months-summary/fragment.js"></script>
+  <script src="../business-case-annual-estimate/fragment.js"></script>
+  <script src="../revenue-boost-summary/fragment.js"></script>
+  <script src="../cross-sell-detail/fragment.js"></script>
+  <script src="../home-page/fragment.js"></script>
+  <script src="../alerts-centre/fragment.js"></script>
+  <script src="fragment.js"></script>
+</body>
+</html>

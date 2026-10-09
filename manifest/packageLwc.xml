@@ -6,6 +6,7 @@
         <members>c360AccountsTable</members>
         <members>c360AlertCentre</members>
         <members>c360AlertDetail</members>
+        <members>c360AlertsCentre</members>
         <members>c360BusinessCaseAnnualEstimate</members>
         <members>c360ChurnAlertNotification</members>
         <members>c360ChurnAlertsV2</members>
@@ -13,10 +14,13 @@
         <members>c360ChurnMetricTiles</members>
         <members>c360ChurnTable</members>
         <members>c360ConfigurableKpiTile</members>
+        <members>c360CrossSellDetail</members>
         <members>c360CrossSellTable</members>
+        <members>c360Customer360Shell</members>
         <members>c360Dashboard</members>
         <members>c360EnterpriseAccountHome</members>
         <members>c360EnterpriseAccountHubChurn</members>
+        <members>c360HomePage</members>
         <members>c360IdentifiedExpansionOpportunities</members>
         <members>c360IdentifiedRiskSignals</members>
         <members>c360KpiStrip</members>

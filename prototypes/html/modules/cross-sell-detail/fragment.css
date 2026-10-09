@@ -1,0 +1,65 @@
+.c360-cross-sell-detail {
+  display: grid;
+  gap: 16px;
+}
+
+.c360-cross-sell-detail .xsd-bars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.c360-cross-sell-detail .xsd-bar,
+.c360-cross-sell-detail .xsd-decline {
+  background: #fff;
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.c360-cross-sell-detail .xsd-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 4px 0;
+}
+
+.c360-cross-sell-detail .xsd-track {
+  height: 10px;
+  background: var(--bg);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.c360-cross-sell-detail .xsd-track span {
+  display: block;
+  height: 100%;
+  background: var(--sf-blue);
+}
+
+.c360-cross-sell-detail .xsd-badge {
+  margin-left: 8px;
+  background: var(--green-l);
+  color: var(--green);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.c360-cross-sell-detail table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.c360-cross-sell-detail th,
+.c360-cross-sell-detail td {
+  padding: 8px;
+  border-bottom: 1px solid var(--bd);
+  text-align: left;
+}
+
+.c360-cross-sell-detail .xsd-note {
+  color: var(--muted);
+  font-size: 12px;
+}
