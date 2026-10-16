@@ -1,0 +1,78 @@
+.opportunities-panel { margin-top: 16px; }
+
+.table-wrap { overflow-x: auto; }
+
+.opportunity-table { width: 100%; border-collapse: collapse; }
+
+.opportunity-table th {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #fafafd;
+  color: var(--ink-faint);
+  padding: 9px 15px;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.opportunity-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 11px 15px;
+  font-size: 10px;
+}
+
+.opportunity-table tbody tr:last-child td { border-bottom: 0; }
+.opportunity-table tbody tr:hover { background: #faf9ff; }
+
+.company-cell {
+  display: flex;
+  min-width: 178px;
+  align-items: center;
+  gap: 9px;
+}
+
+.company-cell > span:last-child { display: flex; flex-direction: column; gap: 2px; }
+.company-cell strong { color: #34343d; font-size: 10px; }
+.company-cell small { color: var(--ink-faint); font-size: 8px; }
+
+.stage {
+  display: inline-flex;
+  border-radius: 99px;
+  padding: 4px 7px;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.stage-proposal { background: var(--violet-soft); color: var(--primary); }
+.stage-negotiation { background: var(--green-soft); color: var(--green); }
+.stage-discovery { background: var(--orange-soft); color: var(--orange); }
+.stage-qualified { background: var(--blue-soft); color: var(--blue); }
+
+.value-cell { color: #34343d; font-weight: 700; }
+.muted-cell { color: var(--ink-soft); }
+
+.confidence {
+  display: flex;
+  min-width: 104px;
+  align-items: center;
+  gap: 8px;
+}
+
+.confidence-track {
+  overflow: hidden;
+  width: 52px;
+  height: 4px;
+  border-radius: 99px;
+  background: #ececf1;
+}
+
+.confidence-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7067eb, #8d85f4);
+}
+
+.confidence strong { color: #5b5b66; font-size: 9px; }

@@ -1,0 +1,36 @@
+<template>
+    <section class="panel revenue-panel">
+        <header class="panel-header">
+            <div>
+                <h2>{page.title}</h2>
+                <p>{page.subtitle}</p>
+            </div>
+            <button type="button" class="period-select" data-label={page.periodLabel} onclick={handleChrome}>
+                {page.periodLabel}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+        </header>
+        <div class="revenue-summary">
+            <strong>{page.amount}</strong>
+            <span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                {page.change}
+            </span>
+        </div>
+        <div class="chart">
+            <div class="chart-grid"><span></span><span></span><span></span><span></span></div>
+            <div class="chart-columns">
+                <template for:each={bars} for:item="bar">
+                    <span key={bar.key} class="chart-column">
+                        <span class={bar.barClass} style={bar.barStyle}></span>
+                    </span>
+                </template>
+            </div>
+            <div class="chart-labels">
+                <template for:each={labels} for:item="item">
+                    <span key={item.key}>{item.label}</span>
+                </template>
+            </div>
+        </div>
+    </section>
+</template>

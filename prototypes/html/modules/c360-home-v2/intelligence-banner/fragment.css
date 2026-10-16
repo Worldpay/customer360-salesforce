@@ -1,0 +1,113 @@
+.assistant-card {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  gap: 16px;
+  min-height: 102px;
+  border: 1px solid #dedafb;
+  border-radius: 15px;
+  background: linear-gradient(115deg, #f3f1ff 0%, #fff 55%, #f6f5ff 100%);
+  padding: 19px 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.assistant-card[hidden] { display: none; }
+
+.assistant-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.assistant-glow-one {
+  top: -90px;
+  right: 14%;
+  width: 190px;
+  height: 190px;
+  background: rgba(145, 129, 247, 0.1);
+}
+
+.assistant-glow-two {
+  right: -30px;
+  bottom: -80px;
+  width: 140px;
+  height: 140px;
+  border: 1px solid rgba(115, 101, 223, 0.13);
+}
+
+.assistant-icon {
+  z-index: 1;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #7168ed, #5046d4);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(91, 82, 232, 0.24);
+}
+
+.assistant-copy { z-index: 1; min-width: 0; flex: 1; }
+
+.assistant-label {
+  color: var(--primary);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.assistant-copy h2 {
+  margin: 3px 0;
+  color: #24212f;
+  font-size: 15px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.assistant-copy p {
+  max-width: 750px;
+  margin: 0;
+  color: #676272;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.assistant-actions {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.assistant-action {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d9d5f9;
+  border-radius: 9px;
+  background: #fff;
+  color: var(--primary-dark);
+  padding: 9px 12px;
+  font-size: 10px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .assistant-card { align-items: flex-start; }
+  .assistant-copy p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .assistant-action { display: none; }
+}
+
+@media (max-width: 430px) {
+  .assistant-icon { width: 37px; height: 37px; }
+  .assistant-copy h2 { font-size: 13px; }
+}

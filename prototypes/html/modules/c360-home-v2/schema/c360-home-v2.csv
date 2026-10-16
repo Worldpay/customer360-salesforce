@@ -1,0 +1,76 @@
+Parent,Component Name,Header,Field Name,Type,Text,Table Name,Source Field Name
+Shell,Logo,Label,brandName,String,Customer360,N/A - static value,N/A
+Shell,Nav,Section label,navSectionLabel,String,Workspace,N/A - static value,N/A
+Shell,Nav,Label,navHomeLabel,String,Home,N/A - static value,N/A
+Shell,Nav,Label,navAlertsLabel,String,Alerts,N/A - static value,N/A
+Shell,Nav,Count,alertCount,Integer,4,,
+Shell,Nav,Label,navCrossSellLabel,String,Cross-sell,N/A - static value,N/A
+Shell,Nav,Label,navChurnLabel,String,Churn,N/A - static value,N/A
+Shell,Nav,Label,navAnalyticsLabel,String,Analytics,N/A - static value,N/A
+Shell,Nav,Label,navReportsLabel,String,Reports,N/A - static value,N/A
+Shell,Nav,Label,navSettingsLabel,String,Settings,N/A - static value,N/A
+Shell,User,Name,userName,String,Jordan Lee,,
+Shell,User,Team,userTeam,String,Growth team,,
+Shell,User,Initials,userInitials,String,JL,Derived from userName,
+Shell,Search,Placeholder,searchPlaceholder,String,Search your workspace,N/A - static value,N/A
+Shell,Top bar,Button,createLabel,String,Create new,N/A - static value,N/A
+Shell,Greeting,Date,todayLabel,Date,"Thursday, May 16",Derived from the current date,
+Shell,Greeting,Header,greeting,Formatted string,"Good morning, Jordan",Derived from time of day plus the first name in userName,
+Shell,Greeting,Sub-Header,homeSubtitle,String,Your team is on track. Here is where to focus today.,N/A - static value,N/A
+Shell,Greeting,Button,filterLabel,String,Filter,N/A - static value,N/A
+Shell,Greeting,Button,periodLabel,String,This quarter,N/A - static value,N/A
+Shell,Copilot,Button,copilotLabel,String,Ask Customer360,N/A - static value,N/A
+Intelligence banner,Banner,Label,intelligenceLabel,String,Customer360 intelligence,N/A - static value,N/A
+Intelligence banner,Banner,Header,intelligenceHeading,String,Three deals need your attention,N/A - static value,N/A
+Intelligence banner,Banner,Body,intelligenceBodyTemplate,Formatted string,"{accountName} is ready for a decision. Send the revised proposal today to improve your close probability by {closeProbabilityDeltaPct}.",N/A - static value,N/A
+Intelligence banner,Banner,Account,accountName,String,Northstar Labs,,
+Intelligence banner,Banner,Change,closeProbabilityDeltaPct,Percent,12%,,
+Intelligence banner,Banner,Button,recommendationsLabel,String,See recommendations,N/A - static value,N/A
+Intelligence banner,Banner,Button,dismissLabel,String,Dismiss insight,N/A - static value,N/A
+Metric strip,Tile 1,Header,revenueForecastLabel,String,Revenue forecast,N/A - static value,N/A
+Metric strip,Tile 1,Value,revenueForecastAmount,Currency,$284k,,
+Metric strip,Tile 1,Change,revenueForecastChangePct,Percent,+18.2%,,
+Metric strip,Tile 1,Detail,revenueForecastDetail,String,vs. last month,N/A - static value,N/A
+Metric strip,Tile 2,Header,qualifiedPipelineLabel,String,Qualified pipeline,N/A - static value,N/A
+Metric strip,Tile 2,Value,qualifiedPipelineAmount,Currency,$1.24m,,
+Metric strip,Tile 2,Change,qualifiedPipelineChangePct,Percent,+8.4%,,
+Metric strip,Tile 2,Count,activeDealCount,Integer,32,,
+Metric strip,Tile 2,Detail,activeDealDetail,Formatted string,{activeDealCount} active deals,N/A - static value,N/A
+Metric strip,Tile 3,Header,winRateLabel,String,Win rate,N/A - static value,N/A
+Metric strip,Tile 3,Value,winRatePct,Percent,68%,,
+Metric strip,Tile 3,Change,winRateChangePct,Percent,+4.6%,,
+Metric strip,Tile 3,Detail,winRateDetail,String,vs. team average,N/A - static value,N/A
+Metric strip,Tile 4,Header,teamActivityLabel,String,Team activities,N/A - static value,N/A
+Metric strip,Tile 4,Value,teamActivityCount,Integer,142,,
+Metric strip,Tile 4,Status,liveLabel,String,Live,N/A - static value,N/A
+Metric strip,Activity person,Name,activityPersonName,String,not shown on screen,,
+Metric strip,Activity person,Initials,activityPersonInitials,String,JL,Derived from activityPersonName,
+Metric strip,Activity overflow,Count,activityOverflowCount,Integer,5,Derived: people count minus the avatars shown,
+Revenue overview,Panel,Header,revenueTitle,String,Revenue overview,N/A - static value,N/A
+Revenue overview,Panel,Sub-Header,revenueSubtitle,String,Closed and projected revenue,N/A - static value,N/A
+Revenue overview,Panel,Button,revenuePeriodLabel,String,Last 7 months,N/A - static value,N/A
+Revenue overview,Panel,Value,revenueForecastAmount,Currency,"$284,320",,
+Revenue overview,Panel,Change,revenueForecastChangePct,Percent,18.2% increase,,
+Revenue overview,Chart point,Period,periodLabel,String,"Jul (one point in a repeating series; labels on screen are Jan-Jul)",,
+Revenue overview,Chart point,Amount,periodAmount,Currency,not printed; prototype draws 14 relative bars and highlights the last,,
+Todays focus,Panel,Header,focusTitle,String,Today's focus,N/A - static value,N/A
+Todays focus,Panel,Sub-Header,tasksRemainingLabel,Formatted string,3 tasks remaining,Derived: count of task rows that are not complete,
+Todays focus,Panel,Button,addTaskLabel,String,Add a task,N/A - static value,N/A
+Todays focus,Task row,Title,taskTitle,String,Send revised proposal to Northstar,,
+Todays focus,Task row,Time,taskTime,String,10:30 AM,,
+Todays focus,Task row,Priority,taskIsPriority,Boolean,true,,
+Priority opportunities,Panel,Header,opportunitiesTitle,String,Priority opportunities,N/A - static value,N/A
+Priority opportunities,Panel,Sub-Header,opportunitiesSubtitle,String,Ranked by momentum and buying signals,N/A - static value,N/A
+Priority opportunities,Panel,Button,viewPipelineLabel,String,View pipeline,N/A - static value,N/A
+Priority opportunities,Column,Header,companyColumnLabel,String,Company,N/A - static value,N/A
+Priority opportunities,Column,Header,stageColumnLabel,String,Stage,N/A - static value,N/A
+Priority opportunities,Column,Header,valueColumnLabel,String,Value,N/A - static value,N/A
+Priority opportunities,Column,Header,closeDateColumnLabel,String,Close date,N/A - static value,N/A
+Priority opportunities,Column,Header,confidenceColumnLabel,String,AI confidence,N/A - static value,N/A
+Priority opportunities,Opportunity row,Company,companyName,String,Northstar Labs,,
+Priority opportunities,Opportunity row,Initials,companyInitials,String,NL,Derived from companyName,
+Priority opportunities,Opportunity row,Contact,contactName,String,Amara Okafor,,
+Priority opportunities,Opportunity row,Stage,stage,String,Proposal,,
+Priority opportunities,Opportunity row,Value,opportunityAmount,Currency,"$84,000",,
+Priority opportunities,Opportunity row,Close date,closeDate,Date,May 24,,
+Priority opportunities,Opportunity row,AI confidence,aiConfidencePct,Percent,92%,,

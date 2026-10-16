@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Home v2 (preview)</title>
+  <link rel="stylesheet" href="fragment.css">
+  <link rel="stylesheet" href="intelligence-banner/fragment.css">
+  <link rel="stylesheet" href="metric-strip/fragment.css">
+  <link rel="stylesheet" href="revenue-overview/fragment.css">
+  <link rel="stylesheet" href="todays-focus/fragment.css">
+  <link rel="stylesheet" href="priority-opportunities/fragment.css">
+</head>
+<body>
+  <div class="protobar">HTML prototype — Home v2 · shell plus five fragments · not in the hub assembly</div>
+  <div class="app-shell" data-module="c360-home-v2">
+    <aside class="sidebar">
+      <div class="logo">
+        <span class="logo-mark" data-hv2-logo-mark></span>
+        <span data-hv2-brand></span>
+      </div>
+      <nav class="navigation" aria-label="Main navigation" data-hv2-nav></nav>
+      <div class="sidebar-insight" aria-hidden="true"></div>
+      <div class="sidebar-footer">
+        <div class="user-card" data-hv2-user></div>
+      </div>
+    </aside>
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="global-search">
+          <span data-hv2-search-icon></span>
+          <input data-hv2-search>
+          <span class="search-shortcut" data-hv2-shortcut></span>
+        </div>
+        <div class="topbar-actions" data-hv2-top-actions></div>
+      </header>
+      <main class="page">
+        <header class="page-header" data-hv2-page-header></header>
+        <section class="c360-module" data-module="intelligence-banner"></section>
+        <section class="c360-module" data-module="metric-strip"></section>
+        <div class="content-grid">
+          <section class="c360-module" data-module="revenue-overview"></section>
+          <section class="c360-module" data-module="todays-focus"></section>
+        </div>
+        <section class="c360-module" data-module="priority-opportunities"></section>
+      </main>
+    </div>
+    <button type="button" class="copilot-button" data-hv2-copilot></button>
+  </div>
+  <script src="data.js"></script>
+  <script src="icons.js"></script>
+  <script src="fragment.js"></script>
+  <script src="intelligence-banner/fragment.js"></script>
+  <script src="metric-strip/fragment.js"></script>
+  <script src="revenue-overview/fragment.js"></script>
+  <script src="todays-focus/fragment.js"></script>
+  <script src="priority-opportunities/fragment.js"></script>
+</body>
+</html>

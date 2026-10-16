@@ -169,6 +169,7 @@ Wire **`c360Dashboard`** on the hub App Page and **`c360Account`** on Account Re
 | `c360PerformanceAndTrends` | No | — | Child (`c360EnterpriseAccountHome`, `c360Customer360Shell`) |
 | `c360Customer360Shell` | Yes | C360 Customer 360 Shell | App Page, Home Page, Account Record Page |
 | `c360HomePage` | No | — | Child (`c360Customer360Shell`) |
+| `c360HomeV2` | Yes | C360 Home v2 | App Page, Home Page |
 | `c360AlertsCentre` | No | — | Child (`c360Customer360Shell`) |
 | `c360CrossSellDetail` | No | — | Child (`c360Customer360Shell`) |
 | `c360RevenueBoostBusinessCase` | Yes | C360 Revenue Boost Business Case | App Page, Home Page, Account Record Page |

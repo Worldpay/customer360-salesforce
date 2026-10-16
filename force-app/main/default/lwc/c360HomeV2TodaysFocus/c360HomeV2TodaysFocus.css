@@ -1,0 +1,143 @@
+.focus-panel { min-height: 354px; }
+
+.task-list { padding: 0 18px 12px; }
+
+.task {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding: 14px 0;
+}
+
+.task-check {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1.5px solid #c9c9d2;
+  border-radius: 5px;
+  background: #fff;
+  color: #fff;
+  padding: 0;
+}
+
+.task-complete .task-check {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.task-content {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.task-content strong {
+  overflow: hidden;
+  color: #393943;
+  font-size: 10px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ink-faint);
+  font-size: 9px;
+}
+
+.task-time-priority { color: #d45b63; }
+
+.task-time em {
+  border-radius: 99px;
+  background: #ffeaec;
+  padding: 2px 5px;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.task .icon-button { width: 26px; height: 26px; }
+.task-complete { opacity: 0.55; }
+.task-complete .task-content strong { text-decoration: line-through; }
+
+@media (max-width: 1080px) {
+  .focus-panel { min-height: 0; }
+}
+
+
+:host { display: block; height: 100%; }
+
+.panel {
+  overflow: hidden;
+  height: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 19px 14px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: -0.015em;
+}
+
+.panel-header p {
+  margin: 4px 0 0;
+  color: var(--ink-faint);
+  font-size: 10px;
+}
+
+.button {
+  display: inline-flex;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 9px;
+  padding: 0 13px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button-ghost {
+  height: auto;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  padding: 4px 0;
+}
+
+.icon-button {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #777782;
+  cursor: pointer;
+}
+
+button { font: inherit; cursor: pointer; }

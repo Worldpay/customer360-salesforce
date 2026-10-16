@@ -21,6 +21,12 @@
         <members>c360EnterpriseAccountHome</members>
         <members>c360EnterpriseAccountHubChurn</members>
         <members>c360HomePage</members>
+        <members>c360HomeV2</members>
+        <members>c360HomeV2Intelligence</members>
+        <members>c360HomeV2MetricStrip</members>
+        <members>c360HomeV2PriorityOpportunities</members>
+        <members>c360HomeV2RevenueOverview</members>
+        <members>c360HomeV2TodaysFocus</members>
         <members>c360IdentifiedExpansionOpportunities</members>
         <members>c360IdentifiedRiskSignals</members>
         <members>c360KpiStrip</members>

@@ -1,0 +1,39 @@
+<template>
+    <section class="panel focus-panel">
+        <header class="panel-header">
+            <div>
+                <h2>{page.title}</h2>
+                <p>{remainingLabel}</p>
+            </div>
+            <button type="button" class="icon-button" data-label="Task options" aria-label="Task options" onclick={handleChrome}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="1" fill="currentColor"></circle><circle cx="19" cy="12" r="1" fill="currentColor"></circle><circle cx="5" cy="12" r="1" fill="currentColor"></circle></svg>
+            </button>
+        </header>
+        <div class="task-list">
+            <template for:each={tasks} for:item="task">
+                <div key={task.id} class={task.rowClass}>
+                    <button type="button" class="task-check" data-task={task.id} aria-label={task.checkLabel} onclick={handleToggle}>
+                        <template if:true={task.done}>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </template>
+                    </button>
+                    <div class="task-content">
+                        <strong>{task.title}</strong>
+                        <span class={task.timeClass}>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle><polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+                            {task.time}
+                            <template if:true={task.priority}><em>Priority</em></template>
+                        </span>
+                    </div>
+                    <button type="button" class="icon-button" data-label={task.moreLabel} aria-label={task.moreLabel} onclick={handleChrome}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="1" fill="currentColor"></circle><circle cx="19" cy="12" r="1" fill="currentColor"></circle><circle cx="5" cy="12" r="1" fill="currentColor"></circle></svg>
+                    </button>
+                </div>
+            </template>
+            <button type="button" class="button button-ghost" data-label={page.addLabel} onclick={handleChrome}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+                {page.addLabel}
+            </button>
+        </div>
+    </section>
+</template>

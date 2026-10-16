@@ -1,0 +1,25 @@
+<template>
+    <template if:false={dismissed}>
+        <section class="assistant-card">
+            <div class="assistant-glow assistant-glow-one"></div>
+            <div class="assistant-glow assistant-glow-two"></div>
+            <span class="assistant-icon">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72M14 7l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </span>
+            <div class="assistant-copy">
+                <span class="assistant-label">{page.label}</span>
+                <h2>{page.heading}</h2>
+                <p>{body}</p>
+            </div>
+            <div class="assistant-actions">
+                <button type="button" class="assistant-action" data-label={page.actionLabel} onclick={handleChrome}>
+                    {page.actionLabel}
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+                <button type="button" class="icon-button" aria-label={page.dismissLabel} onclick={handleDismiss}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+                </button>
+            </div>
+        </section>
+    </template>
+</template>
