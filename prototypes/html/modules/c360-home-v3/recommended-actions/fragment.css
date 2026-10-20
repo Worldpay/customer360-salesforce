@@ -1,0 +1,25 @@
+.pathways { border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 20px; }
+.pathways .section-head { margin-bottom: 8px; }
+.summary { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+.pathways table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.pathways th {
+  color: var(--faint);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+  padding: 8px;
+}
+.pathways td { padding: 8px; border-top: 1px solid #f3f4f6; white-space: nowrap; }
+.status { font-weight: 750; font-size: 11px; }
+.status-overdue { color: var(--red); }
+.status-track { color: var(--green); }
+.status-risk { color: var(--amber); }
+.legend { display: flex; gap: 14px; margin-top: 12px; color: var(--muted); font-size: 12px; }
+.dot { display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%; }
+.dot-track { background: var(--green); }
+.dot-risk { background: #eab308; }
+.dot-overdue { background: var(--red); }
+.dot-done { background: var(--indigo); }
+.chase { color: var(--red); border-color: #fecdd3; }
+.escalate { color: var(--amber); border-color: #fde68a; }

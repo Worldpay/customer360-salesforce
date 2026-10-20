@@ -27,6 +27,15 @@
         <members>c360HomeV2PriorityOpportunities</members>
         <members>c360HomeV2RevenueOverview</members>
         <members>c360HomeV2TodaysFocus</members>
+        <members>c360HomeV3</members>
+        <members>c360HomeV3ChurnSignals</members>
+        <members>c360HomeV3CrossSellLeads</members>
+        <members>c360HomeV3KpiRow</members>
+        <members>c360HomeV3PortfolioAccounts</members>
+        <members>c360HomeV3PortfolioBriefing</members>
+        <members>c360HomeV3RecommendedActions</members>
+        <members>c360HomeV3RevenueOverview</members>
+        <members>c360HomeV3TodaysFocus</members>
         <members>c360IdentifiedExpansionOpportunities</members>
         <members>c360IdentifiedRiskSignals</members>
         <members>c360KpiStrip</members>

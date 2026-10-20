@@ -19,6 +19,7 @@ export { CHURN_ALERTS_V2, IDENTIFIED_RISK_SIGNALS } from './c360ChurnAlertsV2Dat
 export { ENTERPRISE_ACCOUNT_HOME, IDENTIFIED_EXPANSION_OPPORTUNITIES, PERFORMANCE_AND_TRENDS } from './c360EnterpriseAccountHomeData';
 export { CUSTOMER_360_SHELL, HOME_PAGE, ALERTS_CENTRE, CROSS_SELL_DETAIL } from './c360Customer360ShellData';
 export { HOME_V2 } from './c360HomeV2Data';
+export { HOME_V3 } from './c360HomeV3Data';
 
 export const BASE_PRICE_PER_TXN = 0.05;
 

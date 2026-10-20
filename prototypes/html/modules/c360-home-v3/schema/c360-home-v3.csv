@@ -1,0 +1,101 @@
+Parent,Component Name,Header,Field Name,Type,Text,Table Name,Source Field Name
+Shell,Logo,Label,brandName,String,Customer360,N/A - static value,N/A
+Shell,Nav,Label,navHomeLabel,String,Home,N/A - static value,N/A
+Shell,Nav,Label,navAlertsLabel,String,Alerts,N/A - static value,N/A
+Shell,Nav,Label,navCrossSellLabel,String,Cross-Sell,N/A - static value,N/A
+Shell,Nav,Label,navAnalyticsLabel,String,Analytics,N/A - static value,N/A
+Shell,Nav,Label,navCustomersLabel,String,Customers,N/A - static value,N/A
+Shell,Nav,Label,navReportsLabel,String,Reports,N/A - static value,N/A
+Shell,Nav,Label,navSettingsLabel,String,Settings,N/A - static value,N/A
+Shell,User,Name,userName,String,Sarah Jenkins,,
+Shell,User,Role,userRole,String,RM — Enterprise,,
+Shell,User,Initials,userInitials,String,SJ,Derived from userName,
+Page header,Greeting,Header,greeting,String,"Welcome back, Sarah Jenkins",,
+Page header,Greeting,Badge,priorityAlertLabel,String,1 Priority Alert,,
+Page header,Greeting,Sub-Header,subtitle,String,Your portfolio at a glance. Preview data for layout comparison.,N/A - static value,N/A
+Page header,Tools,Label,updatedLabel,String,Updated 12m Ago,,
+Page header,Tools,Period,periodLabel,String,Last 30 Days,,
+Page header,Tools,Button,exportLabel,String,Export PDF,N/A - static value,N/A
+Page header,Tools,Button,analysisLabel,String,Portfolio Analysis,N/A - static value,N/A
+KPI row,Tile 1,Header,leadAcvLabel,String,Cross-Sell Lead ACV,N/A - static value,N/A
+KPI row,Tile 1,Value,leadAcvAmount,Currency,$2.4M,,
+KPI row,Tile 1,Change,leadAcvChangePct,Percent,+12.81%,,
+KPI row,Tile 1,Detail,leadAcvCompareLabel,String,Vs Previous Month,N/A - static value,N/A
+KPI row,Tile 2,Header,totalAccountsLabel,String,Total Accounts,N/A - static value,N/A
+KPI row,Tile 2,Value,totalAccountCount,Integer,47,,
+KPI row,Tile 3,Header,atRiskLabel,String,At-Risk Accounts,N/A - static value,N/A
+KPI row,Tile 3,Value,atRiskAccountCount,Integer,12,,
+KPI row,Tile 3,Change,atRiskNewLabel,String,2 New,,
+KPI row,Tile 3,Detail,atRiskNote,String,Attention,N/A - static value,N/A
+KPI row,Tile 4,Header,crossSellLeadsLabel,String,Cross-Sell Leads,N/A - static value,N/A
+KPI row,Tile 4,Value,crossSellLeadCount,Integer,11,,
+KPI row,Tile 4,Change,crossSellNewLabel,String,3 New,,
+Portfolio briefing,Banner,Eyebrow,intelligenceEyebrow,String,CUSTOMER360 INTELLIGENCE,N/A - static value,N/A
+Portfolio briefing,Banner,Header,briefingTitle,String,Your Portfolio Briefing,N/A - static value,N/A
+Portfolio briefing,Banner,Body,briefingBody,String,Preview insights for Stellar Manufacturing: potential close probability improvement of 12%.,,
+Portfolio briefing,Banner,Button,briefingDismissLabel,String,Dismiss,N/A - static value,N/A
+Portfolio briefing,Banner,Button,briefingReviewLabel,String,Review Insight,N/A - static value,N/A
+Churn alert,Banner,Header,churnAlertTitle,String,NEW CHURN ALERT GENERATED,,
+Churn alert,Banner,Body,churnAlertDetail,String,Transaction volume decline threshold (-25%) breached.,,
+Churn alert,Banner,When,churnAlertWhen,Date,24 July 2026 · 09:14 GMT,,
+Churn alert,Banner,Badge,churnAlertPriority,String,High Priority,,
+Churn alert,Banner,Button,churnAlertViewLabel,String,View,N/A - static value,N/A
+Revenue overview,Header,Header,revenueTitle,String,Revenue Overview,N/A - static value,N/A
+Revenue overview,Header,Sub-Header,revenueSubtitle,String,Preview portfolio performance.,N/A - static value,N/A
+Revenue overview,Header,Period,revenuePeriodLabel,String,Last 6 Months,,
+Revenue overview,Chart,Value,revenueAmount,Currency,$2.4M,,
+Revenue overview,Chart,Change,revenueChangeLabel,String,+12.81% vs Previous Period,,
+Revenue overview,Chart,Series,revenueBars,Collection,"Mar 79, Apr 69, May 89, Jun 98, Jul 113, Aug 138",,
+Today's focus,Header,Header,focusTitle,String,Today’s Focus,N/A - static value,N/A
+Today's focus,Header,Count,focusRemainingCount,Integer,3,Derived from unchecked tasks,
+Today's focus,Header,Label,focusRemainingLabel,String,Preview tasks remaining.,N/A - static value,N/A
+Today's focus,Task,Title,taskTitle,String,Review Priority Account Alerts,,
+Today's focus,Task,Time,taskTime,String,09:00 AM,,
+Today's focus,Task,Badge,taskPriority,String,Priority,,
+Today's focus,Footer,Button,addTaskLabel,String,Add Task,N/A - static value,N/A
+Portfolio accounts,Header,Header,portfolioTitle,String,Portfolio Accounts,N/A - static value,N/A
+Portfolio accounts,Filters,Label,filterAllLabel,String,All (11),,
+Portfolio accounts,Filters,Label,filterCriticalLabel,String,Critical (3),,
+Portfolio accounts,Filters,Label,filterAtRiskLabel,String,At Risk (3),,
+Portfolio accounts,Filters,Label,filterHealthyLabel,String,Healthy (5),,
+Portfolio accounts,Search,Placeholder,portfolioSearchPlaceholder,String,Filter by Account Name or ID...,N/A - static value,N/A
+Portfolio accounts,Row,Account,accountName,String,Acme Corporation,,
+Portfolio accounts,Row,Id,accountId,String,SF-89210,,
+Portfolio accounts,Row,Score,churnScore,Percent,-31%,,
+Portfolio accounts,Row,Change,scoreChange,String,↓-18,,
+Portfolio accounts,Row,Risk,riskLevel,String,CRITICAL,,
+Portfolio accounts,Row,Signal,churnSignal,String,ACTIVE — Auth rate -31%,,
+Portfolio accounts,Row,Leads,rowLeadCount,Integer,2,,
+Portfolio accounts,Row,ACV,totalLeadAcv,Currency,$200K,,
+Portfolio accounts,Footer,Label,showingLabel,String,Showing 1–8 of 11 accounts,,
+Churn signals,Header,Header,signalsTitle,String,Active Churn Risk Signals,N/A - static value,N/A
+Churn signals,Header,Badge,activeSignalCountLabel,String,4 Active,,
+Churn signals,Header,Link,viewAllSignalsLabel,String,View All Signals ›,N/A - static value,N/A
+Churn signals,Card,Badge,signalSeverity,String,CRITICAL,,
+Churn signals,Card,Account,signalAccountName,String,Acme Corporation,,
+Churn signals,Card,State,signalState,String,NEW,,
+Churn signals,Card,Header,signalTitle,String,Authorization Rate Drop,,
+Churn signals,Card,Body,signalDetail,String,Auth rate dropped 31% below baseline (< -25% threshold) over 7-day rolling window,,
+Churn signals,Card,Impact,signalImpact,Currency,$145K monthly revenue at risk,,
+Churn signals,Card,Date,signalDate,Date,26 Aug 2026,,
+Cross-sell leads,Header,Header,leadsTitle,String,Recommended Cross-Sell Leads,N/A - static value,N/A
+Cross-sell leads,Header,Link,viewAllLeadsLabel,String,View All Recommended Leads ›,N/A - static value,N/A
+Cross-sell leads,Card,Account,leadAccountName,String,Acme Corporation,,
+Cross-sell leads,Card,Product,recommendedProduct,String,Revenue Boost,,
+Cross-sell leads,Card,ACV,estimatedAcv,Currency,$18K,,
+Cross-sell leads,Card,ROI,merchantRoi,Currency,$25K,,
+Cross-sell leads,Card,Button,learnMoreLabel,String,Learn More ›,N/A - static value,N/A
+Cross-sell leads,Card,Button,createOpportunityLabel,String,Create Opportunity,N/A - static value,N/A
+Recommended actions,Header,Header,actionsTitle,String,Recommended Actions,N/A - static value,N/A
+Recommended actions,Header,Summary,actionsSummary,String,18 Active | 3 Overdue | 12 On Track | 3 Completed This Month,,
+Recommended actions,Header,Link,viewTimelineLabel,String,View Full Timeline ›,N/A - static value,N/A
+Recommended actions,Row,Account,pathwayAccountName,String,Acme Corporation,,
+Recommended actions,Row,Pathway,pathwayName,String,Smart Routing Integration,,
+Recommended actions,Row,Stage,pathwayStage,String,Implementation,,
+Recommended actions,Row,Owner,pathwayOwner,String,J. Smith (IM),,
+Recommended actions,Row,Date,pathwayTargetDate,Date,15 Sep 2026,,
+Recommended actions,Row,Status,slaStatus,String,OVERDUE (3 days),,
+Recommended actions,Row,Dependency,pathwayDependency,String,API credentials pending,,
+Recommended actions,Row,Button,pathwayActionLabel,String,Chase,,
+Footer,Note,Body,refreshNote,String,Portfolio data refreshed every 15 minutes. Source: Snowflake → Analytics Engine → Salesforce. Manager visibility enabled.,N/A - static value,N/A
+Footer,Note,Date,asOfDate,Date,"Tuesday, 26 Aug 2026",,

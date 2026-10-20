@@ -1,0 +1,66 @@
+<template>
+    <section class="portfolio">
+        <div class="section-head portfolio-head">
+            <div class="filters-wrap">
+                <h2 class="section-title">{portfolio.title}</h2>
+                <div class="filters">
+                    <template for:each={filters} for:item="item">
+                        <button key={item.id} type="button" class={item.filterClass} data-filter={item.id} onclick={handleFilter}>{item.label}</button>
+                    </template>
+                </div>
+            </div>
+            <label class="search">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.8"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                <input type="search" value={query} placeholder={portfolio.searchPlaceholder} aria-label={portfolio.searchPlaceholder} oninput={handleSearch}>
+            </label>
+        </div>
+        <div class="table-wrap">
+            <table class="accounts">
+                <thead>
+                    <tr>
+                        <template for:each={columns} for:item="column">
+                            <th key={column.key}>{column.label}</th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template if:true={hasRows}>
+                        <template for:each={rows} for:item="row">
+                            <tr key={row.id}>
+                                <td class="account-name">{row.name}</td>
+                                <td><span class={row.scoreClass}>{row.score}</span></td>
+                                <td class={row.changeClass}>{row.change}</td>
+                                <td><span class={row.riskClass}>{row.risk}</span></td>
+                                <td>{row.signal}</td>
+                                <td>{row.leads}</td>
+                                <td>{row.acv}</td>
+                                <td>
+                                    <div class="row-actions">
+                                        <button type="button" class="mini" data-label="Defer" onclick={handleChrome}>Defer</button>
+                                        <template if:true={row.action}>
+                                            <button type="button" class="mini mini-fill" data-label="Action" onclick={handleChrome}>Action</button>
+                                        </template>
+                                    </div>
+                                </td>
+                            </tr>
+                        </template>
+                    </template>
+                    <template if:false={hasRows}>
+                        <tr>
+                            <td colspan="8">No accounts match this filter.</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-foot">
+            <span>{showingLabel}</span>
+            <div class="pager">
+                <button type="button" data-label="Previous page" aria-label="Previous" onclick={handleChrome}>‹</button>
+                <button type="button" class="is-active">1</button>
+                <button type="button" data-label="Page 2" onclick={handleChrome}>2</button>
+                <button type="button" data-label="Next page" aria-label="Next" onclick={handleChrome}>›</button>
+            </div>
+        </div>
+    </section>
+</template>

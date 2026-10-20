@@ -1,0 +1,42 @@
+<template>
+    <section class="pathways">
+        <div class="section-head">
+            <div>
+                <h2 class="section-title">{pathways.title}</h2>
+                <p class="summary">{pathways.summary}</p>
+            </div>
+            <button type="button" class="linkish" data-label="View Full Timeline" onclick={handleChrome}>{pathways.viewAllLabel}</button>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <template for:each={columns} for:item="column">
+                            <th key={column.key}>{column.label}</th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={rows} for:item="row">
+                        <tr key={row.key}>
+                            <td>{row.account}</td>
+                            <td>{row.pathway}</td>
+                            <td>{row.stage}</td>
+                            <td>{row.owner}</td>
+                            <td>{row.date}</td>
+                            <td><span class={row.statusClass}>● {row.status}</span></td>
+                            <td>{row.dependency}</td>
+                            <td><button type="button" class={row.actionClass} data-label={row.action} onclick={handleChrome}>{row.action}</button></td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <div class="legend">
+            <span>Legend:</span>
+            <template for:each={legend} for:item="item">
+                <span key={item.tone}><i class={item.dotClass}></i>{item.label}</span>
+            </template>
+        </div>
+    </section>
+</template>

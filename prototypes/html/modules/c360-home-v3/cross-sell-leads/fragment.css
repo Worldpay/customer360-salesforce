@@ -1,0 +1,13 @@
+.product-line { display: flex; gap: 8px; align-items: baseline; margin: 12px 0; font-size: 13px; }
+.product-line span { color: var(--muted); font-size: 11px; }
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  border-radius: 6px;
+  background: #f8fafc;
+  padding: 8px 12px;
+}
+.metrics span { display: block; color: #64748b; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; }
+.metrics strong { font-size: 15px; }
+.lead-card hr { border: 0; border-top: 1px solid #e2e8f0; margin: 12px 0; }

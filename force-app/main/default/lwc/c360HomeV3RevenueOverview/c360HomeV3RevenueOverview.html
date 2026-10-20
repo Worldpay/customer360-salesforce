@@ -1,0 +1,34 @@
+<template>
+    <div>
+        <div class="section-head">
+            <div>
+                <h2 class="section-title">{revenue.title}</h2>
+                <p class="section-sub">{revenue.subtitle}</p>
+            </div>
+            <button type="button" class="select-btn" data-label={revenue.periodLabel} onclick={handleChrome}>
+                {revenue.periodLabel}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+        </div>
+        <div class="panel">
+            <div class="revenue-headline">
+                <strong class="revenue-amount">{revenue.amount}</strong>
+                <span class="revenue-change">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16 9 11l3 3 8-8M14 6h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    {revenue.change}
+                </span>
+            </div>
+            <div class="bar-chart">
+                <template for:each={bars} for:item="bar">
+                    <div key={bar.label} class="bar-col">
+                        <span class={bar.barClass} style={bar.barStyle}></span>
+                        <span class="bar-label">{bar.label}</span>
+                    </div>
+                </template>
+                <svg class="trend" viewBox="0 0 520 78" preserveAspectRatio="none" aria-hidden="true">
+                    <polyline points="20,62 104,70 188,48 272,38 356,22 450,4" fill="none" stroke="#5b5bd7" stroke-width="2"></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,32 @@
+<template>
+    <section>
+        <div class="section-head signal-head">
+            <h2 class="section-title">{signals.title}<span class="badge-count">{signals.badge}</span></h2>
+            <button type="button" class="linkish" data-label="View All Signals" onclick={handleChrome}>{signals.viewAllLabel}</button>
+        </div>
+        <div class="signal-grid">
+            <template for:each={cards} for:item="card">
+                <article key={card.accountId} class="signal-card">
+                    <div class="signal-top">
+                        <span>
+                            <span class={card.severityClass}>{card.badge}</span>
+                            <span class="signal-id">{card.account}</span>
+                        </span>
+                        <span class={card.stateClass}>{card.state}</span>
+                    </div>
+                    <h3 class="signal-title">{card.title}</h3>
+                    <p class="signal-copy">{card.signal}</p>
+                    <p class="signal-impact">{card.impact}</p>
+                    <div class="signal-foot">
+                        <span class="signal-date">{card.date}</span>
+                        <span class="row-actions">
+                            <button type="button" class="text-btn" data-label="Dismiss" onclick={handleChrome}>Dismiss</button>
+                            <button type="button" class="mini" data-label="Defer" onclick={handleChrome}>Defer</button>
+                            <button type="button" class="mini mini-fill" data-label="Action" onclick={handleChrome}>Action</button>
+                        </span>
+                    </div>
+                </article>
+            </template>
+        </div>
+    </section>
+</template>

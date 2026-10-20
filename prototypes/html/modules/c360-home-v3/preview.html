@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Home v3 (preview)</title>
+  <link rel="stylesheet" href="fragment.css">
+  <link rel="stylesheet" href="kpi-row/fragment.css">
+  <link rel="stylesheet" href="portfolio-briefing/fragment.css">
+  <link rel="stylesheet" href="revenue-overview/fragment.css">
+  <link rel="stylesheet" href="todays-focus/fragment.css">
+  <link rel="stylesheet" href="portfolio-accounts/fragment.css">
+  <link rel="stylesheet" href="churn-signals/fragment.css">
+  <link rel="stylesheet" href="cross-sell-leads/fragment.css">
+  <link rel="stylesheet" href="recommended-actions/fragment.css">
+</head>
+<body>
+  <div class="protobar">HTML prototype — Home v3 · portfolio home · not in the hub assembly</div>
+  <div class="app-shell" data-module="c360-home-v3">
+    <aside class="sidebar">
+      <div class="logo">
+        <span class="logo-mark" data-hv3-logo></span>
+        <span data-hv3-brand></span>
+      </div>
+      <nav class="navigation" aria-label="Main navigation" data-hv3-nav></nav>
+      <div class="sidebar-footer">
+        <button type="button" class="user-card" data-hv3-user data-hv3-toast="Account menu (preview only)"></button>
+      </div>
+    </aside>
+    <div class="main-shell">
+      <main class="page">
+        <header class="page-header" data-hv3-header></header>
+        <section data-module="kpi-row"></section>
+        <section data-module="portfolio-briefing"></section>
+        <div class="workspace-grid">
+          <section data-module="revenue-overview"></section>
+          <section data-module="todays-focus"></section>
+        </div>
+        <section data-module="portfolio-accounts"></section>
+        <section data-module="churn-signals"></section>
+        <section data-module="cross-sell-leads"></section>
+        <section data-module="recommended-actions"></section>
+        <footer class="page-footer" data-hv3-footer></footer>
+      </main>
+    </div>
+  </div>
+  <script src="data.js"></script>
+  <script src="fragment.js"></script>
+  <script src="kpi-row/fragment.js"></script>
+  <script src="portfolio-briefing/fragment.js"></script>
+  <script src="revenue-overview/fragment.js"></script>
+  <script src="todays-focus/fragment.js"></script>
+  <script src="portfolio-accounts/fragment.js"></script>
+  <script src="churn-signals/fragment.js"></script>
+  <script src="cross-sell-leads/fragment.js"></script>
+  <script src="recommended-actions/fragment.js"></script>
+</body>
+</html>

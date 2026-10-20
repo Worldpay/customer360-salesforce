@@ -1,0 +1,28 @@
+<template>
+    <section>
+        <div class="section-head signal-head">
+            <h2 class="section-title">{leads.title}</h2>
+            <button type="button" class="linkish" data-label="View All Recommended Leads" onclick={handleChrome}>{leads.viewAllLabel}</button>
+        </div>
+        <div class="lead-grid">
+            <template for:each={cards} for:item="card">
+                <article key={card.accountId} class="lead-card">
+                    <strong class="signal-id">{card.account}</strong>
+                    <div class="product-line"><span>Recommended product:</span><strong>{card.product}</strong></div>
+                    <div class="metrics">
+                        <div><span>ESTIMATED ACV</span><strong>{card.acv}</strong></div>
+                        <div><span>MERCHANT ROI</span><strong>{card.roi}</strong></div>
+                    </div>
+                    <hr>
+                    <div class="signal-foot">
+                        <button type="button" class="linkish" data-label="Learn More" onclick={handleChrome}>Learn More ›</button>
+                        <span class="row-actions">
+                            <button type="button" class="mini" data-label="Dismiss" onclick={handleChrome}>Dismiss</button>
+                            <button type="button" class="mini mini-fill" data-label="Create Opportunity" onclick={handleChrome}>Create Opportunity</button>
+                        </span>
+                    </div>
+                </article>
+            </template>
+        </div>
+    </section>
+</template>

@@ -2,7 +2,7 @@
 
 Inventory of HTML prototype modules and their LWC conversion status for Customer 360.
 
-**Last updated:** 2026-10-16 (Home v2 HTML preview and LWC)
+**Last updated:** 2026-10-20 (Home v3 HTML preview and LWC)
 
 **Live data in repo (15 Sep):** `c360Dashboard` sidebar uses `getRecord` (User). `c360CrossSellTable` uses `C360CrossSellController.getCrossSellAccounts` — replace placeholder Apex via `scripts/retrieveC360CrossSellController.ps1` when CLI is available.
 
@@ -92,6 +92,7 @@ Inventory of HTML prototype modules and their LWC conversion status for Customer
 | `identified-expansion-opportunities` | P0 | done | done | | `c360IdentifiedExpansionOpportunities` | Child of `c360EnterpriseAccountHome` |
 | `performance-and-trends` | P0 | done | done | | `c360PerformanceAndTrends` | Child of `c360EnterpriseAccountHome` |
 | `c360-home-v2` | P0 | done | done | | `c360HomeV2` | Isolated — parent. LWC on mock data. Source columns blank |
+| `c360-home-v3` | P0 | done | done | | `c360HomeV3` | Isolated portfolio home. LWC on mock data. Source columns blank |
 
 **Note:** `revenue-boost-business-case` is a parallel legacy business-case layout; it is **not** included in `build360HtmlPrototype.py` / unified SPA. `merchant-business-case-header` is a separate Merchant Business Case header and is also excluded from the hub assembly.
 
@@ -125,6 +126,7 @@ Open in a browser (double-click, no Salesforce CLI):
 | **Performance and Trends (child)** | [`html/modules/performance-and-trends/preview.html`](html/modules/performance-and-trends/preview.html) |
 | **Customer 360 shell** | [`html/modules/customer-360-shell/preview.html`](html/modules/customer-360-shell/preview.html) |
 | **Home v2** | [`html/modules/c360-home-v2/preview.html`](html/modules/c360-home-v2/preview.html) |
+| **Home v3** | [`html/modules/c360-home-v3/preview.html`](html/modules/c360-home-v3/preview.html) |
 
 Canonical reference: [`04. HTML prototypes/C360 Prototype v5.html`](../../../04.%20HTML%20prototypes/C360%20Prototype%20v5.html) — Customer 360 uses per-module HTML previews under `prototypes/html/modules/` only (no full-page copy in this folder).
 
