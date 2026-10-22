@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C360 — Alerts v3 (preview)</title>
+  <link rel="stylesheet" href="fragment.css">
+  <link rel="stylesheet" href="page-header/fragment.css">
+  <link rel="stylesheet" href="alert-filters/fragment.css">
+  <link rel="stylesheet" href="alert-table/fragment.css">
+</head>
+<body>
+  <div class="protobar">HTML prototype — Alerts v3 · All Churn Alerts · not in the hub assembly</div>
+  <div class="app-shell" data-module="c360-alerts-v3">
+    <aside class="sidebar">
+      <div class="logo">
+        <span class="logo-mark" data-av3-mark></span>
+        <span class="logo-name" data-av3-brand></span>
+      </div>
+      <nav class="navigation" aria-label="Main navigation" data-av3-nav></nav>
+      <p class="sidebar-date" data-av3-date></p>
+    </aside>
+    <div class="main-shell">
+      <header class="hub-bar">
+        <h1 class="hub-title" data-av3-hub></h1>
+        <div class="hub-tools">
+          <label class="hub-search">
+            <span data-av3-search-icon></span>
+            <input type="search" data-av3-hub-search aria-label="Search portfolios and alerts">
+          </label>
+          <button type="button" class="bell" data-av3-toast="Notifications (preview only)" aria-label="Notifications">
+            <span data-av3-bell></span>
+            <span class="bell-count" data-av3-count></span>
+          </button>
+          <span class="hub-rule"></span>
+          <button type="button" class="profile" data-av3-user data-av3-toast="Account menu (preview only)"></button>
+          <button type="button" class="apps" data-av3-toast="Apps (preview only)" aria-label="Apps">▦</button>
+        </div>
+      </header>
+      <main class="page">
+        <header data-module="page-header"></header>
+        <section data-module="alert-filters"></section>
+        <section data-module="alert-table"></section>
+      </main>
+    </div>
+  </div>
+  <script src="data.js"></script>
+  <script src="fragment.js"></script>
+  <script src="page-header/fragment.js"></script>
+  <script src="alert-filters/fragment.js"></script>
+  <script src="alert-table/fragment.js"></script>
+  <script>
+    document.querySelector("[data-av3-search-icon]").innerHTML = window.av3Icon("search", 14);
+    document.querySelector("[data-av3-bell]").innerHTML = window.av3Icon("bell", 16);
+  </script>
+</body>
+</html>

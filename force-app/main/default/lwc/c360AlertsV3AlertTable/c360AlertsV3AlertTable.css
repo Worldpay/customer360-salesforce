@@ -1,0 +1,78 @@
+:host {
+    display: block;
+    font-family: Inter, "SF Pro Text", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #111827;
+    --hub: #0f0f3e;
+    --brand: #1b1b6f;
+    --ink: #0f172a;
+    --muted: #6a6e87;
+    --slate: #475569;
+    --line: #cbd5e1;
+    --line-soft: #e2e8f0;
+    --canvas: #f4f4f6;
+}
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+.summary {
+  margin: 0 0 12px;
+  border-radius: 8px;
+  background: #e2e8f0;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 650;
+}
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.alerts { width: 100%; border-collapse: collapse; font-size: 13px; }
+.alerts th {
+  background: #f1f5f9;
+  font-size: 12px;
+  text-align: left;
+  padding: 10px 8px;
+}
+.alerts td { padding: 12px 8px; border-top: 1px solid var(--line-soft); color: var(--slate); white-space: nowrap; }
+.account {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 650;
+  padding: 0;
+}
+.score { font-weight: 750; }
+.score-red { color: #991b1b; }
+.score-amber { color: #92400e; }
+.score-ink { color: #1e2a3a; }
+.score-slate { color: #334155; }
+.badge {
+  display: inline-flex;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.badge-new { background: #fee2e2; color: #991b1b; }
+.badge-review { background: #fef3c7; color: #92400e; }
+.badge-scheduled { background: #1e2a3a; color: #fff; }
+.badge-suppressed { background: #e2e8f0; color: #334155; }
+.action {
+  border: 0;
+  border-radius: 6px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 650;
+  padding: 6px 12px;
+  box-shadow: 0 1px 1px rgba(27, 27, 111, 0.04);
+}
+.logic {
+  margin: 12px 0 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: var(--slate);
+  font-size: 12px;
+  padding: 12px;
+}
+.empty { color: var(--slate); }

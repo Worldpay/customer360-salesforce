@@ -1,0 +1,41 @@
+Parent,Component Name,Header,Field Name,Type,Text,Table Name,Source Field Name
+Shell,Logo,Mark,brandMark,String,C3,N/A - static value,N/A
+Shell,Logo,Label,brandName,String,Customer 360,N/A - static value,N/A
+Shell,Nav,Label,navHomeLabel,String,Home,N/A - static value,N/A
+Shell,Nav,Label,navAlertsLabel,String,Alerts,N/A - static value,N/A
+Shell,Nav,Label,navCrossSellLabel,String,Cross-Sell,N/A - static value,N/A
+Shell,Nav,Label,navAnalyticsLabel,String,Analytics,N/A - static value,N/A
+Shell,Nav,Label,navCustomersLabel,String,Customers,N/A - static value,N/A
+Shell,Nav,Label,navReportsLabel,String,Reports,N/A - static value,N/A
+Shell,Nav,Label,navSettingsLabel,String,Settings,N/A - static value,N/A
+Shell,Sidebar,Date,sidebarDate,Date,"Tuesday, 26 August 2026",,
+Shell,Hub bar,Header,hubTitle,String,Enterprise Account Hub,N/A - static value,N/A
+Shell,Hub bar,Placeholder,hubSearchPlaceholder,String,"Search portfolios, alerts...",N/A - static value,N/A
+Shell,Hub bar,Count,notificationCount,Integer,5,,
+Shell,User,Name,userName,String,Sarah Jenkins,,
+Shell,User,Role,userRole,String,RM — Enterprise,,
+Shell,User,Initials,userInitials,String,SJ,Derived from userName,
+Page header,Breadcrumb,Label,crumbAlerts,String,Alerts,N/A - static value,N/A
+Page header,Breadcrumb,Label,crumbHub,String,Enterprise Account Hub,N/A - static value,N/A
+Page header,Back,Label,backLabel,String,Enterprise Account Hub,N/A - static value,N/A
+Page header,Title,Header,title,String,All Churn Alerts,N/A - static value,N/A
+Page header,Tools,Label,updatedLabel,String,Updated 10m Ago,,
+Page header,Tools,Button,exportLabel,String,Export,N/A - static value,N/A
+Alert filters,Search,Placeholder,filterPlaceholder,String,Filter by Account Name or Salesforce ID...,N/A - static value,N/A
+Alert filters,Priority,Label,priorityLabel,String,Priority: All,,
+Alert filters,Status,Label,statusLabel,String,Status: All,,
+Alert filters,Button,Label,saveFiltersLabel,String,Save Filters,N/A - static value,N/A
+Alert table,Summary,Label,summary,String,6 Total Alerts  ·  3 New  ·  2 In Review  ·  1 Resolved  ·  Suppressed: 2,,
+Alert table,Row,Account,accountName,String,Acme Corporation,,
+Alert table,Row,Id,accountId,String,SF-89210,,
+Alert table,Row,Score,churnScore,Percent,-31% ↓,,
+Alert table,Row,Threshold,threshold,String,< -25%,,
+Alert table,Row,Date,alertDate,Date,28 Aug 2026,,
+Alert table,Row,Suppression,suppression,String,Active,,
+Alert table,Row,Task,rmTask,String,✓ Created,,
+Alert table,Row,Email,emailStatus,String,✓ Sent,,
+Alert table,Row,Status,alertStatus,String,New Alert,,
+Alert table,Row,Button,actionLabel,String,Action,N/A - static value,N/A
+Alert table,Logic,Lead,logicLead,String,Alert logic: IF score ,N/A - static value,N/A
+Alert table,Logic,Rule,logicThreshold,String,< -25%,,
+Alert table,Logic,Rest,logicRest,String, AND RM in pilot group → Alert + Task + Email · 1-month suppression per merchant,N/A - static value,N/A

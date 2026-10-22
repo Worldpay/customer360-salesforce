@@ -20,6 +20,7 @@ export { ENTERPRISE_ACCOUNT_HOME, IDENTIFIED_EXPANSION_OPPORTUNITIES, PERFORMANC
 export { CUSTOMER_360_SHELL, HOME_PAGE, ALERTS_CENTRE, CROSS_SELL_DETAIL } from './c360Customer360ShellData';
 export { HOME_V2 } from './c360HomeV2Data';
 export { HOME_V3 } from './c360HomeV3Data';
+export { ALERTS_V3 } from './c360AlertsV3Data';
 
 export const BASE_PRICE_PER_TXN = 0.05;
 

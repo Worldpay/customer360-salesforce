@@ -1,0 +1,42 @@
+window.C360_ALERTS_V3 = {
+  brandMark: "C3",
+  brandName: "Customer 360",
+  hubTitle: "Enterprise Account Hub",
+  searchPlaceholder: "Search portfolios, alerts...",
+  notificationCount: "5",
+  userName: "Sarah Jenkins",
+  userRole: "RM — Enterprise",
+  userInitials: "SJ",
+  sidebarDate: "Tuesday, 26 August 2026",
+  nav: [
+    { id: "home", label: "Home", icon: "home" },
+    { id: "alerts", label: "Alerts", icon: "alert" },
+    { id: "cross-sell", label: "Cross-Sell", icon: "spark" },
+    { id: "analytics", label: "Analytics", icon: "chart" },
+    { id: "customers", label: "Customers", icon: "users", hasChevron: true },
+    { id: "reports", label: "Reports", icon: "file" },
+    { id: "settings", label: "Settings", icon: "gear" }
+  ],
+  crumbs: ["Alerts", "Enterprise Account Hub"],
+  backLabel: "Enterprise Account Hub",
+  title: "All Churn Alerts",
+  updatedLabel: "Updated 10m Ago",
+  exportLabel: "Export",
+  filterPlaceholder: "Filter by Account Name or Salesforce ID...",
+  priorityLabel: "Priority: All",
+  statusLabel: "Status: All",
+  saveLabel: "Save Filters",
+  summary: "6 Total Alerts  ·  3 New  ·  2 In Review  ·  1 Resolved  ·  Suppressed: 2",
+  columns: ["Account Name", "Churn Score", "Threshold", "Alert Date", "Suppression", "RM Task", "Email", "Status", "Status"],
+  statuses: ["All", "New Alert", "In Review", "Action Scheduled", "Suppressed"],
+  rows: [
+    { id: "SF-89210", name: "Acme Corporation", score: "-31% ↓", scoreTone: "red", threshold: "< -25%", date: "28 Aug 2026", suppression: "Active", task: "✓ Created", email: "✓ Sent", status: "New Alert", statusTone: "new" },
+    { id: "SF-10003", name: "Globex Ltd", score: "-28% ↓", scoreTone: "amber", threshold: "< -25%", date: "27 Aug 2026", suppression: "Active", task: "✓ Created", email: "✓ Sent", status: "In Review", statusTone: "review" },
+    { id: "SF-10002", name: "InTech Solutions", score: "-42% ↓", scoreTone: "ink", threshold: "< -25%", date: "25 Aug 2026", suppression: "Active", task: "✓ Created", email: "✓ Sent", status: "Action Scheduled", statusTone: "scheduled" },
+    { id: "SF-10009", name: "Umbrella Corp", score: "-26% ↓", scoreTone: "red", threshold: "< -25%", date: "20 Aug 2026", suppression: "Re-triggered", task: "✓ Created", email: "✓ Sent", status: "New Alert", statusTone: "new" },
+    { id: "SF-10010", name: "Soylent Co", score: "-33% ↓", scoreTone: "slate", threshold: "< -25%", date: "15 Aug", suppression: "Suppressed til 15 Sep", task: "—", email: "—", status: "Suppressed", statusTone: "suppressed" }
+  ],
+  logicLead: "Alert logic: IF score ",
+  logicEmphasis: "< -25%",
+  logicRest: " AND RM in pilot group → Alert + Task + Email · 1-month suppression per merchant"
+};

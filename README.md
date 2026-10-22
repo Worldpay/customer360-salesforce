@@ -71,6 +71,8 @@ Exposed bundles (tables, banners, KPI strip, Alert Centre, etc.) can be placed i
 - **LWC:** `c360Customer360Shell` — Customer 360 shell (Home, Alerts Centre, churn account, cross-sell account). Salesforce URL parameters are not set yet.
 - **HTML:** [`prototypes/html/modules/c360-home-v3/preview.html`](prototypes/html/modules/c360-home-v3/preview.html)
 - **LWC:** `c360HomeV3` — Home v3 portfolio screen (sidebar, KPIs, briefing, revenue, focus, accounts, signals, leads, recommended actions). Source columns are blank.
+- **HTML:** [`prototypes/html/modules/c360-alerts-v3/preview.html`](prototypes/html/modules/c360-alerts-v3/preview.html)
+- **LWC:** `c360AlertsV3` — Alerts v3 All Churn Alerts list (sidebar, hub bar, filters, table). Source columns are blank.
 
 ### Shared / child-only
 
@@ -173,6 +175,7 @@ Wire **`c360Dashboard`** on the hub App Page and **`c360Account`** on Account Re
 | `c360HomePage` | No | — | Child (`c360Customer360Shell`) |
 | `c360HomeV2` | Yes | C360 Home v2 | App Page, Home Page |
 | `c360HomeV3` | Yes | C360 Home v3 | App Page, Home Page |
+| `c360AlertsV3` | Yes | C360 Alerts v3 | App Page, Home Page |
 | `c360AlertsCentre` | No | — | Child (`c360Customer360Shell`) |
 | `c360CrossSellDetail` | No | — | Child (`c360Customer360Shell`) |
 | `c360RevenueBoostBusinessCase` | Yes | C360 Revenue Boost Business Case | App Page, Home Page, Account Record Page |

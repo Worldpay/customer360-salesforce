@@ -1,0 +1,30 @@
+<template>
+    <div class="header-stack">
+        <div class="header-top">
+            <div class="crumbs">
+                <template for:each={crumbs} for:item="crumb">
+                    <span key={crumb.key}>
+                        <button type="button" class="crumb" data-label={crumb.label} onclick={handleChrome}>{crumb.label}</button>
+                        <template if:true={crumb.showSeparator}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </template>
+                    </span>
+                </template>
+            </div>
+            <button type="button" class="back-link" data-label={page.backLabel} onclick={handleChrome}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 6-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                {page.backLabel}
+            </button>
+        </div>
+        <div class="title-row">
+            <h1 class="title">{page.title}</h1>
+            <div class="title-tools">
+                <span class="updated">{page.updatedLabel}</span>
+                <button type="button" class="export" data-label={page.exportLabel} onclick={handleChrome}>
+                    {page.exportLabel}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v10M8 10l4 4 4-4M5 19h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</template>

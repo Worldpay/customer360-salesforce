@@ -7,6 +7,10 @@
         <members>c360AlertCentre</members>
         <members>c360AlertDetail</members>
         <members>c360AlertsCentre</members>
+        <members>c360AlertsV3</members>
+        <members>c360AlertsV3AlertFilters</members>
+        <members>c360AlertsV3AlertTable</members>
+        <members>c360AlertsV3PageHeader</members>
         <members>c360BusinessCaseAnnualEstimate</members>
         <members>c360ChurnAlertNotification</members>
         <members>c360ChurnAlertsV2</members>

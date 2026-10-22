@@ -1,0 +1,12 @@
+<template>
+    <div class="filter-bar">
+        <input class="filter-search" type="search" aria-label="Filter alerts" placeholder={page.filterPlaceholder} value={query} oninput={handleQuery}>
+        <button type="button" class="filter-select" data-label={page.priorityLabel} onclick={handleChrome}>{page.priorityLabel} ▾</button>
+        <select class="filter-select" aria-label="Status" onchange={handleStatus}>
+            <template for:each={statusOptions} for:item="option">
+                <option key={option.value} value={option.value}>{option.label}</option>
+            </template>
+        </select>
+        <button type="button" class="save-filters" data-label={page.saveLabel} onclick={handleChrome}>{page.saveLabel}</button>
+    </div>
+</template>
